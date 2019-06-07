@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState } from 'react';
+import { ThemeManager, Heading } from 'library';
+import { Switch, Route, Redirect } from 'react-router';
+import { BrowserRouter, NavLink } from 'react-router-dom';
+import * as routes from './Constants/routes';
+import { Body, Nav, Main, GlobalStyle } from './AppStyles';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// export const EventDataContext = React.createContext({} as IEventData);
+// 		<EventDataContext.Provider value={data}>
+// 		</EventDataContext.Provider>
 
-export default App;
+const EventApplication: FC = () => {
+	// const { isLoading, data, errors } = useEventAPI();
+	const [sidebarIsopen, setSidebarIsOpen] = useState(undefined as any);
+
+	return (
+		<ThemeManager>
+			<BrowserRouter>
+				<Body>
+					<GlobalStyle />
+					<Nav>
+						<NavLink to={routes.base_route1} className="nav-link">
+							page 1
+						</NavLink>
+						<NavLink to={routes.base_route2} className="nav-link">
+							page 2
+						</NavLink>
+						<NavLink to={routes.base_route3} className="nav-link">
+							page 3
+						</NavLink>
+					</Nav>
+					<Main>
+						<Switch>
+							<Route exact path={routes.base_route1} component={Page1} />
+							<Route exact path={routes.base_route2} component={Page2} />
+							<Route exact path={routes.base_route3} component={Page3} />
+							<Redirect to={routes.base_route} />
+						</Switch>
+					</Main>
+				</Body>
+			</BrowserRouter>
+		</ThemeManager>
+	);
+};
+
+const Page1 = () => (
+	<div>
+		<Heading headingText="Sivu 1" isUnderlined />
+	</div>
+);
+const Page2 = () => <div>sivu 2</div>;
+const Page3 = () => <div>sivu 3</div>;
+
+export default EventApplication;
