@@ -1,9 +1,10 @@
 import React, { FC, useState } from 'react';
-import { ThemeManager, Heading } from 'library';
+import { ThemeManager, Heading, Icons, SelectField, DayPickerField } from 'library';
 import { Switch, Route, Redirect } from 'react-router';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import * as routes from './Constants/routes';
 import { Body, Nav, Main, GlobalStyle } from './AppStyles';
+import { useCollection } from './Data/useCollections';
 
 // export const EventDataContext = React.createContext({} as IEventData);
 // 		<EventDataContext.Provider value={data}>
@@ -43,11 +44,18 @@ const EventApplication: FC = () => {
 	);
 };
 
-const Page1 = () => (
-	<div>
-		<Heading headingText="Sivu 1" isUnderlined />
-	</div>
-);
+const Page1 = () => {
+	const { collection } = useCollection();
+	return (
+		<div>
+			<Heading headingText="Sivu 1" isUnderlined />
+
+			{collection.map((item) => (
+				<span>{item.name}</span>
+			))}
+		</div>
+	);
+};
 const Page2 = () => <div>sivu 2</div>;
 const Page3 = () => <div>sivu 3</div>;
 

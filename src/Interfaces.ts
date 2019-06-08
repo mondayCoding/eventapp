@@ -5,5 +5,3 @@ export interface ICollectionItem {
 	marketValue: number;
 	images: string[];
 }
-
-export interface ICollection {}
