@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react';
-import { ThemeManager, Heading, Icons, SelectField, DayPickerField } from 'library';
+import { ThemeManager, Heading, Icons, styled } from 'library';
 import { Switch, Route, Redirect } from 'react-router';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import * as routes from './Constants/routes';
 import { Body, Nav, Main, GlobalStyle } from './AppStyles';
 import { useCollection } from './Data/useCollections';
+import { ItemCard } from './Pages/Collection/ItemCard';
 
 // export const EventDataContext = React.createContext({} as IEventData);
 // 		<EventDataContext.Provider value={data}>
@@ -12,7 +13,7 @@ import { useCollection } from './Data/useCollections';
 
 const EventApplication: FC = () => {
 	// const { isLoading, data, errors } = useEventAPI();
-	const [sidebarIsopen, setSidebarIsOpen] = useState(undefined as any);
+	// const [sidebarIsopen, setSidebarIsOpen] = useState(undefined as any);
 
 	return (
 		<ThemeManager>
@@ -50,12 +51,22 @@ const Page1 = () => {
 		<div>
 			<Heading headingText="Sivu 1" isUnderlined />
 
-			{collection.map((item) => (
-				<span>{item.name}</span>
-			))}
+			<CollectionWrapper>
+				{collection.map((item) => (
+					<ItemCard item={item} key={item.id} />
+				))}
+			</CollectionWrapper>
 		</div>
 	);
 };
+
+const CollectionWrapper = styled.section`
+	padding: 1rem 0;
+	background: none;
+	display: flex;
+	flex-wrap: wrap;
+`;
+
 const Page2 = () => <div>sivu 2</div>;
 const Page3 = () => <div>sivu 3</div>;
 
