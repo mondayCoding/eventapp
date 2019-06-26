@@ -1,22 +1,4 @@
-import { styled, createGlobalStyle } from 'library';
-
-export const GlobalStyle = createGlobalStyle`
-
-   body {
-      font-family: ${(props: any) => props.theme.body_font};
-      font-size: ${(props: any) => props.theme.global_font_size};
-      line-height: 1.3;
-      overflow-anchor: auto;
-      padding: 0;
-      margin: 0;
-   }
-
-   *,
-   *::after,
-   *::before {
-      box-sizing: border-box;
-   }
-`;
+import { styled } from 'library';
 
 export const Body = styled.div`
 	display: flex;

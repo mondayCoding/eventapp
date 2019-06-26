@@ -1,73 +1,118 @@
-import React, { FC, useState } from 'react';
-import { ThemeManager, Heading, Icons, styled } from 'library';
+import React, { FC, useState, useEffect } from 'react';
+import { Icons } from 'library';
 import { Switch, Route, Redirect } from 'react-router';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import * as routes from './Constants/routes';
-import { Body, Nav, Main, GlobalStyle } from './AppStyles';
+import { Nav, Main, Body } from './AppStyles';
 import { useCollection } from './Data/useCollections';
-import { ItemCard } from './Pages/Collection/ItemCard';
+import { ICollectionItem } from './Interfaces';
+import { ThemeManager } from './Theme/ThemeManager';
+import { database } from './Firebase';
+import { Button } from './Components/Button/Button';
+import { CollectionPage } from './Pages/CollectionPage/CollectionPage';
+import { AddCollectionItemPage } from './Pages/AddCollectionItemPage/AddCollectionItemPage';
+import { CollectionItemPage } from './Pages/CollectionItemPage/CollectionItemPage';
 
-// export const EventDataContext = React.createContext({} as IEventData);
-// 		<EventDataContext.Provider value={data}>
-// 		</EventDataContext.Provider>
+interface IAppDataContext {
+	collection: ICollectionItem[];
+	collected: string[];
+	wishlist: string[];
+	addToCollected: (x: string) => void;
+	addToWishlist: (x: string) => void;
+}
 
-const EventApplication: FC = () => {
-	// const { isLoading, data, errors } = useEventAPI();
-	// const [sidebarIsopen, setSidebarIsOpen] = useState(undefined as any);
+export const AppContext = React.createContext({} as IAppDataContext);
+
+const Application: FC = () => {
+	const { collection } = useCollection();
+	const [collectionList, setCollectionList] = useState([] as any[]);
+
+	useEffect(() => {
+		// static (runs once)
+		database
+			.collection('events')
+			.get()
+			.then((collection) =>
+				collection.docs.map((document) => ({
+					id: document.id,
+					...document.data()
+				}))
+			)
+			.then((collection) => setCollectionList(collection));
+
+		//listener (runs on events)
+		// database.collection('events').onSnapshot((snapshot) => {
+		// 	snapshot.docChanges().forEach((change) => {
+		// 		if (change.type === 'added') {
+		// 			// handle add
+		// 		}
+		// 		if (change.type === 'removed') {
+		// 			//handle remove
+		// 		}
+		// 	});
+		// });
+	}, []);
+
+	const testCollection = () => console.log(collectionList);
+
+	const handleAddToCollection = (item: string) => {
+		alert(`id ${item} lisätty kokoelmaan`);
+	};
+
+	const handleAddToWishlist = (item: string) => {
+		alert(`id ${item} lisätty toivelistalle`);
+	};
 
 	return (
 		<ThemeManager>
 			<BrowserRouter>
-				<Body>
-					<GlobalStyle />
-					<Nav>
-						<NavLink to={routes.base_route1} className="nav-link">
-							page 1
-						</NavLink>
-						<NavLink to={routes.base_route2} className="nav-link">
-							page 2
-						</NavLink>
-						<NavLink to={routes.base_route3} className="nav-link">
-							page 3
-						</NavLink>
-					</Nav>
-					<Main>
-						<Switch>
-							<Route exact path={routes.base_route1} component={Page1} />
-							<Route exact path={routes.base_route2} component={Page2} />
-							<Route exact path={routes.base_route3} component={Page3} />
-							<Redirect to={routes.base_route} />
-						</Switch>
-					</Main>
-				</Body>
+				<AppContext.Provider
+					value={{
+						collection,
+						collected: ['2', '3'],
+						wishlist: ['5', '6'],
+						addToCollected: handleAddToCollection,
+						addToWishlist: handleAddToWishlist
+					}}
+				>
+					<Button buttonText="test" onClick={testCollection} />
+					<ApplicationView />
+				</AppContext.Provider>
 			</BrowserRouter>
 		</ThemeManager>
 	);
 };
 
-const Page1 = () => {
-	const { collection } = useCollection();
-	return (
-		<div>
-			<Heading headingText="Sivu 1" isUnderlined />
+const ApplicationView = () => (
+	<Body>
+		<NavigationBar />
+		<PageContent />
+	</Body>
+);
 
-			<CollectionWrapper>
-				{collection.map((item) => (
-					<ItemCard item={item} key={item.id} />
-				))}
-			</CollectionWrapper>
-		</div>
-	);
-};
+const NavigationBar: FC = () => (
+	<Nav>
+		<NavLink to={routes.base_route1} className="nav-link">
+			page 1
+		</NavLink>
+		<NavLink to={routes.base_route2} className="nav-link">
+			page 2
+		</NavLink>
+		<NavLink to={routes.base_route3} className="nav-link">
+			page 3
+		</NavLink>
+	</Nav>
+);
 
-const CollectionWrapper = styled.section`
-	padding: 1rem 0;
-	background: none;
-	display: flex;
-	flex-wrap: wrap;
-`;
+const PageContent = () => (
+	<Main>
+		<Switch>
+			<Route exact path={routes.base_route1} component={CollectionPage} />
+			<Route exact path={routes.base_route3} component={CollectionItemPage} />
+			<Route exact path={routes.base_route2} component={AddCollectionItemPage} />
+			<Redirect to={routes.base_route} />
+		</Switch>
+	</Main>
+);
 
-const Page2 = () => <div>sivu 2</div>;
-const Page3 = () => <div>sivu 3</div>;
-
-export default EventApplication;
+export default Application;

@@ -10,26 +10,29 @@ const {
 	ThemeProvider
 } = styledComponents as ThemedStyledComponentsModule<IThemeInterface>;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider };
-export default styled;
-
-interface IThemeInterface {
+export interface IThemeInterface {
 	//** Primary theming color for library, most colors are derived from this */
 	primary_color: string;
 	secondary_color: string;
+
 	body_bg_color: string;
+	menu_background_color: string;
+
 	focus_color: string;
 	link_color: string;
-	link_hover_color: string;
+
 	error_color: string;
 	warning_color: string;
 	success_color: string;
 	info_color: string;
+
 	gray_black: string;
 	gray_light: string;
+
 	body_font: string;
 	body_font_alternative: string;
 	heading_font: string;
+
 	global_border_radius: string;
 	global_shadow: string;
 	global_shadow_inset: string;
@@ -40,10 +43,12 @@ const defaultTheme: IThemeInterface = {
 	// Main colors
 	primary_color: '#5b9943',
 	secondary_color: '#75AB35',
-	body_bg_color: '#eaf2f4',
+
+	body_bg_color: '#222',
+	menu_background_color: '#233',
+
 	focus_color: 'skyblue',
 	link_color: '#38c',
-	link_hover_color: '#edf4f7',
 
 	// Validation/Notification colors
 	error_color: '#a94442',
@@ -102,4 +107,5 @@ const device = {
 	}
 };
 
-export { IThemeInterface, defaultTheme, device };
+export { css, createGlobalStyle, keyframes, ThemeProvider, defaultTheme, device };
+export default styled;

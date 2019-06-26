@@ -1,5 +1,5 @@
 import styled, { css } from '../../Theme/theme';
-import { darken, lighten } from 'polished';
+import { darken, lighten, mix } from 'polished';
 
 export interface IButtonStyleProps {
 	isRounded?: boolean;
@@ -20,7 +20,7 @@ const linkButtonCSS = css`
 	font-weight: 400;
 
 	&:hover {
-		background: ${(p) => p.theme.link_hover_color};
+		background: ${(p) => mix(0.2, 'black', p.theme.link_color)};
 	}
 `;
 
@@ -62,7 +62,7 @@ const iconButtonCSS = css`
 	background: none;
 
 	&:hover {
-		background: ${(p) => p.theme.link_hover_color};
+		background: ${(p) => mix(0.2, 'black', p.theme.link_color)};
 	}
 `;
 

@@ -20,4 +20,21 @@ export const GlobalStyle = createGlobalStyle`
    /* PLUGIN | ReactTable */
    ${ReactTableOriginalCSS}
    ${ReactTableOverrideCSS}
+
+	*,
+	*::after,
+	*::before {
+		box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+	}
+
+   body {
+      font-family: ${(props) => props.theme.body_font};
+      font-size: ${(props) => props.theme.global_font_size};
+      line-height: 1.3;
+      overflow-anchor: auto;
+      margin: 0;
+      padding: 0;
+   }
 `;
