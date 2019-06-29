@@ -1,18 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Heading } from 'library';
 import { ItemCard } from './ItemCard';
 import styled from '../../Theme/theme';
 import { AppContext } from '../../App';
+import { Button } from '../../Components/Button/Button';
+import { sortCondition, sortCollectionBy, sortDirection } from './collectionSorter';
 
 export const CollectionPage = () => {
 	const { collection, collected, wishlist } = useContext(AppContext);
+	const [sortBy, setSortCondition] = useState(sortCondition.NAME);
+	const [direction, setSortDirection] = useState(sortDirection.ASCENDING);
+
+	const sortedCollection = sortCollectionBy(collection, sortBy, direction);
 
 	return (
 		<div>
-			<Heading headingText="Kokoelma" isUnderlined />
-
+			<Heading headingText="Kokoelma" isUnderlined />¨
+			<div>
+				<Button buttonText="By Name" onClick={() => setSortCondition(sortCondition.NAME)} />
+				<Button buttonText="By Created" onClick={() => setSortCondition(sortCondition.CREATED)} />
+				<Button buttonText="By Value" onClick={() => setSortCondition(sortCondition.MARKETVALUE)} />
+			</div>
+			<div>
+				<Button
+					buttonText="Ascending Order"
+					onClick={() => setSortDirection(sortDirection.ASCENDING)}
+				/>
+				<Button
+					buttonText="Descending Order"
+					onClick={() => setSortDirection(sortDirection.DESCENDING)}
+				/>
+			</div>
 			<CollectionWrapper>
-				{collection.map((item) => (
+				{sortedCollection.map((item) => (
 					<ItemCard
 						item={item}
 						key={item.id}
