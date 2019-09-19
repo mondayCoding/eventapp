@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import styled, { defaultTheme, ThemeProvider, device } from './theme';
+import { themes, ThemeProvider } from './theme';
 import { GlobalStyle } from './GlobalStyle';
 import { IThemeInterface } from './theme';
 
@@ -11,7 +10,7 @@ interface ThemeManagerProps {
 export const ThemeManager: React.SFC<ThemeManagerProps> = ({ children, theme }) => {
 	// const [currentTheme, setCurrentTheme] = useState(defaultTheme);
 	return (
-		<ThemeProvider theme={theme || defaultTheme}>
+		<ThemeProvider theme={theme || themes.default}>
 			<>
 				<GlobalStyle />
 				{children}

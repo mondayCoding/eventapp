@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
+// import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
 import { CheckBoxWrapper } from './CheckboxStyles';
 import {
 	SlideCheckboxInput,
@@ -10,7 +10,10 @@ import {
 import { FieldProps, Field, FastField } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
 
-type IProps = React.InputHTMLAttributes<HTMLInputElement> & { tooltip?: string; label?: string };
+type IProps = React.InputHTMLAttributes<HTMLInputElement> & {
+	tooltip?: string;
+	label?: string;
+};
 type SliderProps = IFieldContainerProps & IProps;
 
 const SliderCheckbox: React.SFC<IProps> = ({ id, label, tooltip, children, ...rest }) => (
@@ -21,7 +24,7 @@ const SliderCheckbox: React.SFC<IProps> = ({ id, label, tooltip, children, ...re
 			{children}
 			{tooltip && (
 				<span style={{ fontSize: '1.1rem', paddingLeft: '.33rem' }}>
-					<Tooltip content={tooltip} />
+					{/* <Tooltip content={tooltip} /> */}
 				</span>
 			)}
 		</SliderCheckboxLabel>

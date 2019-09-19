@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, device } from './theme';
+import { createGlobalStyle } from './theme';
 import {
 	ReactDatepickerCSS,
 	RCTooltipCSS,
@@ -6,8 +6,11 @@ import {
 	ReactTableOverrideCSS,
 	ReactSelect
 } from './PluginCSS';
+import { GridSystem } from './Grid System';
 
 export const GlobalStyle = createGlobalStyle`
+   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
    /* PLUGIN | React-Select */
    ${ReactSelect}
 
@@ -21,6 +24,10 @@ export const GlobalStyle = createGlobalStyle`
    ${ReactTableOriginalCSS}
    ${ReactTableOverrideCSS}
 
+   /* UTILITY | Grid System */
+   ${GridSystem}
+
+
 	*,
 	*::after,
 	*::before {
@@ -32,9 +39,15 @@ export const GlobalStyle = createGlobalStyle`
    body {
       font-family: ${(props) => props.theme.body_font};
       font-size: ${(props) => props.theme.global_font_size};
+      color: ${(p) => p.theme.text_color};
       line-height: 1.3;
       overflow-anchor: auto;
       margin: 0;
       padding: 0;
+   }
+
+   h1,h2,h3,h4,h5,h6 {
+      font-family: ${(p) => p.theme.heading_font};
+      font-weight: 900;
    }
 `;

@@ -1,8 +1,20 @@
 import * as React from 'react';
-import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
-import { H1, H2, H3, H4, H5, H6, IStyleProps, IngressSpan, HeadingWrapper } from './HeadingStyle';
+// import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
+import {
+	H1,
+	H2,
+	H3,
+	H4,
+	H5,
+	H6,
+	IStyleProps,
+	IngressSpan,
+	HeadingWrapper
+} from './HeadingStyle';
 
-export interface IProps extends IStyleProps, React.HtmlHTMLAttributes<HTMLHeadingElement> {
+export interface IProps
+	extends IStyleProps,
+		React.HtmlHTMLAttributes<HTMLHeadingElement> {
 	className?: string;
 	title?: string;
 	icon?: React.ReactNode;
@@ -19,7 +31,7 @@ const Heading: React.FC<IProps> = ({
 	icon,
 	tooltip,
 	type,
-	ingress: ingress,
+	ingress,
 	children,
 	...rest
 }) => {
@@ -28,7 +40,7 @@ const Heading: React.FC<IProps> = ({
 			<React.Fragment>
 				{icon && <span className="icon">{icon}</span>}
 				{headingText && <span>{headingText}</span>}
-				{tooltip && <Tooltip content={tooltip} />}
+				{/* {tooltip && <Tooltip content={tooltip} />} */}
 			</React.Fragment>
 		);
 	};

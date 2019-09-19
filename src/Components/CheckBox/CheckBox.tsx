@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
+// import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
 import {
 	CheckBoxInput,
 	CheckBoxWrapper,
@@ -18,7 +18,14 @@ export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	tooltip?: string;
 }
 
-const Checkbox: React.SFC<IProps> = ({ id, label, tooltip, children, className, ...rest }) => (
+const Checkbox: React.SFC<IProps> = ({
+	id,
+	label,
+	tooltip,
+	children,
+	className,
+	...rest
+}) => (
 	<CheckBoxWrapper>
 		<CheckBoxInput data-role="none" id={id} type="checkbox" {...rest} />
 		<CheckboxLabel htmlFor={id}>
@@ -26,7 +33,7 @@ const Checkbox: React.SFC<IProps> = ({ id, label, tooltip, children, className, 
 			{children}
 			{tooltip && (
 				<span style={{ fontSize: '1.1rem', paddingLeft: '.33rem' }}>
-					<Tooltip content={tooltip} />
+					{/* <Tooltip content={tooltip} /> */}
 				</span>
 			)}
 		</CheckboxLabel>
@@ -72,7 +79,10 @@ export const CheckBoxContainerField: React.FC<IProps & IFieldContainerProps> = (
 }) => (
 	<FastField
 		name={name}
-		render={({ field, form: { errors, touched, setFieldValue, setFieldTouched } }: FieldProps) => (
+		render={({
+			field,
+			form: { errors, touched, setFieldValue, setFieldTouched }
+		}: FieldProps) => (
 			<FieldContainer
 				label={label}
 				error={touched[field.name] && errors[field.name]}

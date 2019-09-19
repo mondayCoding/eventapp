@@ -244,7 +244,7 @@ export const ReactSelect = css`
 
 		.reactselect__control {
 			min-height: 24px;
-			border: 1px solid ${(p) => p.theme.gray_light};
+			border: 1px solid ${(p) => p.theme.separator_color};
 
 			&:hover {
 				border-color: ${(p) => p.theme.primary_color};
@@ -1276,8 +1276,10 @@ export const ReactDatepickerCSS = css`
 	.react-datepicker__year-read-view:hover .react-datepicker__month-read-view--down-arrow,
 	.react-datepicker__month-read-view:hover .react-datepicker__year-read-view--down-arrow,
 	.react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow,
-	.react-datepicker__month-year-read-view:hover .react-datepicker__year-read-view--down-arrow,
-	.react-datepicker__month-year-read-view:hover .react-datepicker__month-read-view--down-arrow {
+	.react-datepicker__month-year-read-view:hover
+		.react-datepicker__year-read-view--down-arrow,
+	.react-datepicker__month-year-read-view:hover
+		.react-datepicker__month-read-view--down-arrow {
 		border-top-color: #b3b3b3;
 	}
 
@@ -1355,13 +1357,15 @@ export const ReactDatepickerCSS = css`
 
 	.react-datepicker__year-option:hover .react-datepicker__navigation--years-upcoming,
 	.react-datepicker__month-option:hover .react-datepicker__navigation--years-upcoming,
-	.react-datepicker__month-year-option:hover .react-datepicker__navigation--years-upcoming {
+	.react-datepicker__month-year-option:hover
+		.react-datepicker__navigation--years-upcoming {
 		border-bottom-color: #b3b3b3;
 	}
 
 	.react-datepicker__year-option:hover .react-datepicker__navigation--years-previous,
 	.react-datepicker__month-option:hover .react-datepicker__navigation--years-previous,
-	.react-datepicker__month-year-option:hover .react-datepicker__navigation--years-previous {
+	.react-datepicker__month-year-option:hover
+		.react-datepicker__navigation--years-previous {
 		border-top-color: #b3b3b3;
 	}
 

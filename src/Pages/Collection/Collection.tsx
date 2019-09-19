@@ -15,11 +15,20 @@ export const CollectionPage = () => {
 
 	return (
 		<div>
-			<Heading headingText="Kokoelma" isUnderlined />¨
+			<Heading headingText="Kokoelma" isUnderlined />
 			<div>
-				<Button buttonText="By Name" onClick={() => setSortCondition(sortCondition.NAME)} />
-				<Button buttonText="By Created" onClick={() => setSortCondition(sortCondition.CREATED)} />
-				<Button buttonText="By Value" onClick={() => setSortCondition(sortCondition.MARKETVALUE)} />
+				<Button
+					buttonText="By Name"
+					onClick={() => setSortCondition(sortCondition.NAME)}
+				/>
+				<Button
+					buttonText="By Created"
+					onClick={() => setSortCondition(sortCondition.CREATED)}
+				/>
+				<Button
+					buttonText="By Value"
+					onClick={() => setSortCondition(sortCondition.MARKETVALUE)}
+				/>
 			</div>
 			<div>
 				<Button

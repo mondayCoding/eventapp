@@ -1,31 +1,40 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Icons } from 'library';
-import { Switch, Route, Redirect } from 'react-router';
-import { BrowserRouter, NavLink } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import * as routes from './Constants/routes';
-import { Nav, Main, Body } from './AppStyles';
+import { Body } from './AppStyles';
 import { useCollection } from './Data/useCollections';
 import { ICollectionItem } from './Interfaces';
 import { ThemeManager } from './Theme/ThemeManager';
 import { database } from './Firebase';
-import { Button } from './Components/Button/Button';
-import { CollectionPage } from './Pages/CollectionPage/CollectionPage';
-import { AddCollectionItemPage } from './Pages/AddCollectionItemPage/AddCollectionItemPage';
-import { CollectionItemPage } from './Pages/CollectionItemPage/CollectionItemPage';
+import { useWishlist } from './Data/useWishlist';
+import { useCollected } from './Data/useCollected';
+import { themes } from './Theme/theme';
+import { MainPage } from './Layout/MainContent';
+import { Navigation } from './Layout/Navigation';
 
 interface IAppDataContext {
 	collection: ICollectionItem[];
 	collected: string[];
 	wishlist: string[];
+	isDarkTheme: boolean;
 	addToCollected: (x: string) => void;
 	addToWishlist: (x: string) => void;
+	toggleTheme: () => void;
 }
 
 export const AppContext = React.createContext({} as IAppDataContext);
 
 const Application: FC = () => {
+	//remove
 	const { collection } = useCollection();
+	const { collected, toggleCollected } = useCollected();
+	const { wishlist, toggleOnWishlist } = useWishlist();
+	const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+	// keep, rename
 	const [collectionList, setCollectionList] = useState([] as any[]);
+
+	const toggleTheme = () => setIsDarkTheme(!isDarkTheme);
 
 	useEffect(() => {
 		// static (runs once)
@@ -53,66 +62,31 @@ const Application: FC = () => {
 		// });
 	}, []);
 
-	const testCollection = () => console.log(collectionList);
-
-	const handleAddToCollection = (item: string) => {
-		alert(`id ${item} lisätty kokoelmaan`);
-	};
-
-	const handleAddToWishlist = (item: string) => {
-		alert(`id ${item} lisätty toivelistalle`);
+	const applicationContext = {
+		collection,
+		collected,
+		wishlist,
+		addToCollected: toggleCollected,
+		addToWishlist: toggleOnWishlist,
+		toggleTheme: toggleTheme,
+		isDarkTheme: isDarkTheme
 	};
 
 	return (
-		<ThemeManager>
-			<BrowserRouter>
-				<AppContext.Provider
-					value={{
-						collection,
-						collected: ['2', '3'],
-						wishlist: ['5', '6'],
-						addToCollected: handleAddToCollection,
-						addToWishlist: handleAddToWishlist
-					}}
-				>
-					<Button buttonText="test" onClick={testCollection} />
-					<ApplicationView />
-				</AppContext.Provider>
-			</BrowserRouter>
-		</ThemeManager>
+		<div>
+			<ThemeManager theme={isDarkTheme ? themes.dark : themes.default}>
+				<BrowserRouter>
+					<AppContext.Provider value={applicationContext}>
+						{/* Visual App */}
+						<Body>
+							<Navigation />
+							<MainPage />
+						</Body>
+					</AppContext.Provider>
+				</BrowserRouter>
+			</ThemeManager>
+		</div>
 	);
 };
-
-const ApplicationView = () => (
-	<Body>
-		<NavigationBar />
-		<PageContent />
-	</Body>
-);
-
-const NavigationBar: FC = () => (
-	<Nav>
-		<NavLink to={routes.base_route1} className="nav-link">
-			page 1
-		</NavLink>
-		<NavLink to={routes.base_route2} className="nav-link">
-			page 2
-		</NavLink>
-		<NavLink to={routes.base_route3} className="nav-link">
-			page 3
-		</NavLink>
-	</Nav>
-);
-
-const PageContent = () => (
-	<Main>
-		<Switch>
-			<Route exact path={routes.base_route1} component={CollectionPage} />
-			<Route exact path={routes.base_route3} component={CollectionItemPage} />
-			<Route exact path={routes.base_route2} component={AddCollectionItemPage} />
-			<Redirect to={routes.base_route} />
-		</Switch>
-	</Main>
-);
 
 export default Application;

@@ -62,7 +62,7 @@ export const RadioWrapDiv = styled.div`
 			border-radius: 100%;
 			background-color: #fff;
 			transition: opacity 0.2s;
-			border: 1px solid ${(p) => p.theme.gray_light};
+			border: 1px solid ${(p) => p.theme.separator_color};
 			box-shadow: ${(p) => p.theme.global_shadow_inset};
 		}
 

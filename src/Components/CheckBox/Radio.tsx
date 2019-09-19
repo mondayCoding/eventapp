@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FieldProps, Field, FastField } from 'formik';
-import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
+// import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
 import { RadioWrapDiv } from './RadioStyles';
 
 export interface IRadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -11,17 +11,25 @@ export interface IRadioProps extends React.InputHTMLAttributes<HTMLInputElement>
 const Radio: React.SFC<IRadioProps> = ({ id, label, tooltip, children, ...rest }) => {
 	return (
 		<RadioWrapDiv>
-			<input className="themeradio--input" id={id} data-role="none" type="radio" {...rest} />
+			<input
+				className="themeradio--input"
+				id={id}
+				data-role="none"
+				type="radio"
+				{...rest}
+			/>
 			<label className="themeradio--label" htmlFor={id}>
 				{label}
 				{children}
-				{tooltip && <Tooltip content={tooltip} />}
+				{/* {tooltip && <Tooltip content={tooltip} />} */}
 			</label>
 		</RadioWrapDiv>
 	);
 };
 
-type radioProps = { label: string; name: string; showMobileView?: boolean } & Partial<IRadioProps>;
+type radioProps = { label: string; name: string; showMobileView?: boolean } & Partial<
+	IRadioProps
+>;
 
 export const RadioField: React.FC<radioProps> = ({
 	name,
@@ -33,7 +41,10 @@ export const RadioField: React.FC<radioProps> = ({
 }) => (
 	<FastField
 		name={name}
-		render={({ field, form: { errors, touched, setFieldValue, setFieldTouched } }: FieldProps) => (
+		render={({
+			field,
+			form: { errors, touched, setFieldValue, setFieldTouched }
+		}: FieldProps) => (
 			<Radio
 				id={`${field.name}_radio_TID`}
 				name={field.name}

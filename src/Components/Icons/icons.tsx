@@ -91,12 +91,18 @@ import {
 	faMapMarkerAlt,
 	faList,
 	faStar as faStarFull,
+	faSun,
+	faMoon,
+	faPowerOff,
 	faClipboardList,
 	faReceipt
 } from '@fortawesome/free-solid-svg-icons';
 
 export const Icons = {
 	banned: <FontAwesomeIcon icon={faBan} />,
+	moon: <FontAwesomeIcon icon={faMoon} />,
+	sun: <FontAwesomeIcon icon={faSun} />,
+	power_off: <FontAwesomeIcon icon={faPowerOff} />,
 	spinner_static: <FontAwesomeIcon icon={faSpinner} />,
 	spinner: <FontAwesomeIcon icon={faSpinner} spin={true} />,
 	share_alt: <FontAwesomeIcon icon={faShareAlt} />,

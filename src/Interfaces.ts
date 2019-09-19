@@ -5,4 +5,10 @@ export interface ICollectionItem {
 	description: string;
 	marketValue: number;
 	images: string[];
+	tags: ITag[];
+}
+
+export interface ITag {
+	name: string;
+	id: string;
 }

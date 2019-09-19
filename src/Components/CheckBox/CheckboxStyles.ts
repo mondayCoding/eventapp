@@ -78,7 +78,7 @@ export const CheckboxLabel = styled.label`
 		border-radius: ${(p) => p.theme.global_border_radius};
 		background-color: #fff;
 		transition: opacity 0.2s;
-		border: 0.1rem solid ${(p) => p.theme.gray_light};
+		border: 0.1rem solid ${(p) => p.theme.separator_color};
 	}
 
 	/* checkmark */
@@ -170,7 +170,7 @@ export const CheckboxLabelInlined = styled.label`
 		border-radius: ${(p) => p.theme.global_border_radius};
 		background-color: #fff;
 		transition: opacity 0.2s;
-		border: 0.1rem solid ${(p) => p.theme.gray_light};
+		border: 0.1rem solid ${(p) => p.theme.separator_color};
 	}
 
 	/* checkmark */
@@ -258,7 +258,7 @@ export const InlineCheckboxSmall = styled.label`
 		border-radius: ${(p) => p.theme.global_border_radius};
 		transition: opacity 0.2s;
 		background-color: #fff;
-		border: 1px solid ${(p) => p.theme.gray_light};
+		border: 1px solid ${(p) => p.theme.separator_color};
 	}
 
 	/* checkmark */

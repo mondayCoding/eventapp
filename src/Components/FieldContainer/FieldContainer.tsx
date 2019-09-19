@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useMemo } from 'react';
-import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
+// import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
 import {
 	Container,
 	Content,
@@ -63,7 +63,5 @@ export const FieldContainer: React.SFC<IFieldContainerProps> = ({
 };
 
 const FieldTooltip = (content: string) => (
-	<div className="field--tooltip">
-		<Tooltip content={content} />
-	</div>
+	<div className="field--tooltip">{/* <Tooltip content={content} /> */}</div>
 );

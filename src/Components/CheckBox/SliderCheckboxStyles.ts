@@ -42,7 +42,7 @@ export const SlideCheckboxInput = styled.input`
 	/* Ei valittu */
 	&:not(:checked) + label {
 		&::after {
-			background-color: ${({ theme }) => mix(0.5, '#FFF', theme.gray_black)};
+			background-color: ${({ theme }) => mix(0.5, '#FFF', theme.separator_color)};
 			left: 0.575rem;
 		}
 		&::before {
@@ -92,7 +92,7 @@ export const SliderCheckboxLabel = styled.label`
 	&::before {
 		display: block;
 		background-color: '#FFF';
-		border: 1px solid ${({ theme }) => theme.gray_light};
+		border: 1px solid ${({ theme }) => theme.separator_color};
 		box-shadow: ${({ theme }) => theme.global_shadow_inset};
 		content: '';
 		left: 0rem;
@@ -142,7 +142,7 @@ export const SliderCheckboxLabelInlined = styled.label`
 	&::before {
 		display: block;
 		background-color: ${({ theme }) => 'white'};
-		border: 1px solid ${({ theme }) => theme.gray_light};
+		border: 1px solid ${({ theme }) => theme.separator_color};
 		box-shadow: ${({ theme }) => theme.global_shadow_inset};
 		content: '';
 		position: absolute;
@@ -200,7 +200,7 @@ export const SlideCheckboxInputInlined = styled.input`
 
 	/* Ei valittu */
 	&:not(:checked) + label::after {
-		background-color: ${({ theme }) => mix(0.5, '#FFF', theme.gray_black)};
+		background-color: ${({ theme }) => mix(0.5, '#FFF', theme.separator_color)};
 		left: 0.175rem;
 	}
 
