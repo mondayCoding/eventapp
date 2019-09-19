@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export const DashBoard = () => {
 	return (
 		<div>
-			<Heading headingText="Paska Sivu"></Heading>
+			<Heading headingText="Dash"></Heading>
 			<Row>
 				<Col lg="3" md="6" sm="6">
 					<Card className="card-stats">
