@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import * as routes from './Constants/routes';
 import { Body } from './AppStyles';
@@ -11,6 +11,7 @@ import { useCollected } from './Data/useCollected';
 import { themes } from './Theme/theme';
 import { MainPage } from './Layout/MainContent';
 import { Navigation } from './Layout/Navigation';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 interface IAppDataContext {
 	collection: ICollectionItem[];
@@ -24,12 +25,15 @@ interface IAppDataContext {
 
 export const AppContext = React.createContext({} as IAppDataContext);
 
+// let ps: any;
+
 const Application: FC = () => {
 	//remove
 	const { collection } = useCollection();
 	const { collected, toggleCollected } = useCollected();
 	const { wishlist, toggleOnWishlist } = useWishlist();
 	const [isDarkTheme, setIsDarkTheme] = useState(false);
+	// const mainpanelRef: any = useRef({});
 
 	// keep, rename
 	const [collectionList, setCollectionList] = useState([] as any[]);
@@ -61,6 +65,15 @@ const Application: FC = () => {
 		// 	});
 		// });
 	}, []);
+
+	// useEffect(() => {
+	// 	if (navigator.platform.indexOf('Win') > -1) {
+	// 		ps = new PerfectScrollbar(mainpanelRef.current);
+	// 		document.body.classList.toggle('perfect-scrollbar-on');
+	// 	}
+
+	// 	return () => ps.destroy();
+	// }, []);
 
 	const applicationContext = {
 		collection,

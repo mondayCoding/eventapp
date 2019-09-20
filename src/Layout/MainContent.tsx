@@ -1,29 +1,34 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 import { Main, MainContent } from '../AppStyles';
-import { CollectionPage } from '../Pages/Collection/Collection';
+import { Events } from '../Pages/Events/Events';
 import { AddCollectible } from '../Pages/AddCollectible/AddCollectible';
-import { Collectable } from '../Pages/Collectable/Collectable';
+import { Event } from '../Pages/Event/Event';
 import { MyCollectionPage } from '../Pages/MyCollection/MyCollection';
 import { MyWishlistPage } from '../Pages/Wishlist/Wishlist';
 import { DashBoard } from '../Pages/Dashboard/Dashboard';
 import { TopPanel } from './TopPanel';
 import * as routes from '../Constants/routes';
 import { FooterPanel } from './MainFooter';
+import { Customers } from '../Pages/Customers/Customers';
+import { Customer } from '../Pages/Customer/Customer';
 
 export const MainPage = () => (
 	<Main>
 		<TopPanel />
-
 		<MainContent>
 			<Switch>
-				<Route exact path={routes.collection.path} component={CollectionPage} />
-				<Route exact path={routes.AddToCollection.path} component={AddCollectible} />
-				<Route exact path={routes.Item.path + '/:id'} component={Collectable} />
+				<Route exact path={routes.customers.path} component={Customers} />
+				<Route exact path={routes.customer.path + '/:id'} component={Customer} />
+				<Route exact path={routes.dashboard.path} component={DashBoard} />
+
+				<Route exact path={routes.events.path} component={Events} />
+				<Route exact path={routes.event.path + '/:id'} component={Event} />
+				<Route exact path={routes.createNewEvent.path} component={AddCollectible} />
+
 				<Route exact path={routes.myCollection.path} component={MyCollectionPage} />
 				<Route exact path={routes.myWishlist.path} component={MyWishlistPage} />
-				<Route exact path={routes.dashboard.path} component={DashBoard} />
-				<Redirect to={routes.base_route.path} />
+				<Redirect to={routes.dashboard.path} />
 			</Switch>
 		</MainContent>
 

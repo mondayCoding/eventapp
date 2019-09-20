@@ -12,9 +12,11 @@ export const ThemedTextInput = styled.input`
 	padding: 4px 8px;
 	border-radius: ${(p) => p.theme.global_border_radius};
 	transition: border-color 0.2s ease-in-out;
-	border: 1px solid #ccc;
+	border: 1px solid #e3e3e3;
 	font-family: ${(p) => p.theme.body_font};
 	font-size: ${(p) => p.theme.global_font_size};
+	color: ${(p) => p.theme.text_color};
+	background: ${(p) => p.theme.card_background_color};
 
 	&:hover {
 		border-color: ${(p) => p.theme.primary_color};
@@ -28,7 +30,7 @@ export const ThemedTextInput = styled.input`
 	}
 
 	&:focus {
-		box-shadow: 0 0 5px skyblue;
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
 	}
 
 	&[type='number'] {

@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Heading } from 'library';
-import { ItemCard } from './ItemCard';
+import { EventCard } from './EventCard';
 import styled from '../../Theme/theme';
 import { AppContext } from '../../App';
 import { Button } from '../../Components/Button/Button';
 import { sortCondition, sortCollectionBy, sortDirection } from './collectionSorter';
 
-export const CollectionPage = () => {
+export const Events = () => {
 	const { collection, collected, wishlist } = useContext(AppContext);
 	const [sortBy, setSortCondition] = useState(sortCondition.NAME);
 	const [direction, setSortDirection] = useState(sortDirection.ASCENDING);
@@ -42,7 +42,7 @@ export const CollectionPage = () => {
 			</div>
 			<CollectionWrapper>
 				{sortedCollection.map((item) => (
-					<ItemCard
+					<EventCard
 						item={item}
 						key={item.id}
 						isCollected={collected.includes(item.id)}

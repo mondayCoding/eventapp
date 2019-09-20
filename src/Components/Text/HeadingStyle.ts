@@ -49,7 +49,7 @@ const spacingBeforeHeadingCSS = css`
 
 const sharedProperties = css`
 	font-family: ${(props) => props.theme.heading_font};
-  color: #222;
+  color: ${(p) => p.theme.text_color};
 	float: none;
 	clear: both;
 	display: flex;

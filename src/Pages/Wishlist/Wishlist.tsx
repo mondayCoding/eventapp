@@ -3,7 +3,7 @@ import { Heading } from '../../Components/Text/Heading';
 import { AppContext } from '../../App';
 import styled from '../../Theme/theme';
 import { Limiter } from '../../Components/Utility/ContentLimiter/Limiter';
-import { Card } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../MyCollection/MyCollection';
 
 export const MyWishlistPage = () => {
 	const { collection, wishlist } = useContext(AppContext);
@@ -13,12 +13,12 @@ export const MyWishlistPage = () => {
 
 	return (
 		<div>
-			<Card>
+			<CardWrapper>
 				<Heading headingText="Toivelista" />
 				<p>{`items in wishlist ${wishlistCount}`}</p>
 				<p>{`wishlist items total value is ${wishlistValue}`}</p>
-			</Card>
-			<Card>
+			</CardWrapper>
+			<CardWrapper>
 				{wishlistItems.map((item) => (
 					<Limiter.Mobile>
 						<ItemRow key={item.id}>
@@ -28,7 +28,7 @@ export const MyWishlistPage = () => {
 						</ItemRow>
 					</Limiter.Mobile>
 				))}
-			</Card>
+			</CardWrapper>
 		</div>
 	);
 };

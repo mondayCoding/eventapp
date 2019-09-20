@@ -11,11 +11,11 @@ const {
 
 const DefaultTheme = {
 	// Main colors
-	primary_color: '#81e979',
-	secondary_color: '#6e0d25',
+	primary_color: '#9538bf',
+	secondary_color: '#88bf38',
 
 	body_background_color: '#f4f3ef',
-	menu_background_color: '#333',
+	menu_background_color: '#1b1f2d',
 	card_background_color: '#fff',
 
 	focus_color: '#81e979',
@@ -50,12 +50,21 @@ const DefaultTheme = {
 	// 	heading: '',
 	// 	body: '',
 	// 	mono: ''
-	// }
+	// },
 
 	// shadow: {
 	//    card: "0 6px 10px -4px rgba(0, 0, 0, 0.15)",
 	//    inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)"
-	// }
+	// },
+
+	// color: {
+	//    primary: '#9538bf',
+	//    accent: '#88bf38',
+	//    support_1: '#88bf38',
+	//    support_2: '#88bf38',
+	//    support_3: '#88bf38',
+	//    support_4: '#88bf38',
+	// },
 };
 
 // TODO test
@@ -72,7 +81,7 @@ const shadows = {
 
 const DarkTheme: typeof DefaultTheme = {
 	// Main colors
-	primary_color: '#81e979',
+	primary_color: '#e9799e',
 	secondary_color: '#6e0d25',
 
 	body_background_color: '#333',
@@ -80,7 +89,7 @@ const DarkTheme: typeof DefaultTheme = {
 	card_background_color: '#222',
 
 	focus_color: 'skyblue',
-	link_color: '#38c',
+	link_color: '#e9799e',
 
 	// Validation/Notification colors
 	error_color: '#a94442',

@@ -47,6 +47,8 @@ export const FieldLabel = styled.label`
 	text-align: left;
 	padding-right: 0.5rem;
 	align-self: center;
+	color: ${(p) => p.theme.text_color};
+	margin: 0;
 
 	@media ${device.below.sm} {
 		flex: 0 0 auto;

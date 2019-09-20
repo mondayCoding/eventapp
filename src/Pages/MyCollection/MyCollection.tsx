@@ -17,12 +17,12 @@ export const MyCollectionPage = () => {
 
 	return (
 		<div>
-			<Card>
+			<CardWrapper>
 				<Heading headingText="Kokoelma" />
 				<p>{`items in collection ${CollectionCount}`}</p>
 				<p>{`Collected items total value is ${collectedItemsValue} euros`}</p>
-			</Card>
-			<Card>
+			</CardWrapper>
+			<CardWrapper>
 				{CollectedItems.map((item, index) => (
 					<Limiter.Mobile>
 						<ItemRow key={index}>
@@ -32,9 +32,9 @@ export const MyCollectionPage = () => {
 						</ItemRow>
 					</Limiter.Mobile>
 				))}
-			</Card>
-			<Card></Card>
-			<Card>
+			</CardWrapper>
+			<CardWrapper></CardWrapper>
+			<CardWrapper>
 				<ReactTable
 					data={CollectedItems}
 					columns={[
@@ -43,19 +43,20 @@ export const MyCollectionPage = () => {
 						{ Header: 'Value', accessor: 'marketValue' }
 					]}
 				></ReactTable>
-			</Card>
+			</CardWrapper>
 		</div>
 	);
 };
 
-export const Card = styled.div`
+export const CardWrapper = styled.div`
 	padding: 1rem;
 	border-radius: ${(p) => p.theme.global_border_radius};
 	background: ${(p) => p.theme.card_background_color};
 	box-shadow: ${(p) => p.theme.global_shadow};
+	margin-bottom: 1rem;
 
 	& + & {
-		margin-top: 1rem;
+		margin-top: 1.5rem;
 	}
 `;
 

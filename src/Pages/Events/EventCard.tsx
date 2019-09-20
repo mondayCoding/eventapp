@@ -12,7 +12,7 @@ interface ItemCardProps {
 	isCollected: boolean;
 }
 
-export const ItemCard: FC<ItemCardProps> = ({ item, isCollected, isOnWishlist }) => {
+export const EventCard: FC<ItemCardProps> = ({ item, isCollected, isOnWishlist }) => {
 	const { addToCollected, addToWishlist } = useContext(AppContext);
 
 	return (
@@ -21,7 +21,9 @@ export const ItemCard: FC<ItemCardProps> = ({ item, isCollected, isOnWishlist })
 				<img src={item.images[0]} className="preview__image" />
 			</div>
 			<div className="title">
-				<Link to={`${routes.Item.path}/${item.id}`}>{item.name}</Link>
+				<Link className="title__link" to={`${routes.event.path}/${item.id}`}>
+					{item.name}
+				</Link>
 			</div>
 			<div className="description">
 				{item.description}
@@ -53,14 +55,14 @@ export const ItemCard: FC<ItemCardProps> = ({ item, isCollected, isOnWishlist })
 };
 
 const Card = styled.section`
-	flex: 0 0 23.5%;
+	flex: 0 0 23%;
 	display: flex;
 	flex-direction: column;
 	background-color: ${(p) => p.theme.card_background_color};
 	color: ${(p) => p.theme.text_color};
 	font-family: ${(p) => p.theme.body_font};
 	border-radius: 0.3rem;
-	margin: 0.525%;
+	margin: 1%;
 	overflow: hidden;
 	transition: background-color 0.2s ease-in-out;
 	box-shadow: ${(p) => p.theme.global_shadow};
@@ -104,21 +106,26 @@ const Card = styled.section`
 		}
 	}
 	.title {
-		padding: 0.75rem;
-		font-size: 1.3rem;
-		font-family: ${(p) => p.theme.heading_font};
+		padding: 1rem;
+		font-size: 1rem;
+		font-family: ${(p) => p.theme.text_color};
 		line-height: 1.1;
 		margin-bottom: 0.5rem;
+
+		&__link {
+			text-decoration: none;
+			color: ${(p) => p.theme.text_color};
+		}
 	}
 	.description {
-		padding: 0.75rem;
-		height: 5rem;
+		padding: 0 1rem;
+		/* height: 5rem; */
 		text-overflow: ellipsis;
-		overflow: hidden;
+		/* overflow: hidden; */
 		flex: 1 1 auto;
 	}
 	.footer {
-		padding: 0.75rem;
+		padding: 1rem;
 		display: flex;
 		justify-content: center;
 
