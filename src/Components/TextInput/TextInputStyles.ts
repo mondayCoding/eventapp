@@ -12,11 +12,11 @@ export const ThemedTextInput = styled.input`
 	padding: 4px 8px;
 	border-radius: ${(p) => p.theme.global_border_radius};
 	transition: border-color 0.2s ease-in-out;
-	border: 1px solid #e3e3e3;
+	border: ${(p) => p.theme.input_border};
 	font-family: ${(p) => p.theme.body_font};
 	font-size: ${(p) => p.theme.global_font_size};
 	color: ${(p) => p.theme.text_color};
-	background: ${(p) => p.theme.card_background_color};
+	background: ${(p) => p.theme.input_background};
 
 	&:hover {
 		border-color: ${(p) => p.theme.primary_color};

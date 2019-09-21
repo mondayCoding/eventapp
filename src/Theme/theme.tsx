@@ -20,6 +20,10 @@ const DefaultTheme = {
 
 	focus_color: '#81e979',
 	link_color: '#81e979',
+	border_color: '#dadada',
+
+	input_border: '1px solid #dadada',
+	input_background: '#f9f9f9',
 
 	// Validation/Notification colors
 	error_color: '#a94442',
@@ -44,7 +48,6 @@ const DefaultTheme = {
 
 	//misc
 	navbar_width: '15rem',
-	separator_color: '#dadada'
 
 	// fonts: {
 	// 	heading: '',
@@ -52,10 +55,10 @@ const DefaultTheme = {
 	// 	mono: ''
 	// },
 
-	// shadow: {
-	//    card: "0 6px 10px -4px rgba(0, 0, 0, 0.15)",
-	//    inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)"
-	// },
+	shadow: {
+		card: '0 6px 10px -4px rgba(0, 0, 0, 0.22)',
+		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)'
+	}
 
 	// color: {
 	//    primary: '#9538bf',
@@ -85,11 +88,15 @@ const DarkTheme: typeof DefaultTheme = {
 	secondary_color: '#6e0d25',
 
 	body_background_color: '#333',
-	menu_background_color: '#212120',
-	card_background_color: '#222',
+	menu_background_color: '#201e20',
+	card_background_color: '#2c292d',
 
 	focus_color: 'skyblue',
 	link_color: '#e9799e',
+	border_color: '#4d4d4d',
+
+	input_border: 'none',
+	input_background: '#0000002e',
 
 	// Validation/Notification colors
 	error_color: '#a94442',
@@ -102,9 +109,9 @@ const DarkTheme: typeof DefaultTheme = {
 	text_color_nav: '#dadada',
 
 	// Main fonts
-	body_font: 'Sans Serif, Arial, Segoe UI, Verdana, Helvetica, sans-serif',
+	body_font: "'Montserrat', sans-serif",
 	body_font_alternative: 'Arial, Segoe UI, Verdana, Helvetica, sans-serif',
-	heading_font: 'Calibri, Futura, Helvetica, Arial, Sans',
+	heading_font: "'Montserrat', sans-serif",
 
 	// Globals
 	global_border_radius: '4px',
@@ -114,7 +121,11 @@ const DarkTheme: typeof DefaultTheme = {
 
 	// misc
 	navbar_width: '15rem',
-	separator_color: '#dadada'
+
+	shadow: {
+		card: '0 6px 10px -4px rgba(0, 0, 0, 0.55)',
+		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)'
+	}
 };
 
 const themes = {

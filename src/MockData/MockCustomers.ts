@@ -1,14 +1,7 @@
-export enum CustomerTags {
-	MultipleParticipation,
-	InactiveForMoreThanYear,
-	HasUsedPortal,
-	HasPaidOrders,
-	HasUsedAccommodations,
-	HasCancelledParticipations
-}
+import { CustomerTagType } from './CustomerTags';
 
 export interface ICustomer {
-	tags: CustomerTags[];
+	tags: CustomerTagType[];
 	firstname: string;
 	lastname: string;
 	email: string;

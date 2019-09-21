@@ -1,35 +1,49 @@
-export interface IEventTag {
+import { Icons } from 'library';
+
+interface IEventTag {
 	name: string;
 	type: EventTagType;
 	description: string;
+	icon: React.ReactNode;
 }
 
-enum EventTagType {
+export enum EventTagType {
 	Continous,
 	Training,
 	Orders,
-	Accommodations
+	Accommodations,
+	HasEnded
 }
 
-export const EventTag = {
-	Continous: {
+export const EventTag: { [x: number]: IEventTag } = {
+	[EventTagType.Continous]: {
 		name: 'Jatkuva',
 		type: EventTagType.Continous,
-		description: 'Tapahtumalla on käynnissä jatkuvasti, eikä sillä ole määrättyä loppua'
+		description: 'Tapahtumalla on käynnissä jatkuvasti, eikä sillä ole määrättyä loppua',
+		icon: Icons.calendar
 	},
-	Training: {
+	[EventTagType.Training]: {
 		name: 'Koulutus',
 		type: EventTagType.Training,
-		description: 'Tapahtuma on koulutus'
+		description: 'Tapahtuma on koulutus',
+		icon: Icons.teacher
 	},
-	Orders: {
+	[EventTagType.Orders]: {
 		name: 'Tilauksia',
 		type: EventTagType.Orders,
-		description: 'Tapahtumassa on tilattavia tai ostettavia tuotteita'
+		description: 'Tapahtumassa on tilattavia tai ostettavia tuotteita',
+		icon: Icons.dollar
 	},
-	Accommodations: {
+	[EventTagType.Accommodations]: {
 		name: 'Majoituksia',
 		type: EventTagType.Accommodations,
-		description: 'Tapahtuman yhteydessä voi varata majoituksia'
+		description: 'Tapahtuman yhteydessä voi varata majoituksia',
+		icon: Icons.home
+	},
+	[EventTagType.HasEnded]: {
+		name: 'Päättynyt',
+		type: EventTagType.HasEnded,
+		description: 'Tapahtuma on päättynyt',
+		icon: Icons.stopwatch
 	}
 };

@@ -52,7 +52,8 @@ export const CardWrapper = styled.div`
 	padding: 1rem;
 	border-radius: ${(p) => p.theme.global_border_radius};
 	background: ${(p) => p.theme.card_background_color};
-	box-shadow: ${(p) => p.theme.global_shadow};
+	box-shadow: ${(p) => p.theme.shadow.card};
+	color: ${(p) => p.theme.text_color};
 	margin-bottom: 1rem;
 
 	& + & {
@@ -65,5 +66,5 @@ const ItemRow = styled.div`
 	justify-content: space-between;
 	margin: 0.5rem 0 0 0.5rem;
 	padding: 0.25rem 0;
-	border-top: 1px solid ${(p) => p.theme.separator_color};
+	border-top: 1px solid ${(p) => p.theme.border_color};
 `;

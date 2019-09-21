@@ -38,5 +38,5 @@ const ItemRow = styled.div`
 	justify-content: space-between;
 	margin: 0.5rem 0 0 0.5rem;
 	padding: 0.25rem 0;
-	border-top: 1px solid ${(p) => p.theme.separator_color};
+	border-top: 1px solid ${(p) => p.theme.border_color};
 `;

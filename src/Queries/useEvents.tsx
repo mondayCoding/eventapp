@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { ISystemEvent, MockSystemEvents } from '../MockData/SystemEventMockFeed';
+import { IEvent, MockEvents } from '../MockData/MockEvents';
 
 export const useEvents = () => {
-	const [systemEvents, setSystemEvents] = useState([] as ISystemEvent[]);
+	const [events, setEvents] = useState([] as IEvent[]);
 
 	useEffect(() => {
-		setSystemEvents(MockSystemEvents);
+		setEvents(MockEvents);
 	}, []);
 
-	return { systemEvents };
+	return { events };
 };

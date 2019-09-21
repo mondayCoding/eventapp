@@ -1,26 +1,30 @@
 import React from 'react';
-import { Heading } from '../../Components/Text/Heading';
+import { Heading } from '../Text/Heading';
 import { useCustomerEvents } from '../../Queries/useCustomerEvents';
 import styled from '../../Theme/theme';
-import { CustomerEventType } from '../../MockData/CustomerEventsMockFeed';
-import { Icons } from 'library';
+import { CustomerEventType } from '../../MockData/MockCustomerEventFeed';
 import TimeAgo from 'react-timeago';
 import { Link } from 'react-router-dom';
 import * as routes from '../../Constants/routes';
+import Icons from '../Icons/icons';
 
 export const FeedCustomers = () => {
 	const { customerEvents } = useCustomerEvents();
 
 	return (
 		<div>
-			<Heading headingText="CustomerFeed" isUnderlined></Heading>
+			<Heading headingText="Asiakastapahtumat Feed" isUnderlined>
+				<div style={{ display: 'flex', flex: '1 1 auto', justifyContent: 'flex-end' }}>
+					{Icons.users}
+				</div>
+			</Heading>
 
-			{customerEvents.map((event, index) => (
-				<FeedItem type="button" key={index}>
-					<span className="icon">{eventIcons[event.eventType]}</span>
-					<span className="message">{event.message}</span>
+			{customerEvents.map((customer, index) => (
+				<FeedItem key={index} to={`${routes.customer.path}/${customer.id}`}>
+					<span className="icon">{eventIcons[customer.eventType]}</span>
+					<span className="message">{customer.message}</span>
 					<span className="stamp">
-						<TimeAgo date={event.timestamp || ''}></TimeAgo>
+						<TimeAgo date={customer.timestamp || ''}></TimeAgo>
 					</span>
 				</FeedItem>
 			))}
@@ -33,7 +37,7 @@ export const FeedCustomers = () => {
 	);
 };
 
-export const FeedItem = styled.button`
+export const FeedItem = styled(Link)`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -44,9 +48,14 @@ export const FeedItem = styled.button`
 	width: 100%;
 	background: none;
 	text-align: left;
+	text-decoration: none;
 
 	& + & {
 		border-top: 1px solid #ccc;
+	}
+
+	&:hover {
+		text-decoration: none;
 	}
 
 	&:focus {
@@ -73,6 +82,13 @@ export const FeedItem = styled.button`
 		color: gray;
 		font-size: 0.8rem;
 	}
+
+	&:hover {
+		.message {
+			flex: 1 1 auto;
+			color: ${(p) => p.theme.primary_color};
+		}
+	}
 `;
 
 export const FeedFooter = styled.footer`
@@ -80,7 +96,7 @@ export const FeedFooter = styled.footer`
 	justify-content: flex-end;
 	padding: 1rem;
 	margin-top: 1rem;
-	border-top: 1px solid ${(p) => p.theme.separator_color};
+	border-top: 1px solid ${(p) => p.theme.border_color};
 
 	.footer__link {
 		color: ${(p) => p.theme.primary_color};

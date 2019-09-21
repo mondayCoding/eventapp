@@ -6,7 +6,7 @@ import { CardWrapper } from '../MyCollection/MyCollection';
 import { useCustomers } from '../../Queries/useCustomers';
 import styled from '../../Theme/theme';
 import { Icons } from 'library';
-import { ICustomer } from '../../MockData/CustomersMock';
+import { ICustomer } from '../../MockData/MockCustomers';
 
 export const Customers = () => {
 	const { customers } = useCustomers();

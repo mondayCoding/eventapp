@@ -10,7 +10,6 @@ export const Navigation = () => {
 			<div className="navigation">
 				<h2 className="navigation__heading">{Icons.home} Mumu App</h2>
 				<Links></Links>
-				<hr style={{ color: 'green' }}></hr>
 			</div>
 		</Nav>
 	);
@@ -29,7 +28,6 @@ const Links: FC = () => (
 		<Link route={routes.customers} />
 		<Link route={routes.customer} />
 
-		<hr></hr>
 		<Link route={routes.myCollection} />
 		<Link route={routes.myWishlist} />
 	</>

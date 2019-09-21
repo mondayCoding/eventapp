@@ -19,7 +19,7 @@ enum SystemEventType {
 export interface ISystemEvent {
 	eventType: SystemEventType;
 	message: string;
-	link?: string;
+	id?: string;
 	timestamp?: Date;
 }
 
@@ -27,49 +27,55 @@ export const MockSystemEvents: ISystemEvent[] = [
 	{
 		eventType: SystemEventType.EventStarted,
 		message: 'Tapahtuma "IO-Koulutus" alkoi',
-		link: 'url',
-		timestamp: new Date()
+		id: '1',
+		timestamp: new Date(2019, 9, 9)
 	},
 	{
 		eventType: SystemEventType.RegistrationEnded,
 		message: 'Tapahtuman "IO-Koulutus" ilmoittauminen päättyi',
-		link: 'url',
-		timestamp: new Date()
+		id: '1',
+		timestamp: new Date(2019, 7, 12)
 	},
 	{
 		eventType: SystemEventType.SendCertificates,
 		message: 'Päättyneen tapahtuman "Porttikoulutus" todistukset lähetettiin',
-		link: 'url',
-		timestamp: new Date()
+		id: 'url',
+		timestamp: new Date(2018, 4, 5)
 	},
 	{
 		eventType: SystemEventType.AddedCustomer,
 		message: 'Uusi Asiakas 92883 lisättiin manuaalisesti',
-		link: 'url',
-		timestamp: new Date()
+		id: '12',
+		timestamp: new Date(2018, 2, 2)
 	},
 	{
 		eventType: SystemEventType.RegistrationStarted,
 		message: 'Tapahtuman "IO-Koulutus" ilmoittautuminen alkoi',
-		link: 'url',
-		timestamp: new Date()
+		id: '1',
+		timestamp: new Date(2019, 1, 3)
 	},
 	{
 		eventType: SystemEventType.EventEnded,
 		message: 'Tapahtuma "Porttikoulutus" päättyi',
-		link: 'url',
-		timestamp: new Date()
+		id: '12',
+		timestamp: new Date(2018, 6, 9)
 	},
 	{
 		eventType: SystemEventType.ModifiedEvent,
 		message: 'Tapahtuman IO-Koulutus tietoja muokattiin',
-		link: 'url',
-		timestamp: new Date()
+		id: '1',
+		timestamp: new Date(2018, 5, 2)
 	},
 	{
 		eventType: SystemEventType.AddedEvent,
 		message: 'Uusi tapahtuma "IO-Koulutus" luotiin',
-		link: 'url',
-		timestamp: new Date()
+		id: '1',
+		timestamp: new Date(2018, 5, 2)
+	},
+	{
+		eventType: SystemEventType.EventEnded,
+		message: '"Keravan Viinifestivaalit" tapahtuma päättyi',
+		id: '2',
+		timestamp: new Date(2017, 12, 11)
 	}
 ];

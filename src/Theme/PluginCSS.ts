@@ -244,7 +244,7 @@ export const ReactSelect = css`
 
 		.reactselect__control {
 			min-height: 24px;
-			border: 1px solid ${(p) => p.theme.separator_color};
+			border: 1px solid ${(p) => p.theme.border_color};
 
 			&:hover {
 				border-color: ${(p) => p.theme.primary_color};

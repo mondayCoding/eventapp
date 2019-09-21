@@ -6,8 +6,11 @@ import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { useCustomers } from '../../Queries/useCustomers';
-import { ICustomer } from '../../MockData/CustomersMock';
+import { ICustomer } from '../../MockData/MockCustomers';
 import { SelectField } from 'library';
+import { BadgeTag } from '../Events/Events';
+import { CustomerTagType, CustomerTag } from '../../MockData/CustomerTags';
+import ReactTimeago from 'react-timeago';
 
 interface routeprops {
 	id: string;
@@ -21,9 +24,10 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 		<CustomerCard>
 			<div className="card__heading">
 				<Heading
-					headingText={`Customer with id of ${match.params.id}`}
+					headingText={customer ? `${customer.firstname} ${customer.lastname}` : ''}
 					isUnderlined
 				></Heading>
+				{customer && customer.tags && renderTags(customer.tags)}
 			</div>
 			<div className="card__body">
 				<div className="card__body__avatar">
@@ -38,12 +42,18 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 			</div>
 
 			<Heading headingText="Osallistumiset" isUnderlined></Heading>
-			<div>Osallistuminen 1</div>
-			<div>Osallistuminen 2</div>
-			<div>Osallistuminen 3</div>
-			<div>Osallistuminen 4</div>
-			<div>Osallistuminen 5</div>
-			<div>Osallistuminen 6</div>
+			<Participations
+				date={new Date(2017, 8, 11)}
+				name="Ensiapu koulutus 101"
+			></Participations>
+			<Participations
+				date={new Date(2018, 1, 19)}
+				name="Markkinoinnin perusteet"
+			></Participations>
+			<Participations
+				date={new Date(2019, 7, 24)}
+				name="Osastokoulutus 2019 - Markkinoinnin tehokurssi"
+			></Participations>
 
 			<div className="card__footer">
 				<span className="card__footer__tag">
@@ -57,6 +67,52 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 		</CustomerCard>
 	);
 };
+
+interface IParticipationProps {
+	date: Date;
+	name: string;
+	icon?: React.ReactNode;
+	id?: string;
+}
+
+const Participations: FC<IParticipationProps> = (props) => (
+	<Participated>
+		<div className="icon">{Icons.check_circle}</div>
+		<div className="name">{props.name}</div>
+		<div className="date__ago">
+			<ReactTimeago date={props.date}></ReactTimeago>
+		</div>
+		<div className="date__icon">{Icons.calendar}</div>
+	</Participated>
+);
+
+const Participated = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.8rem;
+	border-bottom: 1px solid ${(p) => p.theme.border_color};
+
+	.icon {
+		flex: 0 0 2rem;
+		font-size: 1.2rem;
+	}
+	.name {
+		flex: 1 1 auto;
+	}
+	.date__ago {
+		display: flex;
+		justify-content: flex-end;
+		flex: 0 0 20%;
+		padding-right: 0.5rem;
+	}
+	.date__icon {
+		flex: 0 0 1.25rem;
+		display: flex;
+		justify-content: center;
+	}
+`;
 
 const CustomerForm: FC<{ customer: ICustomer }> = (props) => (
 	<Formik onSubmit={() => {}} initialValues={props.customer} enableReinitialize>
@@ -100,6 +156,19 @@ const CustomerForm: FC<{ customer: ICustomer }> = (props) => (
 	</Formik>
 );
 
+const renderTags = (tags: CustomerTagType[]) =>
+	tags.map((tag) => {
+		const current = CustomerTag[tag];
+		return current ? (
+			<BadgeTag title={current.description}>
+				<span className="tag__icon">{current.icon}</span>
+				{current.name}
+			</BadgeTag>
+		) : (
+			new Error(`Uknown Event Tag Type: ${tag}`)
+		);
+	});
+
 const initialValues: ICustomer = {
 	id: '123',
 	firstname: '',
@@ -126,6 +195,7 @@ const CustomerCard = styled.section`
 
 	.card__heading {
 		display: block;
+		margin-bottom: 1rem;
 	}
 
 	.card__body {

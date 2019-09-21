@@ -1,21 +1,24 @@
 import React from 'react';
-import { Heading } from '../../Components/Text/Heading';
-import { useEvents } from '../../Queries/useEvents';
+import { Heading } from '../Text/Heading';
+import { useSystemEvents } from '../../Queries/useSystemEvents';
 import { FeedItem, FeedFooter } from '../FeedCustomers/FeedCustomers';
-import { Icons } from 'library';
 import * as routes from '../../Constants/routes';
-
 import Timeago from 'react-timeago';
 import { Link } from 'react-router-dom';
+import Icons from '../Icons/icons';
 
 export const FeedSystemEvents = () => {
-	const { systemEvents } = useEvents();
+	const { systemEvents } = useSystemEvents();
 	return (
 		<div>
-			<Heading headingText="System Event Feed" isUnderlined></Heading>
+			<Heading headingText="Järjestelmätapahtumat Feed" isUnderlined>
+				<div style={{ display: 'flex', flex: '1 1 auto', justifyContent: 'flex-end' }}>
+					{Icons.computer}
+				</div>
+			</Heading>
 
 			{systemEvents.map((event, index) => (
-				<FeedItem type="button" key={index}>
+				<FeedItem to={`${routes.event.path}/${event.id}`} key={index}>
 					<span className="icon">{Icons.spinner}</span>
 					<span className="message">{event.message}</span>
 					<span className="stamp">

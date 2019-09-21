@@ -65,8 +65,7 @@ const Card = styled.section`
 	margin: 1%;
 	overflow: hidden;
 	transition: background-color 0.2s ease-in-out;
-	box-shadow: ${(p) => p.theme.global_shadow};
-	box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+	box-shadow: ${(p) => p.theme.shadow.card};
 	font-weight: 800;
 
 	&:hover {
