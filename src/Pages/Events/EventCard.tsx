@@ -32,7 +32,7 @@ export const EventCard: FC<ItemCardProps> = ({ item, isCollected, isOnWishlist }
 				<div>
 					<Button
 						disabled={isCollected}
-						buttonText="lisää kokoelmaan"
+						text="lisää kokoelmaan"
 						isLinkBtn
 						onClick={() => addToCollected(item.id)}
 					/>
@@ -40,7 +40,7 @@ export const EventCard: FC<ItemCardProps> = ({ item, isCollected, isOnWishlist }
 				<div>
 					<Button
 						disabled={isOnWishlist}
-						buttonText="lisää toivelistalle"
+						text="lisää toivelistalle"
 						isLinkBtn
 						onClick={() => addToWishlist(item.id)}
 					/>

@@ -8,9 +8,11 @@ import { TextField } from '../../Components/TextInput/Textinput';
 import { useCustomers } from '../../Queries/useCustomers';
 import { ICustomer } from '../../MockData/MockCustomers';
 import { SelectField } from 'library';
-import { BadgeTag } from '../Events/Events';
+
 import { CustomerTagType, CustomerTag } from '../../MockData/CustomerTags';
 import ReactTimeago from 'react-timeago';
+import 'bootstrap/dist/css/bootstrap.css';
+import { BadgeTag } from '../Events/BadgeTag';
 
 interface routeprops {
 	id: string;
@@ -24,7 +26,7 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 		<CustomerCard>
 			<div className="card__heading">
 				<Heading
-					headingText={customer ? `${customer.firstname} ${customer.lastname}` : ''}
+					text={customer ? `${customer.firstname} ${customer.lastname}` : ''}
 					isUnderlined
 				></Heading>
 				{customer && customer.tags && renderTags(customer.tags)}
@@ -41,7 +43,7 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 				</div>
 			</div>
 
-			<Heading headingText="Osallistumiset" isUnderlined></Heading>
+			<Heading text="Osallistumiset" isUnderlined></Heading>
 			<Participations
 				date={new Date(2017, 8, 11)}
 				name="Ensiapu koulutus 101"
@@ -93,6 +95,7 @@ const Participated = styled.div`
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.8rem;
 	border-bottom: 1px solid ${(p) => p.theme.border_color};
+	color: ${(p) => p.theme.text_color};
 
 	.icon {
 		flex: 0 0 2rem;
@@ -160,10 +163,11 @@ const renderTags = (tags: CustomerTagType[]) =>
 	tags.map((tag) => {
 		const current = CustomerTag[tag];
 		return current ? (
-			<BadgeTag title={current.description}>
-				<span className="tag__icon">{current.icon}</span>
-				{current.name}
-			</BadgeTag>
+			<BadgeTag
+				name={current.name}
+				icon={current.icon}
+				description={current.description}
+			/>
 		) : (
 			new Error(`Uknown Event Tag Type: ${tag}`)
 		);
@@ -184,7 +188,6 @@ const initialValues: ICustomer = {
 };
 
 const CustomerCard = styled.section`
-	margin: 1rem;
 	padding: 1.5rem;
 	display: flex;
 	flex-direction: column;

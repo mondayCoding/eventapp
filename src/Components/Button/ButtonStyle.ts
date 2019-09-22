@@ -1,5 +1,5 @@
-import styled, { css } from '../../Theme/theme';
-import { darken, lighten, mix } from 'polished';
+import styled from '../../Theme/theme';
+import { darken } from 'polished';
 
 export interface IButtonStyleProps {
 	isRounded?: boolean;
@@ -7,40 +7,20 @@ export interface IButtonStyleProps {
 	isLinkBtn?: boolean;
 }
 
-const linkButtonCSS = css`
-	color: ${(p) => p.theme.link_color};
-	border-radius: ${(p) => p.theme.global_border_radius};
-	background: none;
-	font-weight: 400;
-
-	&:hover {
-		background: ${(p) => mix(0.2, 'black', p.theme.link_color)};
-	}
-`;
-
-const roundedButtonCSS = css`
-	border-radius: ${(p) => p.theme.global_border_radius};
-`;
-
-const roundButtonCSS = css`
-	border-radius: 100%;
-	height: 1.55rem;
-	width: 1.55rem;
-	padding: 0;
-	font-size: 0.9rem;
-`;
-
 export const ThemedButton = styled.button`
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 	font-size: ${(p) => p.theme.global_font_size};
 	font-family: ${(p) => p.theme.body_font};
 	background-color: ${(p) => p.theme.primary_color};
+	border-radius: ${(p) => p.theme.global_border_radius};
 	color: #fff;
 	border: 0.15rem solid transparent;
 	font-weight: 700;
 	width: auto;
-	padding: 0.1rem 0.25rem;
+	padding: 0.24rem 0.5rem;
 	text-align: center;
-	line-height: 1;
 	transition: background-color 0.2s;
 	cursor: pointer;
 
@@ -64,16 +44,11 @@ export const ThemedButton = styled.button`
 		opacity: 0.7;
 	}
 
-   ${(p: IButtonStyleProps) => p.isLinkBtn && linkButtonCSS}
-
-   ${(p) => p.isRounded && roundedButtonCSS}
-   ${(p) => p.isRound && roundButtonCSS}
-
 	& + & {
 		margin-left: 0.5rem;
 	}
 
 	& > span:not(:first-child) {
 		margin-left: 0.35rem;
-   }
+	}
 `;

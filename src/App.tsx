@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import * as routes from './Constants/routes';
 import { Body } from './AppStyles';
 import { useCollection } from './Data/useCollections';
 import { ICollectionItem } from './Interfaces';
@@ -11,7 +10,7 @@ import { useCollected } from './Data/useCollected';
 import { themes } from './Theme/theme';
 import { MainPage } from './Layout/MainContent';
 import { Navigation } from './Layout/Navigation';
-import PerfectScrollbar from 'perfect-scrollbar';
+// import PerfectScrollbar from 'perfect-scrollbar';
 
 interface IAppDataContext {
 	collection: ICollectionItem[];

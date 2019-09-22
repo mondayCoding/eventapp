@@ -9,9 +9,7 @@ import { StatCard } from './StatusCard';
 
 export const DashBoard = () => {
 	return (
-		<div>
-			<Heading headingText="System Dashboard"></Heading>
-
+		<>
 			<div className="row">
 				<div className="col-lg-4">
 					<StatCard
@@ -24,9 +22,9 @@ export const DashBoard = () => {
 				</div>
 				<div className="col-lg-4">
 					<StatCard
-						value={'10013'}
+						value={'10 013'}
 						icon={<span style={{ color: 'lightsalmon' }}>{Icons.users}</span>}
-						text="Ilmoittautunutta"
+						text="Ilmoittautuneita"
 						footer="Päivitä nyt"
 						footerIcon={Icons.undo}
 					></StatCard>
@@ -44,7 +42,7 @@ export const DashBoard = () => {
 
 			<CardWrapper>
 				<Heading
-					headingText="Ilmoittautumiset"
+					text="Ilmoittautumiset"
 					ingress="Tapahtumaan ilmoittautumiset hakuajan alkamisen jälkeen"
 					isUnderlined
 				></Heading>
@@ -68,7 +66,7 @@ export const DashBoard = () => {
 					</CardWrapper>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

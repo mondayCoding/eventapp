@@ -1,118 +1,135 @@
 import React, { useContext, useState } from 'react';
-import { Heading, ButtonRow } from 'library';
+import { Link } from 'react-router-dom';
+import * as routes from '../../Constants/routes';
 import { EventCard } from './EventCard';
 import styled from '../../Theme/theme';
 import { AppContext } from '../../App';
-import { Button } from '../../Components/Button/Button';
-import { sortCondition, sortCollectionBy, sortDirection } from './collectionSorter';
 import { useEvents } from '../../Queries/useEvents';
 import { EventTag, EventTagType } from '../../MockData/EventTags';
-import { mix } from 'polished';
 import { CardWrapper } from '../MyCollection/MyCollection';
+import { Heading } from '../../Components/Text/Heading';
+import { BadgeTag } from './BadgeTag';
+import { IEvent } from '../../MockData/MockEvents';
+import Icons from '../../Components/Icons/icons';
 
 export const Events = () => {
-	const { collection, collected, wishlist } = useContext(AppContext);
-	const [sortBy, setSortCondition] = useState(sortCondition.NAME);
-	const [direction, setSortDirection] = useState(sortDirection.ASCENDING);
 	const { events } = useEvents();
+	const [filter, setFilter] = useState('');
 
-	const sortedCollection = sortCollectionBy(collection, sortBy, direction);
+	const createFilter = (list: IEvent[]) => {
+		const filt = filter.toLowerCase();
+
+		return list.filter((item) => {
+			return filt
+				? item.name.toLowerCase().indexOf(filt) > -1 ||
+						item.location.toLowerCase().indexOf(filt) > -1 ||
+						item.description.toLowerCase().indexOf(filt) > -1
+				: true;
+		});
+	};
 
 	return (
 		<div>
 			<CardWrapper>
-				<Heading headingText="Kokoelma" isUnderlined />
-				{events.map((event, index) => (
+				<Heading text="Kokoelma" isUnderlined />
+
+				<h1>TÄHÄN TAPAHTUMAKALENTERI</h1>
+				<h3>suosikit</h3>
+
+				<FilterInput
+					type="text"
+					value={filter}
+					onChange={(e) => setFilter(e.target.value)}
+				></FilterInput>
+
+				{createFilter(events).map((event) => (
 					<>
-						<div>{event.name}</div>
-						<div>{event.description}</div>
-						{renderTags(event.tags)}
-						<div>{event.start.toLocaleString()}</div>
+						<EventListItem key={event.id} to={`${routes.event.path}/${event.id}`}>
+							<span className="event__favourite">{Icons.star}</span>
+							<span className="event__name">{`${event.name}`}</span>
+							<span className="event__tags">{renderTags(event.tags)}</span>
+							<span className="event__location">{`${event.location}`}</span>
+						</EventListItem>
 					</>
 				))}
 			</CardWrapper>
-			<ButtonRow>
-				<Button
-					buttonText="By Name"
-					onClick={() => setSortCondition(sortCondition.NAME)}
-				/>
-				<Button
-					buttonText="By Created"
-					onClick={() => setSortCondition(sortCondition.CREATED)}
-				/>
-				<Button
-					buttonText="By Value"
-					onClick={() => setSortCondition(sortCondition.MARKETVALUE)}
-				/>
-			</ButtonRow>
-			<ButtonRow>
-				<Button
-					buttonText="Ascending Order"
-					onClick={() => setSortDirection(sortDirection.ASCENDING)}
-				/>
-				<Button
-					buttonText="Descending Order"
-					onClick={() => setSortDirection(sortDirection.DESCENDING)}
-				/>
-			</ButtonRow>
-			<CollectionWrapper>
-				{sortedCollection.map((item) => (
-					<EventCard
-						item={item}
-						key={item.id}
-						isCollected={collected.includes(item.id)}
-						isOnWishlist={wishlist.includes(item.id)}
-					/>
-				))}
-			</CollectionWrapper>
 		</div>
 	);
 };
+
+const FilterInput = styled.input`
+	display: block;
+	width: 100%;
+	max-width: 20rem;
+	border: 1px solid lightgray;
+	margin-bottom: 1rem;
+	border-radius: 3px;
+	padding: 0.2rem;
+	background: ${(p) => p.theme.input_background};
+`;
+
+const EventListItem = styled(Link)`
+	display: flex;
+	justify-content: space-between;
+	color: ${(p) => p.theme.primary_color};
+	align-items: center;
+	border: none;
+	padding: 0.25rem 0.5rem;
+	cursor: pointer;
+	font-size: 0.85rem;
+	width: 100%;
+	background: none;
+	text-align: left;
+	text-decoration: none;
+
+	&&:hover {
+		color: ${(p) => p.theme.secondary_color};
+		background: #ccc;
+	}
+
+	&:nth-child(odd) {
+		background: ${(p) => p.theme.body_background_color};
+	}
+
+	& + & {
+		/* border-top: 1px solid #ccc; */
+	}
+
+	&:focus {
+		border: none;
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
+	}
+	.event__favourite {
+		flex: 0 0 2rem;
+		padding-right: 0.5rem;
+	}
+	.event__name {
+		flex: 0 0 40%;
+		padding-left: 1rem;
+		color: ${(p) => p.theme.text_color};
+	}
+	.event__location {
+		flex: 0 0 20%;
+		padding-left: 1rem;
+		text-align: left;
+	}
+	.event__tags {
+		flex: 0 0 40%;
+		padding-left: 1rem;
+		text-align: left;
+	}
+`;
 
 const renderTags = (tags: EventTagType[]) =>
 	tags.map((tag) => {
 		const current = EventTag[tag];
 		return current ? (
-			<BadgeTag title={current.description}>
-				<span className="tag__icon">{current.icon}</span>
-				{current.name}
-			</BadgeTag>
+			<BadgeTag
+				description={current.description}
+				name={current.name}
+				icon={current.icon}
+			/>
 		) : (
 			new Error(`Uknown Event Tag Type: ${tag}`)
 		);
 	});
-
-export const BadgeTag = styled.span`
-	display: inline-flex;
-	align-items: center;
-	padding: 0 0.5rem 0 0;
-	height: 1.5rem;
-	border-radius: 1rem;
-	position: relative;
-	background: ${(p) => mix(0.2, '#000', p.theme.menu_background_color)};
-	color: ${(p) => p.theme.text_color_nav};
-	cursor: pointer;
-
-	.tag__icon {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		margin-right: 0.25rem;
-		height: 1.5rem;
-		width: 1.5rem;
-		border-radius: 100%;
-		font-size: 0.8rem;
-		background: ${(p) => mix(0.2, '#000', p.theme.primary_color)};
-	}
-
-	& + & {
-		margin-left: 0.25rem;
-	}
-`;
-
-const CollectionWrapper = styled.section`
-	padding: 1rem 0;
-	background: none;
-	display: flex;
-	flex-wrap: wrap;
-`;

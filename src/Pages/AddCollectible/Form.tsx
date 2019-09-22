@@ -16,7 +16,7 @@ export const AddCollectionItemForm: FC = () => {
 
 	return (
 		<div>
-			<Heading headingText="Lisää tuote" isUnderlined />
+			<Heading text="Lisää tuote" isUnderlined />
 
 			<Formik onSubmit={handleSubmit} initialValues={initialValues}>
 				{() => (

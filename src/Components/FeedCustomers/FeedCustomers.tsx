@@ -13,7 +13,7 @@ export const FeedCustomers = () => {
 
 	return (
 		<div>
-			<Heading headingText="Asiakastapahtumat Feed" isUnderlined>
+			<Heading text="Asiakastapahtumat Feed" isUnderlined>
 				<div style={{ display: 'flex', flex: '1 1 auto', justifyContent: 'flex-end' }}>
 					{Icons.users}
 				</div>
@@ -29,7 +29,7 @@ export const FeedCustomers = () => {
 				</FeedItem>
 			))}
 			<FeedFooter>
-				<Link className="footer__link" to={routes.dashboard.path}>
+				<Link className="footer__link" to={routes.customers.path}>
 					Katso vanhempia tapahtumia {Icons.arrowRight}
 				</Link>
 			</FeedFooter>

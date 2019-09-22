@@ -2,7 +2,7 @@
 // User
 //*********************************************************** */
 
-enum SystemEventType {
+export enum SystemEventType {
 	ModifiedCustomer,
 	ModifiedEvent,
 	RemovedEvent,
@@ -38,14 +38,14 @@ export const MockSystemEvents: ISystemEvent[] = [
 	},
 	{
 		eventType: SystemEventType.SendCertificates,
-		message: 'Päättyneen tapahtuman "Porttikoulutus" todistukset lähetettiin',
-		id: 'url',
+		message: 'Tapahtuman "Porttikoulutus" todistukset lähetettiin',
+		id: '2',
 		timestamp: new Date(2018, 4, 5)
 	},
 	{
 		eventType: SystemEventType.AddedCustomer,
 		message: 'Uusi Asiakas 92883 lisättiin manuaalisesti',
-		id: '12',
+		id: '1',
 		timestamp: new Date(2018, 2, 2)
 	},
 	{
@@ -57,7 +57,7 @@ export const MockSystemEvents: ISystemEvent[] = [
 	{
 		eventType: SystemEventType.EventEnded,
 		message: 'Tapahtuma "Porttikoulutus" päättyi',
-		id: '12',
+		id: '2',
 		timestamp: new Date(2018, 6, 9)
 	},
 	{
@@ -75,7 +75,7 @@ export const MockSystemEvents: ISystemEvent[] = [
 	{
 		eventType: SystemEventType.EventEnded,
 		message: '"Keravan Viinifestivaalit" tapahtuma päättyi',
-		id: '2',
+		id: '3',
 		timestamp: new Date(2017, 12, 11)
 	}
 ];

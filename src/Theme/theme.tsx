@@ -89,7 +89,7 @@ const DarkTheme: typeof DefaultTheme = {
 
 	body_background_color: '#333',
 	menu_background_color: '#201e20',
-	card_background_color: '#2c292d',
+	card_background_color: '#282528',
 
 	focus_color: 'skyblue',
 	link_color: '#e9799e',

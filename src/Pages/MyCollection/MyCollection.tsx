@@ -18,7 +18,7 @@ export const MyCollectionPage = () => {
 	return (
 		<div>
 			<CardWrapper>
-				<Heading headingText="Kokoelma" />
+				<Heading text="Kokoelma" />
 				<p>{`items in collection ${CollectionCount}`}</p>
 				<p>{`Collected items total value is ${collectedItemsValue} euros`}</p>
 			</CardWrapper>

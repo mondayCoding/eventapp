@@ -8,18 +8,20 @@ export interface IInputStyleProps {
 	'data-haserror'?: boolean;
 }
 
-export const TextAreaThemed = styled(Textarea)`
+export const TextAreaThemed = styled(Textarea)<IInputStyleProps>`
 	flex: 1 1 auto;
 	width: 100%;
 	padding: 6px 8px;
 	border-radius: ${(p) => p.theme.global_border_radius};
+	color: ${(p) => p.theme.text_color};
+	background: ${(p) => p.theme.input_background};
+	font-family: ${(p) => p.theme.body_font};
+	font-size: ${(p) => p.theme.global_font_size};
+	border: ${(p) => p.theme.input_border};
 	transition: border-color 0.2s ease-in-out;
-	border: 1px solid #ccc;
 	resize: vertical;
 	max-height: 20rem;
 	min-height: 4rem;
-	font-family: ${(p) => p.theme.body_font};
-	font-size: ${(p) => p.theme.global_font_size};
 
 	&:hover {
 		border-color: ${(p) => p.theme.primary_color};

@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 import styled from '../../Theme/theme';
 import { mix } from 'polished';
+
 interface IStatCardProps {
 	text: string;
 	value: string;
 	footer: string;
 	footerIcon: React.ReactNode;
 	icon: React.ReactNode;
+	showFooter?: boolean;
 }
 
 export const StatCard: FC<IStatCardProps> = (props) => {
@@ -19,11 +21,12 @@ export const StatCard: FC<IStatCardProps> = (props) => {
 					<div className="card__body__text__value">{props.value}</div>
 				</div>
 			</div>
-
-			<div className="card__footer">
-				<div className="card__footer__icon">{props.footerIcon}</div>
-				<div className="card__footer__text">{props.footer}</div>
-			</div>
+			{props.showFooter && (
+				<div className="card__footer">
+					<div className="card__footer__icon">{props.footerIcon}</div>
+					<div className="card__footer__text">{props.footer}</div>
+				</div>
+			)}
 		</StatusCard>
 	);
 };
@@ -35,17 +38,21 @@ const StatusCard = styled.div`
 	border-radius: ${(p) => p.theme.global_border_radius};
 	box-shadow: ${(p) => p.theme.shadow.card};
 	font-family: ${(p) => p.theme.heading_font};
-	margin: 1rem 0;
+	margin: 0 0 1rem 0;
 	padding: 1rem;
+	border-bottom: 3px solid ${(p) => p.theme.primary_color};
 
 	.card__body {
-		padding-bottom: 1rem;
 		display: flex;
 		flex-direction: row;
 
 		&__icon {
-			flex: 0 0 30%;
-			font-size: 3rem;
+			flex: 0 0 4.5rem;
+			height: 4.5rem;
+			margin-right: 1rem;
+			background: ${(p) => p.theme.menu_background_color};
+			border-radius: 0.5rem;
+			font-size: 2.8rem;
 			color: ${(p) => mix(0.75, p.theme.primary_color, '#fff')};
 			display: flex;
 			justify-content: center;
@@ -53,11 +60,14 @@ const StatusCard = styled.div`
 		}
 
 		&__text {
-			flex: 0 0 70%;
+			flex: 1 1 auto;
 			display: flex;
 			justify-content: space-between;
 			flex-direction: column;
 			text-align: right;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 
 			&__genre {
 				font-size: 1.1rem;
@@ -66,6 +76,8 @@ const StatusCard = styled.div`
 			}
 
 			&__value {
+				border-top: 1px solid lightgray;
+
 				font-size: 1.5rem;
 				color: ${(p) => p.theme.text_color};
 				font-weight: 600;
@@ -74,7 +86,8 @@ const StatusCard = styled.div`
 	}
 
 	.card__footer {
-		padding-top: 1rem;
+		margin-top: 0.8rem;
+		padding-top: 0.8rem;
 		border-top: 1px solid lightgray;
 		display: flex;
 		justify-content: center;

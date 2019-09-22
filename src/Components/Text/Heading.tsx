@@ -18,7 +18,7 @@ export interface IProps
 	className?: string;
 	title?: string;
 	icon?: React.ReactNode;
-	headingText: React.ReactNode;
+	text: React.ReactNode;
 	tooltip?: string;
 	ingress?: string;
 	style?: any;
@@ -27,7 +27,7 @@ export interface IProps
 }
 
 const Heading: React.FC<IProps> = ({
-	headingText,
+	text,
 	icon,
 	tooltip,
 	type,
@@ -39,7 +39,7 @@ const Heading: React.FC<IProps> = ({
 		return (
 			<React.Fragment>
 				{icon && <span className="icon">{icon}</span>}
-				{headingText && <span>{headingText}</span>}
+				{text && <span>{text}</span>}
 				{/* {tooltip && <Tooltip content={tooltip} />} */}
 			</React.Fragment>
 		);

@@ -28,8 +28,9 @@ export const Customers = () => {
 	return (
 		<CardWrapper>
 			<Heading
-				headingText="Asiakkaat"
+				text="Asiakkaat"
 				ingress="Valitse käsiteltävä asiakaskortti"
+				isUnderlined
 			></Heading>
 
 			<FilterInput
@@ -39,14 +40,14 @@ export const Customers = () => {
 			></FilterInput>
 
 			{createFilter(customers).map((customer) => (
-				<div key={customer.id}>
-					<CustomerItem to={`${routes.customer.path}/${customer.id}`}>
+				<>
+					<CustomerItem key={customer.id} to={`${routes.customer.path}/${customer.id}`}>
 						<span className="customer__icon">{Icons.user}</span>
 						<span className="customer__name">{`${customer.firstname} ${customer.lastname}`}</span>
 						<span className="customer__email">{`${customer.email}`}</span>
 						<span className="customer__city">{`${customer.city}`}</span>
 					</CustomerItem>
-				</div>
+				</>
 			))}
 		</CardWrapper>
 	);
@@ -60,15 +61,16 @@ const FilterInput = styled.input`
 	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;
+	background: ${(p) => p.theme.input_background};
 `;
 
-const CustomerItem = styled(Link)`
+export const CustomerItem = styled(Link)`
 	display: flex;
 	justify-content: space-between;
 	color: ${(p) => p.theme.primary_color};
 	align-items: center;
 	border: none;
-	padding: 0.4rem 0;
+	padding: 0.25rem 0.5rem;
 	cursor: pointer;
 	font-size: 0.85rem;
 	width: 100%;
@@ -76,13 +78,17 @@ const CustomerItem = styled(Link)`
 	text-align: left;
 	text-decoration: none;
 
-	&:hover {
+	&&:hover {
 		color: ${(p) => p.theme.secondary_color};
 		background: #ccc;
 	}
 
+	&:nth-child(odd) {
+		background: ${(p) => p.theme.body_background_color};
+	}
+
 	& + & {
-		border-top: 4px solid #ccc;
+		/* border-top: 1px solid #ccc; */
 	}
 
 	&:focus {

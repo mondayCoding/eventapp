@@ -14,7 +14,7 @@ export const MyWishlistPage = () => {
 	return (
 		<div>
 			<CardWrapper>
-				<Heading headingText="Toivelista" />
+				<Heading text="Toivelista" />
 				<p>{`items in wishlist ${wishlistCount}`}</p>
 				<p>{`wishlist items total value is ${wishlistValue}`}</p>
 			</CardWrapper>

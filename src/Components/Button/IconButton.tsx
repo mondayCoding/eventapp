@@ -4,7 +4,7 @@ import { ThemedButton, IButtonStyleProps } from './IconButtonStyle';
 export interface IProps
 	extends IButtonStyleProps,
 		React.ButtonHTMLAttributes<HTMLButtonElement> {
-	icon: React.ReactNode;
+	icon?: React.ReactNode;
 	onClick?(x: any): void;
 }
 

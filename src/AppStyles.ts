@@ -107,15 +107,6 @@ export const Main = styled.main`
 		background-color: rgba(0, 0, 0, 0.15);
 		justify-content: flex-end;
 	}
-	.main__top-panel {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		padding: 0.5rem;
-		height: ${topPanelHeight};
-		border-bottom: 1px solid lightgray;
-		justify-content: flex-end;
-	}
 `;
 
 export const MainContent = styled.main`
