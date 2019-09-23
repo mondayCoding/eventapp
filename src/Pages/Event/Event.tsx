@@ -55,7 +55,27 @@ export const Event: FC<RouteComponentProps<EventRouteProps>> = ({ match }) => {
 			/>
 			<Route
 				path="/event/:id/forms"
-				component={() => <RegistrationForms></RegistrationForms>}
+				component={() => (
+					<>
+						<RegistrationForms></RegistrationForms>
+						<h2> Perusnäkymässä (kaikki lomakkeet) voi :</h2>
+						<div style={{ marginLeft: '1.25rem' }}>
+							<ol>
+								<li>Nähdä ilmoittautujajakauman (per lomakke)</li>
+								<li>nähdä saadut tulot kaikilta lomakkeilta</li>
+							</ol>
+						</div>
+						<h2> yksittäisellä lomakkeella voi:</h2>
+						<div style={{ marginLeft: '1.25rem' }}>
+							<ol>
+								<li>Nähdä ilmoittautuja jakauman (roolit)</li>
+								<li>Vertailla lomakkeen kautta ilmoittautuneiden vastauksia</li>
+								<li>nähdä saadut tulot lomakkeen kautta ilmoittautuneilta</li>
+								<li>nähdä ilmoittautumis-ajat</li>
+							</ol>
+						</div>
+					</>
+				)}
 			/>
 			<Route
 				path="/event/:id/budjet"
