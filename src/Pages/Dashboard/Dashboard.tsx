@@ -1,14 +1,135 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Heading } from '../../Components/Text/Heading';
-import { Line, Pie } from 'react-chartjs-2';
+import { Line, Pie, Bar, Doughnut } from 'react-chartjs-2';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from './StatusCard';
-import styled from '../../Theme/theme';
+import styled, { ThemeContext } from '../../Theme/theme';
 
 export const DashBoard = () => {
+	const theme = useContext(ThemeContext);
+
+	const data = {
+		labels: ['Red', 'Blue', 'Yellow'],
+		borderColor: theme.primary_color,
+		datasets: [
+			{
+				data: [300, 50, 100],
+				backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+				hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+			}
+		]
+	};
+
+	const powerData = {
+		labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+		datasets: [
+			{
+				label: 'First',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(75,192,192,0.4)',
+				borderColor: 'rgba(75,192,192,1)',
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: 'rgba(75,192,192,1)',
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+				pointHoverBorderColor: 'rgba(220,220,220,1)',
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: [65, 59, 80, 81, 56, 55, 40]
+			},
+			{
+				label: 'Second',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(75,192,192,0.4)',
+				borderColor: theme.primary_color,
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: theme.primary_color,
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+				pointHoverBorderColor: 'rgba(220,220,220,1)',
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: [55, 12, 56, 72, 45, 33, 80]
+			}
+		]
+	};
+
+	const lineData = {
+		labels: [
+			'19.20',
+			'19.30',
+			'19.40',
+			'19.50',
+			'20.00',
+			'20.10',
+			'20.20',
+			'20.30',
+			'20.40',
+			'20.50'
+		],
+		datasets: [
+			{
+				label: 'CPU',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(75,192,192,0.4)',
+				borderColor: 'rgba(75,192,192,1)',
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: 'rgba(75,192,192,1)',
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+				pointHoverBorderColor: 'rgba(220,220,220,1)',
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: [12, 22, 45, 65, 44, 24, 34, 29, 23, 19]
+			},
+			{
+				label: 'Memory',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(75,192,192,0.4)',
+				borderColor: theme.primary_color,
+				borderCapStyle: 'butt',
+				borderDash: [],
+				borderDashOffset: 0.0,
+				borderJoinStyle: 'miter',
+				pointBorderColor: theme.primary_color,
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 1,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+				pointHoverBorderColor: 'rgba(220,220,220,1)',
+				pointHoverBorderWidth: 2,
+				pointRadius: 1,
+				pointHitRadius: 10,
+				data: [32, 34, 45, 43, 34, 45, 47, 55, 47, 43]
+			}
+		]
+	};
+
 	return (
 		<>
 			<div className="row">
@@ -60,9 +181,34 @@ export const DashBoard = () => {
 					</CardWrapper>
 				</div>
 			</div>
+
+			<CardWrapper>
+				<Line data={lineData} height={50}></Line>
+			</CardWrapper>
+
+			<CardWrapper>
+				<Line data={powerData} height={50}></Line>
+			</CardWrapper>
+
+			<div className="row">
+				<div className="col-lg-4">
+					<CardWrapper>
+						<Pie data={data} />
+					</CardWrapper>
+				</div>
+				<div className="col-lg-4">
+					<CardWrapper>
+						<Doughnut data={data}></Doughnut>
+					</CardWrapper>
+				</div>
+				<div className="col-lg-4">
+					<CardWrapper></CardWrapper>
+				</div>
+			</div>
 		</>
 	);
 };
+
 const CanvasFix = styled.div`
 	.chartjs-render-monitor {
 		max-width: 100%;

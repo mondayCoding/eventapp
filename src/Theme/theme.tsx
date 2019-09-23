@@ -6,7 +6,8 @@ const {
 	css,
 	createGlobalStyle,
 	keyframes,
-	ThemeProvider
+	ThemeProvider,
+	ThemeContext
 } = styledComponents as ThemedStyledComponentsModule<IThemeInterface>;
 
 const DefaultTheme = {
@@ -172,5 +173,5 @@ const device = {
 	}
 };
 
-export { css, createGlobalStyle, keyframes, ThemeProvider, themes, device };
+export { css, createGlobalStyle, keyframes, ThemeProvider, themes, device, ThemeContext };
 export default styled;
