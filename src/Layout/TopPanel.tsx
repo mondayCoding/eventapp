@@ -12,23 +12,30 @@ import { RoutableAutoSuggest } from './AutoSuggestSeach';
 
 export const TopPanel = () => {
 	const { toggleTheme, isDarkTheme } = useContext(AppContext);
-	const tooltip = useTooltipState();
+	const tooltip = useTooltipState({ placement: 'left' });
 
 	return (
 		<TopPanelThemed>
 			<RoutableAutoSuggest />
 
 			<div className="panel__themebutton">
-				<TooltipReference
+				{/* <TooltipReference
 					{...tooltip}
 					as={(p) => <IconButton IsLg {...p} />}
 					onClick={() => toggleTheme()}
-					style={{ width: '1.8rem', height: '1.8rem', fontSize: '1rem' }}
 				>
 					{isDarkTheme ? Icons.moon : Icons.sun}
+				</TooltipReference> */}
+
+				<TooltipReference {...tooltip}>
+					<IconButton
+						onClick={() => toggleTheme()}
+						icon={isDarkTheme ? Icons.moon : Icons.sun}
+						style={{ width: '1.8rem', height: '1.8rem', fontSize: '1rem' }}
+					></IconButton>
 				</TooltipReference>
 
-				<Tooltip {...tooltip} className="HELLO">
+				<Tooltip {...tooltip} className="panel__themebutton__tooltip">
 					{isDarkTheme ? 'Using Night theme' : 'Using Day theme'}
 				</Tooltip>
 			</div>
@@ -45,7 +52,9 @@ const AppDropDown: FC<{ username: string }> = (props) => {
 	return (
 		<>
 			<MenuDisclosure {...menu} as={Button}>
-				{Icons.user} {props.username}
+				<span className="panel__icon-and-text">
+					{Icons.user} {props.username}
+				</span>
 			</MenuDisclosure>
 
 			<Menu {...menu} aria-label="Settings" className="panel__menubutton__menu">
@@ -54,7 +63,7 @@ const AppDropDown: FC<{ username: string }> = (props) => {
 					onClick={() => alert('HELLO')}
 					className="panel__menubutton__menuitem"
 				>
-					{Icons.cog} Settings
+					<span className="panel__icon-and-text">{Icons.cog} Asetukset</span>
 				</MenuItem>
 
 				<MenuItem
@@ -62,17 +71,17 @@ const AppDropDown: FC<{ username: string }> = (props) => {
 					onClick={() => alert('MOVING TO USER PAGE')}
 					className="panel__menubutton__menuitem"
 				>
-					{Icons.user} Profile
+					<span className="panel__icon-and-text">{Icons.user} Käyttäjäprofiili</span>
 				</MenuItem>
 
-				<MenuSeparator {...menu} />
+				{/* <MenuSeparator {...menu} /> */}
 
 				<MenuItem
 					{...menu}
 					onClick={() => alert('SIGNING OUT')}
 					className="panel__menubutton__menuitem"
 				>
-					{Icons.power_off} Sign out dfs dfsd fsdfs dfsd
+					<span className="panel__icon-and-text">{Icons.power_off} Kirjaudu ulos</span>
 				</MenuItem>
 			</Menu>
 		</>

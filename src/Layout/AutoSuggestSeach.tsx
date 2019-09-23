@@ -44,8 +44,8 @@ const AutoSuggestSeach: FC<RouteComponentProps> = ({ history }) => {
 	const inputProps = {
 		value: inputValue,
 		onChange: onChange,
-		placeholder: '🔍 Hae asiakkaita tai tapahtumia',
-		title: 'Hae asiakkaita tai tapahtumia'
+		placeholder: '🔍 Hae asiakkaita tai tapahtumia'
+		// title: 'Hae asiakkaita tai tapahtumia'
 	};
 
 	return (

@@ -1,20 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as routes from '../../Constants/routes';
-import { EventCard } from './EventCard';
 import styled from '../../Theme/theme';
-import { AppContext } from '../../App';
 import { useEvents } from '../../Queries/useEvents';
 import { EventTag, EventTagType } from '../../MockData/EventTags';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { Heading } from '../../Components/Text/Heading';
-import { BadgeTag } from './BadgeTag';
+import { BadgeTag } from '../Dashboard/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
+import { useFavouriteEvents } from '../../Data/useFavouriteEvents';
+import { IconButton } from '../../Components/Button/IconButton';
 
 export const Events = () => {
 	const { events } = useEvents();
 	const [filter, setFilter] = useState('');
+	const { favourites, toggleFavourite } = useFavouriteEvents();
 
 	const createFilter = (list: IEvent[]) => {
 		const filt = filter.toLowerCase();
@@ -31,10 +32,7 @@ export const Events = () => {
 	return (
 		<div>
 			<CardWrapper>
-				<Heading text="Kokoelma" isUnderlined />
-
-				<h1>TÄHÄN TAPAHTUMAKALENTERI</h1>
-				<h3>suosikit</h3>
+				<Heading text="Tapahtumat" isUnderlined />
 
 				<FilterInput
 					type="text"
@@ -45,7 +43,15 @@ export const Events = () => {
 				{createFilter(events).map((event) => (
 					<>
 						<EventListItem key={event.id} to={`${routes.event.path}/${event.id}`}>
-							<span className="event__favourite">{Icons.star}</span>
+							<span className="event__favourite">
+								<IconButton
+									icon={favourites.includes(event.id) ? Icons.star_filled : Icons.star}
+									onClick={(e) => {
+										toggleFavourite(event.id);
+										e.preventDefault();
+									}}
+								></IconButton>
+							</span>
 							<span className="event__name">{`${event.name}`}</span>
 							<span className="event__tags">{renderTags(event.tags)}</span>
 							<span className="event__location">{`${event.location}`}</span>

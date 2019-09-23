@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
-const route = '/collections';
 const WISLIST_KEY = 'COLLECTION_APP_WISLIST_ITEMS';
 
 const useWishlist = () => {
 	const [wishlist, setWishlist] = useState([] as string[]);
-	const [isLoading, setIsloading] = useState(true);
 
 	useEffect(() => {
 		setWishlist(getWishlistFromWebStorage());
@@ -14,7 +11,7 @@ const useWishlist = () => {
 
 	const toggleOnWishlist = (id: string) => {
 		wishlist.includes(id)
-			? updateWislist(wishlist.filter((item) => item === id))
+			? updateWislist(wishlist.filter((item) => item !== id))
 			: updateWislist([...wishlist, id]);
 	};
 
@@ -32,7 +29,7 @@ const useWishlist = () => {
 		saveWishlistToWebStorage(newWishlist);
 	};
 
-	return { wishlist, isLoading, toggleOnWishlist };
+	return { wishlist, toggleOnWishlist };
 };
 
 export { useWishlist };

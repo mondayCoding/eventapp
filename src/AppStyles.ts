@@ -94,22 +94,17 @@ export const Nav = styled.nav`
 	}
 `;
 
-export const Main = styled.main`
+export const Content = styled.section`
 	flex: 1 1 auto;
 	width: 100%;
-
-	.main__footer {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		padding: 0.5rem;
-		height: ${topPanelHeight};
-		background-color: rgba(0, 0, 0, 0.15);
-		justify-content: flex-end;
-	}
+	border: 0;
 `;
 
-export const MainContent = styled.main`
-	min-height: calc(100vh - 4.5rem);
+export const Main = styled.main`
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 3rem);
 	padding: 1rem;
+	border: 0;
 `;

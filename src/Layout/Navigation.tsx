@@ -17,25 +17,23 @@ export const Navigation = () => {
 
 const Links: FC = () => (
 	<>
-		<div className="navigation__group-title">Event Management</div>
+		<div className="navigation__group-title">Tapahtumanhallinta</div>
 		<Link route={routes.dashboard} />
 		<Link route={routes.events} />
-		<Link route={routes.event} />
 
-		<Link route={routes.createNewEvent} />
-
-		<div className="navigation__group-title">Customer Management</div>
+		<div className="navigation__group-title">Asiakashallinta</div>
 		<Link route={routes.customers} />
-		<Link route={routes.customer} />
 
+		<div className="navigation__group-title">Poistuvat</div>
+		<Link route={routes.createNewEvent} />
+		{/* <Link route={routes.event} /> */}
+		{/* <Link route={routes.customer} /> */}
 		<Link route={routes.myCollection} />
 		<Link route={routes.myWishlist} />
 	</>
 );
 
-const Link: FC<{
-	route: routes.routeConfig;
-}> = (props) => (
+const Link: FC<{ route: routes.routeConfig }> = (props) => (
 	<NavLink to={props.route.path} className="navigation__link">
 		<span className="navigation__link__icon">{props.route.icon}</span>
 		<span className="navigation__link__text">{props.route.text}</span>

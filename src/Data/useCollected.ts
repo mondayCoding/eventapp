@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
-const route = '/collections';
 const COLLECTED_KEY = 'COLLECTION_APP_COLLECTED_ITEMS';
 
 const useCollected = () => {
 	const [collected, setCollected] = useState([] as string[]);
-	const [isLoading, setIsloading] = useState(true);
 
 	useEffect(() => {
 		setCollected(getSavedFromWebStorage());
@@ -14,7 +11,7 @@ const useCollected = () => {
 
 	const toggleCollected = (id: string) => {
 		collected.includes(id)
-			? updateCollected(collected.filter((item) => item === id))
+			? updateCollected(collected.filter((item) => item !== id))
 			: updateCollected([...collected, id]);
 	};
 
@@ -32,7 +29,7 @@ const useCollected = () => {
 		return Array.isArray(collected) ? collected : [];
 	};
 
-	return { collected, isLoading, toggleCollected };
+	return { collected, toggleCollected };
 };
 
 export { useCollected };

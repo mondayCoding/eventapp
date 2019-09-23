@@ -46,6 +46,14 @@ export const GlobalStyle = createGlobalStyle`
       padding: 0;
    }
 
+   /* TODO: USE INLINE STYLE INSTEAD */
+   .panel__themebutton__tooltip {
+      color: ${(p) => p.theme.text_color_nav};
+      background: ${(p) => p.theme.menu_background_color};
+      padding: .25rem .5rem;
+      border-radius: .5rem;
+   }
+
    h1,h2,h3,h4,h5,h6 {
       font-family: ${(p) => p.theme.heading_font};
       font-weight: 900;

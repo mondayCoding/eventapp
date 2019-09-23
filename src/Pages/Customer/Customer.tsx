@@ -12,7 +12,8 @@ import { SelectField } from 'library';
 import { CustomerTagType, CustomerTag } from '../../MockData/CustomerTags';
 import ReactTimeago from 'react-timeago';
 import 'bootstrap/dist/css/bootstrap.css';
-import { BadgeTag } from '../Events/BadgeTag';
+import { BadgeTag } from '../Dashboard/BadgeTag';
+import { PageFooter } from '../../Layout/MainFooter';
 
 interface routeprops {
 	id: string;
@@ -23,50 +24,43 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 	const customer = customers.find((cust) => cust.id === match.params.id);
 
 	return (
-		<CustomerCard>
-			<div className="card__heading">
-				<Heading
-					text={customer ? `${customer.firstname} ${customer.lastname}` : ''}
-					isUnderlined
-				></Heading>
-				{customer && customer.tags && renderTags(customer.tags)}
-			</div>
-			<div className="card__body">
-				<div className="card__body__avatar">
-					<img
-						className="card__body__avatar__img"
-						src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-					/>
+		<>
+			<CustomerCard>
+				<div className="card__heading">
+					<Heading
+						text={customer ? `${customer.firstname} ${customer.lastname}` : ''}
+						isUnderlined
+					></Heading>
+					{customer && customer.tags && renderTags(customer.tags)}
 				</div>
-				<div className="card__body__content">
-					<CustomerForm customer={customer!} />
+				<div className="card__body">
+					<div className="card__body__avatar">
+						<img
+							className="card__body__avatar__img"
+							src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+						/>
+					</div>
+					<div className="card__body__content">
+						<CustomerForm customer={customer!} />
+					</div>
 				</div>
-			</div>
 
-			<Heading text="Osallistumiset" isUnderlined></Heading>
-			<Participations
-				date={new Date(2017, 8, 11)}
-				name="Ensiapu koulutus 101"
-			></Participations>
-			<Participations
-				date={new Date(2018, 1, 19)}
-				name="Markkinoinnin perusteet"
-			></Participations>
-			<Participations
-				date={new Date(2019, 7, 24)}
-				name="Osastokoulutus 2019 - Markkinoinnin tehokurssi"
-			></Participations>
-
-			<div className="card__footer">
-				<span className="card__footer__tag">
-					{Icons.calendar} Created: {new Date(2017, 3, 2, 10, 8).toLocaleString('fi-FI')}
-				</span>
-				<span className="card__footer__tag">
-					{Icons.calendar} Last Modified:{' '}
-					{new Date(2019, 8, 12, 12, 12).toLocaleString('fi-FI')}
-				</span>
-			</div>
-		</CustomerCard>
+				<Heading text="Osallistumiset" isUnderlined></Heading>
+				<Participations
+					date={new Date(2017, 8, 11)}
+					name="Ensiapu koulutus 101"
+				></Participations>
+				<Participations
+					date={new Date(2018, 1, 19)}
+					name="Markkinoinnin perusteet"
+				></Participations>
+				<Participations
+					date={new Date(2019, 7, 24)}
+					name="Osastokoulutus 2019 - Markkinoinnin tehokurssi"
+				></Participations>
+			</CustomerCard>
+			<PageFooter showDates></PageFooter>
+		</>
 	);
 };
 
@@ -217,17 +211,6 @@ const CustomerCard = styled.section`
 		&__content {
 			flex: 0 0 70%;
 			padding: 0 0 0 1.5rem;
-		}
-	}
-
-	.card__footer {
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 1px solid lightgray;
-
-		&__tag {
-			padding-right: 1rem;
-			color: gray;
 		}
 	}
 `;

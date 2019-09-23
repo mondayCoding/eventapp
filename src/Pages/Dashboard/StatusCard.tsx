@@ -5,28 +5,21 @@ import { mix } from 'polished';
 interface IStatCardProps {
 	text: string;
 	value: string;
-	footer: string;
-	footerIcon: React.ReactNode;
 	icon: React.ReactNode;
-	showFooter?: boolean;
+	description?: string;
+	onClick?: () => void;
 }
 
 export const StatCard: FC<IStatCardProps> = (props) => {
 	return (
-		<StatusCard>
-			<div className="card__body">
+		<StatusCard onClick={props.onClick}>
+			<div className="card__body" title={props.description}>
 				<div className="card__body__icon">{props.icon}</div>
 				<div className="card__body__text">
 					<div className="card__body__text__genre">{props.text}</div>
 					<div className="card__body__text__value">{props.value}</div>
 				</div>
 			</div>
-			{props.showFooter && (
-				<div className="card__footer">
-					<div className="card__footer__icon">{props.footerIcon}</div>
-					<div className="card__footer__text">{props.footer}</div>
-				</div>
-			)}
 		</StatusCard>
 	);
 };
@@ -73,6 +66,8 @@ const StatusCard = styled.div`
 				font-size: 1.1rem;
 				color: gray;
 				min-height: 2rem;
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 
 			&__value {
@@ -82,29 +77,6 @@ const StatusCard = styled.div`
 				color: ${(p) => p.theme.text_color};
 				font-weight: 600;
 			}
-		}
-	}
-
-	.card__footer {
-		margin-top: 0.8rem;
-		padding-top: 0.8rem;
-		border-top: 1px solid lightgray;
-		display: flex;
-		justify-content: center;
-
-		&:hover {
-			cursor: pointer;
-			color: green;
-		}
-
-		&__icon {
-			font-size: 0.9rem;
-			color: gray;
-			margin-right: 0.5rem;
-		}
-
-		&__text {
-			color: gray;
 		}
 	}
 `;

@@ -67,8 +67,12 @@ export const TopPanelThemed = styled.nav`
 		}
 	}
 
+   .panel__icon-and-text > svg {
+      margin-right: .35rem;      
+   }
+
 	.panel__themebutton {
-		flex: 0 0 2.3rem;
+		flex: 0 0 2.3rem;    
 	}
 	.panel__menubutton {
 		flex: 0 0 auto;
@@ -83,6 +87,7 @@ export const TopPanelThemed = styled.nav`
 			top: 100%;
 			right: 0;
 			border-radius: 0.3rem;
+         z-index: 20;
 
 			&[aria-orientation='vertical'] {
 				padding: 0.25em 0;

@@ -8,6 +8,10 @@ export interface IProps
 	onClick?(x: any): void;
 }
 
+/**
+ * @typedef {object} Props
+ * small = 2rem
+ */
 export const IconButton: React.SFC<IProps> = ({ icon, children, ...rest }) => {
 	return (
 		<ThemedButton type="button" {...rest}>

@@ -6,27 +6,20 @@ import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from './StatusCard';
+import styled from '../../Theme/theme';
 
 export const DashBoard = () => {
 	return (
 		<>
 			<div className="row">
 				<div className="col-lg-4">
-					<StatCard
-						value={'12 930, 90 €'}
-						icon={Icons.dollar}
-						text="Tulot"
-						footer="Päivitä nyt"
-						footerIcon={Icons.undo}
-					></StatCard>
+					<StatCard value={'12 930, 90 €'} icon={Icons.dollar} text="Tulot"></StatCard>
 				</div>
 				<div className="col-lg-4">
 					<StatCard
 						value={'10 013'}
 						icon={<span style={{ color: 'lightsalmon' }}>{Icons.users}</span>}
 						text="Ilmoittautuneita"
-						footer="Päivitä nyt"
-						footerIcon={Icons.undo}
 					></StatCard>
 				</div>
 				<div className="col-lg-4">
@@ -34,8 +27,6 @@ export const DashBoard = () => {
 						value={'428'}
 						icon={<span style={{ color: 'lightseagreen' }}>{Icons.envelope}</span>}
 						text="Avattuja viestejä"
-						footer="Päivitä nyt"
-						footerIcon={Icons.undo}
 					></StatCard>
 				</div>
 			</div>
@@ -46,12 +37,15 @@ export const DashBoard = () => {
 					ingress="Tapahtumaan ilmoittautumiset hakuajan alkamisen jälkeen"
 					isUnderlined
 				></Heading>
-				<Line
-					data={dashboard24HoursPerformanceChart.data}
-					options={dashboard24HoursPerformanceChart.options}
-					width={400}
-					height={100}
-				/>
+
+				<CanvasFix>
+					<Line
+						data={dashboard24HoursPerformanceChart.data}
+						options={dashboard24HoursPerformanceChart.options}
+						width={400}
+						height={100}
+					/>
+				</CanvasFix>
 			</CardWrapper>
 
 			<div className="row">
@@ -69,11 +63,27 @@ export const DashBoard = () => {
 		</>
 	);
 };
+const CanvasFix = styled.div`
+	.chartjs-render-monitor {
+		max-width: 100%;
+	}
+`;
 
 const dashboard24HoursPerformanceChart = {
 	data: (canvas: any) => {
 		return {
-			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+			labels: [
+				'Tammi',
+				'Helmi',
+				'Maa',
+				'Huhti',
+				'Touko',
+				'Kesä',
+				'Heinä',
+				'Elo',
+				'Syys',
+				'Loka'
+			],
 			datasets: [
 				{
 					borderColor: '#6bd098',

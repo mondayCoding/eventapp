@@ -57,7 +57,8 @@ const DefaultTheme = {
 
 	shadow: {
 		card: '0 6px 10px -4px rgba(0, 0, 0, 0.22)',
-		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)'
+		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+		focus: '0 0 0 3px #9538bf'
 	}
 
 	// color: {
@@ -89,7 +90,7 @@ const DarkTheme: typeof DefaultTheme = {
 
 	body_background_color: '#333',
 	menu_background_color: '#201e20',
-	card_background_color: '#282528',
+	card_background_color: '#1a2026',
 
 	focus_color: 'skyblue',
 	link_color: '#e9799e',
@@ -124,7 +125,8 @@ const DarkTheme: typeof DefaultTheme = {
 
 	shadow: {
 		card: '0 6px 10px -4px rgba(0, 0, 0, 0.55)',
-		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)'
+		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+		focus: '0 0 0 3px #e9799e'
 	}
 };
 

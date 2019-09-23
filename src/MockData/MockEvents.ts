@@ -18,10 +18,11 @@ export interface IEvent {
 export const MockEvents: IEvent[] = [
 	{
 		id: '1',
-		name: 'IO-Koulutus',
+		name: 'WebSocket ja IO:n perusteet tehokurssi',
 		tags: [EventTagType.Training, EventTagType.Continous],
-		description: 'Tapahtuma "IO-Koulutus" alkoi',
-		location: 'Joensuu',
+		description:
+			'WebSocket-verkkotekniikka on ottanut kaksi tärkeää askelta kohti standardointia. Standardijärjestö IETF on julkaissut tekniikasta niin sanotun RFC-muistion, joka saatetaan hyväksyä standardiksi. Aliquam ut augue nec ex venenatis eleifend. Aliquam dictum lorem nec justo dictum, sit amet vulputate ante sollicitudin. Morbi pharetra placerat feugiat. Sed eleifend euismod velit, eu aliquet magna commodo vestibulum. Etiam dignissim ligula nibh, sit amet fermentum sem molestie eu.',
+		location: 'Internet',
 		created: new Date(),
 		start: new Date(),
 		end: new Date()
@@ -30,7 +31,8 @@ export const MockEvents: IEvent[] = [
 		id: '2',
 		name: 'Porttikoulutus',
 		tags: [EventTagType.Training, EventTagType.HasEnded, EventTagType.Orders],
-		description: 'Tapahtuma "IO-Koulutus" alkoi',
+		description:
+			'Porttikoulutus sisältää perustavanaatuisen, mutta kattavat ohjeistuksen porttien toimintaan. Ut semper eros quis libero pretium, sed vehicula eros rutrum. Aliquam vulputate massa et arcu commodo viverra. Sed at malesuada tortor. Praesent imperdiet vel metus a egestas. Nulla arcu eros, sollicitudin ut lectus vitae, posuere maximus augue. Nunc lacinia orci vel nisi dignissim, a bibendum sapien ultricies. Sed quis condimentum ex. Curabitur vel enim in justo scelerisque viverra vitae in tellus. Curabitur sodales molestie lectus, non fermentum nunc laoreet eget. Integer in rutrum leo. Quisque in fermentum orci',
 		location: 'Helsinki',
 		created: new Date(),
 		start: new Date(),
@@ -41,7 +43,7 @@ export const MockEvents: IEvent[] = [
 		name: 'Keravan Viinifestivaalit',
 		tags: [EventTagType.Orders, EventTagType.Accommodations],
 		description:
-			'Akkreditointi edellyttää voimassa olevaa Journalistiliiton jäsenkorttia tai muuta vastaavaa todistusta siitä, että olet median edustaja. Akkreditoituna median edustajana pääset kulkemaan vapaasti Kuopio Wine Festivalien aluella.',
+			'Viinimessut tuo ensimmäistä kertaa Hervantaan kattavan ja rattoisan viinitapahtuman, jossa on mahdollista tutustua neljäänkymmeneen eri viinitaloon, kymmenestä eri maasta. Valikoimasta löytyy reilusti yli 100 upeaa viiniä, moneen eri makuun',
 		location: 'Kerava',
 		created: new Date(),
 		start: new Date(),
@@ -52,7 +54,7 @@ export const MockEvents: IEvent[] = [
 		name: 'Markkinointikoulutus Syyskuu 2018',
 		tags: [EventTagType.Training, EventTagType.HasEnded],
 		description:
-			'Akkreditointi edellyttää voimassa olevaa Journalistiliiton jäsenkorttia tai muuta vastaavaa todistusta siitä, että olet median edustaja. Akkreditoituna median edustajana pääset kulkemaan vapaasti Kuopio Wine Festivalien aluella.',
+			'Koulutus on suunnattu henkilöille, joiden työtehtäviin kuuluu hyvinvoinnin edistäminen ja muutoksen aikaan saaminen ihmisten käyttäytymisessä. In hac habitasse platea dictumst. Integer sed porta est. Sed vel feugiat dui, sed facilisis arcu. Mauris condimentum enim non sagittis dictum. Fusce eu pellentesque lorem. Sed facilisis urna lorem, et sagittis mauris imperdiet sed. Ut vulputate venenatis suscipit',
 		location: 'Muuninka',
 		created: new Date(),
 		start: new Date(),

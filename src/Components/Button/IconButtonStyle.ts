@@ -1,8 +1,8 @@
 import styled, { css } from '../../Theme/theme';
-import { darken, mix } from 'polished';
+import { darken } from 'polished';
 
 export interface IButtonStyleProps {
-	isXl?: boolean;
+	size?: 'small' | 'medium' | 'large' | 'very large';
 	IsLg?: boolean;
 }
 
@@ -17,6 +17,28 @@ const isLargeCSS = css`
 	height: 2rem;
 	font-size: 1.5rem;
 `;
+
+const isSmallCSS = css`
+	width: 1.2rem;
+	height: 1.2rem;
+	font-size: 1.5rem;
+`;
+
+const getSize = (size: string) => {
+	switch (size) {
+		case 'small':
+			return isSmallCSS;
+
+		case 'large':
+			return isLargeCSS;
+
+		case 'very large':
+			return isExtraLargeCSS;
+
+		default:
+			break;
+	}
+};
 
 export const ThemedButton = styled.button<IButtonStyleProps>`
 	display: flex;
@@ -39,10 +61,6 @@ export const ThemedButton = styled.button<IButtonStyleProps>`
 	&:focus {
 		border: 0.15rem solid white;
 		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
-
-		&::-moz-focus-inner {
-			border: 0;
-		}
 	}
 
 	&:disabled {
@@ -52,6 +70,5 @@ export const ThemedButton = styled.button<IButtonStyleProps>`
 		opacity: 0.7;
 	}
 
-	${(p) => p.isXl && isExtraLargeCSS}
-	${(p) => p.IsLg && isLargeCSS}
+	${(p) => p.size && getSize(p.size)}
 `;
