@@ -7,8 +7,10 @@ import { useCustomers } from '../../Queries/useCustomers';
 import styled from '../../Theme/theme';
 import { Icons } from 'library';
 import { ICustomer } from '../../MockData/MockCustomers';
+import { useDocumentTitle } from '../../Data/useDocumentTitle';
 
 export const Customers = () => {
+	useDocumentTitle('Asiakkaat');
 	const { customers } = useCustomers();
 	const [filter, setFilter] = useState('');
 

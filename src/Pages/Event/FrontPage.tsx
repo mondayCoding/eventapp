@@ -4,7 +4,7 @@ import Icons from '../../Components/Icons/icons';
 import { IEvent } from '../../MockData/MockEvents';
 import { StatCard } from '../Dashboard/StatusCard';
 import { CardWrapper } from '../MyCollection/MyCollection';
-import { EventTagType, EventTag } from '../../MockData/EventTags';
+import { EventTagType, EventTag } from '../../Constants/EventTags';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 
 export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {

@@ -1,16 +1,31 @@
 import styled from './Theme/theme';
 import { mix } from 'polished';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const topPanelHeight = '3rem';
 
 export const Body = styled.div`
 	display: flex;
 	flex-direction: row;
-	width: 100%;
 	min-height: 100vh;
 	background: ${(p) => p.theme.body_background_color};
 	font-family: ${(p) => p.theme.body_font};
 	font-size: ${(p) => p.theme.global_font_size};
+`;
+
+export const Content = styled(PerfectScrollbar)`
+	flex: 1 1 auto;
+	width: 100%;
+	height: 100vh;
+`;
+
+export const Main = styled.main`
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 3rem);
+	padding: 1rem;
 `;
 
 export const Nav = styled.nav`
@@ -38,6 +53,11 @@ export const Nav = styled.nav`
 			background-color: ${(p) => p.theme.primary_color};
 			border-bottom: 1px solid ${(p) => p.theme.primary_color};
 			color: #fff;
+
+			&__image {
+				flex: 0 0 2.5rem;
+				margin-right: 0.75rem;
+			}
 		}
 
 		&__group-title {
@@ -92,19 +112,4 @@ export const Nav = styled.nav`
 			}
 		}
 	}
-`;
-
-export const Content = styled.section`
-	flex: 1 1 auto;
-	width: 100%;
-	border: 0;
-`;
-
-export const Main = styled.main`
-	flex: 1 1 auto;
-	display: flex;
-	flex-direction: column;
-	min-height: calc(100vh - 3rem);
-	padding: 1rem;
-	border: 0;
 `;

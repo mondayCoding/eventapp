@@ -49,9 +49,9 @@ const Orange = styled.span`
 	color: ${(p) => p.theme.warning_color};
 `;
 
-const Red = styled.span`
-	color: ${(p) => p.theme.error_color};
-`;
+// const Red = styled.span`
+// 	color: ${(p) => p.theme.error_color};
+// `;
 
 const eventIcons = {
 	[SystemEventType.AddedCustomer]: <Blue>{Icons.user}</Blue>,

@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
 import { Heading } from '../../Components/Text/Heading';
-import { Line, Pie, Bar, Doughnut } from 'react-chartjs-2';
+import { Line, Pie, Doughnut } from 'react-chartjs-2';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from './StatusCard';
 import styled, { ThemeContext } from '../../Theme/theme';
+import { useDocumentTitle } from '../../Data/useDocumentTitle';
 
 export const DashBoard = () => {
+	useDocumentTitle('Dash');
 	const theme = useContext(ThemeContext);
 
 	const data = {
@@ -247,19 +249,12 @@ export const DashBoard = () => {
 
 			<CardWrapper>
 				<Heading
-					text="Ilmoittautumiset"
-					ingress="Tapahtumaan ilmoittautumiset hakuajan alkamisen jälkeen"
+					text="Järjestelmän käyttöaste"
+					ingress="Serverin rasitus viimeisen puolentoista tunnin aikana"
 					isUnderlined
 				/>
 
-				<CanvasFix>
-					<Line
-						data={dashboard24HoursPerformanceChart.data}
-						options={dashboard24HoursPerformanceChart.options}
-						width={400}
-						height={100}
-					/>
-				</CanvasFix>
+				<Line data={lineData} height={50} options={options}></Line>
 			</CardWrapper>
 
 			<div className="row">
@@ -277,20 +272,28 @@ export const DashBoard = () => {
 
 			<CardWrapper>
 				<Heading
-					text="Järjestelmän käyttöaste"
-					ingress="Serverin rasitus viimeisen puolentoista tunnin aikana"
-					isUnderlined
-				/>
-				<Line data={lineData} height={50} options={options}></Line>
-			</CardWrapper>
-
-			<CardWrapper>
-				<Heading
 					text="Liikenne Avoimissa tapahtumissa"
 					ingress="Seuraa liikennetta tapahtumissa joiden ilmoittautuminen on auki"
 					isUnderlined
 				/>
 				<Line data={usageData} height={50} options={usageOptions}></Line>
+			</CardWrapper>
+
+			<CardWrapper>
+				<Heading
+					text="Ilmoittautumiset"
+					ingress="Tapahtumaan ilmoittautumiset hakuajan alkamisen jälkeen"
+					isUnderlined
+				/>
+
+				<CanvasFix>
+					<Line
+						data={dashboard24HoursPerformanceChart.data}
+						options={dashboard24HoursPerformanceChart.options}
+						width={400}
+						height={100}
+					/>
+				</CanvasFix>
 			</CardWrapper>
 
 			<div className="row">

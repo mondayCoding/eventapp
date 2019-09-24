@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from '../AppStyles';
-import Icons from '../Components/Icons/icons';
 import * as routes from '../Constants/routes';
+import image from './favicon.png';
 
 export const Navigation = () => {
 	return (
 		<Nav>
 			<div className="navigation">
-				<h2 className="navigation__heading">{Icons.home} Mumu App</h2>
+				<h2 className="navigation__heading">
+					<img className="navigation__heading__image" src={image} alt=""></img> Mumu App
+				</h2>
 				<Links></Links>
 			</div>
 		</Nav>
@@ -25,6 +27,7 @@ const Links: FC = () => (
 		<Link route={routes.customers} />
 
 		<div className="navigation__group-title">Poistuvat</div>
+		<Link route={routes.sendEmail} />
 		<Link route={routes.createNewEvent} />
 		{/* <Link route={routes.event} /> */}
 		{/* <Link route={routes.customer} /> */}

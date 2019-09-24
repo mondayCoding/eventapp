@@ -1,4 +1,4 @@
-import { CustomerTagType } from './CustomerTags';
+import { CustomerTagType } from '../Constants/CustomerTags';
 
 export interface ICustomer {
 	tags: CustomerTagType[];

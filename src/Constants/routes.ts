@@ -18,7 +18,7 @@ export const dashboard: routeConfig = {
 export const events: routeConfig = {
 	path: '/events',
 	icon: Icons.calendar,
-	text: 'Events',
+	text: 'Tapahtumat',
 	description: 'Events management and status'
 };
 
@@ -26,21 +26,21 @@ export const event: routeConfig = {
 	path: '/event',
 	params: '/:id',
 	icon: Icons.address_book,
-	text: 'Event',
+	text: 'Tapahtuma',
 	description: 'kuvaus pitkä ja tosi'
 };
 
 export const createNewEvent: routeConfig = {
 	path: '/addEvent',
 	icon: Icons.plus,
-	text: 'Create New Event',
+	text: 'Luo uusi',
 	description: 'kuvaus pitkä ja tosi'
 };
 
 export const customers: routeConfig = {
 	path: '/customers',
 	icon: Icons.users,
-	text: 'Customers',
+	text: 'Asiakkaat',
 	description: 'kuvaus pitkä ja tosi'
 };
 
@@ -48,7 +48,15 @@ export const customer: routeConfig = {
 	path: '/customer',
 	params: '/:id',
 	icon: Icons.user,
-	text: 'Customer',
+	text: 'Asiakas',
+	description: 'kuvaus pitkä ja tosi'
+};
+
+export const registrationform: routeConfig = {
+	path: '/registrationform',
+	params: '/:id',
+	icon: Icons.list,
+	text: 'Ilmoittautuminen',
 	description: 'kuvaus pitkä ja tosi'
 };
 
@@ -56,6 +64,13 @@ export const myCollection: routeConfig = {
 	path: '/myCollection',
 	icon: Icons.list,
 	text: 'Collected',
+	description: 'kuvaus pitkä ja tosi'
+};
+
+export const sendEmail: routeConfig = {
+	path: '/sendemail',
+	icon: Icons.envelope,
+	text: 'Email',
 	description: 'kuvaus pitkä ja tosi'
 };
 

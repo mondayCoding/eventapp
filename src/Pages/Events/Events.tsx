@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as routes from '../../Constants/routes';
 import styled from '../../Theme/theme';
 import { useEvents } from '../../Queries/useEvents';
-import { EventTag, EventTagType } from '../../MockData/EventTags';
+import { EventTag, EventTagType } from '../../Constants/EventTags';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { Heading } from '../../Components/Text/Heading';
 import { BadgeTag } from '../Dashboard/BadgeTag';
@@ -11,8 +11,10 @@ import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
 import { useFavouriteEvents } from '../../Data/useFavouriteEvents';
 import { IconButton } from '../../Components/Button/IconButton';
+import { useDocumentTitle } from '../../Data/useDocumentTitle';
 
 export const Events = () => {
+	useDocumentTitle('Tapahtuma');
 	const { events } = useEvents();
 	const [filter, setFilter] = useState('');
 	const { favourites, toggleFavourite } = useFavouriteEvents();

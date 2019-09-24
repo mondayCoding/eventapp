@@ -6,8 +6,10 @@ import { SelectField } from 'library';
 import { IEvent } from '../../MockData/MockEvents';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
+import { useDocumentTitle } from '../../Data/useDocumentTitle';
 
 export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
+	useDocumentTitle('Tapahtumat');
 	return (
 		<>
 			<CardWrapper>

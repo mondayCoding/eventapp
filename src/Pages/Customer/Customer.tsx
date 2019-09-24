@@ -9,17 +9,19 @@ import { useCustomers } from '../../Queries/useCustomers';
 import { ICustomer } from '../../MockData/MockCustomers';
 import { SelectField } from 'library';
 
-import { CustomerTagType, CustomerTag } from '../../MockData/CustomerTags';
+import { CustomerTagType, CustomerTag } from '../../Constants/CustomerTags';
 import ReactTimeago from 'react-timeago';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { PageFooter } from '../../Layout/MainFooter';
+import { useDocumentTitle } from '../../Data/useDocumentTitle';
 
 interface routeprops {
 	id: string;
 }
 
 export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
+	useDocumentTitle('Asiakas');
 	const { customers } = useCustomers();
 	const customer = customers.find((cust) => cust.id === match.params.id);
 

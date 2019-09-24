@@ -1,4 +1,4 @@
-import { EventTagType } from './EventTags';
+import { EventTagType } from '../Constants/EventTags';
 
 //*********************************************************** */
 // Event
