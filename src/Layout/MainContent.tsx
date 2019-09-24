@@ -8,7 +8,7 @@ import { MyCollectionPage } from '../Pages/MyCollection/MyCollection';
 import { MyWishlistPage } from '../Pages/Wishlist/Wishlist';
 import { DashBoard } from '../Pages/Dashboard/Dashboard';
 import { TopPanel } from './TopPanel';
-import * as routes from '../Constants/routes';
+import * as routes from '../Constants/Routes';
 import { Customers } from '../Pages/Customers/Customers';
 import { Customer } from '../Pages/Customer/Customer';
 import { RegistrationForm } from '../Pages/RegistrationForm/RegistrationForm';

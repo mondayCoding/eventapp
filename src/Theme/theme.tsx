@@ -131,9 +131,24 @@ const DarkTheme: typeof DefaultTheme = {
 	}
 };
 
+const ThemeAlt = {
+	...DefaultTheme,
+	primary: '#88bf38',
+	shadow: { ...DefaultTheme.shadow, focus_color: '0 0 0 3px #88bf38' }
+};
+const DarkThemeAlt = {
+	...DarkTheme,
+	primary: '#88bf38',
+	shadow: { ...DarkTheme.shadow, focus_color: '0 0 0 3px #88bf38' }
+};
+
+// const themes = {
+// 	default: DefaultTheme,
+// 	dark: DarkTheme
+// };
 const themes = {
-	default: DefaultTheme,
-	dark: DarkTheme
+	default: ThemeAlt,
+	dark: DarkThemeAlt
 };
 
 export type IThemeInterface = typeof DefaultTheme;

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import * as routes from '../../Constants/routes';
+import * as routes from '../../Constants/Routes';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { Heading } from '../../Components/Text/Heading';
 import { BadgeTag } from '../Dashboard/BadgeTag';

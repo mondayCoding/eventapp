@@ -5,7 +5,7 @@ import { IEvent } from '../../MockData/MockEvents';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { CustomerItem } from '../Customers/Customers';
 import { MockCustomers } from '../../MockData/MockCustomers';
-import * as routes from '../../Constants/routes';
+import * as routes from '../../Constants/Routes';
 
 export const CustomerLists: FC<{ event?: IEvent }> = ({ event }) => {
 	return (

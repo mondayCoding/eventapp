@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from '../AppStyles';
-import * as routes from '../Constants/routes';
+import * as routes from '../Constants/Routes';
 import image from './favicon.png';
 
 export const Navigation = () => {

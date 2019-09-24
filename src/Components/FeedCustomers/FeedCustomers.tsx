@@ -5,7 +5,7 @@ import styled from '../../Theme/theme';
 import { CustomerEventType } from '../../MockData/MockCustomerEventFeed';
 import TimeAgo from 'react-timeago';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/routes';
+import * as routes from '../../Constants/Routes';
 import Icons from '../Icons/icons';
 
 export const FeedCustomers = () => {

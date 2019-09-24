@@ -4,7 +4,7 @@ import Autosuggest from 'react-autosuggest';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { MockCustomers } from '../MockData/MockCustomers';
 import { MockEvents } from '../MockData/MockEvents';
-import * as routes from '../Constants/routes';
+import * as routes from '../Constants/Routes';
 
 const AutoSuggestSeach: FC<RouteComponentProps> = ({ history }) => {
 	const [inputValue, setInputValue] = useState('');
