@@ -19,22 +19,13 @@ export const TopPanel = () => {
 			<RoutableAutoSuggest />
 
 			<div className="panel__themebutton">
-				{/* <TooltipReference
+				<TooltipReference
 					{...tooltip}
-					as={(p) => <IconButton IsLg {...p} />}
-					onClick={() => toggleTheme()}
-				>
-					{isDarkTheme ? Icons.moon : Icons.sun}
-				</TooltipReference> */}
-
-				<TooltipReference {...tooltip}>
-					<IconButton
-						onClick={() => toggleTheme()}
-						icon={isDarkTheme ? Icons.moon : Icons.sun}
-						style={{ width: '1.8rem', height: '1.8rem', fontSize: '1rem' }}
-					></IconButton>
-				</TooltipReference>
-
+					as={IconButton}
+					onClick={toggleTheme}
+					icon={isDarkTheme ? Icons.moon : Icons.sun}
+					style={{ width: '1.8rem', height: '1.8rem', fontSize: '1rem' }}
+				/>
 				<Tooltip {...tooltip} className="panel__themebutton__tooltip">
 					{isDarkTheme ? 'Using Night theme' : 'Using Day theme'}
 				</Tooltip>
