@@ -77,7 +77,7 @@ export const FeedItem = styled(Link)`
 	}
 
 	.stamp {
-		flex: 0 0 110px;
+		flex: 0 0 118px;
 		text-align: right;
 		color: gray;
 		font-size: 0.8rem;

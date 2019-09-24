@@ -23,11 +23,11 @@ export const DashBoard = () => {
 		]
 	};
 
-	const powerData = {
-		labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	const usageData = {
+		labels: ['17.00', '18.00', '19.00', '20.00', '21.00'],
 		datasets: [
 			{
-				label: 'First',
+				label: 'Kävijoitä',
 				fill: false,
 				lineTension: 0.1,
 				backgroundColor: 'rgba(75,192,192,0.4)',
@@ -38,7 +38,7 @@ export const DashBoard = () => {
 				borderJoinStyle: 'miter',
 				pointBorderColor: 'rgba(75,192,192,1)',
 				pointBackgroundColor: '#fff',
-				pointBorderWidth: 1,
+				pointBorderWidth: 2,
 				pointHoverRadius: 5,
 				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
 				pointHoverBorderColor: 'rgba(220,220,220,1)',
@@ -48,10 +48,10 @@ export const DashBoard = () => {
 				data: [65, 59, 80, 81, 56, 55, 40]
 			},
 			{
-				label: 'Second',
+				label: 'Vierailijoita',
 				fill: false,
 				lineTension: 0.1,
-				backgroundColor: 'rgba(75,192,192,0.4)',
+				backgroundColor: theme.primary_color,
 				borderColor: theme.primary_color,
 				borderCapStyle: 'butt',
 				borderDash: [],
@@ -59,16 +59,103 @@ export const DashBoard = () => {
 				borderJoinStyle: 'miter',
 				pointBorderColor: theme.primary_color,
 				pointBackgroundColor: '#fff',
-				pointBorderWidth: 1,
+				pointBorderWidth: 2,
 				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-				pointHoverBorderColor: 'rgba(220,220,220,1)',
+				pointHoverBackgroundColor: theme.primary_color,
+				pointHoverBorderColor: theme.primary_color,
 				pointHoverBorderWidth: 2,
 				pointRadius: 1,
 				pointHitRadius: 10,
 				data: [55, 12, 56, 72, 45, 33, 80]
 			}
 		]
+	};
+
+	const options = {
+		legend: {
+			display: true,
+			labels: {
+				// This more specific font property overrides the global property
+				fontColor: theme.text_color,
+				fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
+			}
+		},
+
+		tooltips: {
+			enabled: true,
+			titleFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
+			bodyFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
+			fontColor: theme.text_color
+		},
+
+		scales: {
+			// xAxes: [
+			// 	{
+			// 		scaleLabel: {
+			// 			display: true,
+			// 			labelString: 'Time in Seconds',
+			// 			fontColor: 'red',
+			// 			fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
+			// 		}
+			// 	}
+			// ],
+			yAxes: [
+				{
+					// scaleLabel: {
+					// 	display: true,
+
+					// 	fontColor: 'red',
+					// 	fontFamily: '"Montserrat", Calibri, Helvetica, Sans',
+					// 	labelString: 'LABEL'
+					// },
+					ticks: {
+						beginAtZero: true,
+						max: 100
+					}
+				}
+			]
+		}
+	};
+
+	const usageOptions = {
+		legend: {
+			display: true,
+			labels: {
+				// This more specific font property overrides the global property
+				fontColor: theme.text_color,
+				fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
+			}
+		},
+
+		tooltips: {
+			enabled: true,
+			titleFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
+			bodyFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
+			fontColor: theme.text_color
+		},
+
+		scales: {
+			// xAxes: [
+			// 	{
+			// 		scaleLabel: {
+			// 			display: true,
+			// 			labelString: 'Time in Seconds',
+			// 			fontColor: 'red',
+			// 			fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
+			// 		}
+			// 	}
+			// ],
+			yAxes: [
+				{
+					// scaleLabel: {
+					// 	display: true,
+					// 	fontColor: 'red',
+					// 	fontFamily: '"Montserrat", Calibri, Helvetica, Sans',
+					// 	labelString: 'LABEL'
+					// },
+				}
+			]
+		}
 	};
 
 	const lineData = {
@@ -82,14 +169,20 @@ export const DashBoard = () => {
 			'20.20',
 			'20.30',
 			'20.40',
-			'20.50'
+			'20.50',
+			'21.00',
+			'21.10',
+			'21.20',
+			'21.30',
+			'21.40'
 		],
+
 		datasets: [
 			{
-				label: 'CPU',
+				label: 'CPU Usage (%)',
 				fill: false,
-				lineTension: 0.1,
-				backgroundColor: 'rgba(75,192,192,0.4)',
+				lineTension: 0.4,
+				backgroundColor: 'rgba(75,192,192,1)',
 				borderColor: 'rgba(75,192,192,1)',
 				borderCapStyle: 'butt',
 				borderDash: [],
@@ -97,20 +190,20 @@ export const DashBoard = () => {
 				borderJoinStyle: 'miter',
 				pointBorderColor: 'rgba(75,192,192,1)',
 				pointBackgroundColor: '#fff',
-				pointBorderWidth: 1,
+				pointBorderWidth: 2,
 				pointHoverRadius: 5,
 				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-				pointHoverBorderColor: 'rgba(220,220,220,1)',
-				pointHoverBorderWidth: 2,
+				pointHoverBorderColor: 'rgba(75,192,192,1)',
+				pointHoverBorderWidth: 3,
 				pointRadius: 1,
 				pointHitRadius: 10,
-				data: [12, 22, 45, 65, 44, 24, 34, 29, 23, 19]
+				data: [12, 22, 45, 65, 44, 24, 34, 29, 23, 19, 15, 12, 19, 24, 29]
 			},
 			{
-				label: 'Memory',
+				label: 'Memory Usage (%)',
 				fill: false,
-				lineTension: 0.1,
-				backgroundColor: 'rgba(75,192,192,0.4)',
+				lineTension: 0.4,
+				backgroundColor: theme.primary_color,
 				borderColor: theme.primary_color,
 				borderCapStyle: 'butt',
 				borderDash: [],
@@ -118,14 +211,14 @@ export const DashBoard = () => {
 				borderJoinStyle: 'miter',
 				pointBorderColor: theme.primary_color,
 				pointBackgroundColor: '#fff',
-				pointBorderWidth: 1,
+				pointBorderWidth: 2,
 				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-				pointHoverBorderColor: 'rgba(220,220,220,1)',
-				pointHoverBorderWidth: 2,
+				pointHoverBackgroundColor: theme.primary_color,
+				pointHoverBorderColor: theme.primary_color,
+				pointHoverBorderWidth: 3,
 				pointRadius: 1,
 				pointHitRadius: 10,
-				data: [32, 34, 45, 43, 34, 45, 47, 55, 47, 43]
+				data: [32, 34, 45, 43, 34, 45, 47, 55, 47, 43, 55, 45, 34, 32, 25]
 			}
 		]
 	};
@@ -157,7 +250,7 @@ export const DashBoard = () => {
 					text="Ilmoittautumiset"
 					ingress="Tapahtumaan ilmoittautumiset hakuajan alkamisen jälkeen"
 					isUnderlined
-				></Heading>
+				/>
 
 				<CanvasFix>
 					<Line
@@ -183,11 +276,21 @@ export const DashBoard = () => {
 			</div>
 
 			<CardWrapper>
-				<Line data={lineData} height={50}></Line>
+				<Heading
+					text="Järjestelmän käyttöaste"
+					ingress="Serverin rasitus viimeisen puolentoista tunnin aikana"
+					isUnderlined
+				/>
+				<Line data={lineData} height={50} options={options}></Line>
 			</CardWrapper>
 
 			<CardWrapper>
-				<Line data={powerData} height={50}></Line>
+				<Heading
+					text="Liikenne Avoimissa tapahtumissa"
+					ingress="Seuraa liikennetta tapahtumissa joiden ilmoittautuminen on auki"
+					isUnderlined
+				/>
+				<Line data={usageData} height={50} options={usageOptions}></Line>
 			</CardWrapper>
 
 			<div className="row">

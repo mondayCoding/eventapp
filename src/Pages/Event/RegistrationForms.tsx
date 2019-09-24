@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IEvent } from '../../MockData/MockEvents';
+import { IEvent, MockStatistic } from '../../MockData/MockEvents';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../Dashboard/StatusCard';
@@ -75,13 +75,13 @@ const registrationsList: IRegistrationItem[] = [
 ];
 
 const data = {
-	labels: ['Red', 'Blue', 'Yellow'],
-	borderColor: 'red',
+	labels: MockStatistic.registeredByRole.map((item) => item.role),
+	borderColor: '#fff',
 	datasets: [
 		{
-			data: [300, 50, 100],
-			backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-			hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+			data: MockStatistic.registeredByRole.map((item) => item.total),
+			backgroundColor: ['#F37006', '#36A2EB', '#FFCE56'],
+			hoverBackgroundColor: ['#F37006', '#36A2EB', '#FFCE56']
 		}
 	]
 };

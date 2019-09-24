@@ -13,7 +13,72 @@ export interface IEvent {
 	created: Date;
 	start: Date;
 	end: Date;
+	statistics?: IEventStatistic;
 }
+
+interface IEventStatistic {
+	registeredTotal: number;
+	registeredByRole: {
+		role: string;
+		total: number;
+	}[];
+	registrationsByDay: {
+		day: string;
+		count: number;
+	}[];
+}
+
+export const MockStatistic: IEventStatistic = {
+	registeredTotal: 732,
+	registeredByRole: [
+		{
+			role: 'Osallistuja',
+			total: 530
+		},
+		{
+			role: 'VIP Osallistuja',
+			total: 70
+		},
+		{
+			role: 'Pomomies',
+			total: 32
+		},
+		{
+			role: 'Gerbiili',
+			total: 100
+		}
+	],
+	registrationsByDay: [
+		{
+			day: '19.09.',
+			count: 26
+		},
+		{
+			day: '20.09.',
+			count: 39
+		},
+		{
+			day: '21.09.',
+			count: 56
+		},
+		{
+			day: '22.09.',
+			count: 40
+		},
+		{
+			day: '23.09.',
+			count: 15
+		},
+		{
+			day: '24.09.',
+			count: 10
+		},
+		{
+			day: '25.09.',
+			count: 4
+		}
+	]
+};
 
 export const MockEvents: IEvent[] = [
 	{
@@ -32,7 +97,7 @@ export const MockEvents: IEvent[] = [
 		name: 'Porttikoulutus',
 		tags: [EventTagType.Training, EventTagType.HasEnded, EventTagType.Orders],
 		description:
-			'Porttikoulutus sisältää perustavanaatuisen, mutta kattavat ohjeistuksen porttien toimintaan. Ut semper eros quis libero pretium, sed vehicula eros rutrum. Aliquam vulputate massa et arcu commodo viverra. Sed at malesuada tortor. Praesent imperdiet vel metus a egestas. Nulla arcu eros, sollicitudin ut lectus vitae, posuere maximus augue. Nunc lacinia orci vel nisi dignissim, a bibendum sapien ultricies. Sed quis condimentum ex. Curabitur vel enim in justo scelerisque viverra vitae in tellus. Curabitur sodales molestie lectus, non fermentum nunc laoreet eget. Integer in rutrum leo. Quisque in fermentum orci',
+			'Porttikoulutus sisältää perustavanlaatuisen, mutta kattavat ohjeistuksen porttien toimintaan. Ut semper eros quis libero pretium, sed vehicula eros rutrum. Aliquam vulputate massa et arcu commodo viverra. Sed at malesuada tortor. Praesent imperdiet vel metus a egestas. Nulla arcu eros, sollicitudin ut lectus vitae, posuere maximus augue. Nunc lacinia orci vel nisi dignissim, a bibendum sapien ultricies. Sed quis condimentum ex. Curabitur vel enim in justo scelerisque viverra vitae in tellus. Curabitur sodales molestie lectus, non fermentum nunc laoreet eget. Integer in rutrum leo. Quisque in fermentum orci',
 		location: 'Helsinki',
 		created: new Date(),
 		start: new Date(),

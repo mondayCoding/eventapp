@@ -120,11 +120,4 @@ export const CustomerItem = styled(Link)`
 		flex: 0 0 20%;
 		padding-left: 1rem;
 	}
-
-	.stamp {
-		flex: 0 0 110px;
-		text-align: right;
-		color: gray;
-		font-size: 0.8rem;
-	}
 `;

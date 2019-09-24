@@ -86,7 +86,7 @@ const shadows = {
 
 const DarkTheme: typeof DefaultTheme = {
 	// Main colors
-	primary_color: '#e9799e',
+	primary_color: '#e9799e', // #9538bf
 	secondary_color: '#6e0d25',
 
 	body_background_color: '#333',
