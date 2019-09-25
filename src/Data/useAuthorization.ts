@@ -2,16 +2,20 @@ import { useState, useEffect } from 'react';
 import { firebase } from '../Firebase/';
 
 export const useAuthState = () => {
-	const [userAuth, setAuthUser] = useState({} as firebase.User);
+	const [auth, setAuth] = useState({} as firebase.User);
 
 	useEffect(() => {
 		firebase.onAuthStateChanged((auth) => {
-			console.log({ current: userAuth, new: auth });
-			auth ? setAuthUser(auth) : setAuthUser(null as any);
+			console.info({
+				currentAuthorization: auth,
+				newAuthorization: auth
+			});
+
+			auth ? setAuth(auth) : setAuth(null as any);
 		});
 		return () => {
 			console.log('need to remove listener here');
 		};
 	}, []);
-	return { userAuth };
+	return { auth };
 };

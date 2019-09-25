@@ -17,6 +17,7 @@
 		"@types/react-timeago": "^4.1.1",
 		"@types/reactstrap": "^8.0.4",
 		"@types/styled-components": "^4.1.16",
+		"@types/yup": "^0.26.24",
 		"axios": "^0.19.0",
 		"bootstrap": "^4.3.1",
 		"chart.js": "^2.8.0",
@@ -36,12 +37,14 @@
 		"react-select": "^3.0.4",
 		"react-table": "^6.10.3",
 		"react-timeago": "^4.4.0",
+		"react-toastify": "^5.4.0",
 		"reactstrap": "^8.0.1",
 		"reakit": "^1.0.0-beta.6",
 		"reakit-theme-default": "^0.2.0",
 		"source-map-explorer": "^2.0.0",
 		"styled-components": "^4.3.1",
-		"typescript": "3.5.1"
+		"typescript": "3.5.1",
+		"yup": "^0.27.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",

@@ -11,7 +11,7 @@ import { TopPanelThemed } from './Styles/TopPanel';
 import { RoutableAutoSuggest } from './AutoSuggestSeach';
 
 export const TopPanel = () => {
-	const { toggleTheme, isDarkTheme } = useContext(AppContext);
+	const { toggleTheme, isDarkTheme, authorization } = useContext(AppContext);
 	const tooltip = useTooltipState({ placement: 'left' });
 
 	return (
@@ -40,7 +40,13 @@ export const TopPanel = () => {
 				</Tooltip>
 			</div>
 			<div className="panel__menubutton">
-				<AppDropDown username="Admin"></AppDropDown>
+				<AppDropDown
+					username={
+						authorization
+							? authorization.displayName || authorization.email || 'Admin'
+							: 'Admin'
+					}
+				></AppDropDown>
 			</div>
 		</TopPanelThemed>
 	);

@@ -6,6 +6,8 @@ import { StatCard } from '../Dashboard/StatusCard';
 import { CardWrapper } from '../MyCollection/MyCollection';
 import { EventTagType, EventTag } from '../../Constants/EventTags';
 import { BadgeTag } from '../Dashboard/BadgeTag';
+import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
+import { Doughnut } from 'react-chartjs-2';
 
 export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 	return (
@@ -87,6 +89,36 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 						value={'796'}
 						icon={<span style={{ color: 'lightseagreen' }}>{Icons.envelope}</span>}
 						text="Lähetettyjä"
+					></StatCard>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-lg-4">
+					<StatCard
+						value={'3'}
+						icon={Icons.clipboard_list}
+						text="Avoinna"
+						description="Avoimia lomakkeita tällä hetkellä"
+					></StatCard>
+					<StatCard
+						value={'5'}
+						icon={<span style={{ color: 'lightsalmon' }}>{Icons.check_circle}</span>}
+						text="Loppuneita"
+						description="Loppuneita ilmoittautumisia"
+					></StatCard>
+				</div>
+				<div className="col-lg-4">
+					<CardWrapper>
+						<Doughnut data={MockDataEventParticipation}></Doughnut>
+					</CardWrapper>
+				</div>
+				<div className="col-lg-4">
+					<StatCard
+						value={'6'}
+						icon={<span style={{ color: 'lightseagreen' }}>{Icons.info_circle}</span>}
+						text="Avautuvia"
+						description="Aukeamista odottavia lomakkeita"
 					></StatCard>
 				</div>
 			</div>

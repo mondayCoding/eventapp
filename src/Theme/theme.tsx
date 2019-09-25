@@ -50,6 +50,8 @@ const DefaultTheme = {
 	//misc
 	navbar_width: '15rem',
 
+	is_dark_theme: false,
+
 	// fonts: {
 	// 	heading: '',
 	// 	body: '',
@@ -124,6 +126,8 @@ const DarkTheme: typeof DefaultTheme = {
 	// misc
 	navbar_width: '15rem',
 
+	is_dark_theme: true,
+
 	shadow: {
 		card: '0 6px 10px -4px rgba(0, 0, 0, 0.55)',
 		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
@@ -133,13 +137,13 @@ const DarkTheme: typeof DefaultTheme = {
 
 const ThemeAlt = {
 	...DefaultTheme,
-	primary: '#88bf38',
-	shadow: { ...DefaultTheme.shadow, focus_color: '0 0 0 3px #88bf38' }
+	primary_color: '#88bf38',
+	shadow: { ...DefaultTheme.shadow, focus: '0 0 0 3px #88bf38' }
 };
 const DarkThemeAlt = {
 	...DarkTheme,
-	primary: '#88bf38',
-	shadow: { ...DarkTheme.shadow, focus_color: '0 0 0 3px #88bf38' }
+	primary_color: '#88bf38',
+	shadow: { ...DarkTheme.shadow, focus: '0 0 0 3px #88bf38' }
 };
 
 // const themes = {

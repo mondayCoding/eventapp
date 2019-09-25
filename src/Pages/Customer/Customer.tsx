@@ -1,13 +1,9 @@
 import React, { FC } from 'react';
 import { RouteComponentProps } from 'react-router';
 import styled from '../../Theme/theme';
-import { Formik } from 'formik';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
-import { TextField } from '../../Components/TextInput/Textinput';
 import { useCustomers } from '../../Queries/useCustomers';
-import { ICustomer } from '../../MockData/MockCustomers';
-import { SelectField } from 'library';
 
 import { CustomerTagType, CustomerTag } from '../../Constants/CustomerTags';
 import ReactTimeago from 'react-timeago';
@@ -15,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { PageFooter } from '../../Layout/MainFooter';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { CustomerForm } from './CustomerForm';
 
 interface routeprops {
 	id: string;
@@ -113,48 +110,6 @@ const Participated = styled.div`
 	}
 `;
 
-const CustomerForm: FC<{ customer: ICustomer }> = (props) => (
-	<Formik onSubmit={() => {}} initialValues={props.customer} enableReinitialize>
-		{() => (
-			<>
-				<div className="row">
-					<div className="col-lg-6">
-						<TextField name="firstname" label="Etunimi" showMobileView />
-					</div>
-					<div className="col-lg-6">
-						<TextField name="lastname" label="Sukunimi" showMobileView />
-					</div>
-				</div>
-				<TextField name="email" label="Email" showMobileView />
-				<TextField name="phone" label="Puhelin" showMobileView />
-
-				<div className="row">
-					<div className="col-lg-4">
-						<SelectField
-							name="city"
-							label="Kaupunki"
-							options={[
-								{ label: 'Turku', value: '62000' },
-								{ label: 'Muuninka', value: '41002' },
-								{ label: 'Helsinki', value: '79100' },
-								{ label: 'Sipoo', value: '84200' }
-							]}
-							showMobileView
-						/>
-					</div>
-					<div className="col-lg-4">
-						<TextField name="address" label="Osoite" showMobileView />
-					</div>
-					<div className="col-lg-4">
-						<TextField name="city" label="Postinumero" showMobileView />
-					</div>
-				</div>
-				<TextField name="department" label="Osasto" showMobileView />
-			</>
-		)}
-	</Formik>
-);
-
 const renderTags = (tags: CustomerTagType[]) =>
 	tags.map((tag) => {
 		const current = CustomerTag[tag];
@@ -168,20 +123,6 @@ const renderTags = (tags: CustomerTagType[]) =>
 			new Error(`Uknown Event Tag Type: ${tag}`)
 		);
 	});
-
-const initialValues: ICustomer = {
-	id: '123',
-	firstname: '',
-	lastname: '',
-	city: '',
-	address: '',
-	email: '',
-	phone: '',
-	country: '',
-	department: '',
-	created: new Date(),
-	tags: []
-};
 
 const CustomerCard = styled.section`
 	padding: 1.5rem;

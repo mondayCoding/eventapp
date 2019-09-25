@@ -1,5 +1,5 @@
 import { css, keyframes } from './theme';
-import { mix } from 'polished';
+import { mix, darken } from 'polished';
 
 const tooltipFadeIn = keyframes`
  0% {
@@ -243,17 +243,23 @@ export const ReactSelect = css`
 		}
 
 		.reactselect__control {
+			background: ${({ theme }) => theme.input_background};
+			color: ${({ theme }) => theme.primary_color};
+			border-radius: ${({ theme }) => theme.global_border_radius};
 			min-height: 24px;
-			border: 1px solid ${(p) => p.theme.border_color};
+			border: ${(p) => p.theme.input_border};
 
 			&:hover {
 				border-color: ${(p) => p.theme.primary_color};
 			}
+
 			.reactselect__value-container {
-				padding: 0 5px;
+				padding: 4px 5px;
+				color: ${(p) => p.theme.text_color};
 
 				.reactselect__single-value {
 					min-height: 15px;
+					color: ${(p) => p.theme.text_color};
 				}
 			}
 			.reactselect__indicators {
@@ -265,7 +271,7 @@ export const ReactSelect = css`
 		}
 
 		.reactselect__control--is-focused {
-			box-shadow: 0 0 5px skyblue;
+			box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
 			border-color: ${(p) => p.theme.primary_color};
 		}
 
@@ -298,6 +304,7 @@ export const ReactTableOverrideCSS = css`
 	.ReactTable {
 		border-radius: ${(p) => p.theme.global_border_radius};
 		font-size: ${(p) => p.theme.global_font_size};
+		box-shadow: ${({ theme }) => theme.global_shadow};
 
 		.rt-thead .rt-th.-sort-desc,
 		.ReactTable .rt-thead .rt-td .-sort-desc {
@@ -316,6 +323,8 @@ export const ReactTableOverrideCSS = css`
 		}
 
 		.rt-tbody {
+			/* border-top: 0.1rem solid gray; */
+
 			.rt-tr.row--selected {
 				background-color: ${(p) => mix(0.8, '#fff', p.theme.link_color)};
 				background-image: linear-gradient(
@@ -329,23 +338,141 @@ export const ReactTableOverrideCSS = css`
 				position: relative;
 				transition: background-color 0.2s ease-in-out;
 
-				&:hover,
-				&:nth-child(even):hover {
-					background-color: ${(p) => mix(0.75, '#fff', p.theme.primary_color)};
-					border: none;
-					/* color: white; */
+				/* row bg hover */
+				&:nth-child(even):hover,
+				&:nth-child(odd):hover {
+					background-color: ${(p) => mix(0.2, p.theme.primary_color, 'white')};
+					color: white;
 				}
 
+				/* row bg odd */
 				&:nth-child(odd) {
-					border: none;
+					background-color: ${(p) =>
+						p.theme.is_dark_theme
+							? mix(0.025, '#fff', p.theme.card_background_color)
+							: mix(0.85, '#fff', p.theme.primary_color)};
 				}
 
+				/* row bg even */
 				&:nth-child(even) {
-					background-color: ${(p) => mix(0.91, '#fff', p.theme.primary_color)};
-					border: none;
+					background-color: ${(p) =>
+						p.theme.is_dark_theme
+							? mix(0.05, '#fff', p.theme.card_background_color)
+							: p.theme.card_background_color};
+				}
+				&:last-child {
+					border-bottom-left-radius: ${({ theme }) => theme.global_border_radius};
+					border-bottom-right-radius: ${({ theme }) => theme.global_border_radius};
+				}
+
+				.rt-td {
+					padding: 0.3rem;
 				}
 			}
 		}
+	}
+
+	/* **************************************************** */
+	/* PLUGIN | REACT-TABLE */
+	/* **************************************************** */
+
+	.ReactTable {
+	}
+
+	/* **************************************************** */
+	/* PLUGIN | REACT-SELECT */
+	/* **************************************************** */
+
+	.react-select {
+		min-width: 25%;
+		cursor: pointer;
+
+		.react-select__control {
+			.reactselect__value-container,
+			.react-select__value-container--has-value {
+				color: ${({ theme }) => theme.text_color};
+				padding: 0.1rem;
+
+				.react-select__single-value {
+					color: ${({ theme }) => theme.text_color} !important;
+				}
+			}
+
+			.reactselect__indicators {
+				color: ${({ theme }) => theme.text_color};
+				padding: 0.2rem;
+			}
+		}
+
+		.react-select__control--is-focused {
+			border-color: ${({ theme }) => theme.primary_color};
+		}
+
+		.react-select__menu {
+			background-color: ${({ theme }) => theme.body_background_color};
+
+			.react-select__menu-list {
+				.react-select__option:hover {
+					background: ${({ theme }) => theme.primary_color};
+				}
+
+				.react-select__option--is-focused {
+					background: ${({ theme }) => theme.primary_color};
+				}
+
+				.react-select__option--is-selected {
+					background: ${({ theme }) =>
+						mix(0.5, theme.primary_color, theme.secondary_color)};
+				}
+			}
+		}
+	}
+
+	/* **************************************************** */
+	/* PLUGIN | REACT-TOASTIFY */
+	/* **************************************************** */
+
+	.Toastify__toast {
+		position: relative;
+		min-height: 64px;
+		box-sizing: border-box;
+		margin-bottom: 1rem;
+		padding: 8px;
+		border-radius: ${({ theme }) => theme.global_border_radius} !important;
+		box-shadow: ${({ theme }) => theme.global_shadow} !important;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		max-height: 800px;
+		overflow: hidden;
+		font-family: ${({ theme }) => theme.body_font} !important;
+		cursor: pointer;
+		direction: ltr;
+	}
+	.Toastify__toast--rtl {
+		direction: rtl;
+	}
+	.Toastify__toast--default {
+		background: ${({ theme }) => theme.text_color} !important;
+		color: #aaa;
+	}
+	.Toastify__toast--info {
+		background: ${({ theme }) => theme.info_color} !important;
+	}
+	.Toastify__toast--success {
+		background: ${({ theme }) => theme.success_color} !important;
+	}
+	.Toastify__toast--warning {
+		background: ${({ theme }) => theme.warning_color} !important;
+	}
+	.Toastify__toast--error {
+		background: ${({ theme }) => theme.error_color} !important;
+	}
+	.Toastify__toast-body {
+		margin: auto 0;
+		-ms-flex: 1;
+		flex: 1;
 	}
 `;
 

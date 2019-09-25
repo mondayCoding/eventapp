@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IEvent, MockStatistic } from '../../MockData/MockEvents';
+import { IEvent } from '../../MockData/MockEvents';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../Dashboard/StatusCard';
@@ -13,6 +13,7 @@ import styled from '../../Theme/theme';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { Pie, Doughnut } from 'react-chartjs-2';
 import { Badge } from '../Dashboard/Badge';
+import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
 
 interface IRegistrationItem {
 	name: string;
@@ -74,18 +75,6 @@ const registrationsList: IRegistrationItem[] = [
 	}
 ];
 
-const data = {
-	labels: MockStatistic.registeredByRole.map((item) => item.role),
-	borderColor: '#fff',
-	datasets: [
-		{
-			data: MockStatistic.registeredByRole.map((item) => item.total),
-			backgroundColor: ['#F37006', '#36A2EB', '#FFCE56'],
-			hoverBackgroundColor: ['#F37006', '#36A2EB', '#FFCE56']
-		}
-	]
-};
-
 export const RegistrationForms = () => {
 	return (
 		<>
@@ -106,7 +95,7 @@ export const RegistrationForms = () => {
 				</div>
 				<div className="col-lg-4">
 					<CardWrapper>
-						<Doughnut data={data}></Doughnut>
+						<Doughnut data={MockDataEventParticipation}></Doughnut>
 					</CardWrapper>
 				</div>
 				<div className="col-lg-4">

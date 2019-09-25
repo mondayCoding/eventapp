@@ -9,46 +9,45 @@ import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
-import { Link } from 'react-router-dom';
+import { SelectField } from 'library';
 
-export const SendEmail = () => {
-	useDocumentTitle('Email');
+export const UserSettings = () => {
+	useDocumentTitle('Luo tili');
 
 	return (
 		<div>
 			<CardWrapper>
-				<Heading icon={Icons.envelope} text="Lähetä email" isUnderlined />
-				<EmailForm></EmailForm>
+				<Heading text="Käyttäjäasetukset" isUnderlined />
+				<UserSettingsForm></UserSettingsForm>
 			</CardWrapper>
-			{/* <h2>Features</h2>
-			<ul>
-				<li>Auth</li>
-				<li>PerfectScroll</li>
-				<li>Routing</li>
-				<li>SPA</li>
-				<li>Style-Components</li>
-				<li></li>
-				<li></li>
-			</ul> */}
 		</div>
 	);
 };
 
-const EmailForm = () => {
+const UserSettingsForm = () => {
 	return (
 		<Formik
 			initialValues={initialValues}
 			onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
 		>
 			<>
-				<TextField name="sender" label="Lähettäjä" placeholder="From"></TextField>
-				<TextField name="receiver" label="Vastaanottaja" placeholder="To"></TextField>
-				<TextField name="title" label="Viestin otsikko" placeholder="Subject"></TextField>
-				<TextAreaField
-					name="content"
-					label="sisältö"
-					placeholder="Content"
-				></TextAreaField>
+				{/* <TextField name="sender" label="Lähettäjä"></TextField>
+				<TextField name="title" label="Viestin otsikko"></TextField>
+				<TextAreaField name="content" label="sisältö"></TextAreaField> */}
+				<SelectField
+					label="Teema"
+					name="theme"
+					options={[
+						{
+							label: 'Yö',
+							value: 1
+						},
+						{
+							label: 'Päivä',
+							value: 2
+						}
+					]}
+				></SelectField>
 			</>
 		</Formik>
 	);
@@ -57,6 +56,5 @@ const EmailForm = () => {
 const initialValues = {
 	sender: '',
 	title: '',
-	content: '',
-	receiver: ''
+	theme: 2
 };
