@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Nav } from '../AppStyles';
 import * as routes from '../Constants/Routes';
 // import image from './favicon.png';
-import image from './favicon_alternate.png';
+import image from './Styles/favicon_alternate.png';
 
 export const Navigation = () => {
 	return (

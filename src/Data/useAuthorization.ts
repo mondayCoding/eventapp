@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { firebase } from '../Firebase/';
 
 export const useAuthState = () => {
-	const [auth, setAuth] = useState({} as firebase.User);
+	const [auth, setAuth] = useState(null as firebase.User | null);
 
 	useEffect(() => {
 		firebase.onAuthStateChanged((auth) => {
@@ -11,7 +11,7 @@ export const useAuthState = () => {
 				newAuthorization: auth
 			});
 
-			auth ? setAuth(auth) : setAuth(null as any);
+			auth ? setAuth(auth) : setAuth(null);
 		});
 		return () => {
 			console.log('need to remove listener here');

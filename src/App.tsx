@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom';
-import { Body } from './AppStyles';
+import { BrowserRouter } from 'react-router-dom';
 import { useCollection } from './Data/useCollections';
 import { ICollectionItem } from './Interfaces';
 import { ThemeManager } from './Theme/ThemeManager';
@@ -8,14 +7,11 @@ import { database } from './Firebase';
 import { useWishlist } from './Data/useWishlist';
 import { useCollected } from './Data/useCollected';
 import { themes } from './Theme/theme';
-import { MainPage } from './Layout/MainContent';
-import { Navigation } from './Layout/Navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthState } from './Data/useAuthorization';
-import { SignInPage } from './Pages/SignIn/SingIn';
-import { SignUpPage } from './Pages/SignUp/SingUp';
-import * as routes from './Constants/Routes';
+import { UnAuthorisedApp } from './Layout/AppUnAuthorised';
+import { AuthorisedApp } from './Layout/AppAuthorised';
 
 interface IAppDataContext {
 	collection: ICollectionItem[];
@@ -102,20 +98,5 @@ const Application: FC = () => {
 
 const nightModeIsOn = () =>
 	localStorage.getItem('APPLICATION_THEME_NIGHTMODE') === 'true';
-
-const AuthorisedApp = () => (
-	<Body>
-		<Navigation />
-		<MainPage />
-	</Body>
-);
-
-const UnAuthorisedApp = () => (
-	<Switch>
-		<Route exact={true} path={routes.signIn.path} component={SignInPage} />
-		<Route exact={true} path={routes.signUp.path} component={SignUpPage} />
-		<Redirect to={routes.signIn.path} />
-	</Switch>
-);
 
 export default Application;
