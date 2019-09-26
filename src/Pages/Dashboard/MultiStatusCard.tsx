@@ -19,8 +19,13 @@ interface IMultiStatusCardsProps {
 export const MultiStatCard: FC<IMultiStatusCardsProps> = ({ stats, onClick }) => {
 	return (
 		<StatusCard onClick={onClick} isInteractive={!!onClick}>
-			{stats.map((props) => (
-				<div className="card__body" title={props.description} onClick={props.onClick}>
+			{stats.map((props, i) => (
+				<div
+					key={i}
+					className="card__body"
+					title={props.description}
+					onClick={props.onClick}
+				>
 					<div className={props.icon ? 'card__body__icon' : 'card__body__box'}>
 						{props.icon}
 					</div>
