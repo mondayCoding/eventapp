@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/Routes';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import * as routes from '../../Constants/Routes_MODIF';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { useCustomers } from '../../Queries/useCustomers';
 import styled from '../../Theme/theme';
 import { Icons } from 'library';
@@ -45,6 +45,15 @@ export const Customers = () => {
 				<>
 					<CustomerItem key={customer.id} to={`${routes.customer.path}/${customer.id}`}>
 						<span className="customer__icon">{Icons.user}</span>
+						<span
+							className="customer__mail"
+							title={`Lähetä viesti osoitteeseen ${customer.email}`}
+							onClick={() =>
+								alert('MOVE_TO_EMAIL_SEND_PAGE_WITH_SELECTED_CUSTOMER_EMAIL')
+							}
+						>
+							{Icons.envelope}
+						</span>
 						<span className="customer__name">{`${customer.firstname} ${customer.lastname}`}</span>
 						<span className="customer__email">{`${customer.email}`}</span>
 						<span className="customer__city">{`${customer.city}`}</span>
@@ -59,7 +68,8 @@ const FilterInput = styled.input`
 	display: block;
 	width: 100%;
 	max-width: 20rem;
-	border: 1px solid lightgray;
+	border: 1px solid ${(p) => p.theme.border_color};
+	color: ${(p) => p.theme.text_color};
 	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;
@@ -101,6 +111,17 @@ export const CustomerItem = styled(Link)`
 	.customer__icon {
 		flex: 0 0 22px;
 		height: 22px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: grey;
+		border-radius: 100%;
+		color: #fff;
+	}
+	.customer__mail {
+		flex: 0 0 22px;
+		height: 22px;
+		margin-left: 0.5rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;

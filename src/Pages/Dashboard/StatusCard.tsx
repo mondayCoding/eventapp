@@ -71,7 +71,7 @@ const StatusCard = styled.div`
 			}
 
 			&__value {
-				border-top: 1px solid lightgray;
+				border-top: 1px solid ${(p) => p.theme.border_color};
 
 				font-size: 1.5rem;
 				color: ${(p) => p.theme.text_color};

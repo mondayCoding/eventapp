@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading } from '../Text/Heading';
 import { useSystemEvents } from '../../Queries/useSystemEvents';
 import { FeedItem, FeedFooter } from '../FeedCustomers/FeedCustomers';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import Timeago from 'react-timeago';
 import { Link } from 'react-router-dom';
 import Icons from '../Icons/icons';

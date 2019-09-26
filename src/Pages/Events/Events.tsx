@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import styled from '../../Theme/theme';
 import { useEvents } from '../../Queries/useEvents';
 import { EventTag, EventTagType } from '../../Constants/EventTags';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';
@@ -12,6 +12,8 @@ import Icons from '../../Components/Icons/icons';
 import { useFavouriteEvents } from '../../Data/useFavouriteEvents';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { MultiStatCard } from '../Dashboard/MultiStatusCard';
+import { EventAttendanceGraph } from '../Dashboard/EventAttendanceGraph';
 
 export const Events = () => {
 	useDocumentTitle('Tapahtuma');
@@ -33,6 +35,35 @@ export const Events = () => {
 
 	return (
 		<div>
+			<div className="row">
+				<div className="col-lg-4">
+					<MultiStatCard
+						stats={[
+							{
+								text: 'Avoinna',
+								value: '3',
+								description: 'Avoimia lomakkeita tällä hetkellä',
+								icon: Icons.clipboard_list
+							},
+							{
+								text: 'Loppuneita',
+								value: '23',
+								description: 'Loppuneita ilmoittautumisia'
+							},
+							{
+								text: 'Avautuvia',
+								value: '6',
+								description: 'Aukeamista odottavia lomakkeita'
+							}
+						]}
+					></MultiStatCard>
+				</div>
+				<div className="col-lg-8">
+					<CardWrapper>
+						<EventAttendanceGraph></EventAttendanceGraph>
+					</CardWrapper>
+				</div>
+			</div>
 			<CardWrapper>
 				<Heading text="Tapahtumat" isUnderlined />
 
@@ -48,7 +79,7 @@ export const Events = () => {
 							<span className="event__favourite">
 								<IconButton
 									icon={favourites.includes(event.id) ? Icons.star_filled : Icons.star}
-									onClick={(e) => {
+									onClick={(e: any) => {
 										toggleFavourite(event.id);
 										e.preventDefault();
 									}}
@@ -69,7 +100,8 @@ const FilterInput = styled.input`
 	display: block;
 	width: 100%;
 	max-width: 20rem;
-	border: 1px solid lightgray;
+	border: 1px solid ${(p) => p.theme.border_color};
+	color: ${(p) => p.theme.text_color};
 	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;

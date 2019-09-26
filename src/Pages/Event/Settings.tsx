@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 import { Formik } from 'formik';
 import { Heading } from '../../Components/Text/Heading';
 import { TextField } from '../../Components/TextInput/Textinput';
-import { SelectField } from 'library';
 import { IEvent } from '../../MockData/MockEvents';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { SelectField, SelectFieldBase } from '../../Components/Select/Select';
+import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 
 export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 	useDocumentTitle('Tapahtumat');
@@ -58,6 +59,47 @@ const EventForm: FC<{ event?: IEvent }> = (props) => (
 				<TextField name="address" label="Osoite" />
 				<TextField name="city" label="Postinumero" />
 				<TextField name="department" label="Osasto" />
+				<FieldContainer label="Alkaa">
+					<div className="row" style={{ flex: '1 1 auto' }}>
+						<div className="col-sm-3">
+							<SelectFieldBase
+								name="day"
+								placeholder="Päivä"
+								options={[
+									{ label: '1', value: '1' },
+									{ label: '2', value: '2' },
+									{ label: '3', value: '3' },
+									{ label: '4', value: '4' }
+								]}
+							/>
+						</div>
+						<div className="col-sm-4">
+							<SelectFieldBase
+								name="month"
+								placeholder="Kuukausi"
+								options={[
+									{ label: 'Tammikuu', value: '1' },
+									{ label: 'Helmikuu', value: '2' },
+									{ label: 'Maaliskuu', value: '3' },
+									{ label: 'Huhtikuu', value: '4' }
+								]}
+							/>
+						</div>
+						<div className="col-sm-3">
+							<SelectFieldBase
+								name="year"
+								placeholder="Vuosi"
+								options={[
+									{ label: '2016', value: '1' },
+									{ label: '2017', value: '2' },
+									{ label: '2018', value: '3' },
+									{ label: '2019', value: '4' }
+								]}
+							/>
+						</div>
+						<div className="col-sm-2"></div>
+					</div>
+				</FieldContainer>
 			</>
 		)}
 	</Formik>

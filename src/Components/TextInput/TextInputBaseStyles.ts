@@ -13,8 +13,11 @@ export const ThemedTextInputBase = styled.input`
 	border-radius: ${(p) => p.theme.global_border_radius};
 	transition: border-color 0.2s ease-in-out;
 	border: 1px solid #ccc;
+	border: ${(p) => p.theme.input_border};
 	font-family: ${(p) => p.theme.body_font};
 	font-size: ${(p) => p.theme.global_font_size};
+	color: ${(p) => p.theme.text_color};
+	background: ${(p) => p.theme.input_background};
 
 	&:hover {
 		border-color: ${(p) => p.theme.primary_color};
@@ -28,7 +31,7 @@ export const ThemedTextInputBase = styled.input`
 	}
 
 	&:focus {
-		box-shadow: 0 0 5px skyblue;
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
 	}
 
 	&[type='number'] {
@@ -49,4 +52,9 @@ export const ThemedTextInputBase = styled.input`
 
 const errorCSS = css`
 	background-color: ${(p) => mix(0.8, 'white', p.theme.error_color)};
+	border-color: ${(p) => p.theme.error_color} !important;
+
+	&:focus {
+		box-shadow: 0 0 0 3px ${(p) => p.theme.error_color};
+	}
 `;

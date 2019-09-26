@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Heading } from '../../Components/Text/Heading';
-import { AppContext } from '../../App';
-import styled from '../../Theme/theme';
-import { Limiter } from '../../Components/Utility/ContentLimiter/Limiter';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { Heading } from '../../../Components/Text/Heading';
+import { AppContext } from '../../../App';
+import styled from '../../../Theme/theme';
+import { Limiter } from '../../../Components/Utility/ContentLimiter/Limiter';
+import { CardWrapper } from '../../Dashboard/CardWrapper';
 
 export const MyWishlistPage = () => {
 	const { collection, wishlist } = useContext(AppContext);

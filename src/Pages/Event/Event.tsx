@@ -8,9 +8,9 @@ import { FrontPage } from './FrontPage';
 import { RegistrationForms } from './RegistrationForms';
 import { Settings } from './Settings';
 import { CustomerLists } from './CustomerLists';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import { PageFooter } from '../../Layout/MainFooter';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 
 export interface EventRouteProps {
 	id: string;

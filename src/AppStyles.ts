@@ -17,7 +17,7 @@ export const Body = styled.div`
 export const Content = styled(PerfectScrollbar)`
 	flex: 1 1 auto;
 	width: 100%;
-	height: 100vh;
+	height: 100vh !important;
 `;
 
 export const Main = styled.main`

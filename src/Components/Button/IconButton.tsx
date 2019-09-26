@@ -4,19 +4,22 @@ import { ThemedButton, IButtonStyleProps } from './IconButtonStyle';
 export interface IProps
 	extends IButtonStyleProps,
 		React.ButtonHTMLAttributes<HTMLButtonElement> {
-	icon?: React.ReactNode;
-	onClick?(x: any): void;
+	icon: React.ReactNode;
+	onClick?(x: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 /**
  * @typedef {object} Props
  * small = 2rem
  */
-export const IconButton: React.SFC<IProps> = ({ icon, children, ...rest }) => {
-	return (
-		<ThemedButton type="button" {...rest}>
-			{icon}
-			{children}
-		</ThemedButton>
-	);
-};
+
+export const IconButton = React.forwardRef(
+	({ icon, children, ...rest }: any, ref: any) => {
+		return (
+			<ThemedButton type="button" {...rest} ref={ref}>
+				{icon}
+				{children}
+			</ThemedButton>
+		);
+	}
+);

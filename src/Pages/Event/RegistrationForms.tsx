@@ -1,18 +1,20 @@
 import React, { FC } from 'react';
-import { IEvent, MockStatistic } from '../../MockData/MockEvents';
+import { IEvent } from '../../MockData/MockEvents';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../Dashboard/StatusCard';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { CustomerItem } from '../Customers/Customers';
 import ReactTimeago from 'react-timeago';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import styled from '../../Theme/theme';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { Pie, Doughnut } from 'react-chartjs-2';
 import { Badge } from '../Dashboard/Badge';
+import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
+import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 
 interface IRegistrationItem {
 	name: string;
@@ -74,39 +76,30 @@ const registrationsList: IRegistrationItem[] = [
 	}
 ];
 
-const data = {
-	labels: MockStatistic.registeredByRole.map((item) => item.role),
-	borderColor: '#fff',
-	datasets: [
-		{
-			data: MockStatistic.registeredByRole.map((item) => item.total),
-			backgroundColor: ['#F37006', '#36A2EB', '#FFCE56'],
-			hoverBackgroundColor: ['#F37006', '#36A2EB', '#FFCE56']
-		}
-	]
-};
-
 export const RegistrationForms = () => {
 	return (
 		<>
 			<div className="row">
 				<div className="col-lg-4">
-					<StatCard
-						value={'3'}
-						icon={Icons.clipboard_list}
-						text="Avoinna"
-						description="Avoimia lomakkeita tällä hetkellä"
-					></StatCard>
-					<StatCard
-						value={'5'}
-						icon={<span style={{ color: 'lightsalmon' }}>{Icons.check_circle}</span>}
-						text="Loppuneita"
-						description="Loppuneita ilmoittautumisia"
-					></StatCard>
+					<MultiStatCard
+						stats={[
+							{
+								icon: Icons.clipboard_list,
+								text: 'Avoimia',
+								value: '3',
+								description: 'Avoimia lomakkeita tällä hetkellä'
+							},
+							{
+								text: 'Loppuneita',
+								value: '5',
+								description: 'Avoimia lomakkeita tällä hetkellä'
+							}
+						]}
+					></MultiStatCard>
 				</div>
 				<div className="col-lg-4">
 					<CardWrapper>
-						<Doughnut data={data}></Doughnut>
+						<Doughnut data={MockDataEventParticipation}></Doughnut>
 					</CardWrapper>
 				</div>
 				<div className="col-lg-4">
@@ -120,12 +113,7 @@ export const RegistrationForms = () => {
 			</div>
 
 			<CardWrapper>
-				<Heading
-					icon={Icons.calendar}
-					text="Avoimet"
-					// ingress="Täällä voit tarkastella ja muokata tapahtuman ilmoittautumislomakkeita ja niiden aikatauluja"
-					isUnderlined
-				></Heading>
+				<Heading icon={Icons.calendar} text="Avoimet" isUnderlined></Heading>
 
 				<ReactTable
 					data={registrationsList}
@@ -143,7 +131,9 @@ export const RegistrationForms = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={routes.customers.path}>{original.name}</Link>
+								<Link to={`${routes.registrationform.path}/${original.id}`}>
+									{original.name}
+								</Link>
 							)
 						},
 						{
@@ -182,10 +172,13 @@ export const RegistrationForms = () => {
 						}
 					]}
 				></ReactTable>
-			</CardWrapper>
 
-			<CardWrapper>
-				<Heading icon={Icons.calendar} text="Aukeavat" isUnderlined></Heading>
+				<Heading
+					icon={Icons.calendar}
+					text="Aukeavat"
+					isUnderlined
+					hasSpaceAbove
+				></Heading>
 
 				<ReactTable
 					data={registrationsList}
@@ -203,7 +196,9 @@ export const RegistrationForms = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={routes.customers.path}>{original.name}</Link>
+								<Link to={`${routes.registrationform.path}/${original.id}`}>
+									{original.name}
+								</Link>
 							)
 						},
 						{
@@ -222,10 +217,13 @@ export const RegistrationForms = () => {
 						}
 					]}
 				></ReactTable>
-			</CardWrapper>
 
-			<CardWrapper>
-				<Heading icon={Icons.calendar} text="Sulkeutuneet" isUnderlined></Heading>
+				<Heading
+					icon={Icons.calendar}
+					text="Sulkeutuneet"
+					isUnderlined
+					hasSpaceAbove
+				></Heading>
 
 				<ReactTable
 					data={registrationsList}
@@ -243,7 +241,9 @@ export const RegistrationForms = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={routes.customers.path}>{original.name}</Link>
+								<Link to={`${routes.registrationform.path}/${original.id}`}>
+									{original.name}
+								</Link>
 							)
 						},
 

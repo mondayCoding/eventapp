@@ -1,226 +1,44 @@
 import React, { useContext } from 'react';
-import { Heading } from '../../Components/Text/Heading';
-import { Line, Pie, Doughnut } from 'react-chartjs-2';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { Pie, Doughnut } from 'react-chartjs-2';
+import { CardWrapper } from './CardWrapper';
 import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
-import { StatCard } from './StatusCard';
 import styled, { ThemeContext } from '../../Theme/theme';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { MockRegistratinData } from '../../MockData/MockEvents';
+import { MultiStatCard } from './MultiStatusCard';
+import { useHistory } from 'react-router';
+import * as routes from '../../Constants/Routes_MODIF';
+import { EventAttendanceGraph } from './EventAttendanceGraph';
+import { PerformanceGraph } from './PerformanceGraph';
 
 export const DashBoard = () => {
 	useDocumentTitle('Dash');
+	const history = useHistory();
 	const theme = useContext(ThemeContext);
 
 	const data = {
-		labels: ['Red', 'Blue', 'Yellow'],
-		borderColor: theme.primary_color,
+		labels: [
+			MockRegistratinData[0][0].name,
+			MockRegistratinData[0][1].name,
+			MockRegistratinData[0][2].name
+		],
 		datasets: [
 			{
 				data: [300, 50, 100],
-				backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-				hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-			}
-		]
-	};
-
-	const usageData = {
-		labels: ['17.00', '18.00', '19.00', '20.00', '21.00'],
-		datasets: [
-			{
-				label: 'Kävijoitä',
-				fill: false,
-				lineTension: 0.1,
-				backgroundColor: 'rgba(75,192,192,0.4)',
-				borderColor: 'rgba(75,192,192,1)',
-				borderCapStyle: 'butt',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgba(75,192,192,1)',
-				pointBackgroundColor: '#fff',
-				pointBorderWidth: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-				pointHoverBorderColor: 'rgba(220,220,220,1)',
-				pointHoverBorderWidth: 2,
-				pointRadius: 1,
-				pointHitRadius: 10,
-				data: [65, 59, 80, 81, 56, 55, 40]
-			},
-			{
-				label: 'Vierailijoita',
-				fill: false,
-				lineTension: 0.1,
-				backgroundColor: theme.primary_color,
+				backgroundColor: [
+					theme.primary_color,
+					theme.secondary_color,
+					'rgba(75,192,192,1)'
+				],
+				hoverBackgroundColor: [
+					theme.primary_color,
+					theme.secondary_color,
+					'rgba(75,192,192,1)'
+				],
 				borderColor: theme.primary_color,
-				borderCapStyle: 'butt',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: theme.primary_color,
-				pointBackgroundColor: '#fff',
-				pointBorderWidth: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: theme.primary_color,
-				pointHoverBorderColor: theme.primary_color,
-				pointHoverBorderWidth: 2,
-				pointRadius: 1,
-				pointHitRadius: 10,
-				data: [55, 12, 56, 72, 45, 33, 80]
-			}
-		]
-	};
-
-	const options = {
-		legend: {
-			display: true,
-			labels: {
-				// This more specific font property overrides the global property
-				fontColor: theme.text_color,
-				fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
-			}
-		},
-
-		tooltips: {
-			enabled: true,
-			titleFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
-			bodyFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
-			fontColor: theme.text_color
-		},
-
-		scales: {
-			// xAxes: [
-			// 	{
-			// 		scaleLabel: {
-			// 			display: true,
-			// 			labelString: 'Time in Seconds',
-			// 			fontColor: 'red',
-			// 			fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
-			// 		}
-			// 	}
-			// ],
-			yAxes: [
-				{
-					// scaleLabel: {
-					// 	display: true,
-
-					// 	fontColor: 'red',
-					// 	fontFamily: '"Montserrat", Calibri, Helvetica, Sans',
-					// 	labelString: 'LABEL'
-					// },
-					ticks: {
-						beginAtZero: true,
-						max: 100
-					}
-				}
-			]
-		}
-	};
-
-	const usageOptions = {
-		legend: {
-			display: true,
-			labels: {
-				// This more specific font property overrides the global property
-				fontColor: theme.text_color,
-				fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
-			}
-		},
-
-		tooltips: {
-			enabled: true,
-			titleFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
-			bodyFontFamily: '"Montserrat", Calibri, Helvetica, Sans',
-			fontColor: theme.text_color
-		},
-
-		scales: {
-			// xAxes: [
-			// 	{
-			// 		scaleLabel: {
-			// 			display: true,
-			// 			labelString: 'Time in Seconds',
-			// 			fontColor: 'red',
-			// 			fontFamily: '"Montserrat", Calibri, Helvetica, Sans'
-			// 		}
-			// 	}
-			// ],
-			yAxes: [
-				{
-					// scaleLabel: {
-					// 	display: true,
-					// 	fontColor: 'red',
-					// 	fontFamily: '"Montserrat", Calibri, Helvetica, Sans',
-					// 	labelString: 'LABEL'
-					// },
-				}
-			]
-		}
-	};
-
-	const lineData = {
-		labels: [
-			'19.20',
-			'19.30',
-			'19.40',
-			'19.50',
-			'20.00',
-			'20.10',
-			'20.20',
-			'20.30',
-			'20.40',
-			'20.50',
-			'21.00',
-			'21.10',
-			'21.20',
-			'21.30',
-			'21.40'
-		],
-
-		datasets: [
-			{
-				label: 'CPU Usage (%)',
-				fill: false,
-				lineTension: 0.4,
-				backgroundColor: 'rgba(75,192,192,1)',
-				borderColor: 'rgba(75,192,192,1)',
-				borderCapStyle: 'butt',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgba(75,192,192,1)',
-				pointBackgroundColor: '#fff',
-				pointBorderWidth: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-				pointHoverBorderColor: 'rgba(75,192,192,1)',
-				pointHoverBorderWidth: 3,
-				pointRadius: 1,
-				pointHitRadius: 10,
-				data: [12, 22, 45, 65, 44, 24, 34, 29, 23, 19, 15, 12, 19, 24, 29]
-			},
-			{
-				label: 'Memory Usage (%)',
-				fill: false,
-				lineTension: 0.4,
-				backgroundColor: theme.primary_color,
-				borderColor: theme.primary_color,
-				borderCapStyle: 'butt',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: theme.primary_color,
-				pointBackgroundColor: '#fff',
-				pointBorderWidth: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: theme.primary_color,
-				pointHoverBorderColor: theme.primary_color,
-				pointHoverBorderWidth: 3,
-				pointRadius: 1,
-				pointHitRadius: 10,
-				data: [32, 34, 45, 43, 34, 45, 47, 55, 47, 43, 55, 45, 34, 32, 25]
+				borderWidth: 0
 			}
 		]
 	};
@@ -229,32 +47,58 @@ export const DashBoard = () => {
 		<>
 			<div className="row">
 				<div className="col-lg-4">
-					<StatCard value={'12 930, 90 €'} icon={Icons.dollar} text="Tulot"></StatCard>
+					<MultiStatCard
+						onClick={() => history.push(routes.events.path)}
+						stats={[
+							{
+								value: '723',
+								icon: <span style={{ color: 'lightsalmon' }}>{Icons.user}</span>,
+								text: 'Vierailijoita'
+							},
+							{
+								value: '403',
+								// state: 'success',
+								text: 'Ilmoittautumisia'
+							}
+						]}
+					></MultiStatCard>
 				</div>
 				<div className="col-lg-4">
-					<StatCard
-						value={'10 013'}
-						icon={<span style={{ color: 'lightsalmon' }}>{Icons.users}</span>}
-						text="Ilmoittautuneita"
-					></StatCard>
+					<MultiStatCard
+						stats={[
+							{
+								value: '2 301',
+								icon: <span style={{ color: 'lightseagreen' }}>{Icons.envelope}</span>,
+								text: 'Lähetettyjä viestejä'
+							},
+							{
+								value: '1 023',
+								// state: 'success',
+								text: 'Avattuja viestejä'
+							}
+						]}
+					></MultiStatCard>
 				</div>
 				<div className="col-lg-4">
-					<StatCard
-						value={'428'}
-						icon={<span style={{ color: 'lightseagreen' }}>{Icons.envelope}</span>}
-						text="Avattuja viestejä"
-					></StatCard>
+					<MultiStatCard
+						stats={[
+							{
+								value: '12 930, 90 €',
+								icon: Icons.dollar,
+								text: 'Tulot'
+							},
+							{
+								value: '2 620, 10 €',
+								// state: 'success',
+								text: 'Saatavat'
+							}
+						]}
+					></MultiStatCard>
 				</div>
 			</div>
 
 			<CardWrapper>
-				<Heading
-					text="Järjestelmän käyttöaste"
-					ingress="Serverin rasitus viimeisen puolentoista tunnin aikana"
-					isUnderlined
-				/>
-
-				<Line data={lineData} height={50} options={options}></Line>
+				<EventAttendanceGraph></EventAttendanceGraph>
 			</CardWrapper>
 
 			<div className="row">
@@ -271,44 +115,19 @@ export const DashBoard = () => {
 			</div>
 
 			<CardWrapper>
-				<Heading
-					text="Liikenne Avoimissa tapahtumissa"
-					ingress="Seuraa liikennetta tapahtumissa joiden ilmoittautuminen on auki"
-					isUnderlined
-				/>
-				<Line data={usageData} height={50} options={usageOptions}></Line>
-			</CardWrapper>
-
-			<CardWrapper>
-				<Heading
-					text="Ilmoittautumiset"
-					ingress="Tapahtumaan ilmoittautumiset hakuajan alkamisen jälkeen"
-					isUnderlined
-				/>
-
-				<CanvasFix>
-					<Line
-						data={dashboard24HoursPerformanceChart.data}
-						options={dashboard24HoursPerformanceChart.options}
-						width={400}
-						height={100}
-					/>
-				</CanvasFix>
+				<PerformanceGraph></PerformanceGraph>
 			</CardWrapper>
 
 			<div className="row">
-				<div className="col-lg-4">
-					<CardWrapper>
-						<Pie data={data} />
-					</CardWrapper>
-				</div>
-				<div className="col-lg-4">
+				<div className="col-lg-6">
 					<CardWrapper>
 						<Doughnut data={data}></Doughnut>
 					</CardWrapper>
 				</div>
-				<div className="col-lg-4">
-					<CardWrapper></CardWrapper>
+				<div className="col-lg-6">
+					<CardWrapper>
+						<Doughnut data={data}></Doughnut>
+					</CardWrapper>
 				</div>
 			</div>
 		</>
@@ -320,91 +139,3 @@ const CanvasFix = styled.div`
 		max-width: 100%;
 	}
 `;
-
-const dashboard24HoursPerformanceChart = {
-	data: (canvas: any) => {
-		return {
-			labels: [
-				'Tammi',
-				'Helmi',
-				'Maa',
-				'Huhti',
-				'Touko',
-				'Kesä',
-				'Heinä',
-				'Elo',
-				'Syys',
-				'Loka'
-			],
-			datasets: [
-				{
-					borderColor: '#6bd098',
-					backgroundColor: '#6bd098',
-					pointRadius: 0,
-					pointHoverRadius: 0,
-					borderWidth: 3,
-					data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
-				},
-				{
-					borderColor: '#f17e5d',
-					backgroundColor: '#f17e5d',
-					pointRadius: 0,
-					pointHoverRadius: 0,
-					borderWidth: 3,
-					data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
-				},
-				{
-					borderColor: '#fcc468',
-					backgroundColor: '#fcc468',
-					pointRadius: 0,
-					pointHoverRadius: 0,
-					borderWidth: 3,
-					data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
-				}
-			]
-		};
-	},
-	options: {
-		legend: {
-			display: false
-		},
-
-		tooltips: {
-			enabled: false
-		},
-
-		scales: {
-			yAxes: [
-				{
-					ticks: {
-						fontColor: '#9f9f9f',
-						beginAtZero: false,
-						maxTicksLimit: 5
-						//padding: 20
-					},
-					gridLines: {
-						drawBorder: false,
-						zeroLineColor: '#ccc',
-						color: 'rgba(255,255,255,0.05)'
-					}
-				}
-			],
-
-			xAxes: [
-				{
-					barPercentage: 1.6,
-					gridLines: {
-						drawBorder: false,
-						color: 'rgba(255,255,255,0.1)',
-						zeroLineColor: 'transparent',
-						display: false
-					},
-					ticks: {
-						padding: 20,
-						fontColor: '#9f9f9f'
-					}
-				}
-			]
-		}
-	}
-};

@@ -96,11 +96,13 @@ import {
 	faPowerOff,
 	faClipboardList,
 	faReceipt,
-	faDesktop
+	faDesktop,
+	faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 export const Icons = {
 	banned: <FontAwesomeIcon icon={faBan} />,
+	sign_out: <FontAwesomeIcon icon={faSignOutAlt} />,
 	computer: <FontAwesomeIcon icon={faDesktop} />,
 	moon: <FontAwesomeIcon icon={faMoon} />,
 	sun: <FontAwesomeIcon icon={faSun} />,

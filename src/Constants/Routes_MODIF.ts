@@ -1,4 +1,4 @@
-import { Icons } from 'library';
+import Icons from '../Components/Icons/icons';
 
 export interface routeConfig {
 	path: string;
@@ -30,13 +30,6 @@ export const event: routeConfig = {
 	description: 'kuvaus pitkä ja tosi'
 };
 
-export const createNewEvent: routeConfig = {
-	path: '/addEvent',
-	icon: Icons.plus,
-	text: 'Luo uusi',
-	description: 'kuvaus pitkä ja tosi'
-};
-
 export const customers: routeConfig = {
 	path: '/customers',
 	icon: Icons.users,
@@ -60,13 +53,6 @@ export const registrationform: routeConfig = {
 	description: 'kuvaus pitkä ja tosi'
 };
 
-export const myCollection: routeConfig = {
-	path: '/myCollection',
-	icon: Icons.list,
-	text: 'Collected',
-	description: 'kuvaus pitkä ja tosi'
-};
-
 export const sendEmail: routeConfig = {
 	path: '/sendemail',
 	icon: Icons.envelope,
@@ -74,9 +60,30 @@ export const sendEmail: routeConfig = {
 	description: 'kuvaus pitkä ja tosi'
 };
 
-export const myWishlist: routeConfig = {
-	path: '/wishlist',
-	icon: Icons.star,
-	text: 'Wishlist',
+export const signIn: routeConfig = {
+	path: '/signin',
+	icon: Icons.user,
+	text: 'Kirjaudu sisään',
+	description: 'kuvaus pitkä ja tosi'
+};
+
+export const signUp: routeConfig = {
+	path: '/signuop',
+	icon: Icons.globe,
+	text: 'Luo tili',
+	description: 'kuvaus pitkä ja tosi'
+};
+
+export const signOut: routeConfig = {
+	path: '/signout',
+	icon: Icons.sign_out,
+	text: 'Kirjaudu ulos',
+	description: 'kuvaus pitkä ja tosi'
+};
+
+export const settings: routeConfig = {
+	path: '/settings',
+	icon: Icons.cog,
+	text: 'Asetukset',
 	description: 'kuvaus pitkä ja tosi'
 };

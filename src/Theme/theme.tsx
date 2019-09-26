@@ -27,10 +27,10 @@ const DefaultTheme = {
 	input_background: '#f9f9f9',
 
 	// Validation/Notification colors
-	error_color: '#a94442',
-	warning_color: '#bb8d0e',
-	success_color: '#16a30e',
-	info_color: '#38c',
+	error_color: '#ac4d4d',
+	warning_color: '#ce9224',
+	success_color: '#50b04b',
+	info_color: '#4a70ac',
 
 	// Neutral colors
 	text_color: '#222222',
@@ -49,6 +49,8 @@ const DefaultTheme = {
 
 	//misc
 	navbar_width: '15rem',
+
+	is_dark_theme: false,
 
 	// fonts: {
 	// 	heading: '',
@@ -101,10 +103,10 @@ const DarkTheme: typeof DefaultTheme = {
 	input_background: '#0000002e',
 
 	// Validation/Notification colors
-	error_color: '#a94442',
-	warning_color: '#bb8d0e',
-	success_color: '#16a30e',
-	info_color: '#38c',
+	error_color: '#ac4d4d',
+	warning_color: '#ce9224',
+	success_color: '#50b04b',
+	info_color: '#4a70ac',
 
 	// Neutral colors
 	text_color: '#dadada',
@@ -124,6 +126,8 @@ const DarkTheme: typeof DefaultTheme = {
 	// misc
 	navbar_width: '15rem',
 
+	is_dark_theme: true,
+
 	shadow: {
 		card: '0 6px 10px -4px rgba(0, 0, 0, 0.55)',
 		inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
@@ -133,13 +137,13 @@ const DarkTheme: typeof DefaultTheme = {
 
 const ThemeAlt = {
 	...DefaultTheme,
-	primary: '#88bf38',
-	shadow: { ...DefaultTheme.shadow, focus_color: '0 0 0 3px #88bf38' }
+	primary_color: '#88bf38',
+	shadow: { ...DefaultTheme.shadow, focus: '0 0 0 3px #88bf38' }
 };
 const DarkThemeAlt = {
 	...DarkTheme,
-	primary: '#88bf38',
-	shadow: { ...DarkTheme.shadow, focus_color: '0 0 0 3px #88bf38' }
+	primary_color: '#88bf38',
+	shadow: { ...DarkTheme.shadow, focus: '0 0 0 3px #88bf38' }
 };
 
 // const themes = {

@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { IEvent } from '../../MockData/MockEvents';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { CustomerItem } from '../Customers/Customers';
 import { MockCustomers } from '../../MockData/MockCustomers';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 
 export const CustomerLists: FC<{ event?: IEvent }> = ({ event }) => {
 	return (

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from '../AppStyles';
-import * as routes from '../Constants/Routes';
-import image from './favicon.png';
+import * as routes from '../Constants/Routes_MODIF';
+// import image from './favicon.png';
+import image from './Styles/favicon_alternate.png';
 
 export const Navigation = () => {
 	return (
@@ -25,14 +26,15 @@ const Links: FC = () => (
 
 		<div className="navigation__group-title">Asiakashallinta</div>
 		<Link route={routes.customers} />
-
-		<div className="navigation__group-title">Poistuvat</div>
 		<Link route={routes.sendEmail} />
-		<Link route={routes.createNewEvent} />
-		{/* <Link route={routes.event} /> */}
-		{/* <Link route={routes.customer} /> */}
-		<Link route={routes.myCollection} />
-		<Link route={routes.myWishlist} />
+
+		<div className="navigation__group-title">Non-routable</div>
+		<Link route={routes.settings} />
+
+		<div className="navigation__group-title">Non-routable</div>
+		<Link route={routes.signIn} />
+		<Link route={routes.signUp} />
+		<Link route={routes.signOut} />
 	</>
 );
 

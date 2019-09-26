@@ -2,17 +2,18 @@ import React, { useRef, FC, MutableRefObject } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 import { Content, Main } from '../AppStyles';
 import { Events } from '../Pages/Events/Events';
-import { AddCollectible } from '../Pages/AddCollectible/AddCollectible';
 import { Event } from '../Pages/Event/Event';
-import { MyCollectionPage } from '../Pages/MyCollection/MyCollection';
-import { MyWishlistPage } from '../Pages/Wishlist/Wishlist';
 import { DashBoard } from '../Pages/Dashboard/Dashboard';
 import { TopPanel } from './TopPanel';
-import * as routes from '../Constants/Routes';
+import * as routes from '../Constants/Routes_MODIF';
 import { Customers } from '../Pages/Customers/Customers';
 import { Customer } from '../Pages/Customer/Customer';
 import { RegistrationForm } from '../Pages/RegistrationForm/RegistrationForm';
 import { SendEmail } from '../Pages/SendEmail/SendEmail';
+import { SignInPage } from '../Pages/SignIn/SingIn';
+import { SignUpPage } from '../Pages/SignUp/SingUp';
+import { UserSettings } from '../Pages/UserSettings/UserSettings';
+import { SignOutPage } from '../Pages/SignOut/SignOut';
 
 export const MainPage = () => {
 	const ref = useRef(undefined as any | HTMLElement);
@@ -34,11 +35,10 @@ export const MainPage = () => {
 						component={RegistrationForm}
 					/>
 					<Route path={routes.sendEmail.path} component={SendEmail} />
-
-					<Route exact path={routes.createNewEvent.path} component={AddCollectible} />
-
-					<Route exact path={routes.myCollection.path} component={MyCollectionPage} />
-					<Route exact path={routes.myWishlist.path} component={MyWishlistPage} />
+					<Route path={routes.settings.path} component={UserSettings} />
+					<Route path={routes.signIn.path} component={SignInPage} />
+					<Route path={routes.signUp.path} component={SignUpPage} />
+					<Route path={routes.signOut.path} component={SignOutPage} />
 					{/* <Redirect to={routes.dashboard.path} /> */}
 				</Switch>
 			</Main>

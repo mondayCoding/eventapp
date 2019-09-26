@@ -11,7 +11,7 @@ import { TopPanelThemed } from './Styles/TopPanel';
 import { RoutableAutoSuggest } from './AutoSuggestSeach';
 
 export const TopPanel = () => {
-	const { toggleTheme, isDarkTheme } = useContext(AppContext);
+	const { toggleTheme, isDarkTheme, authorization } = useContext(AppContext);
 	const tooltip = useTooltipState({ placement: 'left' });
 
 	return (
@@ -19,6 +19,7 @@ export const TopPanel = () => {
 			<RoutableAutoSuggest />
 
 			<div className="panel__themebutton">
+
 				<TooltipReference
 					{...tooltip}
 					as={IconButton}
@@ -26,12 +27,19 @@ export const TopPanel = () => {
 					icon={isDarkTheme ? Icons.moon : Icons.sun}
 					style={{ width: '1.8rem', height: '1.8rem', fontSize: '1rem' }}
 				/>
+
 				<Tooltip {...tooltip} className="panel__themebutton__tooltip">
 					{isDarkTheme ? 'Using Night theme' : 'Using Day theme'}
 				</Tooltip>
 			</div>
 			<div className="panel__menubutton">
-				<AppDropDown username="Admin"></AppDropDown>
+				<AppDropDown
+					username={
+						authorization
+							? authorization.displayName || authorization.email || 'Admin'
+							: 'Admin'
+					}
+				></AppDropDown>
 			</div>
 		</TopPanelThemed>
 	);
