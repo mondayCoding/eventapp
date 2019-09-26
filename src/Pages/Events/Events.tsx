@@ -4,7 +4,7 @@ import * as routes from '../../Constants/Routes';
 import styled from '../../Theme/theme';
 import { useEvents } from '../../Queries/useEvents';
 import { EventTag, EventTagType } from '../../Constants/EventTags';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';
@@ -16,6 +16,7 @@ import { StatCard } from '../Dashboard/StatusCard';
 import { Doughnut } from 'react-chartjs-2';
 import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
+import { EventAttendanceGraph } from '../Dashboard/EventAttendanceGraph';
 
 export const Events = () => {
 	useDocumentTitle('Tapahtuma');
@@ -62,8 +63,7 @@ export const Events = () => {
 				</div>
 				<div className="col-lg-8">
 					<CardWrapper>
-						<h2>TODO:</h2>
-						<h4>Tähän etusivu dashin tapahtuma graphi</h4>
+						<EventAttendanceGraph></EventAttendanceGraph>
 					</CardWrapper>
 				</div>
 			</div>

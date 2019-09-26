@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Heading } from '../../Components/Text/Heading';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { IEvent } from '../../MockData/MockEvents';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { SelectField, SelectFieldBase } from '../../Components/Select/Select';

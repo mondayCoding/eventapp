@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import * as routes from '../../Constants/Routes';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';

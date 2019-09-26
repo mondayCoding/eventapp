@@ -1,15 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import * as routes from '../../Constants/Routes';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
-import { BadgeTag } from '../Dashboard/BadgeTag';
-import { IEvent } from '../../MockData/MockEvents';
+
 import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
-import { Link } from 'react-router-dom';
+import { TEXTEDITOR } from '../Dashboard/EDITOR';
+import { TEXTEDITOR2 } from '../Dashboard/EDITOR2';
+import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
+import { TEXTEDITOR3 } from '../Dashboard/EDITOR3';
 
 export const SendEmail = () => {
 	useDocumentTitle('Email');
@@ -30,6 +32,16 @@ export const SendEmail = () => {
 				<li></li>
 				<li></li>
 			</ul> */}
+
+			<TEXTEDITOR></TEXTEDITOR>
+
+			<br></br>
+
+			<TEXTEDITOR2></TEXTEDITOR2>
+
+			<br></br>
+
+			<TEXTEDITOR3></TEXTEDITOR3>
 		</div>
 	);
 };

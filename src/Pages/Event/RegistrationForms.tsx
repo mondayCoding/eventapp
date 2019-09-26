@@ -3,7 +3,7 @@ import { IEvent } from '../../MockData/MockEvents';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../Dashboard/StatusCard';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import { CustomerItem } from '../Customers/Customers';
 import ReactTimeago from 'react-timeago';
 import * as routes from '../../Constants/Routes';

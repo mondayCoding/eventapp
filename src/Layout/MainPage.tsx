@@ -2,10 +2,7 @@ import React, { useRef, FC, MutableRefObject } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 import { Content, Main } from '../AppStyles';
 import { Events } from '../Pages/Events/Events';
-import { AddCollectible } from '../Pages/AddCollectible/AddCollectible';
 import { Event } from '../Pages/Event/Event';
-import { MyCollectionPage } from '../Pages/MyCollection/MyCollection';
-import { MyWishlistPage } from '../Pages/Wishlist/Wishlist';
 import { DashBoard } from '../Pages/Dashboard/Dashboard';
 import { TopPanel } from './TopPanel';
 import * as routes from '../Constants/Routes';
@@ -42,11 +39,6 @@ export const MainPage = () => {
 					<Route path={routes.signIn.path} component={SignInPage} />
 					<Route path={routes.signUp.path} component={SignUpPage} />
 					<Route path={routes.signOut.path} component={SignOutPage} />
-
-					<Route exact path={routes.createNewEvent.path} component={AddCollectible} />
-
-					<Route exact path={routes.myCollection.path} component={MyCollectionPage} />
-					<Route exact path={routes.myWishlist.path} component={MyWishlistPage} />
 					{/* <Redirect to={routes.dashboard.path} /> */}
 				</Switch>
 			</Main>

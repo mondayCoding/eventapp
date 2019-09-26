@@ -30,13 +30,6 @@ export const event: routeConfig = {
 	description: 'kuvaus pitkä ja tosi'
 };
 
-export const createNewEvent: routeConfig = {
-	path: '/addEvent',
-	icon: Icons.plus,
-	text: 'Luo uusi',
-	description: 'kuvaus pitkä ja tosi'
-};
-
 export const customers: routeConfig = {
 	path: '/customers',
 	icon: Icons.users,
@@ -60,24 +53,10 @@ export const registrationform: routeConfig = {
 	description: 'kuvaus pitkä ja tosi'
 };
 
-export const myCollection: routeConfig = {
-	path: '/myCollection',
-	icon: Icons.list,
-	text: 'Collected',
-	description: 'kuvaus pitkä ja tosi'
-};
-
 export const sendEmail: routeConfig = {
 	path: '/sendemail',
 	icon: Icons.envelope,
 	text: 'Email',
-	description: 'kuvaus pitkä ja tosi'
-};
-
-export const myWishlist: routeConfig = {
-	path: '/wishlist',
-	icon: Icons.star,
-	text: 'Wishlist',
 	description: 'kuvaus pitkä ja tosi'
 };
 

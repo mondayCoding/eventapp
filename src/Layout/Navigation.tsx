@@ -29,15 +29,12 @@ const Links: FC = () => (
 		<Link route={routes.sendEmail} />
 
 		<div className="navigation__group-title">Non-routable</div>
+		<Link route={routes.settings} />
+
+		<div className="navigation__group-title">Non-routable</div>
 		<Link route={routes.signIn} />
 		<Link route={routes.signUp} />
 		<Link route={routes.signOut} />
-		<Link route={routes.settings} />
-		<Link route={routes.createNewEvent} />
-
-		<div className="navigation__group-title">Poistuvat</div>
-		<Link route={routes.myCollection} />
-		<Link route={routes.myWishlist} />
 	</>
 );
 

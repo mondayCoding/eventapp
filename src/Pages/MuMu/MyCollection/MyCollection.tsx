@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Heading } from '../../Components/Text/Heading';
-import { AppContext } from '../../App';
-import styled from '../../Theme/theme';
-import { Limiter } from '../../Components/Utility/ContentLimiter/Limiter';
+import { Heading } from '../../../Components/Text/Heading';
+import { AppContext } from '../../../App';
+import styled from '../../../Theme/theme';
+import { Limiter } from '../../../Components/Utility/ContentLimiter/Limiter';
 
 import ReactTable from 'react-table';
+import { CardWrapper } from '../../Dashboard/CardWrapper';
 
 export const MyCollectionPage = () => {
 	const { collection, collected } = useContext(AppContext);
@@ -47,19 +48,6 @@ export const MyCollectionPage = () => {
 		</div>
 	);
 };
-
-export const CardWrapper = styled.div`
-	padding: 1rem;
-	border-radius: ${(p) => p.theme.global_border_radius};
-	background: ${(p) => p.theme.card_background_color};
-	box-shadow: ${(p) => p.theme.shadow.card};
-	color: ${(p) => p.theme.text_color};
-	margin-bottom: 1rem;
-
-	& + & {
-		margin-top: 1.5rem;
-	}
-`;
 
 const ItemRow = styled.div`
 	display: flex;

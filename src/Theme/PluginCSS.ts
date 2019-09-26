@@ -355,9 +355,9 @@ export const ReactSelect = css`
 
 export const ReactTableOverrideCSS = css`
 	.ReactTable {
-		border-radius: ${(p) => p.theme.global_border_radius};
+		/* border-radius: ${(p) => p.theme.global_border_radius}; */
 		font-size: ${(p) => p.theme.global_font_size};
-		box-shadow: ${({ theme }) => theme.global_shadow};
+		/* box-shadow: ${({ theme }) => theme.global_shadow}; */
 
 		.rt-thead .rt-th.-sort-desc,
 		.ReactTable .rt-thead .rt-td .-sort-desc {
@@ -483,7 +483,7 @@ export const ReactTableOriginalCSS = css`
 		-webkit-box-direction: normal;
 		-ms-flex-direction: column;
 		flex-direction: column;
-		border: 1px solid rgba(0, 0, 0, 0.1);
+		/* border: 1px solid rgba(0, 0, 0, 0.1); */
 	}
 	.ReactTable * {
 		box-sizing: border-box;

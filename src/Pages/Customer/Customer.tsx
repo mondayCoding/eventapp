@@ -11,7 +11,7 @@ import { BadgeTag } from '../Dashboard/BadgeTag';
 import { PageFooter } from '../../Layout/MainFooter';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
-import { CardWrapper } from '../MyCollection/MyCollection';
+import { CardWrapper } from '../Dashboard/CardWrapper';
 import * as routes from '../../Constants/Routes';
 
 interface routeprops {
@@ -37,6 +37,7 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 				<div className="card__body">
 					<div className="card__body__avatar">
 						<img
+							alt=""
 							className="card__body__avatar__img"
 							src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
 						/>
