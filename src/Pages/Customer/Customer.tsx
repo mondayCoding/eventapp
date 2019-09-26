@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, useHistory } from 'react-router';
 import styled from '../../Theme/theme';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { useCustomers } from '../../Queries/useCustomers';
-
 import { CustomerTagType, CustomerTag } from '../../Constants/CustomerTags';
 import ReactTimeago from 'react-timeago';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +11,8 @@ import { BadgeTag } from '../Dashboard/BadgeTag';
 import { PageFooter } from '../../Layout/MainFooter';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
+import { CardWrapper } from '../MyCollection/MyCollection';
+import * as routes from '../../Constants/Routes';
 
 interface routeprops {
 	id: string;
@@ -20,6 +21,7 @@ interface routeprops {
 export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 	useDocumentTitle('Asiakas');
 	const { customers } = useCustomers();
+	const history = useHistory();
 	const customer = customers.find((cust) => cust.id === match.params.id);
 
 	return (
@@ -43,21 +45,40 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 						<CustomerForm customer={customer!} />
 					</div>
 				</div>
-
-				<Heading text="Osallistumiset" isUnderlined></Heading>
-				<Participations
-					date={new Date(2017, 8, 11)}
-					name="Ensiapu koulutus 101"
-				></Participations>
-				<Participations
-					date={new Date(2018, 1, 19)}
-					name="Markkinoinnin perusteet"
-				></Participations>
-				<Participations
-					date={new Date(2019, 7, 24)}
-					name="Osastokoulutus 2019 - Markkinoinnin tehokurssi"
-				></Participations>
 			</CustomerCard>
+
+			<div className="row" style={{ marginTop: '1.5rem' }}>
+				<div className="col-lg-6">
+					<CardWrapper>
+						<Heading text="Osallistumiset" isUnderlined></Heading>
+						<Participations
+							date={new Date(2017, 8, 11)}
+							name="Ensiapu koulutus 101"
+							onClick={() => history.push(routes.registrationform.path + '/1')}
+						></Participations>
+						<Participations
+							date={new Date(2018, 1, 19)}
+							name="Markkinoinnin perusteet"
+							onClick={() => history.push(routes.registrationform.path + '/1')}
+						></Participations>
+						<Participations
+							date={new Date(2019, 7, 24)}
+							name="Osastokoulutus 2019 - Markkinoinnin tehokurssi"
+							onClick={() => history.push(routes.registrationform.path + '/1')}
+						></Participations>
+					</CardWrapper>
+				</div>
+				<div className="col-lg-6">
+					<CardWrapper>
+						<Heading text="Viestintä" isUnderlined></Heading>
+						<h2>TODO:</h2>
+						<h4>
+							Tähän lyhyt listaus asiakkaalle lähetetyistä viesteistä (10+ & tabbed)
+						</h4>
+					</CardWrapper>
+				</div>
+			</div>
+
 			<PageFooter showDates></PageFooter>
 		</>
 	);
@@ -67,11 +88,12 @@ interface IParticipationProps {
 	date: Date;
 	name: string;
 	icon?: React.ReactNode;
+	onClick?: () => void;
 	id?: string;
 }
 
 const Participations: FC<IParticipationProps> = (props) => (
-	<Participated>
+	<Participated onClick={props.onClick}>
 		<div className="icon">{Icons.check_circle}</div>
 		<div className="name">{props.name}</div>
 		<div className="date__ago">
@@ -89,6 +111,11 @@ const Participated = styled.div`
 	border-radius: 0.8rem;
 	border-bottom: 1px solid ${(p) => p.theme.border_color};
 	color: ${(p) => p.theme.text_color};
+	cursor: pointer;
+
+	&:hover {
+		color: ${(p) => p.theme.info_color};
+	}
 
 	.icon {
 		flex: 0 0 2rem;

@@ -14,6 +14,7 @@ import { BadgeTag } from '../Dashboard/BadgeTag';
 import { Pie, Doughnut } from 'react-chartjs-2';
 import { Badge } from '../Dashboard/Badge';
 import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
+import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 
 interface IRegistrationItem {
 	name: string;
@@ -80,18 +81,21 @@ export const RegistrationForms = () => {
 		<>
 			<div className="row">
 				<div className="col-lg-4">
-					<StatCard
-						value={'3'}
-						icon={Icons.clipboard_list}
-						text="Avoinna"
-						description="Avoimia lomakkeita tällä hetkellä"
-					></StatCard>
-					<StatCard
-						value={'5'}
-						icon={<span style={{ color: 'lightsalmon' }}>{Icons.check_circle}</span>}
-						text="Loppuneita"
-						description="Loppuneita ilmoittautumisia"
-					></StatCard>
+					<MultiStatCard
+						stats={[
+							{
+								icon: Icons.clipboard_list,
+								text: 'Avoimia',
+								value: '3',
+								description: 'Avoimia lomakkeita tällä hetkellä'
+							},
+							{
+								text: 'Loppuneita',
+								value: '5',
+								description: 'Avoimia lomakkeita tällä hetkellä'
+							}
+						]}
+					></MultiStatCard>
 				</div>
 				<div className="col-lg-4">
 					<CardWrapper>
@@ -109,12 +113,7 @@ export const RegistrationForms = () => {
 			</div>
 
 			<CardWrapper>
-				<Heading
-					icon={Icons.calendar}
-					text="Avoimet"
-					// ingress="Täällä voit tarkastella ja muokata tapahtuman ilmoittautumislomakkeita ja niiden aikatauluja"
-					isUnderlined
-				></Heading>
+				<Heading icon={Icons.calendar} text="Avoimet" isUnderlined></Heading>
 
 				<ReactTable
 					data={registrationsList}
@@ -132,7 +131,9 @@ export const RegistrationForms = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={routes.customers.path}>{original.name}</Link>
+								<Link to={`${routes.registrationform.path}/${original.id}`}>
+									{original.name}
+								</Link>
 							)
 						},
 						{
@@ -171,10 +172,13 @@ export const RegistrationForms = () => {
 						}
 					]}
 				></ReactTable>
-			</CardWrapper>
 
-			<CardWrapper>
-				<Heading icon={Icons.calendar} text="Aukeavat" isUnderlined></Heading>
+				<Heading
+					icon={Icons.calendar}
+					text="Aukeavat"
+					isUnderlined
+					hasSpaceAbove
+				></Heading>
 
 				<ReactTable
 					data={registrationsList}
@@ -192,7 +196,9 @@ export const RegistrationForms = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={routes.customers.path}>{original.name}</Link>
+								<Link to={`${routes.registrationform.path}/${original.id}`}>
+									{original.name}
+								</Link>
 							)
 						},
 						{
@@ -211,10 +217,13 @@ export const RegistrationForms = () => {
 						}
 					]}
 				></ReactTable>
-			</CardWrapper>
 
-			<CardWrapper>
-				<Heading icon={Icons.calendar} text="Sulkeutuneet" isUnderlined></Heading>
+				<Heading
+					icon={Icons.calendar}
+					text="Sulkeutuneet"
+					isUnderlined
+					hasSpaceAbove
+				></Heading>
 
 				<ReactTable
 					data={registrationsList}
@@ -232,7 +241,9 @@ export const RegistrationForms = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={routes.customers.path}>{original.name}</Link>
+								<Link to={`${routes.registrationform.path}/${original.id}`}>
+									{original.name}
+								</Link>
 							)
 						},
 

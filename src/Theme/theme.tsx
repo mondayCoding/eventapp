@@ -27,10 +27,10 @@ const DefaultTheme = {
 	input_background: '#f9f9f9',
 
 	// Validation/Notification colors
-	error_color: '#a94442',
-	warning_color: '#bb8d0e',
-	success_color: '#16a30e',
-	info_color: '#38c',
+	error_color: '#ac4d4d',
+	warning_color: '#ce9224',
+	success_color: '#50b04b',
+	info_color: '#4a70ac',
 
 	// Neutral colors
 	text_color: '#222222',
@@ -103,10 +103,10 @@ const DarkTheme: typeof DefaultTheme = {
 	input_background: '#0000002e',
 
 	// Validation/Notification colors
-	error_color: '#a94442',
-	warning_color: '#bb8d0e',
-	success_color: '#16a30e',
-	info_color: '#38c',
+	error_color: '#ac4d4d',
+	warning_color: '#ce9224',
+	success_color: '#50b04b',
+	info_color: '#4a70ac',
 
 	// Neutral colors
 	text_color: '#dadada',

@@ -9,7 +9,8 @@ import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
-import { SelectField } from 'library';
+import { SelectField } from '../../Components/Select/Select';
+import { CheckBoxField } from '../../Components/CheckBox/CheckBox';
 
 export const UserSettings = () => {
 	useDocumentTitle('Luo tili');
@@ -48,6 +49,28 @@ const UserSettingsForm = () => {
 						}
 					]}
 				></SelectField>
+				<SelectField
+					label="Etusivu"
+					name="pageAfterLogin"
+					options={[
+						{
+							label: 'Dash',
+							value: 1
+						},
+						{
+							label: 'Tapahtumavalikko',
+							value: 2
+						},
+						{
+							label: 'Asiakasvalikko',
+							value: 2
+						}
+					]}
+				></SelectField>
+				<span>Valitse mikä sivu avataan kirjautumisen jälkeen </span>
+				<CheckBoxField label="Perunut" name="nom"></CheckBoxField>
+				<CheckBoxField label="Pääkäyttäjä" name="nom"></CheckBoxField>
+				<CheckBoxField label="Asiantuntija" name="nom"></CheckBoxField>
 			</>
 		</Formik>
 	);

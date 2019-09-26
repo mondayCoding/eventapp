@@ -68,7 +68,8 @@ const FilterInput = styled.input`
 	display: block;
 	width: 100%;
 	max-width: 20rem;
-	border: 1px solid lightgray;
+	border: 1px solid ${(p) => p.theme.border_color};
+	color: ${(p) => p.theme.text_color};
 	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;

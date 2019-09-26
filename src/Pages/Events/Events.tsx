@@ -15,6 +15,7 @@ import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { StatCard } from '../Dashboard/StatusCard';
 import { Doughnut } from 'react-chartjs-2';
 import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
+import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 
 export const Events = () => {
 	useDocumentTitle('Tapahtuma');
@@ -36,6 +37,36 @@ export const Events = () => {
 
 	return (
 		<div>
+			<div className="row">
+				<div className="col-lg-4">
+					<MultiStatCard
+						stats={[
+							{
+								text: 'Avoinna',
+								value: '3',
+								description: 'Avoimia lomakkeita tällä hetkellä',
+								icon: Icons.clipboard_list
+							},
+							{
+								text: 'Loppuneita',
+								value: '23',
+								description: 'Loppuneita ilmoittautumisia'
+							},
+							{
+								text: 'Avautuvia',
+								value: '6',
+								description: 'Aukeamista odottavia lomakkeita'
+							}
+						]}
+					></MultiStatCard>
+				</div>
+				<div className="col-lg-8">
+					<CardWrapper>
+						<h2>TODO:</h2>
+						<h4>Tähän etusivu dashin tapahtuma graphi</h4>
+					</CardWrapper>
+				</div>
+			</div>
 			<CardWrapper>
 				<Heading text="Tapahtumat" isUnderlined />
 
@@ -64,36 +95,6 @@ export const Events = () => {
 					</>
 				))}
 			</CardWrapper>
-
-			<div className="row">
-				<div className="col-lg-4">
-					<StatCard
-						value={'3'}
-						icon={Icons.clipboard_list}
-						text="Avoinna"
-						description="Avoimia lomakkeita tällä hetkellä"
-					></StatCard>
-					<StatCard
-						value={'5'}
-						icon={<span style={{ color: 'lightsalmon' }}>{Icons.check_circle}</span>}
-						text="Loppuneita"
-						description="Loppuneita ilmoittautumisia"
-					></StatCard>
-				</div>
-				<div className="col-lg-4">
-					<CardWrapper>
-						<Doughnut data={MockDataEventParticipation}></Doughnut>
-					</CardWrapper>
-				</div>
-				<div className="col-lg-4">
-					<StatCard
-						value={'6'}
-						icon={<span style={{ color: 'lightseagreen' }}>{Icons.info_circle}</span>}
-						text="Avautuvia"
-						description="Aukeamista odottavia lomakkeita"
-					></StatCard>
-				</div>
-			</div>
 		</div>
 	);
 };
@@ -102,7 +103,8 @@ const FilterInput = styled.input`
 	display: block;
 	width: 100%;
 	max-width: 20rem;
-	border: 1px solid lightgray;
+	border: 1px solid ${(p) => p.theme.border_color};
+	color: ${(p) => p.theme.text_color};
 	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;

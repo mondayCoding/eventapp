@@ -298,7 +298,60 @@ export const ReactSelect = css`
 			border-color: ${(p) => p.theme.error_color};
 		}
 	}
+	/* TODO: remove extra styles */
+	/* **************************************************** */
+	/* PLUGIN | REACT-SELECT */
+	/* **************************************************** */
+
+	.react-select {
+		min-width: 25%;
+		cursor: pointer;
+
+		.react-select__control {
+			.reactselect__value-container,
+			.react-select__value-container--has-value {
+				color: ${({ theme }) => theme.text_color};
+				padding: 0.1rem;
+
+				.react-select__single-value {
+					color: ${({ theme }) => theme.text_color} !important;
+				}
+			}
+
+			.reactselect__indicators {
+				color: ${({ theme }) => theme.text_color};
+				padding: 0.2rem;
+			}
+		}
+
+		.react-select__control--is-focused {
+			border-color: ${({ theme }) => theme.primary_color};
+		}
+
+		.react-select__menu {
+			background-color: ${({ theme }) => theme.body_background_color};
+
+			.react-select__menu-list {
+				.react-select__option:hover {
+					background: ${({ theme }) => theme.primary_color};
+				}
+
+				.react-select__option--is-focused {
+					background: ${({ theme }) => theme.primary_color};
+				}
+
+				.react-select__option--is-selected {
+					background: ${({ theme }) =>
+						mix(0.5, theme.primary_color, theme.secondary_color)};
+				}
+			}
+		}
+	}
 `;
+
+/* **************************************************** */
+/* PLUGIN | REACT-TABLE */
+/* **************************************************** */
 
 export const ReactTableOverrideCSS = css`
 	.ReactTable {
@@ -367,62 +420,6 @@ export const ReactTableOverrideCSS = css`
 
 				.rt-td {
 					padding: 0.3rem;
-				}
-			}
-		}
-	}
-
-	/* **************************************************** */
-	/* PLUGIN | REACT-TABLE */
-	/* **************************************************** */
-
-	.ReactTable {
-	}
-
-	/* **************************************************** */
-	/* PLUGIN | REACT-SELECT */
-	/* **************************************************** */
-
-	.react-select {
-		min-width: 25%;
-		cursor: pointer;
-
-		.react-select__control {
-			.reactselect__value-container,
-			.react-select__value-container--has-value {
-				color: ${({ theme }) => theme.text_color};
-				padding: 0.1rem;
-
-				.react-select__single-value {
-					color: ${({ theme }) => theme.text_color} !important;
-				}
-			}
-
-			.reactselect__indicators {
-				color: ${({ theme }) => theme.text_color};
-				padding: 0.2rem;
-			}
-		}
-
-		.react-select__control--is-focused {
-			border-color: ${({ theme }) => theme.primary_color};
-		}
-
-		.react-select__menu {
-			background-color: ${({ theme }) => theme.body_background_color};
-
-			.react-select__menu-list {
-				.react-select__option:hover {
-					background: ${({ theme }) => theme.primary_color};
-				}
-
-				.react-select__option--is-focused {
-					background: ${({ theme }) => theme.primary_color};
-				}
-
-				.react-select__option--is-selected {
-					background: ${({ theme }) =>
-						mix(0.5, theme.primary_color, theme.secondary_color)};
 				}
 			}
 		}
