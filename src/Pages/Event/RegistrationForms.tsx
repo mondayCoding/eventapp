@@ -6,7 +6,7 @@ import { StatCard } from '../Dashboard/StatusCard';
 import { CardWrapper } from '../Dashboard/CardWrapper';
 import { CustomerItem } from '../Customers/Customers';
 import ReactTimeago from 'react-timeago';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import styled from '../../Theme/theme';

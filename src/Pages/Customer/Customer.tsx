@@ -12,7 +12,7 @@ import { PageFooter } from '../../Layout/MainFooter';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
 import { CardWrapper } from '../Dashboard/CardWrapper';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 
 interface routeprops {
 	id: string;

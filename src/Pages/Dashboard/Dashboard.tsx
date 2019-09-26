@@ -9,7 +9,7 @@ import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { MockRegistratinData } from '../../MockData/MockEvents';
 import { MultiStatCard } from './MultiStatusCard';
 import { useHistory } from 'react-router';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import { EventAttendanceGraph } from './EventAttendanceGraph';
 import { PerformanceGraph } from './PerformanceGraph';
 

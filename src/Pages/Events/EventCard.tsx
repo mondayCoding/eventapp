@@ -4,7 +4,7 @@ import styled, { device } from '../../Theme/theme';
 import { AppContext } from '../../App';
 import { Button } from '../../Components/Button/Button';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 
 interface ItemCardProps {
 	item: ICollectionItem;

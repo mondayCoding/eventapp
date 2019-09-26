@@ -64,16 +64,16 @@ export const LoginWrapper = styled.div`
 		&__buttonfooter {
 			margin-top: 2.5rem;
 			display: flex;
-			justify-content: space-between;
+			flex-direction: column;
 			align-items: center;
 
 			&__btn {
-				flex: 0 0 50%;
+				flex: 1 1 auto;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				height: 2rem;
-				border-radius: 0.5rem 0 0 0.5rem;
+				border-radius: 0.5rem;
 				padding: 0.5rem 1rem;
 				transition: background-color 0.2s ease-in-out;
 				background: ${(p) => p.theme.primary_color};
@@ -94,14 +94,11 @@ export const LoginWrapper = styled.div`
 				justify-content: center;
 				align-items: center;
 				height: 2rem;
-				border-radius: 0 0.5rem 0.5rem 0;
 				text-decoration: none;
 				padding: 0.5rem 1rem;
 				transition: background-color 0.2s ease-in-out;
-				background: ${(p) => p.theme.link_color};
 				text-align: center;
-				border: 2px solid transparent;
-				color: #fff;
+				color: ${(p) => p.theme.link_color};
 				line-height: 1;
 				font-weight: 500;
 

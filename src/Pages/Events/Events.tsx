@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/Routes';
+import * as routes from '../../Constants/Routes_MODIF';
 import styled from '../../Theme/theme';
 import { useEvents } from '../../Queries/useEvents';
 import { EventTag, EventTagType } from '../../Constants/EventTags';

@@ -5,7 +5,7 @@ import { Events } from '../Pages/Events/Events';
 import { Event } from '../Pages/Event/Event';
 import { DashBoard } from '../Pages/Dashboard/Dashboard';
 import { TopPanel } from './TopPanel';
-import * as routes from '../Constants/Routes';
+import * as routes from '../Constants/Routes_MODIF';
 import { Customers } from '../Pages/Customers/Customers';
 import { Customer } from '../Pages/Customer/Customer';
 import { RegistrationForm } from '../Pages/RegistrationForm/RegistrationForm';
