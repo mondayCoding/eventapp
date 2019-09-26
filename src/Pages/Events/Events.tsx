@@ -79,7 +79,7 @@ export const Events = () => {
 							<span className="event__favourite">
 								<IconButton
 									icon={favourites.includes(event.id) ? Icons.star_filled : Icons.star}
-									onClick={(e) => {
+									onClick={(e: any) => {
 										toggleFavourite(event.id);
 										e.preventDefault();
 									}}
