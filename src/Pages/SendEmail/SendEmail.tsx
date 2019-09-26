@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import * as routes from '../../Constants/Routes_MODIF';
 import { CardWrapper } from '../Dashboard/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
-
 import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
@@ -11,6 +9,7 @@ import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { TEXTEDITOR } from '../Dashboard/EDITOR';
 import { TEXTEDITOR2 } from '../Dashboard/EDITOR2';
 import { TEXTEDITOR3 } from '../Dashboard/EDITOR3';
+import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 
 export const SendEmail = () => {
 	useDocumentTitle('Email');
@@ -32,15 +31,7 @@ export const SendEmail = () => {
 				<li></li>
 			</ul> */}
 
-			<TEXTEDITOR></TEXTEDITOR>
-
 			<br></br>
-
-			<TEXTEDITOR2></TEXTEDITOR2>
-
-			<br></br>
-
-			<TEXTEDITOR3></TEXTEDITOR3>
 		</div>
 	);
 };
@@ -65,6 +56,12 @@ const EmailForm: FC<IEmailForProps> = ({ sender = '' }) => {
 					label="sisältö"
 					placeholder="Content"
 				></TextAreaField>
+				<FieldContainer label="Viesti">
+					<div style={{ flex: '1 1 auto' }}>
+						<TEXTEDITOR2></TEXTEDITOR2>
+						<TEXTEDITOR></TEXTEDITOR>
+					</div>
+				</FieldContainer>
 			</>
 		</Formik>
 	);

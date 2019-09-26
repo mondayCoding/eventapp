@@ -53,7 +53,8 @@ export const SignInPage = () => {
 							<TextFieldBase
 								name="email"
 								className="loginbox__inputs__input"
-								placeholder="Käyttäjä"
+								placeholder="Email"
+								autoFocus={true}
 							></TextFieldBase>
 							<TextFieldBase
 								name="password"

@@ -1,5 +1,4 @@
 import React, { FC, useContext } from 'react';
-// import { Button } from 'reakit/Button';
 import { useMenuState, Menu, MenuItem, MenuDisclosure, MenuSeparator } from 'reakit/Menu';
 import { Tooltip, TooltipReference, useTooltipState } from 'reakit/Tooltip';
 import Icons from '../Components/Icons/icons';
@@ -7,8 +6,9 @@ import { IconButton } from '../Components/Button/IconButton';
 import { AppContext } from '../App';
 import { Button } from '../Components/Button/Button';
 import { TopPanelThemed } from './Styles/TopPanel';
-
 import { RoutableAutoSuggest } from './AutoSuggestSeach';
+import { useHistory } from 'react-router';
+import * as routes from '../Constants/Routes_MODIF';
 
 export const TopPanel = () => {
 	const { toggleTheme, isDarkTheme, authorization } = useContext(AppContext);
@@ -46,6 +46,7 @@ export const TopPanel = () => {
 
 const AppDropDown: FC<{ username: string }> = (props) => {
 	const menu = useMenuState();
+	const history = useHistory();
 
 	return (
 		<>
@@ -58,7 +59,7 @@ const AppDropDown: FC<{ username: string }> = (props) => {
 			<Menu {...menu} aria-label="Settings" className="panel__menubutton__menu">
 				<MenuItem
 					{...menu}
-					onClick={() => alert('HELLO')}
+					onClick={() => history.push(routes.settings.path)}
 					className="panel__menubutton__menuitem"
 				>
 					<span className="panel__icon-and-text">{Icons.cog} Asetukset</span>
@@ -76,7 +77,7 @@ const AppDropDown: FC<{ username: string }> = (props) => {
 
 				<MenuItem
 					{...menu}
-					onClick={() => alert('SIGNING OUT')}
+					onClick={() => history.push(routes.signOut.path)}
 					className="panel__menubutton__menuitem"
 				>
 					<span className="panel__icon-and-text">{Icons.power_off} Kirjaudu ulos</span>

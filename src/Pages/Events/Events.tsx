@@ -14,6 +14,7 @@ import { IconButton } from '../../Components/Button/IconButton';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 import { EventAttendanceGraph } from '../Dashboard/EventAttendanceGraph';
+import ReactTable from 'react-table';
 
 export const Events = () => {
 	useDocumentTitle('Tapahtuma');
@@ -91,6 +92,23 @@ export const Events = () => {
 						</EventListItem>
 					</>
 				))}
+				<ReactTable
+					data={createFilter(events)}
+					columns={[
+						{
+							Header: 'Nimi',
+							accessor: 'name'
+						},
+						{
+							Header: 'Kilvet',
+							accessor: 'tags'
+						},
+						{
+							Header: 'Paikka',
+							accessor: 'location'
+						}
+					]}
+				></ReactTable>
 			</CardWrapper>
 		</div>
 	);
