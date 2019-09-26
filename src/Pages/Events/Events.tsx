@@ -12,9 +12,6 @@ import Icons from '../../Components/Icons/icons';
 import { useFavouriteEvents } from '../../Data/useFavouriteEvents';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
-import { StatCard } from '../Dashboard/StatusCard';
-import { Doughnut } from 'react-chartjs-2';
-import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 import { EventAttendanceGraph } from '../Dashboard/EventAttendanceGraph';
 

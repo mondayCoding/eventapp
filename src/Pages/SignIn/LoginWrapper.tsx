@@ -72,9 +72,10 @@ export const LoginWrapper = styled.div`
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				height: 2rem;
-				border-radius: 0.5rem;
-				padding: 0.5rem 1rem;
+				height: 2.75rem;
+				font-size: 1.1rem;
+				border-radius: 1.5rem;
+				padding: 0.5rem 25%;
 				transition: background-color 0.2s ease-in-out;
 				background: ${(p) => p.theme.primary_color};
 				text-align: center;
@@ -86,14 +87,21 @@ export const LoginWrapper = styled.div`
 				&:hover {
 					background: ${(p) => mix(0.2, '#000', p.theme.primary_color)};
 				}
+
+				&:focus {
+					outline: none;
+				}
 			}
 
 			&__linkbtn {
-				flex: 0 0 50%;
+				justify-self: center;
+				margin-top: 1rem;
+				width: auto;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				height: 2rem;
+				border-radius: 1.5rem;
 				text-decoration: none;
 				padding: 0.5rem 1rem;
 				transition: background-color 0.2s ease-in-out;
@@ -104,6 +112,10 @@ export const LoginWrapper = styled.div`
 
 				&:hover {
 					background: ${(p) => mix(0.2, '#000', p.theme.link_color)};
+				}
+				&:focus {
+					outline: none;
+					color: #fff;
 				}
 			}
 		}

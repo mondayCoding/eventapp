@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
 import { CardWrapper } from '../Dashboard/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
@@ -10,7 +10,6 @@ import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { TEXTEDITOR } from '../Dashboard/EDITOR';
 import { TEXTEDITOR2 } from '../Dashboard/EDITOR2';
-import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import { TEXTEDITOR3 } from '../Dashboard/EDITOR3';
 
 export const SendEmail = () => {
@@ -46,14 +45,19 @@ export const SendEmail = () => {
 	);
 };
 
-const EmailForm = () => {
+interface IEmailForProps {
+	sender?: string;
+}
+
+const EmailForm: FC<IEmailForProps> = ({ sender = '' }) => {
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={{ ...initialValues, sender }}
 			onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
 		>
 			<>
 				<TextField name="sender" label="Lähettäjä" placeholder="From"></TextField>
+
 				<TextField name="receiver" label="Vastaanottaja" placeholder="To"></TextField>
 				<TextField name="title" label="Viestin otsikko" placeholder="Subject"></TextField>
 				<TextAreaField
@@ -68,7 +72,7 @@ const EmailForm = () => {
 
 const initialValues = {
 	sender: '',
+	receiver: '',
 	title: '',
-	content: '',
-	receiver: ''
+	content: ''
 };

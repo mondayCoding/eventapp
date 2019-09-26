@@ -13,6 +13,7 @@ import Icons from '../../Components/Icons/icons';
 import { auth } from '../../Firebase/index';
 import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 import Notify from '../../Utils/Notification';
+import * as Yup from 'yup';
 
 export const SignInPage = () => {
 	useDocumentTitle('Kirjaudu sisään');
@@ -20,7 +21,7 @@ export const SignInPage = () => {
 
 	const handleSignIn = (values: form, actions: FormikActions<form>) =>
 		auth
-			.signInWithEmailAndPassword(values.username, values.password)
+			.signInWithEmailAndPassword(values.email, values.password)
 			.then((authe: any) => {
 				// history.push(routes.LANDING);
 				// console.log(authe);
@@ -34,7 +35,11 @@ export const SignInPage = () => {
 
 	return (
 		<LoginWrapper>
-			<Formik initialValues={initialValues} onSubmit={handleSignIn}>
+			<Formik
+				initialValues={initialValues}
+				onSubmit={handleSignIn}
+				validationSchema={validationSchema}
+			>
 				<section className="loginbox">
 					<Form>
 						<h2 className="loginbox__heading">
@@ -46,7 +51,7 @@ export const SignInPage = () => {
 
 						<div className="loginbox__inputs">
 							<TextFieldBase
-								name="username"
+								name="email"
 								className="loginbox__inputs__input"
 								placeholder="Käyttäjä"
 							></TextFieldBase>
@@ -66,7 +71,7 @@ export const SignInPage = () => {
 								type="submit"
 							></Button>
 							<Link to={routes.signUp.path} className="loginbox__buttonfooter__linkbtn">
-								{Icons.plus} Tee tili
+								Luo uusi tili
 							</Link>
 						</div>
 
@@ -86,6 +91,13 @@ export const SignInPage = () => {
 type form = typeof initialValues;
 
 const initialValues = {
-	username: '',
+	email: '',
 	password: ''
 };
+
+const validationSchema = Yup.object().shape({
+	email: Yup.string()
+		.email()
+		.required(),
+	password: Yup.string().required()
+});

@@ -22,7 +22,7 @@ export const SignUpPage = () => {
 
 	const handleSignUp = (values: form, actions: FormikActions<form>) =>
 		auth
-			.createUserWithEmailAndPassword(values.username, values.password)
+			.createUserWithEmailAndPassword(values.email, values.password)
 			.then(() => {
 				Notify.success('Kirjauduit sisään');
 			})
@@ -49,7 +49,7 @@ export const SignUpPage = () => {
 						</span>
 
 						<TextFieldBase
-							name="username"
+							name="email"
 							className="loginbox__inputs__input"
 							placeholder="Käyttäjänimi"
 						></TextFieldBase>
@@ -94,7 +94,9 @@ export const SignUpPage = () => {
 };
 
 const validationSchema = Yup.object().shape({
-	username: Yup.string().required(),
+	email: Yup.string()
+		.email()
+		.required(),
 	password: Yup.string().required(),
 	passwordRepeat: Yup.string().test('password', 'Passwords must match', function(value) {
 		return this.parent.password === value;
@@ -104,7 +106,7 @@ const validationSchema = Yup.object().shape({
 type form = typeof initialValues;
 
 const initialValues = {
-	username: '',
+	email: '',
 	password: '',
 	passwordRepeat: ''
 };
