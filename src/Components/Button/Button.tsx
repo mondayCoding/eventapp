@@ -10,22 +10,15 @@ export interface IProps
 	onClick?(x: any): void;
 }
 
-const Button: React.SFC<IProps> = ({
-	text,
-	icon,
-	iconAlt,
-	type = 'button',
-	children,
-	...rest
-}) => {
-	return (
-		<ThemedButton type={type} data-role="none" {...rest}>
-			{icon && <span>{icon}</span>}
-			{text && <span>{text}</span>}
-			{children}
-			{iconAlt && <span>{iconAlt}</span>}
-		</ThemedButton>
-	);
-};
-
-export { Button };
+export const Button = React.forwardRef(
+	({ text, icon, iconAlt, type = 'button', children, ...rest }: IProps, ref: any) => {
+		return (
+			<ThemedButton type={type} ref={ref} {...rest}>
+				{icon && <span>{icon}</span>}
+				{text && <span>{text}</span>}
+				{children}
+				{iconAlt && <span>{iconAlt}</span>}
+			</ThemedButton>
+		);
+	}
+);

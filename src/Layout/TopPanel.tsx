@@ -19,7 +19,6 @@ export const TopPanel = () => {
 			<RoutableAutoSuggest />
 
 			<div className="panel__themebutton">
-
 				<TooltipReference
 					{...tooltip}
 					as={IconButton}

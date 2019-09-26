@@ -14,7 +14,7 @@ export interface IProps
  */
 
 export const IconButton = React.forwardRef(
-	({ icon, children, ...rest }: any, ref: any) => {
+	({ icon, children, ...rest }: IProps, ref: any) => {
 		return (
 			<ThemedButton type="button" {...rest} ref={ref}>
 				{icon}
