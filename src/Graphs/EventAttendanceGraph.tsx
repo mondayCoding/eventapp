@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Heading } from '../../Components/Text/Heading';
+import { Heading } from '../Components/Text/Heading';
 import { Line, Bar } from 'react-chartjs-2';
-import { ThemeContext } from '../../Theme/theme';
-import { MockRegistratinData } from '../../MockData/MockEvents';
-import { Button } from '../../Components/Button/Button';
+import { ThemeContext } from '../Theme/theme';
+import { MockRegistratinData } from '../MockData/MockRegistrationData';
+import { Button } from '../Components/Button/Button';
 
 export const EventAttendanceGraph = () => {
 	const theme = useContext(ThemeContext);

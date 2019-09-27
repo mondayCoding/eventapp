@@ -13,7 +13,7 @@ import { useFavouriteEvents } from '../../Data/useFavouriteEvents';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
-import { EventAttendanceGraph } from '../Dashboard/EventAttendanceGraph';
+import { EventAttendanceGraph } from '../../Graphs/EventAttendanceGraph';
 import ReactTable from 'react-table';
 import { Badge } from '../Dashboard/Badge';
 

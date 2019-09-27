@@ -7,6 +7,7 @@ import TimeAgo from 'react-timeago';
 import { Link } from 'react-router-dom';
 import * as routes from '../../Constants/Routes_MODIF';
 import Icons from '../Icons/icons';
+import { transparentize } from 'polished';
 
 export const FeedCustomers = () => {
 	const { customerEvents } = useCustomerEvents();
@@ -51,7 +52,7 @@ export const FeedItem = styled(Link)`
 	text-decoration: none;
 
 	& + & {
-		border-top: 1px solid #ccc;
+		border-top: 1px solid ${(p) => transparentize(0.33, p.theme.border_color)};
 	}
 
 	&:hover {

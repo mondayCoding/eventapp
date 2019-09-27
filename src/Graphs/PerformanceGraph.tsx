@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Heading } from '../../Components/Text/Heading';
+import { Heading } from '../Components/Text/Heading';
 import { Line } from 'react-chartjs-2';
-import { ThemeContext } from '../../Theme/theme';
+import { ThemeContext } from '../Theme/theme';
 
 export const PerformanceGraph = () => {
 	const theme = useContext(ThemeContext);

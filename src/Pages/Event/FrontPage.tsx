@@ -5,7 +5,7 @@ import { IEvent } from '../../MockData/MockEvents';
 import { CardWrapper } from '../Dashboard/CardWrapper';
 import { EventTagType, EventTag } from '../../Constants/EventTags';
 import { BadgeTag } from '../Dashboard/BadgeTag';
-import { EventParticipationByRolesGraph } from '../../MockData/MockDataEventParticipation';
+import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 import styled from '../../Theme/theme';
 

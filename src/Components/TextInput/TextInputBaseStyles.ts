@@ -51,7 +51,7 @@ export const ThemedTextInputBase = styled.input`
 `;
 
 const errorCSS = css`
-	background-color: ${(p) => mix(0.8, 'white', p.theme.error_color)};
+	background-color: ${(p) => mix(0.075, p.theme.input_background, p.theme.error_color)};
 	border-color: ${(p) => p.theme.error_color} !important;
 
 	&:focus {

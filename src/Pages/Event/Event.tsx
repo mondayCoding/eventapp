@@ -11,6 +11,7 @@ import { CustomerLists } from './CustomerLists';
 import * as routes from '../../Constants/Routes_MODIF';
 import { PageFooter } from '../../Layout/MainFooter';
 import { CardWrapper } from '../Dashboard/CardWrapper';
+import { Budget } from './Budjet';
 
 export interface EventRouteProps {
 	id: string;
@@ -58,44 +59,28 @@ export const Event: FC<RouteComponentProps<EventRouteProps>> = ({ match }) => {
 				component={() => (
 					<>
 						<RegistrationForms></RegistrationForms>
-						<h2> Perusnäkymässä (kaikki lomakkeet) voi :</h2>
-						<div style={{ marginLeft: '1.25rem' }}>
-							<ol>
-								<li>Nähdä ilmoittautujajakauman (per lomakke)</li>
-								<li>nähdä saadut tulot kaikilta lomakkeilta</li>
-							</ol>
-						</div>
-						<h2> yksittäisellä lomakkeella voi:</h2>
-						<div style={{ marginLeft: '1.25rem' }}>
-							<ol>
-								<li>Nähdä ilmoittautuja jakauman (roolit)</li>
-								<li>Vertailla lomakkeen kautta ilmoittautuneiden vastauksia</li>
-								<li>nähdä saadut tulot lomakkeen kautta ilmoittautuneilta</li>
-								<li>nähdä ilmoittautumis-ajat</li>
-							</ol>
-						</div>
+						<CardWrapper>
+							<h2> Perusnäkymässä (kaikki lomakkeet) voi :</h2>
+							<div style={{ marginLeft: '1.25rem' }}>
+								<ol>
+									<li>Nähdä ilmoittautujajakauman (per lomakke)</li>
+									<li>nähdä saadut tulot kaikilta lomakkeilta</li>
+								</ol>
+							</div>
+							<h2> yksittäisellä lomakkeella voi:</h2>
+							<div style={{ marginLeft: '1.25rem' }}>
+								<ol>
+									<li>Nähdä ilmoittautuja jakauman (roolit)</li>
+									<li>Vertailla lomakkeen kautta ilmoittautuneiden vastauksia</li>
+									<li>nähdä saadut tulot lomakkeen kautta ilmoittautuneilta</li>
+									<li>nähdä ilmoittautumis-ajat</li>
+								</ol>
+							</div>
+						</CardWrapper>
 					</>
 				)}
 			/>
-			<Route
-				path="/event/:id/budjet"
-				component={() => (
-					<CardWrapper>
-						<h2>Budjetointi</h2>
-						<div style={{ marginLeft: '1.25rem' }}>
-							<ol>
-								<li>Menot (per item lista menoja)</li>
-								<li>
-									Tulot (toteutuneet saamingit) (ilmoittautumisen tulot + manuaaliset
-									lisäykset)
-								</li>
-								<li>saatavat(lähetetyt, mutta toteutumattomat laskut)</li>
-								<li>Kehityskäyrä</li>
-							</ol>
-						</div>
-					</CardWrapper>
-				)}
-			/>
+			<Route path="/event/:id/budjet" component={Budget} />
 			<Redirect to={currentPath + '/frontpage'} />
 
 			<PageFooter showDates></PageFooter>

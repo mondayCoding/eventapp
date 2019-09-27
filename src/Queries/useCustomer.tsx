@@ -8,7 +8,7 @@ export const useCustomer = (id?: string | number) => {
 		if (typeof id === 'number' || typeof id === 'string') {
 			setCustomer(MockCustomers.find((cust) => cust.id === id) || false);
 		}
-	}, []);
+	}, [id]);
 
 	return { customer };
 };

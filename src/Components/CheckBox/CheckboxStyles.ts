@@ -18,7 +18,8 @@ export const CheckBoxInput = styled.input`
 	left: -999rem;
 
 	&:focus + label {
-		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
+
 	}
 
 	&:disabled + label {
@@ -111,7 +112,8 @@ export const CheckBoxInputInlined = styled.input`
 	left: -999rem;
 
 	&:focus + label {
-		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
+
 	}
 
 	&:disabled + label {
@@ -157,7 +159,7 @@ export const CheckboxLabelInlined = styled.label`
 	transition: background-color 0.15s ease-in-out;
 
 	&:hover {
-		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+		box-shadow: 0 0 0 2px ${(p) => p.theme.link_color};
 	}
 
 	/* bg */
@@ -196,7 +198,7 @@ export const CheckBoxInputInlinedSmall = styled.input`
 	left: -999rem;
 
 	&:focus + label {
-		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
 	}
 
 	&:disabled + label {
@@ -245,7 +247,8 @@ export const InlineCheckboxSmall = styled.label`
 	border-radius: ${(p) => p.theme.global_border_radius};
 
 	&:hover {
-		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
+
 	}
 
 	/* bg */

@@ -9,7 +9,8 @@ import { RouterProps, RouteComponentProps } from 'react-router';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { StatCard } from '../Dashboard/StatusCard';
 import { Doughnut } from 'react-chartjs-2';
-import { EventParticipationByRolesGraph } from '../../MockData/MockDataEventParticipation';
+import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
+import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -26,33 +27,56 @@ export const RegistrationForm: FC<RouteComponentProps<RegistrationRouteProps>> =
 			<CardWrapper>
 				<Heading text="Ilmoittautumislomake" isUnderlined />
 				<div className="row">
-					<div className="col-lg-4">
-						<StatCard
-							value={'3'}
-							icon={Icons.clipboard_list}
-							text="Avoinna"
-							description="Avoimia lomakkeita tällä hetkellä"
-						></StatCard>
-						<StatCard
-							value={'5'}
-							icon={<span style={{ color: 'lightsalmon' }}>{Icons.check_circle}</span>}
-							text="Loppuneita"
-							description="Loppuneita ilmoittautumisia"
-						></StatCard>
-					</div>
-					<div className="col-lg-4">
-						<StatCard
-							value={'6'}
-							icon={<span style={{ color: 'lightseagreen' }}>{Icons.info_circle}</span>}
-							text="Avautuvia"
-							description="Aukeamista odottavia lomakkeita"
-						></StatCard>
+					<div className="col-lg-8">
+						<MultiStatCard
+							stats={[
+								{
+									text: 'Ilmoittauneita',
+									icon: Icons.users,
+									state: 'success',
+									value: '2 234'
+								},
+								{
+									text: 'Peruneita',
+									icon: Icons.users,
+									state: 'warning',
+									value: '2 234'
+								}
+							]}
+						></MultiStatCard>
 					</div>
 					<div className="col-lg-4">
 						<CardWrapper>
 							<EventParticipationByRolesGraph></EventParticipationByRolesGraph>>
 						</CardWrapper>
 					</div>
+				</div>
+				<h2> Kenttiä:</h2>
+
+				<div style={{ marginLeft: '1.25rem' }}>
+					<ol>
+						<li>nimi</li>
+						<li>linkin teksti</li>
+						<li>kuvaus</li>
+						<li>aukeaa</li>
+						<li>sulkeutuu</li>
+						<li>näkyvyys ()</li>
+						<li>kielet (1/2) </li>
+						<li>
+							<b>lomakkeella:</b>
+						</li>
+						<li>johdanto</li>
+						<li>Otsikko</li>
+						<li>Perustietolohkot (kentät mitkä) </li>
+						<li>rajoitteet ( mitkä)</li>
+						<li>tietosuojat ( mitkä)</li>
+						<li>tuotteet ( mitkä)</li>
+						<li>majoitukset ( mitkä)</li>
+						<li>luentosarjat ( mitkä)</li>
+						<li>Kysymyslohkot ( kysymykset)</li>
+						<li>laskutuestiedot ( kysymykset)</li>
+						<li>vahvistus ( millainen)</li>
+					</ol>
 				</div>
 				<h2>{match.params.id}</h2>
 				<h2>{match.params.id}</h2>

@@ -374,11 +374,11 @@ export const ReactTableOverrideCSS = css`
 			display: flex;
 			align-items: center;
       }
-      
+
       /* column head hover */
       .rt-th {
          transition: background-color .2s ease-in-out !important  ;
-         
+
          &:hover {
             background-color: ${(p) =>
 							p.theme.is_dark_theme
@@ -389,7 +389,7 @@ export const ReactTableOverrideCSS = css`
 
 		.rt-tbody {
          /* border-top: 0.1rem solid gray; */
-         
+
 
 			.rt-tr.row--selected {
 				background-color: ${(p) => mix(0.8, '#fff', p.theme.link_color)};
@@ -412,7 +412,7 @@ export const ReactTableOverrideCSS = css`
 					background-color: ${(p) =>
 						p.theme.is_dark_theme
 							? mix(0.09, '#fff', p.theme.card_background_color)
-							: mix(0.85, '#fff', p.theme.primary_color)};
+							: mix(0.75, '#fff', p.theme.primary_color)};
 				}
 
 				/* row bg odd */
@@ -420,7 +420,7 @@ export const ReactTableOverrideCSS = css`
 					background-color: ${(p) =>
 						p.theme.is_dark_theme
 							? mix(0.025, '#fff', p.theme.card_background_color)
-							: mix(0.95, '#fff', p.theme.primary_color)};
+							: mix(0.85, '#fff', p.theme.primary_color)};
 				}
 
 				/* row bg even */
@@ -434,7 +434,7 @@ export const ReactTableOverrideCSS = css`
 					border-bottom-left-radius: ${({ theme }) => theme.global_border_radius};
 					border-bottom-right-radius: ${({ theme }) => theme.global_border_radius};
 				}
-   
+
 
 				.rt-td {
 					padding: 0.3rem;

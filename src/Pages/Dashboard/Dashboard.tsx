@@ -1,47 +1,20 @@
-import React, { useContext } from 'react';
-import { Pie, Doughnut } from 'react-chartjs-2';
+import React from 'react';
 import { CardWrapper } from './CardWrapper';
 import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
-import styled, { ThemeContext } from '../../Theme/theme';
+import styled from '../../Theme/theme';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
-import { MockRegistratinData } from '../../MockData/MockEvents';
 import { MultiStatCard } from './MultiStatusCard';
 import { useHistory } from 'react-router';
 import * as routes from '../../Constants/Routes_MODIF';
-import { EventAttendanceGraph } from './EventAttendanceGraph';
-import { PerformanceGraph } from './PerformanceGraph';
+import { EventAttendanceGraph } from '../../Graphs/EventAttendanceGraph';
+import { PerformanceGraph } from '../../Graphs/PerformanceGraph';
+// import { ParticipationInEventsGraph } from '../../Graphs/ParticipationInEventsGraph';
 
 export const DashBoard = () => {
 	useDocumentTitle('Dash');
 	const history = useHistory();
-	const theme = useContext(ThemeContext);
-
-	const data = {
-		labels: [
-			MockRegistratinData[0][0].name,
-			MockRegistratinData[0][1].name,
-			MockRegistratinData[0][2].name
-		],
-		datasets: [
-			{
-				data: [300, 50, 100],
-				backgroundColor: [
-					theme.primary_color,
-					theme.secondary_color,
-					'rgba(75,192,192,1)'
-				],
-				hoverBackgroundColor: [
-					theme.primary_color,
-					theme.secondary_color,
-					'rgba(75,192,192,1)'
-				],
-				borderColor: theme.primary_color,
-				borderWidth: 0
-			}
-		]
-	};
 
 	return (
 		<>
@@ -118,18 +91,18 @@ export const DashBoard = () => {
 				<PerformanceGraph></PerformanceGraph>
 			</CardWrapper>
 
-			<div className="row">
+			{/* <div className="row">
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Doughnut data={data}></Doughnut>
+						<ParticipationInEventsGraph></ParticipationInEventsGraph>
 					</CardWrapper>
 				</div>
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Doughnut data={data}></Doughnut>
+						<ParticipationInEventsGraph></ParticipationInEventsGraph>
 					</CardWrapper>
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 };

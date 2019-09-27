@@ -4,7 +4,8 @@ import { Field, FieldProps, FastField } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
 import { ThemedTextInput } from './TextInputStyles';
 
-export type TextfieldProps = React.InputHTMLAttributes<HTMLInputElement> & IFieldContainerProps;
+export type TextfieldProps = React.InputHTMLAttributes<HTMLInputElement> &
+	IFieldContainerProps;
 
 export const TextField: FC<TextfieldProps> = ({
 	id,
@@ -20,7 +21,7 @@ export const TextField: FC<TextfieldProps> = ({
 	children,
 	...rest
 }) => (
-	<FastField
+	<Field
 		name={name}
 		render={({ field, form: { errors, touched } }: FieldProps) => (
 			<FieldContainer

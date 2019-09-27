@@ -8,70 +8,18 @@ import * as routes from '../../Constants/Routes_MODIF';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import styled from '../../Theme/theme';
-import { Doughnut } from 'react-chartjs-2';
 import { Badge } from '../Dashboard/Badge';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
-import { EventParticipationByRolesGraph } from '../../MockData/MockDataEventParticipation';
-
-interface IRegistrationItem {
-	name: string;
-	start: Date;
-	roles: roleType[];
-	end: Date;
-	id: number;
-}
+import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
+import {
+	IRegistrationForm,
+	MockRegistrationForms,
+	Role
+} from '../../MockData/MockRegistrationForms';
 
 interface RowOriginal {
-	original: IRegistrationItem;
+	original: IRegistrationForm;
 }
-
-enum roleType {
-	participant,
-	bossman,
-	lecturer,
-	showerman,
-	maid,
-	gerbil
-}
-const Role = {
-	[roleType.participant]: 'Osallistuja',
-	[roleType.bossman]: 'Pomomies',
-	[roleType.lecturer]: 'Luennoitsija',
-	[roleType.showerman]: 'Näytteilleasettaja',
-	[roleType.maid]: 'Huoltoihminen',
-	[roleType.gerbil]: 'Gerbiilinkasvattaja'
-};
-
-const registrationsList: IRegistrationItem[] = [
-	{
-		name: 'Ilmoittautumislomake Syyskuu 2019',
-		start: new Date(2019, 8, 1),
-		end: new Date(2019, 9, 1),
-		roles: [1, 2],
-		id: 1
-	},
-	{
-		name: 'Ilmoittautumislomake Lokakuu 2019',
-		start: new Date(2019, 9, 1),
-		end: new Date(2019, 10, 1),
-		roles: [4, 5],
-		id: 2
-	},
-	{
-		name: 'Ilmoittautumislomake Marraskuu 2019',
-		start: new Date(2019, 10, 1),
-		end: new Date(2019, 11, 1),
-		roles: [3, 4],
-		id: 3
-	},
-	{
-		name: 'Ilmoittautumislomake Joulukuu 2019',
-		start: new Date(2019, 11, 1),
-		end: new Date(2020, 1, 1),
-		roles: [1],
-		id: 4
-	}
-];
 
 export const RegistrationForms = () => {
 	return (
@@ -113,7 +61,7 @@ export const RegistrationForms = () => {
 				<Heading icon={Icons.calendar} text="Avoimet" isUnderlined></Heading>
 
 				<ReactTable
-					data={registrationsList}
+					data={MockRegistrationForms}
 					showPagination={false}
 					minRows={0}
 					columns={[
@@ -178,7 +126,7 @@ export const RegistrationForms = () => {
 				></Heading>
 
 				<ReactTable
-					data={registrationsList}
+					data={MockRegistrationForms}
 					showPagination={false}
 					minRows={0}
 					columns={[
@@ -223,7 +171,7 @@ export const RegistrationForms = () => {
 				></Heading>
 
 				<ReactTable
-					data={registrationsList}
+					data={MockRegistrationForms}
 					showPagination={false}
 					minRows={0}
 					columns={[
