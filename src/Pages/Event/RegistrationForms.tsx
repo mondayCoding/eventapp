@@ -1,20 +1,17 @@
-import React, { FC } from 'react';
-import { IEvent } from '../../MockData/MockEvents';
+import React from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../Dashboard/StatusCard';
 import { CardWrapper } from '../Dashboard/CardWrapper';
-import { CustomerItem } from '../Customers/Customers';
 import ReactTimeago from 'react-timeago';
 import * as routes from '../../Constants/Routes_MODIF';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import styled from '../../Theme/theme';
-import { BadgeTag } from '../Dashboard/BadgeTag';
-import { Pie, Doughnut } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { Badge } from '../Dashboard/Badge';
-import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
+import { EventParticipationByRolesGraph } from '../../MockData/MockDataEventParticipation';
 
 interface IRegistrationItem {
 	name: string;
@@ -99,7 +96,7 @@ export const RegistrationForms = () => {
 				</div>
 				<div className="col-lg-4">
 					<CardWrapper>
-						<Doughnut data={MockDataEventParticipation}></Doughnut>
+						<EventParticipationByRolesGraph></EventParticipationByRolesGraph>
 					</CardWrapper>
 				</div>
 				<div className="col-lg-4">

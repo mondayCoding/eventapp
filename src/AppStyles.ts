@@ -104,6 +104,9 @@ export const Nav = styled.nav`
 				font-size: 1.35rem;
 				flex: 0 0 2rem;
 				color: gray;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
 			&__text {

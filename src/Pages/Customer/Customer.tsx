@@ -13,6 +13,9 @@ import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
 import { CardWrapper } from '../Dashboard/CardWrapper';
 import * as routes from '../../Constants/Routes_MODIF';
+import { SelectBase } from '../../Components/Select/Select';
+import { CustomerActionsMenu } from './CustomerActionsMenu';
+import { IconButton } from '../../Components/Button/IconButton';
 
 interface routeprops {
 	id: string;
@@ -31,19 +34,32 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 					<Heading
 						text={customer ? `${customer.firstname} ${customer.lastname}` : ''}
 						isUnderlined
-					></Heading>
+					>
+						{/* <div
+							style={{ flex: '1 1 auto', justifyContent: 'flex-end', display: 'flex' }}
+						>
+							{customer && (
+								<div>
+									<CustomerActionsMenu id={customer.id} />
+									<IconButton icon={Icons.trashcan}></IconButton>
+									<IconButton icon={Icons.envelope}></IconButton>
+							
+								</div>
+							)}
+						</div> */}
+					</Heading>
 					{customer && customer.tags && renderTags(customer.tags)}
 				</div>
 				<div className="card__body">
+					<div className="card__body__content">
+						<CustomerForm customer={customer!} />
+					</div>
 					<div className="card__body__avatar">
 						<img
 							alt=""
 							className="card__body__avatar__img"
 							src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
 						/>
-					</div>
-					<div className="card__body__content">
-						<CustomerForm customer={customer!} />
 					</div>
 				</div>
 			</CustomerCard>
@@ -181,7 +197,7 @@ const CustomerCard = styled.section`
 
 		&__content {
 			flex: 0 0 70%;
-			padding: 0 0 0 1.5rem;
+			padding: 0 2rem 0 0;
 		}
 	}
 `;

@@ -126,10 +126,10 @@ const StatusCard = styled.div<{ isInteractive: boolean }>`
 `;
 
 const interactiveCSS = css`
-   cursor: pointer;
+	cursor: pointer;
 
-   &:hover {
-	   border-bottom: 3px solid ${(p) => p.theme.info_color};
-      box-shadow: 0 0 2px 2px rgba(0,0,0,.25);
-   }
-}`;
+	&:hover {
+		border-bottom: 3px solid ${(p) => p.theme.info_color};
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.25);
+	}
+`;

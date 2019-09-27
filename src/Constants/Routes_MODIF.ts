@@ -55,6 +55,7 @@ export const registrationform: routeConfig = {
 
 export const sendEmail: routeConfig = {
 	path: '/sendemail',
+	params: '/:id?',
 	icon: Icons.envelope,
 	text: 'Email',
 	description: 'kuvaus pitkä ja tosi'

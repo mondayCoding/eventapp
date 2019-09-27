@@ -56,6 +56,12 @@ export const FieldLabel = styled.label`
 		align-self: flex-start;
 	}
 
+	.required-star {
+		font-weight: 700;
+		padding-left: 0.5rem;
+		color: ${(p) => p.theme.error_color};
+	}
+
 	${(p: IStyleProps) => p.isMobile && labelMobileCSS}
 `;
 
@@ -95,9 +101,4 @@ export const ErrorContainer = styled.div`
 	@media ${device.below.sm} {
 		margin-left: 0;
 	}
-`;
-
-export const Star = styled.span`
-	font-weight: 700;
-	padding-left: 0.5rem;
 `;

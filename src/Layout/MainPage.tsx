@@ -34,7 +34,7 @@ export const MainPage = () => {
 						path={routes.registrationform.path + '/:id'}
 						component={RegistrationForm}
 					/>
-					<Route path={routes.sendEmail.path} component={SendEmail} />
+					<Route path={routes.sendEmail.path + '/:id?'} component={SendEmail} />
 					<Route path={routes.settings.path} component={UserSettings} />
 					<Route path={routes.signIn.path} component={SignInPage} />
 					<Route path={routes.signUp.path} component={SignUpPage} />

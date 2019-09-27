@@ -11,6 +11,7 @@ import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { SelectField } from '../../Components/Select/Select';
 import { CheckBoxField } from '../../Components/CheckBox/CheckBox';
+import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 
 export const UserSettings = () => {
 	useDocumentTitle('Luo tili');
@@ -18,7 +19,7 @@ export const UserSettings = () => {
 	return (
 		<div>
 			<CardWrapper>
-				<Heading text="Käyttäjäasetukset" isUnderlined />
+				<Heading text="Järjestelmäasetukset" isUnderlined />
 				<UserSettingsForm></UserSettingsForm>
 			</CardWrapper>
 		</div>
@@ -50,7 +51,7 @@ const UserSettingsForm = () => {
 					]}
 				></SelectField>
 				<SelectField
-					label="Etusivu"
+					label="Aloitussivu"
 					name="pageAfterLogin"
 					options={[
 						{
@@ -67,10 +68,28 @@ const UserSettingsForm = () => {
 						}
 					]}
 				></SelectField>
-				<span>Valitse mikä sivu avataan kirjautumisen jälkeen </span>
-				<CheckBoxField label="Perunut" name="nom"></CheckBoxField>
-				<CheckBoxField label="Pääkäyttäjä" name="nom"></CheckBoxField>
-				<CheckBoxField label="Asiantuntija" name="nom"></CheckBoxField>
+				<FieldContainer label="">
+					<span>Valitse mikä sivu avataan kirjautumisen jälkeen </span>
+				</FieldContainer>
+
+				<Heading text="Käyttäjäasetukset" hasSpaceAbove isUnderlined />
+
+				<FieldContainer label="Oikeudet">
+					<div style={{ width: '100%' }}>
+						<br></br>
+						<br></br>
+
+						<CheckBoxField label="Pomomies" name="nom1"></CheckBoxField>
+						<CheckBoxField label="Pääkäyttäjä" name="nom2"></CheckBoxField>
+						<CheckBoxField
+							label="Asiantuntija"
+							disabled
+							title="Tätä asetusta ei voi muuttaa"
+							checked={true}
+							name="nom3"
+						></CheckBoxField>
+					</div>
+				</FieldContainer>
 			</>
 		</Formik>
 	);

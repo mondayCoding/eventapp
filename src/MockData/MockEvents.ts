@@ -13,6 +13,7 @@ export interface IEvent {
 	created: Date;
 	start: Date;
 	end: Date;
+	image?: string;
 	statistics?: IEventStatistic;
 }
 
@@ -236,6 +237,7 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
+		image: 'https://picsum.photos/326/250',
 		statistics: MockStatistic
 	},
 	{
@@ -260,6 +262,7 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
+		image: 'https://picsum.photos/326/250',
 		statistics: MockStatistic
 	},
 	{
@@ -272,6 +275,44 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
+		statistics: MockStatistic
+	},
+	{
+		id: '5',
+		name: 'Ensiapukoulutus 101 - Elvytys ja jälkikipuinti',
+		tags: [EventTagType.Training, EventTagType.HasEnded],
+		description:
+			'Koulutus on suunnattu henkilöille, joiden työtehtäviin kuuluu hyvinvoinnin edistäminen ja muutoksen aikaan saaminen ihmisten käyttäytymisessä. In hac habitasse platea dictumst. Integer sed porta est. Sed vel feugiat dui, sed facilisis arcu. Mauris condimentum enim non sagittis dictum. Fusce eu pellentesque lorem. Sed facilisis urna lorem, et sagittis mauris imperdiet sed. Ut vulputate venenatis suscipit',
+		location: 'Kokemäki',
+		created: new Date(),
+		start: new Date(),
+		end: new Date(),
+		image: 'https://picsum.photos/326/250',
+		statistics: MockStatistic
+	},
+	{
+		id: '6',
+		name: 'Markkinoinnin perusteet - Miten myydä hiekkaa Saharaan',
+		tags: [EventTagType.Training, EventTagType.HasEnded],
+		description:
+			'Koulutus on suunnattu henkilöille, joiden työtehtäviin kuuluu hyvinvoinnin edistäminen ja muutoksen aikaan saaminen ihmisten käyttäytymisessä. In hac habitasse platea dictumst. Integer sed porta est. Sed vel feugiat dui, sed facilisis arcu. Mauris condimentum enim non sagittis dictum. Fusce eu pellentesque lorem. Sed facilisis urna lorem, et sagittis mauris imperdiet sed. Ut vulputate venenatis suscipit',
+		location: 'Sahara',
+		created: new Date(),
+		start: new Date(),
+		end: new Date(),
+		statistics: MockStatistic
+	},
+	{
+		id: '7',
+		name: 'Osastokoulutus 2019 - Markkinoinnin tehokurssi',
+		tags: [EventTagType.Training, EventTagType.HasEnded],
+		description:
+			'Koulutus on suunnattu henkilöille, joiden työtehtäviin kuuluu hyvinvoinnin edistäminen ja muutoksen aikaan saaminen ihmisten käyttäytymisessä. In hac habitasse platea dictumst. Integer sed porta est. Sed vel feugiat dui, sed facilisis arcu. Mauris condimentum enim non sagittis dictum. Fusce eu pellentesque lorem. Sed facilisis urna lorem, et sagittis mauris imperdiet sed. Ut vulputate venenatis suscipit',
+		location: 'Muuninka',
+		created: new Date(),
+		start: new Date(),
+		end: new Date(),
+		image: 'https://picsum.photos/326/250',
 		statistics: MockStatistic
 	}
 ];

@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
-import { CardWrapper } from '../Dashboard/CardWrapper';
-import { Heading } from '../../Components/Text/Heading';
 import { Formik, Form, FormikActions } from 'formik';
-import { TextField } from '../../Components/TextInput/Textinput';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
@@ -18,7 +15,7 @@ import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 
 export const SignUpPage = () => {
 	useDocumentTitle('Luo tili');
-	const { isDarkTheme, toggleTheme, authorization } = useContext(AppContext);
+	const { isDarkTheme, toggleTheme } = useContext(AppContext);
 
 	const handleSignUp = (values: form, actions: FormikActions<form>) =>
 		auth

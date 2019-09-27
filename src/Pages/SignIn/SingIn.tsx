@@ -14,18 +14,18 @@ import { auth } from '../../Firebase/index';
 import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 import Notify from '../../Utils/Notification';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router';
 
 export const SignInPage = () => {
 	useDocumentTitle('Kirjaudu sisään');
-	const { isDarkTheme, toggleTheme, authorization } = useContext(AppContext);
+	const history = useHistory();
+	const { isDarkTheme, toggleTheme } = useContext(AppContext);
 
 	const handleSignIn = (values: form, actions: FormikActions<form>) =>
 		auth
 			.signInWithEmailAndPassword(values.email, values.password)
 			.then((authe: any) => {
-				// history.push(routes.LANDING);
-				// console.log(authe);
-				// Notify.success('Successfully signed in');
+				history.push(routes.dashboard.path);
 			})
 			.catch((error) => {
 				console.exception(error);

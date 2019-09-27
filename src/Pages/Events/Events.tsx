@@ -15,6 +15,7 @@ import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 import { EventAttendanceGraph } from '../Dashboard/EventAttendanceGraph';
 import ReactTable from 'react-table';
+import { Badge } from '../Dashboard/Badge';
 
 export const Events = () => {
 	useDocumentTitle('Tapahtuma');
@@ -34,9 +35,16 @@ export const Events = () => {
 		});
 	};
 
+	const filteredEvents = createFilter(events);
+
 	return (
 		<div>
 			<div className="row">
+				<div className="col-lg-8">
+					<CardWrapper>
+						<EventAttendanceGraph></EventAttendanceGraph>
+					</CardWrapper>
+				</div>
 				<div className="col-lg-4">
 					<MultiStatCard
 						stats={[
@@ -59,11 +67,6 @@ export const Events = () => {
 						]}
 					></MultiStatCard>
 				</div>
-				<div className="col-lg-8">
-					<CardWrapper>
-						<EventAttendanceGraph></EventAttendanceGraph>
-					</CardWrapper>
-				</div>
 			</div>
 			<CardWrapper>
 				<Heading text="Tapahtumat" isUnderlined />
@@ -71,41 +74,46 @@ export const Events = () => {
 				<FilterInput
 					type="text"
 					value={filter}
+					placeholder="Suodata tapahtumista"
 					onChange={(e) => setFilter(e.target.value)}
 				></FilterInput>
 
-				{createFilter(events).map((event) => (
-					<>
-						<EventListItem key={event.id} to={`${routes.event.path}/${event.id}`}>
-							<span className="event__favourite">
+				<ReactTable
+					data={filteredEvents}
+					minRows={filteredEvents.length}
+					showPagination={false}
+					columns={[
+						{
+							Header: '',
+							accessor: 'id',
+							width: 30,
+							resizable: false,
+							Cell: ({ original }: RowOriginal) => (
 								<IconButton
-									icon={favourites.includes(event.id) ? Icons.star_filled : Icons.star}
+									icon={favourites.includes(original.id) ? Icons.star_filled : Icons.star}
 									onClick={(e: any) => {
-										toggleFavourite(event.id);
+										toggleFavourite(original.id);
 										e.preventDefault();
 									}}
 								></IconButton>
-							</span>
-							<span className="event__name">{`${event.name}`}</span>
-							<span className="event__tags">{renderTags(event.tags)}</span>
-							<span className="event__location">{`${event.location}`}</span>
-						</EventListItem>
-					</>
-				))}
-				<ReactTable
-					data={createFilter(events)}
-					columns={[
-						{
-							Header: 'Nimi',
-							accessor: 'name'
+							)
 						},
 						{
-							Header: 'Kilvet',
-							accessor: 'tags'
+							Header: 'Nimi',
+							accessor: 'name',
+							Cell: ({ original }: RowOriginal) => (
+								<Link to={`${routes.event.path}/${original.id}`}>{original.name}</Link>
+							)
+						},
+						{
+							Header: 'Roolit',
+							accessor: 'roles',
+							Cell: ({ original }: RowOriginal) => renderTags(original.tags)
 						},
 						{
 							Header: 'Paikka',
-							accessor: 'location'
+							accessor: 'location',
+							width: 150
 						}
 					]}
 				></ReactTable>
@@ -113,6 +121,10 @@ export const Events = () => {
 		</div>
 	);
 };
+
+interface RowOriginal {
+	original: IEvent;
+}
 
 const FilterInput = styled.input`
 	display: block;
@@ -124,58 +136,6 @@ const FilterInput = styled.input`
 	border-radius: 3px;
 	padding: 0.2rem;
 	background: ${(p) => p.theme.input_background};
-`;
-
-const EventListItem = styled(Link)`
-	display: flex;
-	justify-content: space-between;
-	color: ${(p) => p.theme.primary_color};
-	align-items: center;
-	border: none;
-	padding: 0.25rem 0.5rem;
-	cursor: pointer;
-	font-size: 0.85rem;
-	width: 100%;
-	background: none;
-	text-align: left;
-	text-decoration: none;
-
-	&&:hover {
-		color: ${(p) => p.theme.secondary_color};
-		background: #ccc;
-	}
-
-	&:nth-child(odd) {
-		background: ${(p) => p.theme.body_background_color};
-	}
-
-	& + & {
-		/* border-top: 1px solid #ccc; */
-	}
-
-	&:focus {
-		border: none;
-		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
-	}
-	.event__favourite {
-		flex: 0 0 2rem;
-		padding-right: 0.5rem;
-	}
-	.event__name {
-		flex: 0 0 40%;
-		padding-left: 1rem;
-		color: ${(p) => p.theme.text_color};
-	}
-	.event__location {
-		flex: 0 0 20%;
-		padding-left: 1rem;
-		text-align: left;
-	}
-	.event__tags {
-		flex: 0 0 40%;
-		padding-left: 1rem;
-		text-align: left;
-	}
 `;
 
 const renderTags = (tags: EventTagType[]) =>

@@ -5,7 +5,6 @@ import {
 	Container,
 	Content,
 	FieldLabel,
-	Star,
 	ErrorContainer,
 	IStyleProps
 } from './FieldContainerStyle';
@@ -47,7 +46,7 @@ export const FieldContainer: React.SFC<IFieldContainerProps> = ({
 			<Container isDisabled={disabled} isMobile={showMobileView} {...rest}>
 				<FieldLabel htmlFor={id} isMobile={showMobileView}>
 					{label}
-					{required && <Star>*</Star>}
+					{required && <span className="required-star">*</span>}
 				</FieldLabel>
 
 				<Content isSmall={isSmall}>

@@ -9,7 +9,7 @@ import { RouterProps, RouteComponentProps } from 'react-router';
 import { useDocumentTitle } from '../../Data/useDocumentTitle';
 import { StatCard } from '../Dashboard/StatusCard';
 import { Doughnut } from 'react-chartjs-2';
-import { MockDataEventParticipation } from '../../MockData/MockDataEventParticipation';
+import { EventParticipationByRolesGraph } from '../../MockData/MockDataEventParticipation';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -50,7 +50,7 @@ export const RegistrationForm: FC<RouteComponentProps<RegistrationRouteProps>> =
 					</div>
 					<div className="col-lg-4">
 						<CardWrapper>
-							<Doughnut data={MockDataEventParticipation}></Doughnut>
+							<EventParticipationByRolesGraph></EventParticipationByRolesGraph>>
 						</CardWrapper>
 					</div>
 				</div>
