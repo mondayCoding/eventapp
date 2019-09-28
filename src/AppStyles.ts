@@ -1,5 +1,5 @@
 import styled from './Theme/theme';
-import { mix } from 'polished';
+import { mix, darken, lighten } from 'polished';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
@@ -52,7 +52,13 @@ export const Nav = styled.nav`
 			height: ${topPanelHeight};
 			background-color: ${(p) => p.theme.primary_color};
 			border-bottom: 1px solid ${(p) => p.theme.primary_color};
+			transition: background-color 0.2s ease-in-out;
+			text-decoration: none;
 			color: #fff;
+
+			&:hover {
+				background-color: ${(p) => darken(0.2, p.theme.primary_color)};
+			}
 
 			&__image {
 				flex: 0 0 2.5rem;

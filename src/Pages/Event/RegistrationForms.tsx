@@ -105,7 +105,9 @@ const columnSetupOpen = (showRoles: boolean) => [
 		Header: 'Nimi',
 		accessor: 'name',
 		Cell: ({ original }: RowOriginal) => (
-			<Link to={`${routes.registrationform.path}/${original.id}`}>{original.name}</Link>
+			<Link className="card__link" to={`${routes.registrationform.path}/${original.id}`}>
+				{original.name}
+			</Link>
 		)
 	},
 	showRoles ? renderRoleColumns() : renderDateColumns(),
@@ -135,7 +137,9 @@ const columnSetupOpening = [
 		Header: 'Nimi',
 		accessor: 'name',
 		Cell: ({ original }: RowOriginal) => (
-			<Link to={`${routes.registrationform.path}/${original.id}`}>{original.name}</Link>
+			<Link className="card__link" to={`${routes.registrationform.path}/${original.id}`}>
+				{original.name}
+			</Link>
 		)
 	},
 	{
@@ -164,7 +168,9 @@ const columnSetupClosed = [
 		Header: 'Nimi',
 		accessor: 'name',
 		Cell: ({ original }: RowOriginal) => (
-			<Link to={`${routes.registrationform.path}/${original.id}`}>{original.name}</Link>
+			<Link className="card__link" to={`${routes.registrationform.path}/${original.id}`}>
+				{original.name}
+			</Link>
 		)
 	},
 

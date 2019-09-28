@@ -67,7 +67,7 @@ export const Customers = () => {
 						Header: 'Nimi',
 						accessor: 'firstname',
 						Cell: ({ original }: RowOriginal) => (
-							<Link to={`${routes.customer.path}/${original.id}`}>
+							<Link className="card__link" to={`${routes.customer.path}/${original.id}`}>
 								{`${original.firstname} ${original.lastname}`}
 							</Link>
 						)
@@ -77,7 +77,9 @@ export const Customers = () => {
 						Header: 'Email',
 						accessor: 'email',
 						Cell: ({ original }: RowOriginal) => (
-							<Link to={`${routes.sendEmail.path}/${original.id}`}>{original.email}</Link>
+							<Link className="card__link" to={`${routes.sendEmail.path}/${original.id}`}>
+								{original.email}
+							</Link>
 						)
 					},
 					{

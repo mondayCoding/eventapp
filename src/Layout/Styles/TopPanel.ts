@@ -10,7 +10,7 @@ export const TopPanelThemed = styled.nav`
 	width: 100%;
 	padding: 0.5rem 1rem;
 	height: ${topPanelHeight};
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid ${(p) => p.theme.border_color};
 
 	.react-autosuggest__container {
 		position: relative;

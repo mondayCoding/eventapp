@@ -88,3 +88,10 @@ export const settings: routeConfig = {
 	text: 'Asetukset',
 	description: 'kuvaus pitkä ja tosi'
 };
+
+export const imagebank: routeConfig = {
+	path: '/imagebank',
+	icon: Icons.image,
+	text: 'Kuvapankki',
+	description: 'kuvaus pitkä ja tosi'
+};

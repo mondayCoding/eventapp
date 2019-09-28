@@ -46,7 +46,7 @@ export const Budget: FC = () => {
 	};
 
 	const removeExpense = (expenseIndex: number) => {
-		setRevenues(revenues.filter((rev, index) => index !== expenseIndex));
+		setExpenses(revenues.filter((rev, index) => index !== expenseIndex));
 	};
 
 	const revenueTotal = revenues.reduce((total, current) => current.value + total, 0);
@@ -100,22 +100,14 @@ export const Budget: FC = () => {
 				</div>
 			</div>
 
+			<BudjetGoalBar>80%</BudjetGoalBar>
+
 			<div className="row">
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Heading
-							text={'Tulot'}
-							isUnderlined
-							icon={<span style={{ color: 'lightgreen' }}>{Icons.dollar}</span>}
-						>
+						<Heading text={'Tulot'} isUnderlined icon={Icons.dollar}>
 							<RevenueTotalSpan>{localisedMarkedValue(revenueTotal)}</RevenueTotalSpan>
 						</Heading>
-
-						<ButtonLink
-							text="Lisää tulo"
-							icon={Icons.plus}
-							onClick={() => addRevenue()}
-						></ButtonLink>
 
 						<Formik initialValues={{}} onSubmit={() => {}}>
 							<ReactTable
@@ -159,24 +151,19 @@ export const Budget: FC = () => {
 								]}
 							></ReactTable>
 						</Formik>
+						<ButtonLink
+							text="Lisää tulo"
+							icon={Icons.plus}
+							onClick={() => addRevenue()}
+						></ButtonLink>
 					</CardWrapper>
 				</div>
 
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Heading
-							text={'Menot'}
-							isUnderlined
-							icon={<span style={{ color: 'lightpink' }}>{Icons.dollar}</span>}
-						>
+						<Heading text={'Menot'} isUnderlined icon={Icons.dollar}>
 							<ExpenseTotalSpan>{localisedMarkedValue(expenseTotal)}</ExpenseTotalSpan>
 						</Heading>
-
-						<ButtonLink
-							text="Lisää kulu"
-							icon={Icons.plus}
-							onClick={() => addExpense()}
-						></ButtonLink>
 
 						<ReactTable
 							showPagination={false}
@@ -218,6 +205,11 @@ export const Budget: FC = () => {
 								}
 							]}
 						></ReactTable>
+						<ButtonLink
+							text="Lisää kulu"
+							icon={Icons.plus}
+							onClick={() => addExpense()}
+						></ButtonLink>
 					</CardWrapper>
 				</div>
 			</div>
@@ -247,6 +239,19 @@ const localisedMarkedValue = (value: number) =>
 		style: 'currency',
 		currency: 'EUR'
 	}).format(value);
+
+const BudjetGoalBar = styled.span`
+	display: flex;
+	height: 1.5rem;
+	font-size: 1.2rem;
+	border-radius: 0.5rem;
+	margin: 0 0 1rem 0;
+	justify-content: center;
+	align-items: center;
+	background: ${(p) => p.theme.success_color};
+	color: #fff;
+	box-shadow: ${(p) => p.theme.shadow.card};
+`;
 
 const ExpenseTotalSpan = styled.span`
 	display: flex;
