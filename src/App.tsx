@@ -1,15 +1,15 @@
 import React, { FC, useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { useCollection } from './Data/useCollections';
+import { useCollection } from './Hooks/useCollections';
 import { ICollectionItem } from './Interfaces';
 import { ThemeManager } from './Theme/ThemeManager';
 import { database } from './Firebase';
-import { useWishlist } from './Data/useWishlist';
-import { useCollected } from './Data/useCollected';
+import { useWishlist } from './Hooks/useWishlist';
+import { useCollected } from './Hooks/useCollected';
 import { themes } from './Theme/theme';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuthState } from './Data/useAuthorization';
+import { useAuthState } from './Hooks/useAuthorization';
 import { UnAuthorisedApp } from './Layout/AppUnAuthorised';
 import { AuthorisedApp } from './Layout/AppAuthorised';
 

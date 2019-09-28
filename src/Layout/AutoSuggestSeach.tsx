@@ -37,7 +37,7 @@ const AutoSuggestSeach: FC<RouteComponentProps> = ({ history }) => {
 			return history.push(`${routes.customer.path}/${suggestion.id}`);
 		} else {
 			setInputValue('');
-			return history.push(`${routes.event.path}/${suggestion.id}`);
+			return history.push(`${routes.event.path}/${suggestion.id}/frontpage`);
 		}
 	};
 

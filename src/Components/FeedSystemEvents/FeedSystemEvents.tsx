@@ -20,7 +20,7 @@ export const FeedSystemEvents = () => {
 			</Heading>
 
 			{systemEvents.map((event, index) => (
-				<FeedItem to={`${routes.event.path}/${event.id}`} key={index}>
+				<FeedItem to={`${routes.event.path}/${event.id}/frontpage`} key={index}>
 					<span className="icon">{eventIcons[event.eventType]}</span>
 					<span className="message">{event.message}</span>
 					<span className="stamp">

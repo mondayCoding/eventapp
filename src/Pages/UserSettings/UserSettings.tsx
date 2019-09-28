@@ -8,7 +8,7 @@ import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { SelectField } from '../../Components/Select/Select';
 import { CheckBoxField } from '../../Components/CheckBox/CheckBox';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';

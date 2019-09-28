@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faEnvelope,
+	faEnvelopeOpen,
 	faFilePdf,
 	faFileVideo,
 	faCalendarAlt,
@@ -189,6 +190,7 @@ export const Icons = {
 	pen_alt: <FontAwesomeIcon icon={faPenAlt} />,
 	edit: <FontAwesomeIcon icon={faEdit} />,
 	envelope: <FontAwesomeIcon icon={faEnvelope} />,
+	envelope_open: <FontAwesomeIcon icon={faEnvelopeOpen} />,
 	mobile: <FontAwesomeIcon icon={faMobileAlt} />,
 	WIP: <FontAwesomeIcon icon={faCog} spin={true} />,
 	cog: <FontAwesomeIcon icon={faCog} />,

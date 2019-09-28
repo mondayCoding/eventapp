@@ -36,10 +36,10 @@ export const MainPage = () => {
 					/>
 					<Route path={routes.sendEmail.path + '/:id?'} component={SendEmail} />
 					<Route path={routes.settings.path} component={UserSettings} />
-					<Route path={routes.signIn.path} component={SignInPage} />
-					<Route path={routes.signUp.path} component={SignUpPage} />
+					{/* <Route path={routes.signIn.path} component={SignInPage} />
+					<Route path={routes.signUp.path} component={SignUpPage} /> */}
 					<Route path={routes.signOut.path} component={SignOutPage} />
-					{/* <Redirect to={routes.dashboard.path} /> */}
+					<Redirect to={routes.dashboard.path} />
 				</Switch>
 			</Main>
 		</Content>

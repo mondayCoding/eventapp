@@ -4,11 +4,26 @@ import { EventTagType } from '../Constants/EventTags';
 // Event
 //*********************************************************** */
 
+enum EventState {
+	ended,
+	cancelled,
+	ongoing,
+	unPublished
+}
+
 export interface IEvent {
 	id: string;
 	name: string;
 	description: string;
 	location: string;
+	city: string;
+	postNumber: string;
+	address: string;
+	state: EventState;
+	country: string;
+	department: string;
+	organizer: string;
+	homepage: string;
 	tags: EventTagType[];
 	created: Date;
 	start: Date;
@@ -93,7 +108,15 @@ export const MockEvents: IEvent[] = [
 		start: new Date(),
 		end: new Date(),
 		image: 'https://picsum.photos/326/250',
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 1,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	},
 	{
 		id: '2',
@@ -105,7 +128,15 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 2,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	},
 	{
 		id: '3',
@@ -118,7 +149,15 @@ export const MockEvents: IEvent[] = [
 		start: new Date(),
 		end: new Date(),
 		image: 'https://picsum.photos/326/250',
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 5,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	},
 	{
 		id: '4',
@@ -130,7 +169,15 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 4,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	},
 	{
 		id: '5',
@@ -143,7 +190,15 @@ export const MockEvents: IEvent[] = [
 		start: new Date(),
 		end: new Date(),
 		image: 'https://picsum.photos/326/250',
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 3,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	},
 	{
 		id: '6',
@@ -155,7 +210,15 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 2,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	},
 	{
 		id: '7',
@@ -168,6 +231,14 @@ export const MockEvents: IEvent[] = [
 		start: new Date(),
 		end: new Date(),
 		image: 'https://picsum.photos/326/250',
-		statistics: MockStatistic
+		statistics: MockStatistic,
+		city: 'Vantaa',
+		postNumber: '92300',
+		address: 'Muunmäentie 12 A B',
+		state: 3,
+		organizer: 'Keliakia OY',
+		homepage: 'https://www.google.com',
+		department: 'Tanssilattia',
+		country: 'Ahvenanmaa'
 	}
 ];

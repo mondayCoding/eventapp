@@ -437,7 +437,7 @@ export const ReactTableOverrideCSS = css`
 
 
 				.rt-td {
-					padding: 0.3rem;
+					padding: 0.2rem;
 				}
 			}
 		}

@@ -9,13 +9,13 @@ import { Heading } from '../../Components/Text/Heading';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
-import { useFavouriteEvents } from '../../Data/useFavouriteEvents';
+import { useFavouriteEvents } from '../../Hooks/useFavouriteEvents';
 import { IconButton } from '../../Components/Button/IconButton';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 import { EventAttendanceGraph } from '../../Graphs/EventAttendanceGraph';
 import ReactTable from 'react-table';
-import { Badge } from '../Dashboard/Badge';
+import { EventActions } from './EventActions';
 
 export const Events = () => {
 	useDocumentTitle('Tapahtuma');
@@ -39,44 +39,18 @@ export const Events = () => {
 
 	return (
 		<div>
-			<div className="row">
-				<div className="col-lg-8">
-					<CardWrapper>
-						<EventAttendanceGraph></EventAttendanceGraph>
-					</CardWrapper>
-				</div>
-				<div className="col-lg-4">
-					<MultiStatCard
-						stats={[
-							{
-								text: 'Avoinna',
-								value: '3',
-								description: 'Avoimia lomakkeita tällä hetkellä',
-								icon: Icons.clipboard_list
-							},
-							{
-								text: 'Loppuneita',
-								value: '23',
-								description: 'Loppuneita ilmoittautumisia'
-							},
-							{
-								text: 'Avautuvia',
-								value: '6',
-								description: 'Aukeamista odottavia lomakkeita'
-							}
-						]}
-					></MultiStatCard>
-				</div>
-			</div>
 			<CardWrapper>
 				<Heading text="Tapahtumat" isUnderlined />
 
-				<FilterInput
-					type="text"
-					value={filter}
-					placeholder="Suodata tapahtumista"
-					onChange={(e) => setFilter(e.target.value)}
-				></FilterInput>
+				<ButtonRow>
+					<FilterInput
+						type="text"
+						value={filter}
+						placeholder="Suodata tapahtumista"
+						onChange={(e) => setFilter(e.target.value)}
+					></FilterInput>
+					<EventActions></EventActions>
+				</ButtonRow>
 
 				<ReactTable
 					data={filteredEvents}
@@ -102,14 +76,20 @@ export const Events = () => {
 							Header: 'Nimi',
 							accessor: 'name',
 							Cell: ({ original }: RowOriginal) => (
-								<Link to={`${routes.event.path}/${original.id}`}>{original.name}</Link>
+								<Link
+									className="card__link"
+									to={`${routes.event.path}/${original.id}/frontpage`}
+								>
+									{original.name}
+								</Link>
 							)
 						},
 						{
-							Header: 'Roolit',
+							Header: 'Tyyppi',
 							accessor: 'roles',
 							Cell: ({ original }: RowOriginal) => renderTags(original.tags)
 						},
+
 						{
 							Header: 'Paikka',
 							accessor: 'location',
@@ -118,6 +98,37 @@ export const Events = () => {
 					]}
 				></ReactTable>
 			</CardWrapper>
+
+			<div className="row">
+				<div className="col-lg-8">
+					<CardWrapper>
+						<EventAttendanceGraph></EventAttendanceGraph>
+					</CardWrapper>
+				</div>
+				<div className="col-lg-4">
+					<MultiStatCard
+						heading="Tapahtumien tila"
+						stats={[
+							{
+								text: 'Avoinna',
+								value: '3',
+								description: 'Avoimia lomakkeita tällä hetkellä',
+								icon: Icons.clipboard_list
+							},
+							{
+								text: 'Loppuneita',
+								value: '23',
+								description: 'Loppuneita ilmoittautumisia'
+							},
+							{
+								text: 'Avautuvia',
+								value: '6',
+								description: 'Aukeamista odottavia lomakkeita'
+							}
+						]}
+					></MultiStatCard>
+				</div>
+			</div>
 		</div>
 	);
 };
@@ -126,13 +137,22 @@ interface RowOriginal {
 	original: IEvent;
 }
 
+const ButtonRow = styled.section`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-right: 0.5rem;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid ${(p) => p.theme.border_color};
+`;
+
 const FilterInput = styled.input`
 	display: block;
 	width: 100%;
 	max-width: 20rem;
 	border: 1px solid ${(p) => p.theme.border_color};
 	color: ${(p) => p.theme.text_color};
-	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;
 	background: ${(p) => p.theme.input_background};

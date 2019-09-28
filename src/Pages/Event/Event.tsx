@@ -7,7 +7,7 @@ import { darken } from 'polished';
 import { FrontPage } from './FrontPage';
 import { RegistrationForms } from './RegistrationForms';
 import { Settings } from './Settings';
-import { CustomerLists } from './CustomerLists';
+import { ParticipantLists } from './ParticipantList';
 import * as routes from '../../Constants/Routes_MODIF';
 import { PageFooter } from '../../Layout/MainFooter';
 import { CardWrapper } from '../Dashboard/CardWrapper';
@@ -52,7 +52,7 @@ export const Event: FC<RouteComponentProps<EventRouteProps>> = ({ match }) => {
 			/>
 			<Route
 				path="/event/:id/participants"
-				component={() => <CustomerLists event={event}></CustomerLists>}
+				component={() => <ParticipantLists event={event}></ParticipantLists>}
 			/>
 			<Route
 				path="/event/:id/forms"
@@ -81,7 +81,7 @@ export const Event: FC<RouteComponentProps<EventRouteProps>> = ({ match }) => {
 				)}
 			/>
 			<Route path="/event/:id/budjet" component={Budget} />
-			<Redirect to={currentPath + '/frontpage'} />
+			{/* <Redirect to={currentPath + '/frontpage'} /> */}
 
 			<PageFooter showDates></PageFooter>
 		</>

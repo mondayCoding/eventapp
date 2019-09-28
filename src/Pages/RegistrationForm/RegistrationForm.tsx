@@ -6,7 +6,7 @@ import { BadgeTag } from '../Dashboard/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
 import { RouterProps, RouteComponentProps } from 'react-router';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { StatCard } from '../Dashboard/StatusCard';
 import { Doughnut } from 'react-chartjs-2';
 import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
@@ -31,7 +31,7 @@ export const RegistrationForm: FC<RouteComponentProps<RegistrationRouteProps>> =
 						<MultiStatCard
 							stats={[
 								{
-									text: 'Ilmoittauneita',
+									text: 'Ilmoittautuneita',
 									icon: Icons.users,
 									state: 'success',
 									value: '2 234'
@@ -40,7 +40,7 @@ export const RegistrationForm: FC<RouteComponentProps<RegistrationRouteProps>> =
 									text: 'Peruneita',
 									icon: Icons.users,
 									state: 'warning',
-									value: '2 234'
+									value: '24'
 								}
 							]}
 						></MultiStatCard>

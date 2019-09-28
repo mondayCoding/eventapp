@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
 import { Formik, Form, FormikActions } from 'formik';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { LoginWrapper } from '../SignIn/LoginWrapper';

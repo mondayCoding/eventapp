@@ -1,11 +1,33 @@
 import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+const localizer = momentLocalizer(moment);
 
-import './main.scss'; // webpack must be configured to do this
+// import './main.scss'; // webpack must be configured to do this
 
 export default class DemoApp extends React.Component {
 	render() {
 		return <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} />;
 	}
 }
+export const Calendar2 = () => (
+	<FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} />
+);
+
+export const CALENDAR = () => {
+	return (
+		<div>
+			<div>
+				<Calendar
+					localizer={localizer}
+					events={[]}
+					startAccessor="start"
+					endAccessor="end"
+				/>
+			</div>
+		</div>
+	);
+};

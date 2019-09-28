@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../Dashboard/StatusCard';
@@ -16,106 +16,29 @@ import {
 	MockRegistrationForms,
 	Role
 } from '../../MockData/MockRegistrationForms';
+import { ButtonLink } from '../../Components/Button/ButtonLink';
 
 interface RowOriginal {
 	original: IRegistrationForm;
 }
 
 export const RegistrationForms = () => {
+	const [showRoles, setShowRoles] = useState(false);
+
 	return (
 		<>
-			<div className="row">
-				<div className="col-lg-4">
-					<MultiStatCard
-						stats={[
-							{
-								icon: Icons.clipboard_list,
-								text: 'Avoimia',
-								value: '3',
-								description: 'Avoimia lomakkeita tällä hetkellä'
-							},
-							{
-								text: 'Loppuneita',
-								value: '5',
-								description: 'Avoimia lomakkeita tällä hetkellä'
-							}
-						]}
-					></MultiStatCard>
-				</div>
-				<div className="col-lg-4">
-					<CardWrapper>
-						<EventParticipationByRolesGraph></EventParticipationByRolesGraph>
-					</CardWrapper>
-				</div>
-				<div className="col-lg-4">
-					<StatCard
-						value={'6'}
-						icon={<span style={{ color: 'lightseagreen' }}>{Icons.info_circle}</span>}
-						text="Avautuvia"
-						description="Aukeamista odottavia lomakkeita"
-					></StatCard>
-				</div>
-			</div>
-
 			<CardWrapper>
 				<Heading icon={Icons.calendar} text="Avoimet" isUnderlined></Heading>
+				<ButtonLink
+					onClick={() => setShowRoles(!showRoles)}
+					text={showRoles ? 'Näytä aukeamisaika' : 'Näytä roolit'}
+				></ButtonLink>
 
 				<ReactTable
 					data={MockRegistrationForms}
 					showPagination={false}
 					minRows={0}
-					columns={[
-						{
-							Header: '',
-							accessor: 'id',
-							width: 30,
-							resizable: false,
-							Cell: () => <div>{Icons.clipboard_list}</div>
-						},
-						{
-							Header: 'Nimi',
-							accessor: 'name',
-							Cell: ({ original }: RowOriginal) => (
-								<Link to={`${routes.registrationform.path}/${original.id}`}>
-									{original.name}
-								</Link>
-							)
-						},
-						{
-							Header: 'Roolit',
-							accessor: 'roles',
-							Cell: ({ original }: RowOriginal) =>
-								original.roles.map((role) => <Badge text={Role[role]} />)
-						},
-						{
-							Header: 'Aukesi',
-							accessor: 'start',
-							Cell: ({ original }: RowOriginal) => (
-								<div>
-									<DateSpanSuccess>
-										{original.start.toLocaleDateString('fi-FI')}
-									</DateSpanSuccess>
-									<DateSpan>
-										<ReactTimeago date={original.start} />
-									</DateSpan>
-								</div>
-							)
-						},
-						{
-							Header: 'Päättyy',
-							accessor: 'end',
-							Cell: ({ original }: RowOriginal) => (
-								<div>
-									<DataSpanWarning>
-										{original.end.toLocaleDateString('fi-FI')}
-									</DataSpanWarning>
-									<DateSpan>
-										<ReactTimeago date={original.end} />
-									</DateSpan>
-								</div>
-							)
-						}
-					]}
+					columns={columnSetupOpen(showRoles)}
 				></ReactTable>
 
 				<Heading
@@ -129,38 +52,7 @@ export const RegistrationForms = () => {
 					data={MockRegistrationForms}
 					showPagination={false}
 					minRows={0}
-					columns={[
-						{
-							Header: '',
-							accessor: 'id',
-							width: 30,
-							resizable: false,
-							Cell: () => <div>{Icons.clipboard_list}</div>
-						},
-						{
-							Header: 'Nimi',
-							accessor: 'name',
-							Cell: ({ original }: RowOriginal) => (
-								<Link to={`${routes.registrationform.path}/${original.id}`}>
-									{original.name}
-								</Link>
-							)
-						},
-						{
-							Header: 'Aukeaa',
-							accessor: 'start',
-							Cell: ({ original }: RowOriginal) => (
-								<div>
-									<DateSpanSuccess>
-										{original.start.toLocaleDateString('fi-FI')}
-									</DateSpanSuccess>
-									<DateSpan>
-										<ReactTimeago date={original.start} />
-									</DateSpan>
-								</div>
-							)
-						}
-					]}
+					columns={columnSetupOpening}
 				></ReactTable>
 
 				<Heading
@@ -174,44 +66,141 @@ export const RegistrationForms = () => {
 					data={MockRegistrationForms}
 					showPagination={false}
 					minRows={0}
-					columns={[
-						{
-							Header: '',
-							accessor: 'id',
-							width: 30,
-							resizable: false,
-							Cell: () => <div>{Icons.clipboard_list}</div>
-						},
-						{
-							Header: 'Nimi',
-							accessor: 'name',
-							Cell: ({ original }: RowOriginal) => (
-								<Link to={`${routes.registrationform.path}/${original.id}`}>
-									{original.name}
-								</Link>
-							)
-						},
-
-						{
-							Header: 'Päättyi',
-							accessor: 'end',
-							Cell: ({ original }: RowOriginal) => (
-								<div>
-									<DataSpanWarning>
-										{original.end.toLocaleDateString('fi-FI')}
-									</DataSpanWarning>
-									<DateSpan>
-										<ReactTimeago date={original.end} />
-									</DateSpan>
-								</div>
-							)
-						}
-					]}
+					columns={columnSetupClosed}
 				></ReactTable>
 			</CardWrapper>
+
+			<div className="row">
+				<div className="col-lg-4">
+					<StatCard
+						value={'6'}
+						icon={<span style={{ color: 'lightseagreen' }}>{Icons.list}</span>}
+						text="Avoimia"
+						description="Avoimia käytettävissä olevia lomakkeita"
+					></StatCard>
+				</div>
+
+				<div className="col-lg-4">
+					<StatCard
+						value={'3'}
+						icon={<span style={{ color: 'lightseagreen' }}>{Icons.info_circle}</span>}
+						text="Avautuvia"
+						description="Aukeamista odottavia lomakkeita"
+					></StatCard>
+				</div>
+			</div>
 		</>
 	);
 };
+
+const columnSetupOpen = (showRoles: boolean) => [
+	{
+		Header: '',
+		accessor: 'id',
+		width: 30,
+		resizable: false,
+		Cell: () => <div>{Icons.clipboard_list}</div>
+	},
+	{
+		Header: 'Nimi',
+		accessor: 'name',
+		Cell: ({ original }: RowOriginal) => (
+			<Link to={`${routes.registrationform.path}/${original.id}`}>{original.name}</Link>
+		)
+	},
+	showRoles ? renderRoleColumns() : renderDateColumns(),
+	{
+		Header: 'Päättyy',
+		accessor: 'end',
+		Cell: ({ original }: RowOriginal) => (
+			<div>
+				<DataSpanWarning>{original.end.toLocaleDateString('fi-FI')}</DataSpanWarning>
+				<DateSpan>
+					<ReactTimeago date={original.end} />
+				</DateSpan>
+			</div>
+		)
+	}
+];
+
+const columnSetupOpening = [
+	{
+		Header: '',
+		accessor: 'id',
+		width: 30,
+		resizable: false,
+		Cell: () => <div>{Icons.clipboard_list}</div>
+	},
+	{
+		Header: 'Nimi',
+		accessor: 'name',
+		Cell: ({ original }: RowOriginal) => (
+			<Link to={`${routes.registrationform.path}/${original.id}`}>{original.name}</Link>
+		)
+	},
+	{
+		Header: 'Aukeaa',
+		accessor: 'start',
+		Cell: ({ original }: RowOriginal) => (
+			<div>
+				<DateSpanSuccess>{original.start.toLocaleDateString('fi-FI')}</DateSpanSuccess>
+				<DateSpan>
+					<ReactTimeago date={original.start} />
+				</DateSpan>
+			</div>
+		)
+	}
+];
+
+const columnSetupClosed = [
+	{
+		Header: '',
+		accessor: 'id',
+		width: 30,
+		resizable: false,
+		Cell: () => <div>{Icons.clipboard_list}</div>
+	},
+	{
+		Header: 'Nimi',
+		accessor: 'name',
+		Cell: ({ original }: RowOriginal) => (
+			<Link to={`${routes.registrationform.path}/${original.id}`}>{original.name}</Link>
+		)
+	},
+
+	{
+		Header: 'Päättyi',
+		accessor: 'end',
+		Cell: ({ original }: RowOriginal) => (
+			<div>
+				<DataSpanWarning>{original.end.toLocaleDateString('fi-FI')}</DataSpanWarning>
+				<DateSpan>
+					<ReactTimeago date={original.end} />
+				</DateSpan>
+			</div>
+		)
+	}
+];
+
+const renderRoleColumns = () => ({
+	Header: 'Roolit',
+	accessor: 'roles',
+	Cell: ({ original }: RowOriginal) =>
+		original.roles.map((role, index) => <Badge key={index} text={Role[role]} />)
+});
+
+const renderDateColumns = () => ({
+	Header: 'Aukesi',
+	accessor: 'start',
+	Cell: ({ original }: RowOriginal) => (
+		<div>
+			<DateSpanSuccess>{original.start.toLocaleDateString('fi-FI')}</DateSpanSuccess>
+			<DateSpan>
+				<ReactTimeago date={original.start} />
+			</DateSpan>
+		</div>
+	)
+});
 
 const DateSpan = styled.time`
 	color: ${(p) => p.theme.primary_color};

@@ -9,6 +9,7 @@ import { TopPanelThemed } from './Styles/TopPanel';
 import { RoutableAutoSuggest } from './AutoSuggestSeach';
 import { useHistory } from 'react-router';
 import * as routes from '../Constants/Routes_MODIF';
+import { ButtonLink } from '../Components/Button/ButtonLink';
 
 export const TopPanel = () => {
 	const { toggleTheme, isDarkTheme, authorization } = useContext(AppContext);
@@ -50,7 +51,7 @@ const AppDropDown: FC<{ username: string }> = (props) => {
 
 	return (
 		<>
-			<MenuDisclosure {...menu} as={Button}>
+			<MenuDisclosure {...menu} as={ButtonLink}>
 				<span className="panel__icon-and-text">
 					{Icons.user} {props.username}
 				</span>

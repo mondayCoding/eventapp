@@ -4,7 +4,7 @@ import { Formik, Form, FormikActions } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { LoginWrapper } from './LoginWrapper';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../App';
 import { Button } from '../../Components/Button/Button';

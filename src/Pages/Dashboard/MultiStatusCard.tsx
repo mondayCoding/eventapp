@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled, { css } from '../../Theme/theme';
 import { mix } from 'polished';
+import { Heading } from '../../Components/Text/Heading';
 
 interface IStatCardProps {
 	text: string;
@@ -14,12 +15,14 @@ interface IStatCardProps {
 interface IMultiStatusCardsProps {
 	stats: IStatCardProps[];
 	onClick?: () => void;
+	heading?: string;
 }
 
-export const MultiStatCard: FC<IMultiStatusCardsProps> = ({ stats, onClick }) => {
+export const MultiStatCard: FC<IMultiStatusCardsProps> = (props) => {
 	return (
-		<StatusCard onClick={onClick} isInteractive={!!onClick}>
-			{stats.map((props, i) => (
+		<StatusCard onClick={props.onClick} isInteractive={!!props.onClick}>
+			{props.heading && <Heading text={props.heading} isUnderlined></Heading>}
+			{props.stats.map((props, i) => (
 				<div
 					key={i}
 					className="card__body"
@@ -130,6 +133,6 @@ const interactiveCSS = css`
 
 	&:hover {
 		border-bottom: 3px solid ${(p) => p.theme.info_color};
-		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.25);
+		box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.25);
 	}
 `;

@@ -62,7 +62,7 @@ export const Nav = styled.nav`
 
 		&__group-title {
 			color: ${(p) => mix(0.6, '#000', p.theme.text_color_nav)};
-			font-size: 0.9rem;
+			font-size: 0.8rem;
 			padding: 1.6rem 1rem 0.5rem 1rem;
 			border-bottom: 1px solid ${(p) => mix(0.6, '#000', p.theme.text_color_nav)};
 		}
@@ -80,6 +80,10 @@ export const Nav = styled.nav`
 
 			&:hover {
 				background-color: black;
+
+				.navigation__link__text {
+					padding-left: 0.9rem;
+				}
 			}
 
 			&.active {
@@ -111,6 +115,7 @@ export const Nav = styled.nav`
 
 			&__text {
 				padding-left: 0.5rem;
+				transition: padding 0.2s ease-in-out;
 				flex: 1 1 auto;
 			}
 		}

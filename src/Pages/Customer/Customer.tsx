@@ -9,17 +9,20 @@ import ReactTimeago from 'react-timeago';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BadgeTag } from '../Dashboard/BadgeTag';
 import { PageFooter } from '../../Layout/MainFooter';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
 import { CardWrapper } from '../Dashboard/CardWrapper';
 import * as routes from '../../Constants/Routes_MODIF';
 import { SelectBase } from '../../Components/Select/Select';
 import { CustomerActionsMenu } from './CustomerActionsMenu';
 import { IconButton } from '../../Components/Button/IconButton';
+import { MockEvents } from '../../MockData/MockEvents';
 
 interface routeprops {
 	id: string;
 }
+
+const eventData = [MockEvents[1], MockEvents[4], MockEvents[3], MockEvents[2]];
 
 export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 	useDocumentTitle('Asiakas');
@@ -29,65 +32,64 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 
 	return (
 		<>
-			<CustomerCard>
-				<div className="card__heading">
-					<Heading
-						text={customer ? `${customer.firstname} ${customer.lastname}` : ''}
-						isUnderlined
-					>
-						{/* <div
-							style={{ flex: '1 1 auto', justifyContent: 'flex-end', display: 'flex' }}
+			<div className="row">
+				<div className="col-lg-8">
+					<CardWrapper>
+						<Heading
+							text={customer ? `${customer.firstname} ${customer.lastname}` : ''}
+							isUnderlined
 						>
-							{customer && (
-								<div>
-									<CustomerActionsMenu id={customer.id} />
-									<IconButton icon={Icons.trashcan}></IconButton>
-									<IconButton icon={Icons.envelope}></IconButton>
-							
-								</div>
-							)}
-						</div> */}
-					</Heading>
-					{customer && customer.tags && renderTags(customer.tags)}
-				</div>
-				<div className="card__body">
-					<div className="card__body__content">
+							{/* <div
+               style={{ flex: '1 1 auto', justifyContent: 'flex-end', display: 'flex' }}
+            >
+               {customer && (
+                  <div>
+                     <CustomerActionsMenu id={customer.id} />
+                     <IconButton icon={Icons.trashcan}></IconButton>
+                     <IconButton icon={Icons.envelope}></IconButton>
+               
+                  </div>
+               )}
+            </div> */}
+						</Heading>
+						{customer && customer.tags && renderTags(customer.tags)}
+
+						{/* Lomake */}
 						<CustomerForm customer={customer!} />
-					</div>
-					<div className="card__body__avatar">
+					</CardWrapper>
+				</div>
+
+				<div className="col-lg-4">
+					<CardWrapper>
 						<img
 							alt=""
-							className="card__body__avatar__img"
+							className="card__image"
 							src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
 						/>
-					</div>
+					</CardWrapper>
 				</div>
-			</CustomerCard>
+			</div>
 
 			<div className="row" style={{ marginTop: '1.5rem' }}>
 				<div className="col-lg-6">
 					<CardWrapper>
 						<Heading text="Osallistumiset" isUnderlined></Heading>
-						<Participations
-							date={new Date(2017, 8, 11)}
-							name="Ensiapu koulutus 101"
-							onClick={() => history.push(routes.registrationform.path + '/1')}
-						></Participations>
-						<Participations
-							date={new Date(2018, 1, 19)}
-							name="Markkinoinnin perusteet"
-							onClick={() => history.push(routes.registrationform.path + '/1')}
-						></Participations>
-						<Participations
-							date={new Date(2019, 7, 24)}
-							name="Osastokoulutus 2019 - Markkinoinnin tehokurssi"
-							onClick={() => history.push(routes.registrationform.path + '/1')}
-						></Participations>
+
+						{eventData.map((event) => (
+							<Participations
+								date={new Date(2017, 8, 11)}
+								name={event.name}
+								onClick={() =>
+									history.push(routes.event.path + '/' + event.id + '/frontpage')
+								}
+							></Participations>
+						))}
 					</CardWrapper>
 				</div>
+
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Heading text="Viestintä" isUnderlined></Heading>
+						<Heading text="Viestintä" isUnderlined ingress="Asiakkaan kan"></Heading>
 						<h2>TODO:</h2>
 						<h4>
 							Tähän lyhyt listaus asiakkaalle lähetetyistä viesteistä (10+ & tabbed)
@@ -112,6 +114,17 @@ interface IParticipationProps {
 const Participations: FC<IParticipationProps> = (props) => (
 	<Participated onClick={props.onClick}>
 		<div className="icon">{Icons.check_circle}</div>
+		<div className="name">{props.name}</div>
+		<div className="date__ago">
+			<ReactTimeago date={props.date}></ReactTimeago>
+		</div>
+		<div className="date__icon">{Icons.calendar}</div>
+	</Participated>
+);
+
+const MessageLog: FC<IParticipationProps> = (props) => (
+	<Participated onClick={props.onClick}>
+		<div className="icon">{Icons.envelope}</div>
 		<div className="name">{props.name}</div>
 		<div className="date__ago">
 			<ReactTimeago date={props.date}></ReactTimeago>
@@ -167,37 +180,3 @@ const renderTags = (tags: CustomerTagType[]) =>
 			new Error(`Uknown Event Tag Type: ${tag}`)
 		);
 	});
-
-const CustomerCard = styled.section`
-	padding: 1.5rem;
-	display: flex;
-	flex-direction: column;
-	background-color: ${(p) => p.theme.card_background_color};
-	font-family: ${(p) => p.theme.body_font};
-	box-shadow: 2px 7px 10px -4px rgba(0, 0, 0, 0.15);
-	min-height: 35rem;
-
-	.card__heading {
-		display: block;
-		margin-bottom: 1rem;
-	}
-
-	.card__body {
-		display: flex;
-		flex: 1 1 auto;
-
-		&__avatar {
-			flex: 0 0 30%;
-
-			&__img {
-				max-width: 100%;
-				object-fit: cover;
-			}
-		}
-
-		&__content {
-			flex: 0 0 70%;
-			padding: 0 2rem 0 0;
-		}
-	}
-`;

@@ -3,7 +3,7 @@ import { Heading } from '../Components/Text/Heading';
 import { Line, Bar } from 'react-chartjs-2';
 import { ThemeContext } from '../Theme/theme';
 import { MockRegistratinData } from '../MockData/MockRegistrationData';
-import { Button } from '../Components/Button/Button';
+import { ButtonLink } from '../Components/Button/ButtonLink';
 
 export const EventAttendanceGraph = () => {
 	const theme = useContext(ThemeContext);
@@ -146,9 +146,9 @@ export const EventAttendanceGraph = () => {
 			) : (
 				<Bar data={attendanceData} height={60} options={usageOptions}></Bar>
 			)}
-			<Button onClick={() => setShowLineGrap(!showLineGraph)}>
+			<ButtonLink onClick={() => setShowLineGrap(!showLineGraph)}>
 				{showLineGraph ? 'Näytä Palkkidiagrammi' : 'Näytä linjadiagrammi'}
-			</Button>
+			</ButtonLink>
 		</>
 	);
 };

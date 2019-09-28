@@ -32,8 +32,8 @@ const Links: FC = () => (
 		<Link route={routes.settings} />
 
 		<div className="navigation__group-title">Non-routable</div>
-		<Link route={routes.signIn} />
-		<Link route={routes.signUp} />
+		{/* <Link route={routes.signIn} />
+		<Link route={routes.signUp} /> */}
 		<Link route={routes.signOut} />
 	</>
 );

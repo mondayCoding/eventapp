@@ -20,11 +20,12 @@ const DefaultTheme = {
 	card_background_color: '#fff',
 
 	focus_color: '#81e979',
-	link_color: '#81e979',
+	link_color: '#322877',
 	border_color: '#dadada',
 
 	input_border: '1px solid #dadada',
 	input_background: '#f9f9f9',
+	login_background: 'radial-gradient(circle,rgb(225, 232, 140) 0%,rgb(98, 140, 37) 100%)',
 
 	// Validation/Notification colors
 	error_color: '#ac4d4d',
@@ -96,11 +97,12 @@ const DarkTheme: typeof DefaultTheme = {
 	card_background_color: '#1a2026',
 
 	focus_color: 'skyblue',
-	link_color: '#e9799e',
+	link_color: '#aaebff',
 	border_color: '#4d4d4d',
 
 	input_border: 'none',
 	input_background: '#0000002e',
+	login_background: 'radial-gradient(circle,rgb(132, 185, 92) 0%,rgb(32, 57, 33) 100%)',
 
 	// Validation/Notification colors
 	error_color: '#ac4d4d',

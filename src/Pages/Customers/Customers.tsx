@@ -7,7 +7,7 @@ import { useCustomers } from '../../Queries/useCustomers';
 import styled from '../../Theme/theme';
 import { Icons } from 'library';
 import { ICustomer } from '../../MockData/MockCustomers';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import ReactTable from 'react-table';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useHistory } from 'react-router';

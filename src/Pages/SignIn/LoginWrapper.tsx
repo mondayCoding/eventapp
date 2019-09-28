@@ -8,7 +8,9 @@ export const LoginWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: ${(p) => p.theme.body_background_color};
+   /* background: ${(p) => p.theme.body_background_color}; */
+   transition: background-color .2s ease-in-out;
+	background: ${(p) => p.theme.login_background};
 
 	.loginbox {
 		background: ${(p) => p.theme.menu_background_color};

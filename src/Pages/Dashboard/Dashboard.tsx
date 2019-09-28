@@ -4,7 +4,7 @@ import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
 import styled from '../../Theme/theme';
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { MultiStatCard } from './MultiStatusCard';
 import { useHistory } from 'react-router';
 import * as routes from '../../Constants/Routes_MODIF';

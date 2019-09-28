@@ -2,10 +2,9 @@ import * as React from 'react';
 // import { TooltipCircle as Tooltip } from '../Utility/Tooltip/Tooltip';
 import { CheckBoxWrapper } from './CheckboxStyles';
 import {
-	SlideCheckboxInput,
-	SliderCheckboxLabel,
 	SliderCheckboxLabelInlined,
-	SlideCheckboxInputInlined
+	SlideCheckboxInputInlined,
+	SliderCheckboxWrapper
 } from './SliderCheckboxStyles';
 import { FieldProps, Field, FastField } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
@@ -17,9 +16,9 @@ type IProps = React.InputHTMLAttributes<HTMLInputElement> & {
 type SliderProps = IFieldContainerProps & IProps;
 
 const SliderCheckbox: React.SFC<IProps> = ({ id, label, tooltip, children, ...rest }) => (
-	<CheckBoxWrapper>
-		<SlideCheckboxInput data-role="none" id={id} type="checkbox" {...rest} />
-		<SliderCheckboxLabel htmlFor={id}>
+	<SliderCheckboxWrapper>
+		<input className="cb__input" id={id} type="checkbox" {...rest} />
+		<label htmlFor={id} className="cb__label">
 			{label}
 			{children}
 			{tooltip && (
@@ -27,13 +26,13 @@ const SliderCheckbox: React.SFC<IProps> = ({ id, label, tooltip, children, ...re
 					{/* <Tooltip content={tooltip} /> */}
 				</span>
 			)}
-		</SliderCheckboxLabel>
-	</CheckBoxWrapper>
+		</label>
+	</SliderCheckboxWrapper>
 );
 
 const SliderCheckboxInline: React.SFC<IProps> = ({ id, children, ...rest }) => (
 	<CheckBoxWrapper>
-		<SlideCheckboxInputInlined data-role="none" id={id} type="checkbox" {...rest} />
+		<SlideCheckboxInputInlined id={id} type="checkbox" {...rest} />
 		<SliderCheckboxLabelInlined htmlFor={id} />
 		{children}
 	</CheckBoxWrapper>

@@ -8,9 +8,13 @@ import { BadgeTag } from '../Dashboard/BadgeTag';
 import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
 import { MultiStatCard } from '../Dashboard/MultiStatusCard';
 import styled from '../../Theme/theme';
+import { useHistory } from 'react-router';
+import * as routes from '../../Constants/Routes_MODIF';
 
 export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
+	const history = useHistory();
 	const hasImage = !!(event && event.image);
+
 	return (
 		<>
 			<div className="row">
@@ -18,6 +22,7 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 					<CardWrapper>
 						<Heading
 							text={event ? `${event.name}` : ''}
+							type="h2"
 							ingress={event && event.description}
 							isUnderlined
 						></Heading>
@@ -27,6 +32,8 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 					<div className="row">
 						<div className="col-lg-6">
 							<MultiStatCard
+								heading="Budjetti"
+								onClick={() => history.push(`${routes.event.path}/${event!.id}/budjet`)}
 								stats={[
 									{
 										text: 'Tulot',
@@ -49,6 +56,8 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 							></MultiStatCard>
 
 							<MultiStatCard
+								heading="Lomakkeet"
+								onClick={() => history.push(`${routes.event.path}/${event!.id}/forms`)}
 								stats={[
 									{
 										text: 'Avoinna',
@@ -72,6 +81,10 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 
 						<div className="col-lg-6">
 							<MultiStatCard
+								heading="Osallistujat"
+								onClick={() =>
+									history.push(`${routes.event.path}/${event!.id}/participants`)
+								}
 								stats={[
 									{
 										text: 'Kutsuttuja',
@@ -94,6 +107,10 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 								]}
 							></MultiStatCard>
 							<MultiStatCard
+								heading="Kutsutut"
+								onClick={() =>
+									history.push(`${routes.event.path}/${event!.id}/participants/#id`)
+								}
 								stats={[
 									{
 										text: 'Lähetettyjä kutsuja',
@@ -116,15 +133,44 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 						</div>
 					</div>
 				</div>
-				{hasImage && (
+				{event && hasImage && (
 					<div className="col-lg-4 ">
 						<CardWrapper>
-							<EventImage src={event!.image}></EventImage>
+							<img alt="" className="card__image" src={event.image}></img>
 						</CardWrapper>
 
 						<CardWrapper>
-							<Heading text="Ilmoittautuneet rooleittain" isUnderlined></Heading>
-							<EventParticipationByRolesGraph></EventParticipationByRolesGraph>
+							<Heading text="Tiivistelmä" isUnderlined></Heading>
+							<SummaryRow>
+								<div className="row__title">Tapahtuma</div>
+								<div className="row__data">{event.name}</div>
+							</SummaryRow>
+							<SummaryRow>
+								<div className="row__title">Alkaa</div>
+								<div className="row__data">{`${event.start.toLocaleString(
+									'fi-FI'
+								)}`}</div>
+							</SummaryRow>
+							<SummaryRow>
+								<div className="row__title">Päättyy</div>
+								<div className="row__data">{`${event.end.toLocaleString('fi-FI')}`}</div>
+							</SummaryRow>
+							<SummaryRow>
+								<div className="row__title">Sijanti</div>
+								<div className="row__data">{`${event.location}`}</div>
+							</SummaryRow>
+							<SummaryRow>
+								<div className="row__title">Katuosoite</div>
+								<div className="row__data">{`${event.city} ${event.address} ${event.postNumber}`}</div>
+							</SummaryRow>
+							<SummaryRow>
+								<div className="row__title">Kotisivut</div>
+								<div className="row__data">{event.homepage}</div>
+							</SummaryRow>
+							<SummaryRow>
+								<div className="row__title">Järjestäjä</div>
+								<div className="row__data">{event.organizer}</div>
+							</SummaryRow>
 						</CardWrapper>
 					</div>
 				)}
@@ -133,10 +179,17 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 	);
 };
 
-const EventImage = styled.img`
-	display: block;
-	width: 100%;
-	height: auto;
+const SummaryRow = styled.section`
+	display: flex;
+	flex-direction: row;
+
+	.row__title {
+		flex: 0 0 150px;
+		font-weight: 700;
+	}
+	.row__data {
+		flex: 1 1 auto;
+	}
 `;
 
 const renderTags = (tags: EventTagType[]) =>

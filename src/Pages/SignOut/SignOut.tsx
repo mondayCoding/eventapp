@@ -1,4 +1,4 @@
-import { useDocumentTitle } from '../../Data/useDocumentTitle';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { auth } from '../../Firebase/index';
 
 export const SignOutPage = () => {
