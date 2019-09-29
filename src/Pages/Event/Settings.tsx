@@ -42,7 +42,7 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 					<CardWrapper>
 						<OrganizerForm></OrganizerForm>
 
-						<h2> ASETUKSET</h2>
+						{/* <h2> ASETUKSET</h2>
 						<div style={{ marginLeft: '1.25rem' }}>
 							<ol>
 								<li>nimi ()</li>
@@ -62,7 +62,7 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 								<li>onsite(on/off)</li>
 								<li>some(linkit)</li>
 							</ol>
-						</div>
+						</div> */}
 					</CardWrapper>
 
 					<CardWrapper>
@@ -72,11 +72,9 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 
 				<div className="col-lg-4">
 					<CardWrapper>
-						<img
-							alt=""
-							className="card__image"
-							src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-						/>
+						{event && event.image && (
+							<img alt="" className="card__image" src={event.image} />
+						)}
 						<Button
 							icon={Icons.download}
 							text="Hallitse tapahtuman kuvia"
@@ -88,6 +86,7 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 							icon={Icons.plus}
 							text="Luo ilmoittautumislomake"
 							className="card__button--large"
+							onClick={() => history.push(routes.registrationform.path + '/0')}
 						></Button>
 					</CardWrapper>
 

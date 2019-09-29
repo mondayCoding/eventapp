@@ -149,6 +149,15 @@ export const ParticipantLists: FC<{ event?: IEvent }> = ({ event }) => {
 				</div>
 				<div className="col-lg-4">
 					<CardWrapper>
+						<Link to={routes.sendEmail.path} className="card__link">
+							{Icons.envelope} Lähetä viesti osallistujille
+						</Link>
+						<Link to={routes.sendEmail.path} className="card__link">
+							{Icons.envelope} Lähetä todistukset osallistuneille
+						</Link>
+					</CardWrapper>
+
+					<CardWrapper>
 						<Heading text="Osallistujien roolijakauma" isUnderlined></Heading>
 						<EventParticipationByRolesGraph></EventParticipationByRolesGraph>
 					</CardWrapper>

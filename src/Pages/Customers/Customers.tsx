@@ -43,6 +43,7 @@ export const Customers = () => {
 			<FilterInput
 				type="text"
 				value={filter}
+				placeholder="Suodata asiakkaita..."
 				onChange={(e) => setFilter(e.target.value)}
 			></FilterInput>
 

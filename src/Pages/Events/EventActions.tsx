@@ -3,9 +3,14 @@ import styled from '../../Theme/theme';
 import Icons from '../../Components/Icons/icons';
 import { Button } from '../../Components/Button/Button';
 import { useMenuState, Menu, MenuItem, MenuDisclosure } from 'reakit/Menu';
+import * as routes from '../../Constants/Routes_MODIF';
+import { useHistory } from 'react-router';
 
 export const EventActions = () => {
 	const menu = useMenuState();
+	const history = useHistory();
+
+	const CreateNewEmptyEvent = () => history.push(routes.event.path + '/0/settings/');
 
 	return (
 		<MenuWrapper>
@@ -19,7 +24,7 @@ export const EventActions = () => {
 			<Menu {...menu} aria-label="Settings" className="menu__box">
 				<MenuItem
 					{...menu}
-					onClick={() => alert('CREATE_NEW_EVENT_WITH_EMPTY_TEMPLATE')}
+					onClick={CreateNewEmptyEvent}
 					className="menu__box__item"
 					title="Luo uusi tapahtuma ilman esiasetuksia"
 				>
@@ -27,7 +32,7 @@ export const EventActions = () => {
 				</MenuItem>
 				<MenuItem
 					{...menu}
-					onClick={() => alert('CREATE_NEW_EVENT_WITH_TRAINING_EVENT_TEMPLATE')}
+					onClick={CreateNewEmptyEvent}
 					className="menu__box__item"
 					title="Luo tapahtuma luentoihin ja koulutuksiin liittyvillä perusasetuksilla"
 				>
@@ -35,7 +40,7 @@ export const EventActions = () => {
 				</MenuItem>
 				<MenuItem
 					{...menu}
-					onClick={() => alert('CREATE_NEW_EVENT_WITH_ACCOMMODATION_EVENT_TEMPLATE')}
+					onClick={CreateNewEmptyEvent}
 					className="menu__box__item"
 					title="Luo tapahtuma jossa on valmiit majoitustenhallinan asetukset"
 				>
@@ -43,7 +48,7 @@ export const EventActions = () => {
 				</MenuItem>
 				<MenuItem
 					{...menu}
-					onClick={() => alert('CREATE_NEW_EVENT_WITH_PRODUCT_ROWS_TEMPLATE')}
+					onClick={CreateNewEmptyEvent}
 					className="menu__box__item"
 					title="Luo tapahtuma jossa on valmiita tuotteita"
 				>
@@ -51,7 +56,7 @@ export const EventActions = () => {
 				</MenuItem>
 				<MenuItem
 					{...menu}
-					onClick={() => alert('CREATE_NEW_EVENT_WITH_TICKET_AND_CODESERIES_TEMPLATE')}
+					onClick={CreateNewEmptyEvent}
 					className="menu__box__item"
 					title="Luo tapahtuma jossa on pääsylippujen käyttöön liittyvät perusasetukset"
 				>

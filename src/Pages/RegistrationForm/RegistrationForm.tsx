@@ -16,6 +16,7 @@ import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import { useEvents } from '../../Queries/useEvents';
 import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
 import { WarningNotification } from 'library';
+import { Link } from 'react-router-dom';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -167,6 +168,12 @@ export const RegistrationForm: FC<formProps> = ({ match }) => {
 					)}
 				</div>
 				<div className="col-lg-4">
+					<CardWrapper>
+						<Link className="card__link" to={routes.registration.path + '/1'}>
+							{Icons.eye} Esikatsele Ilmoittaumislomaketta
+						</Link>
+					</CardWrapper>
+
 					<CardWrapper>
 						<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
 							{() => (

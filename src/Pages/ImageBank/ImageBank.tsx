@@ -10,7 +10,7 @@ import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 import { ImageBox } from './ImageBoxProps';
 
 export const ImageBank = () => {
-	useDocumentTitle('Kuvapankki');
+	useDocumentTitle('Mediapankki');
 	const [images, setImages] = useState(MockImages);
 
 	const handleAddImage = (values: typeof initialValues) => {

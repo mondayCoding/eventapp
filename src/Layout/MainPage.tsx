@@ -15,6 +15,7 @@ import { SendEmail } from '../Pages/SendEmail/SendEmail';
 import { UserSettings } from '../Pages/UserSettings/UserSettings';
 import { SignOutPage } from '../Pages/SignOut/SignOut';
 import { ImageBank } from '../Pages/ImageBank/ImageBank';
+import { Registration } from '../Pages/Registration/Registration';
 
 export const MainPage = () => {
 	const ref = useRef(undefined as any | HTMLElement);
@@ -30,17 +31,22 @@ export const MainPage = () => {
 
 					<Route exact path={routes.events.path} component={Events} />
 					<Route path={routes.event.path + '/:id'} component={Event} />
-
+					<Route exact path={routes.sendEmail.path + '/:id?'} component={SendEmail} />
+					<Route exact path={routes.mediabank.path + '/:id?'} component={ImageBank} />
+					<Route exact path={routes.settings.path} component={UserSettings} />
 					<Route
+						exact
+						path={routes.registration.path + '/:id'}
+						component={Registration}
+					/>
+					<Route
+						exact
 						path={routes.registrationform.path + '/:id'}
 						component={RegistrationForm}
 					/>
-					<Route path={routes.sendEmail.path + '/:id?'} component={SendEmail} />
-					<Route path={routes.mediabank.path + '/:id?'} component={ImageBank} />
-					<Route path={routes.settings.path} component={UserSettings} />
 					{/* <Route path={routes.signIn.path} component={SignInPage} />
 					<Route path={routes.signUp.path} component={SignUpPage} /> */}
-					<Route path={routes.signOut.path} component={SignOutPage} />
+					<Route exact path={routes.signOut.path} component={SignOutPage} />
 					<Redirect to={routes.dashboard.path} />
 				</Switch>
 			</Main>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { StatCard } from '../../Components/StatusCard';
@@ -15,12 +15,17 @@ import {
 	Role
 } from '../../MockData/MockRegistrationForms';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
+import { IEvent } from '../../MockData/MockEvents';
 
 interface RowOriginal {
 	original: IRegistrationForm;
 }
 
-export const RegistrationForms = () => {
+interface RegistrationForms {
+	event?: IEvent;
+}
+
+export const RegistrationForms: FC<RegistrationForms> = (props) => {
 	const [showRoles, setShowRoles] = useState(false);
 
 	return (

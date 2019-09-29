@@ -58,25 +58,7 @@ export const Event: FC<RouteComponentProps<EventRouteProps>> = ({ match }) => {
 				path="/event/:id/forms"
 				component={() => (
 					<>
-						<RegistrationForms></RegistrationForms>
-						<CardWrapper>
-							<h2> Perusnäkymässä (kaikki lomakkeet) voi :</h2>
-							<div style={{ marginLeft: '1.25rem' }}>
-								<ol>
-									<li>Nähdä ilmoittautujajakauman (per lomakke)</li>
-									<li>nähdä saadut tulot kaikilta lomakkeilta</li>
-								</ol>
-							</div>
-							<h2> yksittäisellä lomakkeella voi:</h2>
-							<div style={{ marginLeft: '1.25rem' }}>
-								<ol>
-									<li>Nähdä ilmoittautuja jakauman (roolit)</li>
-									<li>Vertailla lomakkeen kautta ilmoittautuneiden vastauksia</li>
-									<li>nähdä saadut tulot lomakkeen kautta ilmoittautuneilta</li>
-									<li>nähdä ilmoittautumis-ajat</li>
-								</ol>
-							</div>
-						</CardWrapper>
+						<RegistrationForms event={event}></RegistrationForms>
 					</>
 				)}
 			/>
@@ -107,7 +89,7 @@ const EventSubRouteLinks = styled.nav`
 		&:focus {
 			box-shadow: ${(p) => p.theme.shadow.focus};
 			outline: none;
-         z-index: 2;
+			z-index: 2;
 		}
 
 		&:hover {

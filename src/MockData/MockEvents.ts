@@ -129,6 +129,8 @@ export const MockEvents: IEvent[] = [
 		start: new Date(),
 		end: new Date(),
 		statistics: MockStatistic,
+		image:
+			'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
 		city: 'Vantaa',
 		postNumber: '92300',
 		address: 'Muunmäentie 12 A B',
@@ -148,7 +150,7 @@ export const MockEvents: IEvent[] = [
 		created: new Date(),
 		start: new Date(),
 		end: new Date(),
-		image: 'https://picsum.photos/326/250',
+
 		statistics: MockStatistic,
 		city: 'Vantaa',
 		postNumber: '92300',
@@ -167,9 +169,12 @@ export const MockEvents: IEvent[] = [
 			'Koulutus on suunnattu henkilöille, joiden työtehtäviin kuuluu hyvinvoinnin edistäminen ja muutoksen aikaan saaminen ihmisten käyttäytymisessä. In hac habitasse platea dictumst. Integer sed porta est. Sed vel feugiat dui, sed facilisis arcu. Mauris condimentum enim non sagittis dictum. Fusce eu pellentesque lorem. Sed facilisis urna lorem, et sagittis mauris imperdiet sed. Ut vulputate venenatis suscipit',
 		location: 'Muuninka',
 		created: new Date(),
+		image:
+			'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
 		start: new Date(),
 		end: new Date(),
 		statistics: MockStatistic,
+
 		city: 'Vantaa',
 		postNumber: '92300',
 		address: 'Muunmäentie 12 A B',
@@ -211,6 +216,8 @@ export const MockEvents: IEvent[] = [
 		start: new Date(),
 		end: new Date(),
 		statistics: MockStatistic,
+		image:
+			'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
 		city: 'Vantaa',
 		postNumber: '92300',
 		address: 'Muunmäentie 12 A B',
