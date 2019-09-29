@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styled from '../../Theme/theme';
+import styled from '../Theme/theme';
 import { mix } from 'polished';
 
 interface IStatCardProps {

@@ -7,22 +7,21 @@ import { useCustomers } from '../../Queries/useCustomers';
 import { CustomerTagType, CustomerTag } from '../../Constants/CustomerTags';
 import ReactTimeago from 'react-timeago';
 import 'bootstrap/dist/css/bootstrap.css';
-import { BadgeTag } from '../Dashboard/BadgeTag';
+import { BadgeTag } from '../../Components/BadgeTag';
 import { PageFooter } from '../../Layout/MainFooter';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import * as routes from '../../Constants/Routes_MODIF';
 import { SelectBase } from '../../Components/Select/Select';
 import { CustomerActionsMenu } from './CustomerActionsMenu';
 import { IconButton } from '../../Components/Button/IconButton';
 import { MockEvents } from '../../MockData/MockEvents';
+import { TextAreaField } from '../../Components/TextArea/TextArea';
 
 interface routeprops {
 	id: string;
 }
-
-const eventData = [MockEvents[1], MockEvents[4], MockEvents[3], MockEvents[2]];
 
 export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 	useDocumentTitle('Asiakas');
@@ -73,9 +72,13 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 			<div className="row" style={{ marginTop: '1.5rem' }}>
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Heading text="Osallistumiset" isUnderlined></Heading>
+						<Heading
+							text="Osallistumiset"
+							ingress="Osallistumishistoria"
+							isUnderlined
+						></Heading>
 
-						{eventData.map((event) => (
+						{MockParticipations.map((event) => (
 							<Participations
 								date={new Date(2017, 8, 11)}
 								name={event.name}
@@ -89,11 +92,14 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 
 				<div className="col-lg-6">
 					<CardWrapper>
-						<Heading text="Viestintä" isUnderlined ingress="Asiakkaan kan"></Heading>
-						<h2>TODO:</h2>
-						<h4>
-							Tähän lyhyt listaus asiakkaalle lähetetyistä viesteistä (10+ & tabbed)
-						</h4>
+						<Heading
+							text="Viestintä"
+							isUnderlined
+							ingress="Asiakkaalle lähetetyt viestit"
+						></Heading>
+						{MockMessages.map((message) => (
+							<MessageLog title={message.title} date={message.date}></MessageLog>
+						))}
 					</CardWrapper>
 				</div>
 			</div>
@@ -111,6 +117,8 @@ interface IParticipationProps {
 	id?: string;
 }
 
+const MockParticipations = [MockEvents[1], MockEvents[4], MockEvents[3], MockEvents[2]];
+
 const Participations: FC<IParticipationProps> = (props) => (
 	<Participated onClick={props.onClick}>
 		<div className="icon">{Icons.check_circle}</div>
@@ -122,10 +130,36 @@ const Participations: FC<IParticipationProps> = (props) => (
 	</Participated>
 );
 
-const MessageLog: FC<IParticipationProps> = (props) => (
+interface IMessageProps {
+	date: Date;
+	title: string;
+	onClick?: () => void;
+}
+
+const MockMessages: IMessageProps[] = [
+	{
+		date: new Date(2019, 8, 9),
+		title: 'Kutsu Keravan viinifestivaaleille'
+	},
+	{
+		date: new Date(2018, 7, 2),
+		title: 'Unohtuneet tähdet -seminaari on peruttu'
+	},
+	{
+		date: new Date(2017, 6, 21),
+		title: 'Todistus osallistumisesta peruskoulutukseen'
+	},
+
+	{
+		date: new Date(2016, 11, 14),
+		title: 'Kutsu tapahtumaan IO-Koulutus'
+	}
+];
+
+const MessageLog: FC<IMessageProps> = (props) => (
 	<Participated onClick={props.onClick}>
 		<div className="icon">{Icons.envelope}</div>
-		<div className="name">{props.name}</div>
+		<div className="name">{props.title}</div>
 		<div className="date__ago">
 			<ReactTimeago date={props.date}></ReactTimeago>
 		</div>

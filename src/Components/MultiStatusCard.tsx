@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import styled, { css } from '../../Theme/theme';
+import styled, { css } from '../Theme/theme';
 import { mix } from 'polished';
-import { Heading } from '../../Components/Text/Heading';
+import { Heading } from './Text/Heading';
 
 interface IStatCardProps {
 	text: string;

@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
-import { BadgeTag } from '../Dashboard/BadgeTag';
+import { BadgeTag } from '../../Components/BadgeTag';
 import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
-import { SelectField } from '../../Components/Select/Select';
+import { SelectField, MultiSelectField } from '../../Components/Select/Select';
 import { CheckBoxField } from '../../Components/CheckBox/CheckBox';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 
@@ -89,6 +89,55 @@ const UserSettingsForm = () => {
 							name="nom3"
 						></CheckBoxField>
 					</div>
+				</FieldContainer>
+
+            <Heading 
+            text="Lomakkeiden perusasetukset" 
+            hasSpaceAbove 
+            isUnderlined 
+            ingress="Näitä asetuksia käytetään perusasetuksina kun luot uusia lomakkeita. Asetuksien muuttaminen ei vaikuta aiemmin luotuihin lomakkeisiin." />
+
+				<MultiSelectField
+					label="Kielet"
+					name="pageAfterLogin"
+					options={[
+						{
+							label: 'Suomi',
+							value: 1
+						},
+						{
+							label: 'Englanti',
+							value: 2
+						},
+						{
+							label: 'Ahvenanmaa',
+							value: 3
+						}
+					]}
+				></MultiSelectField>
+            <FieldContainer label="">
+					<span>Nämä kielet ovat automaattisesti valittuna kun luot uuden lomakkeen</span>
+				</FieldContainer>
+            <MultiSelectField
+					label="Lomakelohkot"
+					name="pageAfterLogin"
+					options={[
+						{
+							label: 'Perustiedot',
+							value: 1
+						},
+						{
+							label: 'Majoitukset',
+							value: 2
+						},
+						{
+							label: 'Luennot',
+							value: 3
+						}
+					]}
+				></MultiSelectField>
+            <FieldContainer label="">
+					<span>Nämä lohkot ovat käytössä kun luot uuden lomakkeen. Tämä koskee vain Tyhjän pohjan päälle tehtyjä lomakkeita</span>
 				</FieldContainer>
 			</>
 		</Formik>

@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';

@@ -10,10 +10,11 @@ import { Customers } from '../Pages/Customers/Customers';
 import { Customer } from '../Pages/Customer/Customer';
 import { RegistrationForm } from '../Pages/RegistrationForm/RegistrationForm';
 import { SendEmail } from '../Pages/SendEmail/SendEmail';
-import { SignInPage } from '../Pages/SignIn/SingIn';
-import { SignUpPage } from '../Pages/SignUp/SingUp';
+// import { SignInPage } from '../Pages/SignIn/SingIn';
+// import { SignUpPage } from '../Pages/SignUp/SingUp';
 import { UserSettings } from '../Pages/UserSettings/UserSettings';
 import { SignOutPage } from '../Pages/SignOut/SignOut';
+import { ImageBank } from '../Pages/ImageBank/ImageBank';
 
 export const MainPage = () => {
 	const ref = useRef(undefined as any | HTMLElement);
@@ -35,6 +36,7 @@ export const MainPage = () => {
 						component={RegistrationForm}
 					/>
 					<Route path={routes.sendEmail.path + '/:id?'} component={SendEmail} />
+					<Route path={routes.mediabank.path + '/:id?'} component={ImageBank} />
 					<Route path={routes.settings.path} component={UserSettings} />
 					{/* <Route path={routes.signIn.path} component={SignInPage} />
 					<Route path={routes.signUp.path} component={SignUpPage} /> */}

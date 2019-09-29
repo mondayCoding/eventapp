@@ -5,7 +5,7 @@ import styled from '../../../Theme/theme';
 import { Limiter } from '../../../Components/Utility/ContentLimiter/Limiter';
 
 import ReactTable from 'react-table';
-import { CardWrapper } from '../../Dashboard/CardWrapper';
+import { CardWrapper } from '../../../Components/CardWrapper';
 
 export const MyCollectionPage = () => {
 	const { collection, collected } = useContext(AppContext);

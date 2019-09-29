@@ -15,10 +15,17 @@ type IProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 type SliderProps = IFieldContainerProps & IProps;
 
-const SliderCheckbox: React.SFC<IProps> = ({ id, label, tooltip, children, ...rest }) => (
+const SliderCheckbox: React.SFC<IProps> = ({
+	id,
+	label,
+	tooltip,
+	children,
+	title,
+	...rest
+}) => (
 	<SliderCheckboxWrapper>
 		<input className="cb__input" id={id} type="checkbox" {...rest} />
-		<label htmlFor={id} className="cb__label">
+		<label htmlFor={id} className="cb__label" title={title}>
 			{label}
 			{children}
 			{tooltip && (

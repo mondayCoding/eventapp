@@ -1,4 +1,4 @@
-import styled from '../../Theme/theme';
+import styled from '../Theme/theme';
 
 export const CardWrapper = styled.div`
 	padding: 1rem;
@@ -42,6 +42,10 @@ export const CardWrapper = styled.div`
 		text-align: center;
 		transition: background-color 0.2s;
 		cursor: pointer;
+
+		& > svg:first-child {
+			margin-right: 0.5rem;
+		}
 
 		&:hover {
 			background-color: ${(p) => p.theme.body_background_color};

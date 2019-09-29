@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { IEvent } from '../../MockData/MockEvents';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { MockCustomers, ICustomer } from '../../MockData/MockCustomers';
 import * as routes from '../../Constants/Routes_MODIF';
 import styled from '../../Theme/theme';
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useHistory } from 'react-router';
-import { BadgeTag } from '../Dashboard/BadgeTag';
+import { BadgeTag } from '../../Components/BadgeTag';
 import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
 
 export const ParticipantLists: FC<{ event?: IEvent }> = ({ event }) => {

@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { IEvent } from '../../MockData/MockEvents';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { EventTagType, EventTag } from '../../Constants/EventTags';
-import { BadgeTag } from '../Dashboard/BadgeTag';
-import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
-import { MultiStatCard } from '../Dashboard/MultiStatusCard';
+import { BadgeTag } from '../../Components/BadgeTag';
+import { MultiStatCard } from '../../Components/MultiStatusCard';
 import styled from '../../Theme/theme';
 import { useHistory } from 'react-router';
 import * as routes from '../../Constants/Routes_MODIF';
+import { Link } from 'react-router-dom';
 
 export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 	const history = useHistory();
@@ -18,7 +18,7 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 	return (
 		<>
 			<div className="row">
-				<div className={hasImage ? 'col-lg-8 d-flex flex-column' : 'col-lg-12'}>
+				<div className={'col-lg-8 d-flex flex-column'}>
 					<CardWrapper>
 						<Heading
 							text={event ? `${event.name}` : ''}
@@ -53,7 +53,7 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 										state: 'warning'
 									}
 								]}
-							></MultiStatCard>
+							/>
 
 							<MultiStatCard
 								heading="Lomakkeet"
@@ -78,7 +78,7 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 								]}
 							></MultiStatCard>
 						</div>
-
+						<div></div>
 						<div className="col-lg-6">
 							<MultiStatCard
 								heading="Osallistujat"
@@ -133,10 +133,16 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 						</div>
 					</div>
 				</div>
-				{event && hasImage && (
+				{event && (
 					<div className="col-lg-4 ">
 						<CardWrapper>
-							<img alt="" className="card__image" src={event.image}></img>
+							{event.image ? (
+								<img alt="" className="card__image" src={event.image}></img>
+							) : (
+								<Link to={routes.mediabank.path} className="card__link">
+									{Icons.plus} Valitse tapahtumalle logo
+								</Link>
+							)}
 						</CardWrapper>
 
 						<CardWrapper>

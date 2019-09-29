@@ -1,17 +1,18 @@
 import React, { FC, useState } from 'react';
 import { Heading } from '../../Components/Text/Heading';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { BudjetProgressionGrap } from '../../Graphs/BudjetProgressionGrap';
 import ReactTable from 'react-table';
 import Icons from '../../Components/Icons/icons';
 import { IExpense, IRevenue } from '../../MockData/MockBudjets';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
-import { MultiStatCard } from '../Dashboard/MultiStatusCard';
+import { MultiStatCard } from '../../Components/MultiStatusCard';
 import styled from '../../Theme/theme';
 import { IconButton } from '../../Components/Button/IconButton';
 import { Calendar2 } from '../Dashboard/ReactCalendar';
 import { Formik } from 'formik';
+import { ProgressBar } from '../../Components/ProgressBar';
 
 export const Budget: FC = () => {
 	useDocumentTitle('Budjetti');
@@ -24,7 +25,7 @@ export const Budget: FC = () => {
 			...expenses,
 			{
 				name: 'Uusi tulo',
-				value: 10,
+				value: 475,
 				editable: true
 			}
 		]);
@@ -35,7 +36,7 @@ export const Budget: FC = () => {
 			...revenues,
 			{
 				name: 'Uusi tulo',
-				value: 10,
+				value: 475,
 				editable: true
 			}
 		]);
@@ -51,6 +52,13 @@ export const Budget: FC = () => {
 
 	const revenueTotal = revenues.reduce((total, current) => current.value + total, 0);
 	const expenseTotal = expenses.reduce((total, current) => current.value + total, 0);
+	const goal = 45000;
+	const percent = (revenueTotal / goal) * 100;
+	const percentRounded = Math.round(percent * 100) / 100;
+	const balance = revenueTotal - expenseTotal;
+	const balanceIsPositive = balance > 1;
+	const goalBalance = revenueTotal - goal;
+	const goalBalanceIsPositive = goalBalance > 1;
 
 	// const renderEditable = (cellInfo: any) => {
 	// 	return (
@@ -74,8 +82,19 @@ export const Budget: FC = () => {
 			<div className="row">
 				<div className="col-lg-8">
 					<CardWrapper>
-						<Heading text="Budjettikehitys" isUnderlined></Heading>
+						<Heading text="Tuloskehitys" isUnderlined></Heading>
 						<BudjetProgressionGrap></BudjetProgressionGrap>
+					</CardWrapper>
+
+					<CardWrapper>
+						<Heading text="Tulostavoite" isUnderlined></Heading>
+						<ProgressBar
+							percent={percentRounded}
+							textEnd="Tavoite 45 000,00 €"
+							textCenter={`${percentRounded}%`}
+							textStart={`Kerätty ${localisedMarkedValue(revenueTotal)}`}
+						></ProgressBar>
+						{/* <ProgressBar percent={100} textCenter="Tavoite saavutettu"></ProgressBar> */}
 					</CardWrapper>
 				</div>
 
@@ -84,23 +103,37 @@ export const Budget: FC = () => {
 						heading="Budjetti"
 						stats={[
 							{
+								value: localisedMarkedValue(goal),
+								text: 'Tavoite',
+								icon: Icons.dollar
+							},
+							{
 								value: localisedMarkedValue(revenueTotal),
 								text: 'Yhteistulot',
-								icon: Icons.dollar,
+								// icon: Icons.dollar,
 								state: 'success'
 							},
 							{
 								value: localisedMarkedValue(expenseTotal),
 								text: 'Yhteismenot',
-								icon: Icons.dollar,
 								state: 'warning'
+							},
+							{
+								value: localisedMarkedValue(balance),
+								text: 'Tulot/Menot Tase',
+								// icon: balanceIsPositive ? Icons.arrowUp : Icons.arrowDown,
+								state: balanceIsPositive ? 'success' : 'warning'
+							},
+							{
+								value: localisedMarkedValue(goalBalance),
+								text: 'Tulot/Tavoite Tase',
+								// icon: goalBalanceIsPositive ? Icons.arrowUp : Icons.arrowDown,
+								state: goalBalanceIsPositive ? 'success' : 'warning'
 							}
 						]}
 					></MultiStatCard>
 				</div>
 			</div>
-
-			<BudjetGoalBar>80%</BudjetGoalBar>
 
 			<div className="row">
 				<div className="col-lg-6">
@@ -112,7 +145,8 @@ export const Budget: FC = () => {
 						<Formik initialValues={{}} onSubmit={() => {}}>
 							<ReactTable
 								showPagination={false}
-								minRows={5}
+								minRows={10}
+								pageSize={10}
 								data={revenues}
 								columns={[
 									{
@@ -167,7 +201,8 @@ export const Budget: FC = () => {
 
 						<ReactTable
 							showPagination={false}
-							minRows={5}
+							minRows={10}
+							pageSize={10}
 							data={expenses}
 							columns={[
 								{
@@ -214,7 +249,7 @@ export const Budget: FC = () => {
 				</div>
 			</div>
 
-			<CardWrapper>
+			{/* <CardWrapper>
 				<h2>Budjetointi</h2>
 				<div style={{ marginLeft: '1.25rem' }}>
 					<ol>
@@ -229,7 +264,7 @@ export const Budget: FC = () => {
 				</div>
 			</CardWrapper>
 
-			<Calendar2></Calendar2>
+			<Calendar2></Calendar2> */}
 		</>
 	);
 };
@@ -239,19 +274,6 @@ const localisedMarkedValue = (value: number) =>
 		style: 'currency',
 		currency: 'EUR'
 	}).format(value);
-
-const BudjetGoalBar = styled.span`
-	display: flex;
-	height: 1.5rem;
-	font-size: 1.2rem;
-	border-radius: 0.5rem;
-	margin: 0 0 1rem 0;
-	justify-content: center;
-	align-items: center;
-	background: ${(p) => p.theme.success_color};
-	color: #fff;
-	box-shadow: ${(p) => p.theme.shadow.card};
-`;
 
 const ExpenseTotalSpan = styled.span`
 	display: flex;

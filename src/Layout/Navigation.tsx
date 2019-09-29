@@ -30,7 +30,7 @@ const Links: FC = () => (
 
 		<div className="navigation__group-title">Non-routable</div>
 		<NavigationLink route={routes.settings} />
-		<NavigationLink route={routes.imagebank} />
+		<NavigationLink route={routes.mediabank} />
 
 		<div className="navigation__group-title">Non-routable</div>
 		{/* <Link route={routes.signIn} />

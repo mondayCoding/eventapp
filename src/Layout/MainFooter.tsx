@@ -46,7 +46,7 @@ const Footer = styled.footer`
 		padding-top: 0.5rem;
 		width: 100%;
 		background-color: transparent;
-		border-top: 1px solid lightgray;
+		border-top: 1px solid ${(p) => p.theme.border_color};
 		color: gray;
 
 		.footer__dates {

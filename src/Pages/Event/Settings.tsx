@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Heading } from '../../Components/Text/Heading';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { IEvent } from '../../MockData/MockEvents';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { SelectField, SelectFieldBase } from '../../Components/Select/Select';
@@ -11,9 +11,13 @@ import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
 import { Button } from '../../Components/Button/Button';
 import Icons from '../../Components/Icons/icons';
+import { useHistory } from 'react-router';
+import * as routes from '../../Constants/Routes_MODIF';
 
 export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 	useDocumentTitle('Tapahtumat');
+	const history = useHistory();
+
 	return (
 		<>
 			<div className="row">
@@ -77,6 +81,7 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 							icon={Icons.download}
 							text="Hallitse tapahtuman kuvia"
 							className="card__button--large"
+							onClick={() => history.push(routes.mediabank.path)}
 						></Button>
 
 						<Button
@@ -134,12 +139,12 @@ const SomeAndImageForm: FC<{ event?: IEvent }> = (props) => (
 
 				<Heading text="Somen kotisivustot" hasSpaceAbove isUnderlined type="h4"></Heading>
 
-				<TextField label="Facebook " name="9"></TextField>
-				<TextField label="Instagram" name="3"></TextField>
-				<TextField label="Youtube" name="4"></TextField>
-				<TextField label="Facebook" name="1"></TextField>
-				<TextField label="Twitter" name="6"></TextField>
-				<TextField label="Muu" name="6"></TextField>
+				<TextField label="Facebook " placeholder="https://..." name="9"></TextField>
+				<TextField label="Instagram" placeholder="https://..." name="3"></TextField>
+				<TextField label="Youtube" placeholder="https://..." name="4"></TextField>
+				<TextField label="Facebook" placeholder="https://..." name="1"></TextField>
+				<TextField label="Twitter" placeholder="https://..." name="6"></TextField>
+				<TextField label="Muu" placeholder="https://..." name="6"></TextField>
 			</>
 		)}
 	</Formik>

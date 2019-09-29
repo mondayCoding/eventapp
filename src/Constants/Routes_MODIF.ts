@@ -89,9 +89,9 @@ export const settings: routeConfig = {
 	description: 'kuvaus pitkä ja tosi'
 };
 
-export const imagebank: routeConfig = {
-	path: '/imagebank',
+export const mediabank: routeConfig = {
+	path: '/mediabank',
 	icon: Icons.image,
-	text: 'Kuvapankki',
+	text: 'Mediapankki',
 	description: 'kuvaus pitkä ja tosi'
 };

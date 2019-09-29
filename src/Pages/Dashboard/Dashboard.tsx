@@ -1,16 +1,15 @@
 import React from 'react';
-import { CardWrapper } from './CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
 import styled from '../../Theme/theme';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
-import { MultiStatCard } from './MultiStatusCard';
+import { MultiStatCard } from '../../Components/MultiStatusCard';
 import { useHistory } from 'react-router';
 import * as routes from '../../Constants/Routes_MODIF';
 import { EventAttendanceGraph } from '../../Graphs/EventAttendanceGraph';
 import { PerformanceGraph } from '../../Graphs/PerformanceGraph';
-// import { ParticipationInEventsGraph } from '../../Graphs/ParticipationInEventsGraph';
 
 export const DashBoard = () => {
 	useDocumentTitle('Dash');

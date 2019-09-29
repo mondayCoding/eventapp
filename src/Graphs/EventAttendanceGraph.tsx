@@ -142,9 +142,9 @@ export const EventAttendanceGraph = () => {
 			/>
 
 			{showLineGraph ? (
-				<Line data={attendanceData} height={60} options={usageOptions}></Line>
+				<Line data={attendanceData} height={70} options={usageOptions}></Line>
 			) : (
-				<Bar data={attendanceData} height={60} options={usageOptions}></Bar>
+				<Bar data={attendanceData} height={70} options={usageOptions}></Bar>
 			)}
 			<ButtonLink onClick={() => setShowLineGrap(!showLineGraph)}>
 				{showLineGraph ? 'Näytä Palkkidiagrammi' : 'Näytä linjadiagrammi'}

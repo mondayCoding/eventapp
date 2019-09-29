@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
-import { StatCard } from '../Dashboard/StatusCard';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { StatCard } from '../../Components/StatusCard';
+import { CardWrapper } from '../../Components/CardWrapper';
 import ReactTimeago from 'react-timeago';
 import * as routes from '../../Constants/Routes_MODIF';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import styled from '../../Theme/theme';
-import { Badge } from '../Dashboard/Badge';
-import { MultiStatCard } from '../Dashboard/MultiStatusCard';
-import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
+import { Badge } from '../../Components/Badge';
 import {
 	IRegistrationForm,
 	MockRegistrationForms,
@@ -69,26 +67,6 @@ export const RegistrationForms = () => {
 					columns={columnSetupClosed}
 				></ReactTable>
 			</CardWrapper>
-
-			<div className="row">
-				<div className="col-lg-4">
-					<StatCard
-						value={'6'}
-						icon={<span style={{ color: 'lightseagreen' }}>{Icons.list}</span>}
-						text="Avoimia"
-						description="Avoimia käytettävissä olevia lomakkeita"
-					></StatCard>
-				</div>
-
-				<div className="col-lg-4">
-					<StatCard
-						value={'3'}
-						icon={<span style={{ color: 'lightseagreen' }}>{Icons.info_circle}</span>}
-						text="Avautuvia"
-						description="Aukeamista odottavia lomakkeita"
-					></StatCard>
-				</div>
-			</div>
 		</>
 	);
 };

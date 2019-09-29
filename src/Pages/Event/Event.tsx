@@ -10,7 +10,7 @@ import { Settings } from './Settings';
 import { ParticipantLists } from './ParticipantList';
 import * as routes from '../../Constants/Routes_MODIF';
 import { PageFooter } from '../../Layout/MainFooter';
-import { CardWrapper } from '../Dashboard/CardWrapper';
+import { CardWrapper } from '../../Components/CardWrapper';
 import { Budget } from './Budjet';
 
 export interface EventRouteProps {
@@ -107,6 +107,7 @@ const EventSubRouteLinks = styled.nav`
 		&:focus {
 			box-shadow: ${(p) => p.theme.shadow.focus};
 			outline: none;
+         z-index: 2;
 		}
 
 		&:hover {
