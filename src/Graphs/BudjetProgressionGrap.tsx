@@ -164,9 +164,9 @@ export const BudjetProgressionGrap = () => {
 	return (
 		<div>
 			{showLineGraph ? (
-				<Line data={attendanceData} height={60} options={usageOptionsLine}></Line>
+				<Line data={attendanceData} height={80} options={usageOptionsLine}></Line>
 			) : (
-				<Bar data={attendanceData} height={60} options={usageOptionsBar}></Bar>
+				<Bar data={attendanceData} height={80} options={usageOptionsBar}></Bar>
 			)}
 			<ButtonLink
 				text={showLineGraph ? 'Näytä Palkkidiagrammi' : 'Näytä Linjadiagrammi'}

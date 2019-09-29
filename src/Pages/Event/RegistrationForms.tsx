@@ -78,13 +78,6 @@ export const RegistrationForms: FC<RegistrationForms> = (props) => {
 
 const columnSetupOpen = (showRoles: boolean) => [
 	{
-		Header: '',
-		accessor: 'id',
-		width: 30,
-		resizable: false,
-		Cell: () => <div>{Icons.clipboard_list}</div>
-	},
-	{
 		Header: 'Nimi',
 		accessor: 'name',
 		Cell: ({ original }: RowOriginal) => (
@@ -110,13 +103,6 @@ const columnSetupOpen = (showRoles: boolean) => [
 
 const columnSetupOpening = [
 	{
-		Header: '',
-		accessor: 'id',
-		width: 30,
-		resizable: false,
-		Cell: () => <div>{Icons.clipboard_list}</div>
-	},
-	{
 		Header: 'Nimi',
 		accessor: 'name',
 		Cell: ({ original }: RowOriginal) => (
@@ -140,13 +126,6 @@ const columnSetupOpening = [
 ];
 
 const columnSetupClosed = [
-	{
-		Header: '',
-		accessor: 'id',
-		width: 30,
-		resizable: false,
-		Cell: () => <div>{Icons.clipboard_list}</div>
-	},
 	{
 		Header: 'Nimi',
 		accessor: 'name',
