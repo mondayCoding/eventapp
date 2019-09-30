@@ -5,7 +5,6 @@ import { IEvent } from '../../MockData/MockEvents';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { MockCustomers, ICustomer } from '../../MockData/MockCustomers';
 import * as routes from '../../Constants/Routes_MODIF';
-import styled from '../../Theme/theme';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import { IconButton } from '../../Components/Button/IconButton';
@@ -149,12 +148,16 @@ export const ParticipantLists: FC<{ event?: IEvent }> = ({ event }) => {
 				</div>
 				<div className="col-lg-4">
 					<CardWrapper>
-						<Link to={routes.sendEmail.path} className="card__link">
-							{Icons.envelope} Lähetä viesti osallistujille
-						</Link>
-						<Link to={routes.sendEmail.path} className="card__link">
-							{Icons.envelope} Lähetä todistukset osallistuneille
-						</Link>
+						<div>
+							<Link to={routes.sendEmail.path} className="card__link">
+								{Icons.envelope} Lähetä viesti osallistujille
+							</Link>
+						</div>
+						<div>
+							<Link to={routes.sendEmail.path} className="card__link">
+								{Icons.envelope} Lähetä todistukset osallistuneille
+							</Link>
+						</div>
 					</CardWrapper>
 
 					<CardWrapper>

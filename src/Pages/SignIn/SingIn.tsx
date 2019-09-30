@@ -1,8 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
 import { Formik, Form, FormikActions } from 'formik';
-import { TextField } from '../../Components/TextInput/Textinput';
-import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { LoginWrapper } from './LoginWrapper';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { Link } from 'react-router-dom';
@@ -14,12 +12,14 @@ import { auth } from '../../Firebase/index';
 import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 import Notify from '../../Utils/Notification';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router';
+import { useHistory, Redirect } from 'react-router';
 
 export const SignInPage = () => {
 	useDocumentTitle('Kirjaudu sisään');
 	const history = useHistory();
-	const { isDarkTheme, toggleTheme } = useContext(AppContext);
+	const { isDarkTheme, toggleTheme, authorization } = useContext(AppContext);
+
+	if (authorization) return <Redirect to={routes.dashboard.path} />;
 
 	const handleSignIn = (values: form, actions: FormikActions<form>) =>
 		auth

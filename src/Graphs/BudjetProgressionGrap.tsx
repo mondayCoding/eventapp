@@ -42,7 +42,7 @@ export const BudjetProgressionGrap = () => {
 				data: data.revenueFeed
 			},
 			{
-				label: 'Saamattomat',
+				label: 'Saatavat',
 				fill: false,
 				lineTension: 0.1,
 				backgroundColor: theme.error_color,

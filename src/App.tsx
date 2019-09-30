@@ -1,13 +1,12 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import { ThemeManager } from './Theme/ThemeManager';
 // import { database } from './Firebase';
 import { themes } from './Theme/theme';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthState } from './Hooks/useAuthorization';
-import { UnAuthorisedApp } from './Layout/AppUnAuthorised';
-import { AuthorisedApp } from './Layout/AppAuthorised';
 import { BrowserRouter } from 'react-router-dom';
+import { Routing } from './Routing';
 
 interface IAppDataContext {
 	isDarkTheme: boolean;
@@ -34,13 +33,14 @@ const Application: FC = () => {
 	};
 
 	const theme = isDarkTheme ? themes.dark : themes.default;
+	const isAuthorised = auth !== null;
 
 	return (
 		<ThemeManager theme={theme}>
 			<BrowserRouter>
 				<AppContext.Provider value={applicationContext}>
 					{/* Visual App */}
-					{auth ? <AuthorisedApp /> : <UnAuthorisedApp />}
+					<Routing authorised={isAuthorised} />
 					<ToastContainer
 						draggablePercent={40}
 						hideProgressBar={true}

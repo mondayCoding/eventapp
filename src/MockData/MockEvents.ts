@@ -29,6 +29,7 @@ export interface IEvent {
 	start: Date;
 	end: Date;
 	image?: string;
+	forms: { id: string; name: string; isOpen: boolean }[];
 	statistics?: IEventStatistic;
 }
 
@@ -116,7 +117,24 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: false
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	},
 	{
 		id: '2',
@@ -138,7 +156,24 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: true
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	},
 	{
 		id: '3',
@@ -159,7 +194,24 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: true
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	},
 	{
 		id: '4',
@@ -182,7 +234,24 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: false
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	},
 	{
 		id: '5',
@@ -203,7 +272,24 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: true
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	},
 	{
 		id: '6',
@@ -225,7 +311,24 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: true
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	},
 	{
 		id: '7',
@@ -246,6 +349,23 @@ export const MockEvents: IEvent[] = [
 		organizer: 'Keliakia OY',
 		homepage: 'https://www.google.com',
 		department: 'Tanssilattia',
-		country: 'Ahvenanmaa'
+		country: 'Ahvenanmaa',
+		forms: [
+			{
+				id: '1',
+				name: 'WebSocket ilmoittautuminen Syyskuu',
+				isOpen: true
+			},
+			{
+				id: '2',
+				name: 'WebSocket ilmoittautuminen Lokakuu',
+				isOpen: true
+			},
+			{
+				id: '3',
+				name: 'WebSocket ilmoittautuminen Marraskuu',
+				isOpen: false
+			}
+		]
 	}
 ];

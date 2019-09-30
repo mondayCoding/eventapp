@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
@@ -292,25 +292,26 @@ export const RegistrationForm: FC<formProps> = ({ match }) => {
 					</CardWrapper>
 
 					<MultiStatCard
+						heading="Ilmoittautuneita"
 						stats={[
 							{
-								text: 'Ilmoittautuneita',
+								text: 'Osallistujia',
 								icon: Icons.users,
-								state: 'success',
+
 								value: '2 234'
 							},
 							{
-								text: 'Peruneita',
+								text: 'VIP-Osallistujia',
 								icon: Icons.users,
-								state: 'warning',
 								value: '24'
+							},
+							{
+								text: 'Jäseniä',
+								icon: Icons.users,
+								value: '256'
 							}
 						]}
 					></MultiStatCard>
-
-					<CardWrapper>
-						<EventParticipationByRolesGraph />
-					</CardWrapper>
 				</div>
 			</div>
 		</>
@@ -457,5 +458,6 @@ const initialValues: IEvent = {
 	address: '',
 	state: 6,
 	organizer: '',
-	homepage: ''
+	homepage: '',
+	forms: []
 };

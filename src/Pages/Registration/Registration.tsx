@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
 import { Heading } from '../../Components/Text/Heading';
 import { IEvent } from '../../MockData/MockEvents';
@@ -11,7 +11,6 @@ import { SelectFieldBase, SelectField } from '../../Components/Select/Select';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
 import styled from '../../Theme/theme';
-import { Button } from '../../Components/Button/Button';
 import ReactTable from 'react-table';
 
 interface RegistrationRouteProps {
@@ -181,7 +180,7 @@ export const Registration: FC<formProps> = ({ match }) => {
 				<main className="registration__content">
 					{data.images.header && (
 						<div className="registration__content__header">
-							<img src={data.images.header} />
+							<img src={data.images.header} alt="" />
 						</div>
 					)}
 
@@ -522,5 +521,6 @@ const initialValues: IEvent = {
 	address: '',
 	state: 6,
 	organizer: '',
-	homepage: ''
+	homepage: '',
+	forms: []
 };

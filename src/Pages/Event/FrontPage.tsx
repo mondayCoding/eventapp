@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 
 export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 	const history = useHistory();
-	const hasImage = !!(event && event.image);
 
 	return (
 		<>
@@ -178,6 +177,36 @@ export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
 								<div className="row__data">{event.organizer}</div>
 							</SummaryRow>
 						</CardWrapper>
+
+						<CardWrapper>
+							<Heading text="Ilmoittautuminen" isUnderlined></Heading>
+							{event &&
+								event.forms.map((form) => (
+									<RegistrationLinks key={form.id}>
+										{form.isOpen ? (
+											<Link
+												to={`${routes.registration.path}/${form.id}`}
+												className="card__link form__link"
+											>
+												{Icons.eye} {form.name}
+											</Link>
+										) : (
+											<Link
+												to={`${routes.registration.path}/${form.id}`}
+												className="card__link"
+											>
+												{Icons.eye_slash} {form.name}
+											</Link>
+										)}
+										<Link
+											to={`${routes.registrationform.path}/${form.id}`}
+											className="card__link edit__link"
+										>
+											{Icons.edit} Muokkaa
+										</Link>
+									</RegistrationLinks>
+								))}
+						</CardWrapper>
 					</div>
 				)}
 			</div>
@@ -195,6 +224,16 @@ const SummaryRow = styled.section`
 	}
 	.row__data {
 		flex: 1 1 auto;
+	}
+`;
+
+const RegistrationLinks = styled.section`
+	display: flex;
+	justify-content: space-between;
+
+	.form__link {
+	}
+	.edit__link {
 	}
 `;
 

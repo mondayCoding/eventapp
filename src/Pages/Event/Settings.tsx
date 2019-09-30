@@ -370,5 +370,6 @@ const initialValues: IEvent = {
 	address: '',
 	state: 6,
 	organizer: '',
-	homepage: ''
+	homepage: '',
+	forms: []
 };
