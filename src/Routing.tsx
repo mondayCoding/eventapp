@@ -18,6 +18,8 @@ import { Events } from './Pages/Events/Events';
 import { Event } from './Pages/Event/Event';
 import { DashBoard } from './Pages/Dashboard/Dashboard';
 import * as routes from './Constants/Routes_MODIF';
+import { ProductManagement } from './Pages/ProductManagement/ProductManagement';
+import { PostOffice } from './Pages/PostOffice/PostOffice';
 
 interface IRoutingProps {
 	authorised: boolean;
@@ -84,6 +86,20 @@ export const Routing: FC<IRoutingProps> = (props) => (
 			exact
 			path={routes.registrationform.path + '/:id'}
 			component={RegistrationForm}
+		/>
+
+		<ProtectedRoute
+			safe={props.authorised}
+			exact
+			path={routes.productManagement.path}
+			component={ProductManagement}
+		/>
+
+		<ProtectedRoute
+			safe={props.authorised}
+			exact
+			path={routes.postOffice.path}
+			component={PostOffice}
 		/>
 
 		{/* Public pages */}

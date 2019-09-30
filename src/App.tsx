@@ -11,25 +11,37 @@ import { Routing } from './Routing';
 interface IAppDataContext {
 	isDarkTheme: boolean;
 	authorization?: firebase.User | null;
+	emailingList: EmailTarget[];
+	updateEmailingList: (x: EmailTarget[]) => void;
 	toggleTheme: () => void;
+}
+
+export interface EmailTarget {
+	name: string;
+	email: string;
+	id: string;
 }
 
 export const AppContext = React.createContext({} as IAppDataContext);
 
 const Application: FC = () => {
-	//remove
 	const [isDarkTheme, setIsDarkTheme] = useState(nightModeIsOn());
 	const { auth } = useAuthState();
+	const [emailingList, setEmailingList] = useState([] as EmailTarget[]);
 
 	const toggleNightMode = () => {
 		setIsDarkTheme(!isDarkTheme);
-		localStorage.setItem('APPLICATION_THEME_NIGHTMODE', (!isDarkTheme).toString());
+		saveNightModeIsOn(!isDarkTheme);
 	};
+
+	const updateEmailingList = (list: EmailTarget[]) => setEmailingList(list);
 
 	const applicationContext = {
 		toggleTheme: toggleNightMode,
 		authorization: auth,
-		isDarkTheme: isDarkTheme
+		isDarkTheme: isDarkTheme,
+		updateEmailingList: updateEmailingList,
+		emailingList: emailingList
 	};
 
 	const theme = isDarkTheme ? themes.dark : themes.default;
@@ -54,5 +66,8 @@ const Application: FC = () => {
 
 const nightModeIsOn = () =>
 	localStorage.getItem('APPLICATION_THEME_NIGHTMODE') === 'true';
+
+const saveNightModeIsOn = (isOn: boolean) =>
+	localStorage.setItem('APPLICATION_THEME_NIGHTMODE', isOn.toString());
 
 export default Application;

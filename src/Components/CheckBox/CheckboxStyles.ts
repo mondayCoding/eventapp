@@ -19,7 +19,6 @@ export const CheckBoxInput = styled.input`
 
 	&:focus + label {
 		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
-
 	}
 
 	&:disabled + label {
@@ -100,20 +99,12 @@ export const CheckboxLabel = styled.label`
 // Inlined Checkbox
 // ************************************
 
-export const CheckBoxWrapperInlined = styled.div`
-	/* font-family: arial, Segoe UI Symbol; */
-	font-family: ${(p) => p.theme.body_font};
-	display: inline-flex;
-	border-radius: ${(p) => p.theme.global_border_radius};
-`;
-
 export const CheckBoxInputInlined = styled.input`
 	position: absolute;
 	left: -999rem;
 
 	&:focus + label {
 		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
-
 	}
 
 	&:disabled + label {
@@ -190,90 +181,86 @@ export const CheckboxLabelInlined = styled.label`
 `;
 
 //******************************************************** */
-// Small inlined variant
+// Small inlined variant (tables)
 //******************************************************** */
 
-export const CheckBoxInputInlinedSmall = styled.input`
-	position: absolute;
-	left: -999rem;
+export const CheckBoxWrapperInlined = styled.div`
+	font-family: ${(p) => p.theme.body_font};
+	display: inline-flex;
+	margin: 0;
 
-	&:focus + label {
-		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
-	}
+	.checkbox--small--input {
+		position: absolute;
+		left: -999rem;
 
-	&:disabled + label {
-		color: ${lighten(0.4, 'black')};
-		cursor: default;
-
-		&::before {
-			border-color: ${lighten(0.8, 'black')};
-			background-color: ${lighten(0.8, 'black')};
-			border: 0.1rem solid ${lighten(0.8, 'black')};
+		&:focus + label {
+			box-shadow: ${(p) => p.theme.shadow.focus};
 		}
 
-		&::after {
-			color: lighten($black, 40%);
+		&:hover + label {
+			border-color: ${(p) => p.theme.primary_color};
+		}
+
+		&:disabled + label {
+			opacity: 0.5;
+			cursor: default;
+		}
+
+		&:not(:checked) + label::after {
+			opacity: 0;
+		}
+
+		&:checked + label::after {
+			opacity: 1;
+		}
+		&:checked + label::before {
+			background-color: ${(p) => p.theme.primary_color};
+			border-color: ${(p) => p.theme.primary_color};
 		}
 	}
 
-	&:not(:checked) + label::after {
-		opacity: 0;
-	}
-
-	&:checked + label::after {
-		opacity: 1;
-	}
-	&:checked + label::before {
-		background-color: ${(p) => p.theme.primary_color};
-		border-color: ${(p) => p.theme.primary_color};
-	}
-`;
-
-export const InlineCheckboxSmall = styled.label`
-	text-align: left;
-	font-weight: 400;
-	font-size: 0.95rem;
-	position: relative;
-	cursor: pointer;
-	display: flex;
-	width: 1.2rem;
-	height: 1.2rem;
-	align-items: center;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	padding: 0;
-	transition: background-color 0.15s ease-in-out;
-	border-radius: ${(p) => p.theme.global_border_radius};
-
-	&:hover {
-		box-shadow: 0 0 0 2px ${(p) => p.theme.primary_color};
-
-	}
-
-	/* bg */
-	&::before {
-		content: '';
+	.checkbox--small--label {
+		text-align: left;
+		font-weight: 400;
+		font-size: 0.95rem;
+		position: relative;
+		cursor: pointer;
+		display: flex;
 		width: 1.2rem;
 		height: 1.2rem;
-		position: absolute;
-		left: 0rem;
+		align-items: center;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		padding: 0;
+		transition: background-color 0.15s ease-in-out;
 		border-radius: ${(p) => p.theme.global_border_radius};
-		transition: opacity 0.2s;
-		background-color: #fff;
-		border: 1px solid ${(p) => p.theme.border_color};
-	}
+		margin: 0;
 
-	/* checkmark */
-	&::after {
-		content: '✔';
-		width: 1.2rem;
-		height: 1.2rem;
-		position: absolute;
-		left: 0.15rem;
-		font-size: 1.2rem;
-		line-height: 1;
-		transition: opacity 0.2s;
-		color: #fff;
+		/* bg */
+		&::before {
+			content: '';
+			width: 1.2rem;
+			height: 1.2rem;
+			position: absolute;
+			left: 0rem;
+			/* border-radius: ${(p) => p.theme.global_border_radius}; */
+			transition: opacity 0.2s;
+			background-color: ${(p) => p.theme.body_background_color};
+			border: 1px solid ${(p) => p.theme.border_color};
+		}
+
+		/* checkmark */
+		&::after {
+			content: '✔';
+			width: 1.2rem;
+			height: 1.2rem;
+			position: absolute;
+			left: 0.15rem;
+			font-size: 1.2rem;
+			line-height: 1;
+			transition: opacity 0.2s;
+			color: #fff;
+		}
 	}
 `;

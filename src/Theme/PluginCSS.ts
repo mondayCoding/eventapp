@@ -390,14 +390,11 @@ export const ReactTableOverrideCSS = css`
 		.rt-tbody {
          /* border-top: 0.1rem solid gray; */
 
-
 			.rt-tr.row--selected {
-				background-color: ${(p) => mix(0.8, '#fff', p.theme.link_color)};
-				background-image: linear-gradient(
-					to right,
-					${(p) => mix(0.7, '#fff', p.theme.link_color)},
-					${(p) => mix(0.86, '#fff', p.theme.link_color)}
-				);
+				background-color: ${(p) =>
+					p.theme.is_dark_theme
+						? mix(0.9, p.theme.body_background_color, p.theme.primary_color)
+						: mix(0.8, '#fff', p.theme.link_color)};	
 			}
 
 			.rt-tr-group {

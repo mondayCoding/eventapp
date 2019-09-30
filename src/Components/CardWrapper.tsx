@@ -39,7 +39,7 @@ export const CardWrapper = styled.div`
 		border: none;
 		width: auto;
 		padding: 0.15rem 0.25rem;
-		text-align: center;
+		text-align: left;
 		transition: background-color 0.2s;
 		cursor: pointer;
 

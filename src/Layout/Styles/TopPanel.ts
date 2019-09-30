@@ -27,7 +27,11 @@ export const TopPanelThemed = styled.nav`
 			/* border-radius: ${(p) => p.theme.global_border_radius}; */
 			border-radius: 1rem;
 			margin-right: auto;
-			box-shadow: inset 0px 0px 10px -6px rgba(0, 0, 0, 0.75);
+         box-shadow: inset 0px 0px 10px -6px rgba(0, 0, 0, 0.75);
+         
+         &:focus {
+            box-shadow: ${(p) => p.theme.shadow.focus};
+         }
 		}
 
 		.react-autosuggest__suggestions-container {

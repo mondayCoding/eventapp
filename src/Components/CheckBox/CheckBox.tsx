@@ -6,9 +6,7 @@ import {
 	CheckboxLabel,
 	CheckBoxWrapperInlined,
 	CheckBoxInputInlined,
-	CheckboxLabelInlined,
-	InlineCheckboxSmall,
-	CheckBoxInputInlinedSmall
+	CheckboxLabelInlined
 } from './CheckboxStyles';
 import { IFieldContainerProps, FieldContainer } from '../FieldContainer/FieldContainer';
 import { Field, FieldProps, FastField } from 'formik';
@@ -18,6 +16,7 @@ export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	tooltip?: string;
 }
 
+// checkbox, non formik
 const Checkbox: React.SFC<IProps> = ({
 	id,
 	label,
@@ -50,6 +49,7 @@ const CheckBoxInline: React.SFC<IProps> = ({ id, children, ...rest }) => {
 	);
 };
 
+// checkbox formik
 export const CheckBoxField: React.FC<IProps> = ({ name, label, tooltip, ...props }) => (
 	<Field
 		name={name}
@@ -68,6 +68,7 @@ export const CheckBoxField: React.FC<IProps> = ({ name, label, tooltip, ...props
 	/>
 );
 
+// checkbox inside fieldcontainer, formik
 export const CheckBoxContainerField: React.FC<IProps & IFieldContainerProps> = ({
 	name,
 	label,
@@ -110,13 +111,11 @@ export const CheckBoxContainerField: React.FC<IProps & IFieldContainerProps> = (
 export { CheckBoxInline as CheckboxBase };
 
 //** This one is for tables and not for formik fields */
-export const InlineCheckBoxSmall: React.SFC<IProps> = ({ id, ...rest }) => {
-	return (
-		<CheckBoxWrapperInlined>
-			<CheckBoxInputInlinedSmall data-role="none" id={id} type="checkbox" {...rest} />
-			<InlineCheckboxSmall htmlFor={id} />
-		</CheckBoxWrapperInlined>
-	);
-};
+export const InlineCheckBoxSmall: React.SFC<IProps> = ({ id, ...rest }) => (
+	<CheckBoxWrapperInlined>
+		<input className="checkbox--small--input" id={id} type="checkbox" {...rest} />
+		<label className="checkbox--small--label" htmlFor={id} />
+	</CheckBoxWrapperInlined>
+);
 
 export default Checkbox;

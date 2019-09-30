@@ -117,3 +117,19 @@ export const mediabank: routeConfig = {
 	title: 'Mediapankki',
 	description: 'kuvaus pitkä ja tosi'
 };
+
+export const postOffice: routeConfig = {
+	path: '/postOffice',
+	icon: Icons.envelope,
+	text: 'Postitoimisto',
+	title: 'Postitoimisto',
+	description: 'kuvaus pitkä ja tosi'
+};
+
+export const productManagement: routeConfig = {
+	path: '/productmanagement',
+	icon: Icons.box,
+	text: 'Tuotehallinta',
+	title: 'Tuotehallinta',
+	description: 'kuvaus pitkä ja tosi'
+};

@@ -5,38 +5,45 @@ import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { BudjetProgressionGrap } from '../../Graphs/BudjetProgressionGrap';
 import ReactTable from 'react-table';
 import Icons from '../../Components/Icons/icons';
-import { IExpense, IRevenue } from '../../MockData/MockBudjets';
+import { IExpense } from '../../MockData/MockBudjets';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
 import { MultiStatCard } from '../../Components/MultiStatusCard';
 import styled from '../../Theme/theme';
 import { IconButton } from '../../Components/Button/IconButton';
-import { Calendar2 } from '../Dashboard/ReactCalendar';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import { ProgressBar } from '../../Components/ProgressBar';
+import { TextField } from '../../Components/TextInput/Textinput';
+import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
+import { MockexpenseData, MockRevenueData } from '../../MockData/MockRevenueData';
+
+interface IValueSourceForm {
+	value: number;
+	source: string;
+}
 
 export const Budget: FC = () => {
 	useDocumentTitle('Budjetti');
 
-	const [expenses, setExpenses] = useState(expenseData);
-	const [revenues, setRevenues] = useState(RevenueData);
+	const [expenses, setExpenses] = useState(MockexpenseData);
+	const [revenues, setRevenues] = useState(MockRevenueData);
 
-	const addExpense = () => {
+	const addExpense = (values: IValueSourceForm) => {
 		setExpenses([
 			...expenses,
 			{
-				name: 'Uusi tulo',
-				value: 475,
+				name: values.source,
+				value: values.value,
 				editable: true
 			}
 		]);
 	};
 
-	const addRevenue = () => {
+	const addRevenue = (values: IValueSourceForm) => {
 		setRevenues([
 			...revenues,
 			{
-				name: 'Uusi tulo',
-				value: 475,
+				name: values.source,
+				value: values.value,
 				editable: true
 			}
 		]);
@@ -60,23 +67,6 @@ export const Budget: FC = () => {
 	const goalBalance = revenueTotal - goal;
 	const goalBalanceIsPositive = goalBalance > 1;
 
-	// const renderEditable = (cellInfo: any) => {
-	// 	return (
-	// 		<div
-	// 			contentEditable
-	// 			suppressContentEditableWarning
-	// 			onBlur={(e) => {
-	// 				const data = [...revenues];
-	// 				data[cellInfo.index].name = e.target.innerHTML;
-	// 				setRevenues(data);
-	// 			}}
-	// 			dangerouslySetInnerHTML={{
-	// 				__html: revenues[cellInfo.index].name
-	// 			}}
-	// 		/>
-	// 	);
-	// };
-
 	return (
 		<>
 			<div className="row">
@@ -94,7 +84,6 @@ export const Budget: FC = () => {
 							textCenter={`${percentRounded}%`}
 							textStart={`Kerätty ${localisedMarkedValue(revenueTotal)}`}
 						></ProgressBar>
-						{/* <ProgressBar percent={100} textCenter="Tavoite saavutettu"></ProgressBar> */}
 					</CardWrapper>
 				</div>
 
@@ -142,54 +131,72 @@ export const Budget: FC = () => {
 							<RevenueTotalSpan>{localisedMarkedValue(revenueTotal)}</RevenueTotalSpan>
 						</Heading>
 
-						<Formik initialValues={{}} onSubmit={() => {}}>
-							<ReactTable
-								showPagination={false}
-								minRows={10}
-								pageSize={10}
-								data={revenues}
-								columns={[
-									{
-										accessor: 'name',
-										Header: 'Lähde'
-									},
-									{
-										accessor: 'value',
-										Header: 'Arvo',
-										Cell: ({ original }: RowProps) =>
-											original.editable && localisedMarkedValue(original.value)
-									},
-									{
-										accessor: 'editable',
-										Header: '',
-										Cell: ({ original }: RowProps) =>
-											original.editable ? (
-												<ButtonLink text="Muokkaa" icon={Icons.edit}></ButtonLink>
-											) : (
-												<span>Automaattinen arvo</span>
-											)
-									},
-									{
-										width: 50,
-										resizable: false,
-										accessor: 'editable',
-										Header: '',
-										Cell: ({ original, index }: RowProps) =>
-											original.editable && (
-												<IconButton
-													icon={Icons.trashcan}
-													onClick={() => removeRevenue(index)}
-												></IconButton>
-											)
-									}
-								]}
-							></ReactTable>
+						<ReactTable
+							showPagination={false}
+							minRows={10}
+							pageSize={10}
+							data={revenues}
+							columns={[
+								{
+									accessor: 'name',
+									Header: 'Lähde'
+								},
+								{
+									accessor: 'value',
+									Header: 'Arvo',
+									Cell: ({ original }: RowProps) =>
+										original.editable && localisedMarkedValue(original.value)
+								},
+
+								{
+									width: 40,
+									resizable: false,
+									accessor: 'editable',
+									Header: '',
+									Cell: ({ original, index }: RowProps) =>
+										original.editable && (
+											<IconButton
+												icon={Icons.trashcan}
+												onClick={() => removeRevenue(index)}
+											></IconButton>
+										)
+								}
+							]}
+						></ReactTable>
+						<Formik
+							initialValues={{ source: 'Uusi Tulo', value: 479.99 }}
+							onSubmit={addRevenue}
+						>
+							<Form>
+								<FormWrapper className="row">
+									<div className="col-lg-6">
+										<TextField
+											label="Lähde"
+											placeholder="Lähde"
+											name="source"
+											showMobileView
+										></TextField>
+									</div>
+									<div className="col-lg-6">
+										<TextField
+											label="Tulo"
+											placeholder="Tulo"
+											name="value"
+											type="number"
+											maxLength={8}
+											showMobileView
+										></TextField>
+									</div>
+								</FormWrapper>
+								<FormWrapper>
+									<ButtonLink
+										text="Lisää tulo"
+										icon={Icons.plus}
+										type="submit"
+									></ButtonLink>
+								</FormWrapper>
+							</Form>
 						</Formik>
-						<ButtonLink
-							text="Lisää tulo"
-							icon={Icons.plus}
-							onClick={() => addRevenue()}
-						></ButtonLink>
 					</CardWrapper>
 				</div>
 
@@ -216,17 +223,7 @@ export const Budget: FC = () => {
 										original.editable && localisedMarkedValue(original.value)
 								},
 								{
-									accessor: 'editable',
-									Header: '',
-									Cell: ({ original }: RowProps) =>
-										original.editable ? (
-											<ButtonLink text="Muokkaa" icon={Icons.edit}></ButtonLink>
-										) : (
-											<span>Automaattinen arvo</span>
-										)
-								},
-								{
-									width: 50,
+									width: 40,
 									resizable: false,
 									accessor: 'editable',
 									Header: '',
@@ -240,31 +237,43 @@ export const Budget: FC = () => {
 								}
 							]}
 						></ReactTable>
-						<ButtonLink
-							text="Lisää kulu"
-							icon={Icons.plus}
-							onClick={() => addExpense()}
-						></ButtonLink>
+						<Formik
+							initialValues={{ source: 'Uusi Meno', value: 479.99 }}
+							onSubmit={addExpense}
+						>
+							<Form>
+								<FormWrapper className="row">
+									<div className="col-lg-6">
+										<TextField
+											label="Lähde"
+											placeholder="Lähde"
+											name="source"
+											showMobileView
+										></TextField>
+									</div>
+									<div className="col-lg-6">
+										<TextField
+											label="Meno"
+											placeholder="Meno"
+											name="value"
+											type="number"
+											maxLength={8}
+											showMobileView
+										></TextField>
+									</div>
+								</FormWrapper>
+								<FormWrapper>
+									<ButtonLink
+										text="Lisää Meno"
+										icon={Icons.minus}
+										type="submit"
+									></ButtonLink>
+								</FormWrapper>
+							</Form>
+						</Formik>
 					</CardWrapper>
 				</div>
 			</div>
-
-			{/* <CardWrapper>
-				<h2>Budjetointi</h2>
-				<div style={{ marginLeft: '1.25rem' }}>
-					<ol>
-						<li>Menot (per item lista menoja)</li>
-						<li>
-							Tulot (toteutuneet saamingit) (ilmoittautumisen tulot + manuaaliset
-							lisäykset)
-						</li>
-						<li>saatavat(lähetetyt, mutta toteutumattomat laskut)</li>
-						<li>Kehityskäyrä</li>
-					</ol>
-				</div>
-			</CardWrapper>
-
-			<Calendar2></Calendar2> */}
 		</>
 	);
 };
@@ -274,6 +283,17 @@ const localisedMarkedValue = (value: number) =>
 		style: 'currency',
 		currency: 'EUR'
 	}).format(value);
+
+const FormWrapper = styled.section`
+	padding: 1rem;
+	border-top: 1px solid ${(p) => p.theme.border_color};
+	margin: 1.5rem 0 0 0;
+
+	& + & {
+		margin-top: 0.5rem;
+		border: none;
+	}
+`;
 
 const ExpenseTotalSpan = styled.span`
 	display: flex;
@@ -293,34 +313,3 @@ interface RowProps {
 	original: IExpense;
 	index: number;
 }
-
-const expenseData: IExpense[] = [
-	{
-		editable: false,
-		name: 'Ilmoittautumistulot',
-		value: 12034
-	},
-	{
-		editable: true,
-		name: 'Tuet',
-		value: 7034
-	},
-	{
-		editable: true,
-		name: 'Ilmastobonus',
-		value: 399
-	}
-];
-
-const RevenueData: IRevenue[] = [
-	{
-		editable: true,
-		name: 'Palkat',
-		value: 21034
-	},
-	{
-		editable: true,
-		name: 'Kiinteistön vuokra',
-		value: 5034
-	}
-];

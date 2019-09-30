@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import { Link } from 'react-router-dom';
 import * as routes from '../../Constants/Routes_MODIF';
@@ -11,12 +11,42 @@ import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import ReactTable from 'react-table';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useHistory } from 'react-router';
+import {
+	useSelectableReactTable,
+	SelectTable
+} from '../../Hooks/useSelectableReactTable';
+import { AppContext } from '../../App';
+import { Button } from '../../Components/Button/Button';
+import Notify from '../../Utils/Notification';
+import { ButtonLink } from '../../Components/Button/ButtonLink';
 
 export const Customers = () => {
 	useDocumentTitle('Asiakkaat');
+	const { updateEmailingList } = useContext(AppContext);
 	const { customers } = useCustomers();
 	const [filter, setFilter] = useState('');
 	const history = useHistory();
+	const { dataWithGuid, getSelectTableProps, selected } = useSelectableReactTable(
+		customers
+	);
+
+	const addToEmailingList = () => {
+		const selectedCustomers = customers.filter((dat) => selected.includes(dat.id));
+		updateEmailingList(
+			selectedCustomers.map((cust) => ({
+				name: `${cust.firstname} ${cust.lastname}`,
+				email: cust.email,
+				id: cust.id
+			}))
+		);
+		Notify.success(
+			'Valitut asiakkaat on lisätty postitoimiston postituslistalle. (klikkaa minua päästäksesi Postitoimistoon)',
+			{
+				onClick: () => history.push(routes.postOffice.path),
+				hideProgressBar: false
+			}
+		);
+	};
 
 	const createFilter = (customers: ICustomer[]) => {
 		const filt = filter.toLowerCase();
@@ -40,15 +70,26 @@ export const Customers = () => {
 				isUnderlined
 			></Heading>
 
-			<FilterInput
-				type="text"
-				value={filter}
-				placeholder="Suodata asiakkaita..."
-				onChange={(e) => setFilter(e.target.value)}
-			></FilterInput>
+			<ButtonRow>
+				<FilterInput
+					type="text"
+					value={filter}
+					placeholder="Suodata asiakkaita..."
+					onChange={(e) => setFilter(e.target.value)}
+				></FilterInput>
 
-			<ReactTable
-				data={createFilter(customers)}
+				<ButtonLink
+					text={`Lisää postituslistalle ${
+						selected.length ? '(' + selected.length + ')' : ''
+					}`}
+					disabled={!selected.length}
+					onClick={addToEmailingList}
+					icon={Icons.envelope}
+				></ButtonLink>
+			</ButtonRow>
+
+			<SelectTable
+				data={createFilter(dataWithGuid as any)}
 				showPagination={false}
 				minRows={0}
 				columns={[
@@ -88,7 +129,8 @@ export const Customers = () => {
 						accessor: 'city'
 					}
 				]}
-			></ReactTable>
+				{...getSelectTableProps}
+			></SelectTable>
 		</CardWrapper>
 	);
 };
@@ -97,13 +139,19 @@ interface RowOriginal {
 	original: ICustomer;
 }
 
+const ButtonRow = styled.section`
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1.5rem;
+	align-items: center;
+`;
+
 const FilterInput = styled.input`
 	display: block;
 	width: 100%;
 	max-width: 20rem;
 	border: 1px solid ${(p) => p.theme.border_color};
 	color: ${(p) => p.theme.text_color};
-	margin-bottom: 1rem;
 	border-radius: 3px;
 	padding: 0.2rem;
 	background: ${(p) => p.theme.input_background};

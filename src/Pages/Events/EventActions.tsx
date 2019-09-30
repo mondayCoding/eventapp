@@ -67,7 +67,7 @@ export const EventActions = () => {
 	);
 };
 
-const MenuWrapper = styled.div`
+export const MenuWrapper = styled.div`
 	flex: 0 0 auto;
 	position: relative;
 	display: inline-flex;
@@ -98,6 +98,11 @@ const MenuWrapper = styled.div`
 		}
 
 		&[aria-orientation='horizontal'] {
+			padding: 0;
+		}
+
+		.menu__box__separator {
+			margin: 0;
 			padding: 0;
 		}
 

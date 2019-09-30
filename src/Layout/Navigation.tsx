@@ -29,12 +29,13 @@ const Links: FC = () => (
 		<NavigationLink route={routes.sendEmail} />
 
 		<div className="navigation__group-title">Non-routable</div>
-		<NavigationLink route={routes.settings} />
 		<NavigationLink route={routes.mediabank} />
+		<NavigationLink route={routes.postOffice} />
+		<NavigationLink route={routes.productManagement} />
 
-		<div className="navigation__group-title">Non-routable</div>
-		{/* <Link route={routes.signIn} />
-		<Link route={routes.signUp} /> */}
+		<div className="navigation__group-title">Järjestelmä</div>
+
+		<NavigationLink route={routes.settings} />
 		<NavigationLink route={routes.signOut} />
 	</>
 );

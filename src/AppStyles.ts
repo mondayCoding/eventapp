@@ -92,6 +92,19 @@ export const Nav = styled.nav`
 				}
 			}
 
+			&:focus {
+				outline: none;
+				background-color: ${(p) => p.theme.primary_color};
+
+				.navigation__link__text {
+					padding-left: 0.9rem;
+					color: #fff;
+				}
+				.navigation__link__icon {
+					color: #fff;
+				}
+			}
+
 			&.active {
 				color: ${(p) => p.theme.primary_color};
 				/* font-weight: 800; */
