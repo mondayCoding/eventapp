@@ -41,28 +41,6 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 
 					<CardWrapper>
 						<OrganizerForm></OrganizerForm>
-
-						{/* <h2> ASETUKSET</h2>
-						<div style={{ marginLeft: '1.25rem' }}>
-							<ol>
-								<li>nimi ()</li>
-								<li>alkaa/päättyy ()</li>
-								<li>kuvaus ()</li>
-								<li>
-									tila (päättynyt => alkanut => käynnissä => julkaisematon => peruutettu )
-								</li>
-								<li>osoite ()</li>
-								<li>
-									järjestäjä (nimi, puh, email, ytun, osoit, postnum, postitoimpaik, maa)
-								</li>
-								<li>laskuttaja laskuttajatiedot ()</li>
-								<li>tapahtuman roolit (valittavaissa lomakkeilla)</li>
-								<li>kuva ()</li>
-								<li>palkkiot()</li>
-								<li>onsite(on/off)</li>
-								<li>some(linkit)</li>
-							</ol>
-						</div> */}
 					</CardWrapper>
 
 					<CardWrapper>
