@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Formik } from 'formik';
 import { Heading } from '../../Components/Text/Heading';
 import { TextField } from '../../Components/TextInput/Textinput';
@@ -14,9 +14,18 @@ import Icons from '../../Components/Icons/icons';
 import { useHistory } from 'react-router';
 import * as routes from '../../Constants/Routes_MODIF';
 
+const modules = {
+	useBilling: true,
+	useBudjeting: false,
+	useOrders: false,
+	useAccommodations: false,
+	usePortal: false
+};
+
 export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 	useDocumentTitle('Tapahtumat');
 	const history = useHistory();
+	const [usedModules, setUsedModules] = useState(modules);
 
 	return (
 		<>
@@ -32,20 +41,62 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 					</CardWrapper>
 
 					<CardWrapper>
-						<Heading
-							text="Laskuttajan tiedot"
-							isUnderlined
-							ingress="Anna laskuttajan tiedot. Näitä tarvitaan jos tapahtumassa on maksullisia tuotteita tai ilmoittautumisia"
-						></Heading>
-					</CardWrapper>
-
-					<CardWrapper>
 						<OrganizerForm></OrganizerForm>
 					</CardWrapper>
 
 					<CardWrapper>
 						<SomeAndImageForm></SomeAndImageForm>
 					</CardWrapper>
+
+					{usedModules.useBudjeting && (
+						<CardWrapper>
+							<Heading
+								text="Budjetointi"
+								isUnderlined
+								ingress="Tapahtumassa seurataan laaditaan ja seurataan budjetin kehitystä"
+							></Heading>
+						</CardWrapper>
+					)}
+
+					{usedModules.useBilling && (
+						<CardWrapper>
+							<Heading
+								text="Laskuttajan tiedot"
+								isUnderlined
+								ingress="Anna laskuttajan tiedot. Näitä tarvitaan jos tapahtumassa on maksullisia tuotteita tai ilmoittautumisia"
+							></Heading>
+						</CardWrapper>
+					)}
+
+					{usedModules.useOrders && (
+						<CardWrapper>
+							<Heading
+								text="Tuotteistus"
+								isUnderlined
+								ingress="Luo ja hallitse tuotteita, joita voi valita/ostaa ilmoittautumisen yhteydessä"
+							></Heading>
+						</CardWrapper>
+					)}
+
+					{usedModules.useAccommodations && (
+						<CardWrapper>
+							<Heading
+								text="Majoitukset"
+								isUnderlined
+								ingress="Tapahtumassa on tarjolla majoituksia"
+							></Heading>
+						</CardWrapper>
+					)}
+
+					{usedModules.usePortal && (
+						<CardWrapper>
+							<Heading
+								text="Omahallinta"
+								isUnderlined
+								ingress="Tapahtumassa on käytössä omahallinta. Asiakkaat voivat itse käydä muuttamassa tietotaan."
+							></Heading>
+						</CardWrapper>
+					)}
 				</div>
 
 				<div className="col-lg-4">
@@ -69,7 +120,10 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 					</CardWrapper>
 
 					<CardWrapper>
-						<ModuleSettings event={event!} />
+						<ModuleSettings
+							modules={usedModules}
+							setModules={(mod) => setUsedModules(mod)}
+						/>
 					</CardWrapper>
 				</div>
 			</div>
@@ -162,23 +216,68 @@ const OrganizerForm: FC<{ event?: IEvent }> = (props) => (
 	</Formik>
 );
 
-const ModuleSettings: FC<{ event?: IEvent }> = (props) => (
-	<Formik
-		onSubmit={() => {}}
-		initialValues={props.event || initialValues}
-		enableReinitialize
-	>
-		{() => (
-			<>
-				<Heading text="Valitse käytettävät toiminnot" isUnderlined></Heading>
-				<SliderCheckbox label="Budjetointi" name="2"></SliderCheckbox>
-				<SliderCheckbox label="Tuotteistus" name="3"></SliderCheckbox>
-				<SliderCheckbox label="Majoitukset" name="4"></SliderCheckbox>
-				<SliderCheckbox label="Omahallinta" name="1"></SliderCheckbox>
-				<SliderCheckbox label="Laskutus" name="6"></SliderCheckbox>
-			</>
-		)}
-	</Formik>
+const ModuleSettings: FC<{
+	modules: typeof modules;
+	setModules: (x: typeof modules) => void;
+}> = ({ modules, setModules }) => (
+	<>
+		<Heading text="Valitse käytettävät toiminnot" isUnderlined></Heading>
+		<SliderCheckbox
+			label="Budjetointi"
+			id="sect_1"
+			checked={modules.useBudjeting}
+			onChange={() =>
+				setModules({
+					...modules,
+					useBudjeting: !modules.useBudjeting
+				})
+			}
+		></SliderCheckbox>
+		<SliderCheckbox
+			label="Tuotteistus"
+			id="sect_2"
+			checked={modules.useOrders}
+			onChange={() =>
+				setModules({
+					...modules,
+					useOrders: !modules.useOrders
+				})
+			}
+		></SliderCheckbox>
+		<SliderCheckbox
+			label="Majoitukset"
+			id="sect_3"
+			checked={modules.useAccommodations}
+			onChange={() =>
+				setModules({
+					...modules,
+					useAccommodations: !modules.useAccommodations
+				})
+			}
+		></SliderCheckbox>
+		<SliderCheckbox
+			label="Omahallinta"
+			id="sect_4"
+			checked={modules.usePortal}
+			onChange={() =>
+				setModules({
+					...modules,
+					usePortal: !modules.usePortal
+				})
+			}
+		></SliderCheckbox>
+		<SliderCheckbox
+			label="Laskutus"
+			id="sect_5"
+			checked={modules.useBilling}
+			onChange={() =>
+				setModules({
+					...modules,
+					useBilling: !modules.useBilling
+				})
+			}
+		></SliderCheckbox>
+	</>
 );
 
 const EventForm: FC<{ event?: IEvent }> = (props) => (

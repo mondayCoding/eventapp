@@ -36,6 +36,9 @@ enum SectionType {
 	orders,
 	lectures
 }
+//*********************************************************** */
+// TODO: break down questionsection to separate components
+//*********************************************************** */
 
 interface IQuestionSectionRadio {
 	type: SectionType.question;
@@ -74,6 +77,9 @@ interface IQuestionSectionText {
 		value: string;
 	};
 }
+
+//*********************************************************** */
+//*********************************************************** */
 
 interface IAccommodationSection {
 	type: SectionType.accommodation;
