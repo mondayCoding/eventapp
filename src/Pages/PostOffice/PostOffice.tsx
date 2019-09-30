@@ -3,20 +3,17 @@ import { Heading } from '../../Components/Text/Heading';
 import { Link } from 'react-router-dom';
 import * as routes from '../../Constants/Routes_MODIF';
 import { CardWrapper } from '../../Components/CardWrapper';
-import { Icons, ButtonRow } from 'library';
-import { ICustomer } from '../../MockData/MockCustomers';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import ReactTable from 'react-table';
-import { IconButton } from '../../Components/Button/IconButton';
 import { useHistory } from 'react-router';
 import { AppContext, EmailTarget } from '../../App';
-import { Button } from '../../Components/Button/Button';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
 import { PostOfficeActionsMenu } from './PostOfficeActionsMenu';
 import { useSelectableReactTable } from '../../Hooks/useSelectableReactTable';
 import CALENDERDEMO from '../Dashboard/ReactCalendar';
 import CALENDERDEMO2 from '../Dashboard/ReactCalendar';
 import CALENDERDEMO3 from '../Dashboard/ReactCalendar';
+import Icons from '../../Components/Icons/icons';
 
 export const PostOffice = () => {
 	useDocumentTitle('Postitoimisto');

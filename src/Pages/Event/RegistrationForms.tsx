@@ -1,7 +1,6 @@
 import React, { useState, FC } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
-import { StatCard } from '../../Components/StatusCard';
 import { CardWrapper } from '../../Components/CardWrapper';
 import ReactTimeago from 'react-timeago';
 import * as routes from '../../Constants/Routes_MODIF';
@@ -12,22 +11,17 @@ import { Badge } from '../../Components/Badge';
 import {
 	IRegistrationForm,
 	MockRegistrationForms,
-	Role
+	Role,
+	registrationType
 } from '../../MockData/MockRegistrationForms';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
-import { IEvent } from '../../MockData/MockEvents';
 
 interface RowOriginal {
 	original: IRegistrationForm;
 }
 
-interface RegistrationForms {
-	event?: IEvent;
-}
-
-export const RegistrationForms: FC<RegistrationForms> = (props) => {
+export const RegistrationForms: FC = () => {
 	const [showRoles, setShowRoles] = useState(false);
-
 	return (
 		<>
 			<CardWrapper>
@@ -38,7 +32,9 @@ export const RegistrationForms: FC<RegistrationForms> = (props) => {
 				></ButtonLink>
 
 				<ReactTable
-					data={MockRegistrationForms}
+					data={MockRegistrationForms.filter(
+						(form) => form.type === registrationType.ongoing
+					)}
 					showPagination={false}
 					minRows={0}
 					columns={columnSetupOpen(showRoles)}
@@ -52,7 +48,9 @@ export const RegistrationForms: FC<RegistrationForms> = (props) => {
 				></Heading>
 
 				<ReactTable
-					data={MockRegistrationForms}
+					data={MockRegistrationForms.filter(
+						(form) => form.type === registrationType.planned
+					)}
 					showPagination={false}
 					minRows={0}
 					columns={columnSetupOpening}
@@ -66,7 +64,9 @@ export const RegistrationForms: FC<RegistrationForms> = (props) => {
 				></Heading>
 
 				<ReactTable
-					data={MockRegistrationForms}
+					data={MockRegistrationForms.filter(
+						(form) => form.type === registrationType.ended
+					)}
 					showPagination={false}
 					minRows={0}
 					columns={columnSetupClosed}

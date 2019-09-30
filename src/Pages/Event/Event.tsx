@@ -58,7 +58,7 @@ export const Event: FC<RouteComponentProps<EventRouteProps>> = ({ match }) => {
 				path="/event/:id/forms"
 				component={() => (
 					<>
-						<RegistrationForms event={event}></RegistrationForms>
+						<RegistrationForms></RegistrationForms>
 					</>
 				)}
 			/>

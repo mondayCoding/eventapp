@@ -37,6 +37,44 @@ enum SectionType {
 	lectures
 }
 
+interface IQuestionSectionRadio {
+	type: SectionType.question;
+	content: {
+		title: string;
+		condition: boolean;
+		options: { value: string; label: string }[];
+	};
+}
+
+interface IQuestionSectionSelect {
+	type: SectionType.question;
+	content: {
+		title: string;
+		condition: boolean;
+		options: { value: string; label: string }[];
+	};
+}
+
+interface IQuestionSectionCheckbox {
+	type: SectionType.question;
+	content: {
+		title: string;
+		condition: boolean;
+		label: string;
+		value: boolean;
+	};
+}
+
+interface IQuestionSectionText {
+	type: SectionType.question;
+	content: {
+		title: string;
+		condition: boolean;
+		label: string;
+		value: string;
+	};
+}
+
 interface IAccommodationSection {
 	type: SectionType.accommodation;
 	content: { title: string };

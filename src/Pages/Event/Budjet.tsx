@@ -285,12 +285,12 @@ const localisedMarkedValue = (value: number) =>
 	}).format(value);
 
 const FormWrapper = styled.section`
-	padding: 1rem;
+	padding: 0.5rem;
 	border-top: 1px solid ${(p) => p.theme.border_color};
 	margin: 1.5rem 0 0 0;
 
 	& + & {
-		margin-top: 0.5rem;
+		margin-top: 0rem;
 		border: none;
 	}
 `;

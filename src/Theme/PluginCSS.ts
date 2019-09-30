@@ -276,15 +276,22 @@ export const ReactSelect = css`
 		}
 
 		.reactselect__menu {
+			background-color: ${({ theme }) => theme.body_background_color};
+
 			.reactselect__menu-list {
 				.reactselect__option:hover {
-					background: ${(p) => mix(0.7, '#FFF', p.theme.primary_color)};
+					background: ${(p) => p.theme.menu_background_color};
+					color: ${(p) => p.theme.text_color_nav};
 				}
 				.reactselect__option--is-focused {
-					background: ${(p) => mix(0.7, '#FFF', p.theme.primary_color)};
+					background: ${(p) => p.theme.primary_color};
 				}
+
 				.reactselect__option--is-selected {
 					background: ${(p) => p.theme.primary_color};
+				}
+				.react-select__option--is-selected {
+					background: ${({ theme }) => theme.primary_color};
 				}
 			}
 		}
@@ -321,29 +328,6 @@ export const ReactSelect = css`
 			.reactselect__indicators {
 				color: ${({ theme }) => theme.text_color};
 				padding: 0.2rem;
-			}
-		}
-
-		.react-select__control--is-focused {
-			border-color: ${({ theme }) => theme.primary_color};
-		}
-
-		.react-select__menu {
-			background-color: ${({ theme }) => theme.body_background_color};
-
-			.react-select__menu-list {
-				.react-select__option:hover {
-					background: ${({ theme }) => theme.primary_color};
-				}
-
-				.react-select__option--is-focused {
-					background: ${({ theme }) => theme.primary_color};
-				}
-
-				.react-select__option--is-selected {
-					background: ${({ theme }) =>
-						mix(0.5, theme.primary_color, theme.secondary_color)};
-				}
 			}
 		}
 	}
