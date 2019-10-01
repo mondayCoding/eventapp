@@ -1,7 +1,6 @@
 import React, { useState, FC } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import { CardWrapper } from '../../Components/CardWrapper';
-import { Icons, ButtonRow } from 'library';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import ReactTable from 'react-table';
 import { Button } from '../../Components/Button/Button';
@@ -9,6 +8,7 @@ import { ButtonLink } from '../../Components/Button/ButtonLink';
 import { Formik, Form } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { SelectField } from '../../Components/Select/Select';
+import Icons from '../../Components/Icons/icons';
 
 interface Product {
 	name: string;

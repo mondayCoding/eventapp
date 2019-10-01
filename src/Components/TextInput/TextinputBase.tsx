@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Field, FieldProps, FastField } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { ThemedTextInputBase } from './TextInputBaseStyles';
 
 type TextfieldProps = React.InputHTMLAttributes<HTMLInputElement>;
@@ -13,7 +13,7 @@ export const TextFieldBase: FC<TextfieldProps> = ({
 	children,
 	...rest
 }) => (
-	<FastField
+	<Field
 		name={name}
 		render={({ field, form: { errors, touched } }: FieldProps) => (
 			<ThemedTextInputBase

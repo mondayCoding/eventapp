@@ -61,7 +61,7 @@ export const PostOffice = () => {
 						accessor: 'email',
 						Cell: ({ original }: RowOriginal) => (
 							<Link className="card__link" to={`${routes.sendEmail.path}/${original.id}`}>
-								{`${original.name}`}
+								{`${original.email}`}
 							</Link>
 						)
 					},

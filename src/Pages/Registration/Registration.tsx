@@ -12,6 +12,7 @@ import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
 import styled from '../../Theme/theme';
 import ReactTable from 'react-table';
+import RadioField from '../../Components/CheckBox/Radio';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -31,17 +32,20 @@ enum SectionType {
 	basicInformation,
 	introduction,
 	afterword,
-	question,
+	question_Checkbox,
+	question_Radio,
+	question_Text,
+	question_Select,
 	accommodation,
 	orders,
 	lectures
 }
 //*********************************************************** */
-// TODO: break down questionsection to separate components
+// Question Sections
 //*********************************************************** */
 
 interface IQuestionSectionRadio {
-	type: SectionType.question;
+	type: SectionType.question_Radio;
 	content: {
 		title: string;
 		condition: boolean;
@@ -50,7 +54,7 @@ interface IQuestionSectionRadio {
 }
 
 interface IQuestionSectionSelect {
-	type: SectionType.question;
+	type: SectionType.question_Select;
 	content: {
 		title: string;
 		condition: boolean;
@@ -59,17 +63,16 @@ interface IQuestionSectionSelect {
 }
 
 interface IQuestionSectionCheckbox {
-	type: SectionType.question;
+	type: SectionType.question_Checkbox;
 	content: {
 		title: string;
 		condition: boolean;
-		label: string;
-		value: boolean;
+		options: { checked: boolean; label: string }[];
 	};
 }
 
 interface IQuestionSectionText {
-	type: SectionType.question;
+	type: SectionType.question_Text;
 	content: {
 		title: string;
 		condition: boolean;
@@ -89,11 +92,6 @@ interface IAccommodationSection {
 interface IIntroductionSection {
 	type: SectionType.introduction;
 	content: { headingtext: string; ingress?: string; start: Date; end: Date };
-}
-
-interface IQuestionSection {
-	type: SectionType.question;
-	content: { title: string; questions: { text: string }[] };
 }
 
 interface IBasicInformationSection {
@@ -123,10 +121,13 @@ type RegistrationFormSection =
 	| IBasicInformationSection
 	| IAccommodationSection
 	| IIntroductionSection
-	| IQuestionSection
 	| IAfterwordSection
 	| ILecturesSection
-	| IOrdersContent;
+	| IOrdersContent
+	| IQuestionSectionRadio
+	| IQuestionSectionCheckbox
+	| IQuestionSectionText
+	| IQuestionSectionSelect;
 
 const MockRegistration: IRegistrationForm = {
 	images: {
@@ -144,20 +145,24 @@ const MockRegistration: IRegistrationForm = {
 		},
 		{ type: SectionType.basicInformation, content: { title: 'Perustiedot' } },
 		{
-			type: SectionType.question,
+			type: SectionType.question_Checkbox,
 			content: {
 				title: 'Suunnittelutyöstä',
-				questions: [{ text: 'Dynaamisten lohkojen rakentaminen on vaikeaa' }]
+				condition: false,
+				options: [
+					{ label: 'Dynaamisten lohkojen rakentaminen on vaikeaa', checked: false }
+				]
 			}
 		},
 		{
-			type: SectionType.question,
+			type: SectionType.question_Checkbox,
 			content: {
 				title: 'Kysymyksiä vai ajatuksia',
-				questions: [
-					{ text: 'Gerbiilit muuttavat keväisin Sipooseen' },
-					{ text: 'Kukaan ei ole koskaan ollut tyhjässä huoneessa' },
-					{ text: 'Tummat teemat ovat turhia eikö kukaan käytä niitä' }
+				condition: false,
+				options: [
+					{ label: 'Gerbiilit muuttavat keväisin Sipooseen', checked: false },
+					{ label: 'Kukaan ei ole koskaan ollut tyhjässä huoneessa', checked: false },
+					{ label: 'Tummat teemat ovat turhia eikö kukaan käytä niitä', checked: false }
 				]
 			}
 		},
@@ -174,12 +179,65 @@ const MockRegistration: IRegistrationForm = {
 			}
 		},
 		{
-			type: SectionType.question,
+			type: SectionType.question_Radio,
 			content: {
 				title: 'Jos olet Anatidaephobiaani',
-				questions: [
-					{ text: 'Pelkäät, että jossakin on ankka, joka tuijottaa sinua' },
-					{ text: 'Olet ankka, joka pelkää, että joku tuijottaa sinua' }
+				condition: false,
+				options: [
+					{
+						label: 'Pelkäät, että jossakin on ankka, joka tuijottaa sinua',
+						value: 'false'
+					},
+					{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', value: 'true' },
+					{ label: 'Gerbiili', value: 'true' }
+				]
+			}
+		},
+		{
+			type: SectionType.question_Text,
+			content: {
+				title: 'Suosikki TV-sarjani on:',
+				condition: false,
+				label: 'tv-sarja',
+				value: ''
+			}
+		},
+		{
+			type: SectionType.question_Select,
+			content: {
+				title: 'Olen erittäin väsynyt',
+				condition: false,
+				options: [
+					{
+						label: 'Useimmiten',
+						value: '1'
+					},
+					{
+						label: 'Silloin tällöin',
+						value: '2'
+					},
+					{
+						label: 'Jotenkuten',
+						value: '3'
+					},
+					{
+						label: 'Gerbiili',
+						value: '4'
+					}
+				]
+			}
+		},
+		{
+			type: SectionType.question_Checkbox,
+			content: {
+				title: 'Jos olet Anatidaephobiaani',
+				condition: false,
+				options: [
+					{
+						label: 'Pelkäät, että jossakin on ankka, joka tuijottaa sinua',
+						checked: false
+					},
+					{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', checked: false }
 				]
 			}
 		}
@@ -197,8 +255,17 @@ const RenderSection = (section: RegistrationFormSection, editing: boolean) => {
 		case SectionType.basicInformation:
 			return <BasicInformation section={section} editing={editing} />;
 
-		case SectionType.question:
-			return <QuestionSection section={section} editing={editing} />;
+		case SectionType.question_Radio:
+			return <RadioQuestionSection section={section} editing={editing} />;
+
+		case SectionType.question_Checkbox:
+			return <CheckboxQuestionSection section={section} editing={editing} />;
+
+		case SectionType.question_Text:
+			return <TextQuestionSection section={section} editing={editing} />;
+
+		case SectionType.question_Select:
+			return <SelectQuestionSection section={section} editing={editing} />;
 
 		case SectionType.orders:
 			return <OrdersSection section={section} editing={editing} />;
@@ -207,7 +274,7 @@ const RenderSection = (section: RegistrationFormSection, editing: boolean) => {
 			return <AccommdationSection section={section} editing={editing} />;
 
 		default:
-			return <h2>Lohko tyyppiä: {section.type}</h2>;
+			return <h2>Lohkotyypille ei löytynyt render-metodia: {section.type}</h2>;
 	}
 };
 
@@ -407,15 +474,15 @@ const OrdersSection: FC<IOrdersSectionProps> = (props) => (
 );
 
 //************************************************** */
-// Kysymyslohko (TODO: dynaamiset kysymystyypit)
+// Kysymyslohko (Checkbox)
 //************************************************** */
 
-interface IQuestionSectionProps {
-	section: IQuestionSection;
+interface IQuestionSectionCheckboxProps {
+	section: IQuestionSectionCheckbox;
 	editing: boolean;
 }
 
-const QuestionSection: FC<IQuestionSectionProps> = (props) => (
+const CheckboxQuestionSection: FC<IQuestionSectionCheckboxProps> = (props) => (
 	<section className="registration__content__section">
 		<Heading
 			isUnderlined
@@ -425,12 +492,104 @@ const QuestionSection: FC<IQuestionSectionProps> = (props) => (
 		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
 			{() => (
 				<>
-					{props.section.content.questions.map((question, i) => (
+					{props.section.content.options.map((question, i) => (
 						<SliderCheckbox
-							label={question.text}
+							label={question.label}
+							defaultChecked={question.checked}
 							id={'random_q_' + i + Math.random()}
 						></SliderCheckbox>
 					))}
+				</>
+			)}
+		</Formik>
+	</section>
+);
+
+//************************************************** */
+// Kysymyslohko (Radio)
+//************************************************** */
+
+interface IQuestionSectionRadioProps {
+	section: IQuestionSectionRadio;
+	editing: boolean;
+}
+
+const RadioQuestionSection: FC<IQuestionSectionRadioProps> = (props) => (
+	<section className="registration__content__section">
+		<Heading
+			isUnderlined
+			text={props.section.content.title || 'Kysymyslohko'}
+			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+		></Heading>
+		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
+			{() => (
+				<>
+					{props.section.content.options.map((question, i) => (
+						<RadioField
+							name={'radio'}
+							label={question.label}
+							value={question.value}
+							id={'random_q_' + i + Math.random()}
+						></RadioField>
+					))}
+				</>
+			)}
+		</Formik>
+	</section>
+);
+
+//************************************************** */
+// Kysymyslohko (Text)
+//************************************************** */
+
+interface IQuestionSectionTextProps {
+	section: IQuestionSectionText;
+	editing: boolean;
+}
+
+const TextQuestionSection: FC<IQuestionSectionTextProps> = ({ section, editing }) => (
+	<section className="registration__content__section">
+		<Heading
+			isUnderlined
+			text={section.content.title || 'Kysymyslohko'}
+			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+		></Heading>
+		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
+			{() => (
+				<>
+					<TextField label={section.content.label} name={'custom_text'}></TextField>
+				</>
+			)}
+		</Formik>
+	</section>
+);
+
+//************************************************** */
+// Kysymyslohko (Select)
+//************************************************** */
+
+interface IQuestionSectionSelectProps {
+	section: IQuestionSectionSelect;
+	editing: boolean;
+}
+
+const SelectQuestionSection: FC<IQuestionSectionSelectProps> = ({ section, editing }) => (
+	<section className="registration__content__section">
+		<Heading
+			isUnderlined
+			text={section.content.title || 'Kysymyslohko'}
+			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+		></Heading>
+
+		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
+			{() => (
+				<>
+					<SelectFieldBase
+						options={section.content.options.map((option) => ({
+							value: option.value,
+							label: option.label
+						}))}
+					></SelectFieldBase>
 				</>
 			)}
 		</Formik>

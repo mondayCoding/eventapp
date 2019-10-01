@@ -1,4 +1,4 @@
-import { Icons } from 'library';
+import Icons from '../Components/Icons/icons';
 
 interface IEventTag {
 	name: string;
@@ -44,6 +44,6 @@ export const EventTag: { [x: number]: IEventTag } = {
 		name: 'Päättynyt',
 		type: EventTagType.HasEnded,
 		description: 'Tapahtuma on päättynyt',
-		icon: Icons.stopwatch
+		icon: Icons.clock
 	}
 };

@@ -3,7 +3,6 @@ import { CardWrapper } from '../../Components/CardWrapper';
 import { FeedCustomers } from '../../Components/FeedCustomers/FeedCustomers';
 import { FeedSystemEvents } from '../../Components/FeedSystemEvents/FeedSystemEvents';
 import Icons from '../../Components/Icons/icons';
-import styled from '../../Theme/theme';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { MultiStatCard } from '../../Components/MultiStatusCard';
 import { useHistory } from 'react-router';
@@ -89,25 +88,6 @@ export const DashBoard = () => {
 			<CardWrapper>
 				<PerformanceGraph></PerformanceGraph>
 			</CardWrapper>
-
-			{/* <div className="row">
-				<div className="col-lg-6">
-					<CardWrapper>
-						<ParticipationInEventsGraph></ParticipationInEventsGraph>
-					</CardWrapper>
-				</div>
-				<div className="col-lg-6">
-					<CardWrapper>
-						<ParticipationInEventsGraph></ParticipationInEventsGraph>
-					</CardWrapper>
-				</div>
-			</div> */}
 		</>
 	);
 };
-
-const CanvasFix = styled.div`
-	.chartjs-render-monitor {
-		max-width: 100%;
-	}
-`;

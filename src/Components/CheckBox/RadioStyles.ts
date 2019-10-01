@@ -7,7 +7,7 @@ export const RadioWrapDiv = styled.div`
 		left: -999rem;
 
 		&:focus + label {
-			box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+			box-shadow: ${(p) => p.theme.shadow.focus};
 		}
 
 		&:disabled + label {
@@ -49,7 +49,8 @@ export const RadioWrapDiv = styled.div`
 		min-height: 1.6rem;
 
 		&:hover {
-			background-color: ${(p) => lighten(0.5, p.theme.primary_color)};
+			/* no hover effect atm */
+			/* background-color: ${(p) => lighten(0.5, p.theme.primary_color)}; */
 		}
 
 		/* bg */
@@ -60,7 +61,7 @@ export const RadioWrapDiv = styled.div`
 			position: absolute;
 			left: 0.5rem;
 			border-radius: 100%;
-			background-color: #fff;
+			background-color: ${(p) => p.theme.body_background_color};
 			transition: opacity 0.2s;
 			border: 1px solid ${(p) => p.theme.border_color};
 			box-shadow: ${(p) => p.theme.global_shadow_inset};

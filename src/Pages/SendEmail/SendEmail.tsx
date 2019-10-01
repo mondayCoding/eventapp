@@ -4,16 +4,15 @@ import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
-import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { TEXTEDITOR } from '../Dashboard/EDITOR';
-import { TEXTEDITOR2 } from '../Dashboard/EDITOR2';
+// import { TEXTEDITOR2 } from '../Dashboard/EDITOR2';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import { useParams } from 'react-router';
 import { useCustomer } from '../../Queries/useCustomer';
 import { AppContext } from '../../App';
 import { Button } from '../../Components/Button/Button';
-import { SelectField, SelectFieldBase } from '../../Components/Select/Select';
+import { SelectFieldBase } from '../../Components/Select/Select';
 
 export const SendEmail = () => {
 	const { authorization } = useContext(AppContext);

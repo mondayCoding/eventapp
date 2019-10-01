@@ -10,11 +10,14 @@ import { MultiStatCard } from '../../Components/MultiStatusCard';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
+import {
+	WarningNotification,
+	InfoNotification
+} from '../../Components/Text/TextNotificationBox';
 import { SelectFieldBase, SelectField } from '../../Components/Select/Select';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import { useEvents } from '../../Queries/useEvents';
 import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
-import { WarningNotification } from 'library';
 import { Link } from 'react-router-dom';
 
 interface RegistrationRouteProps {
@@ -39,46 +42,16 @@ export const RegistrationForm: FC<formProps> = ({ match }) => {
 	const event = events.find((event) => event.id === match.params.id);
 	const [usedModules, setUsedModules] = useState(modules);
 
-	// const handleModuleToggle = (x: any) => {
-	// 	setUsedModules({ ...usedModules, x });
-	// };
-
 	return (
 		<>
-			<WarningNotification text="Lomakkeen kautta on tehty ilmoittautumisia. Asetuksien muuttaminen on mahdollista, mutta ei suositeltavaa." />
-
 			<div className="row">
 				<div className="col-lg-8">
+					<WarningNotification text="Lomakkeen kautta on tehty ilmoittautumisia. Asetuksien muuttaminen on mahdollista, mutta ei suositeltavaa." />
+					<InfoNotification text="hello"></InfoNotification>
 					<CardWrapper>
 						<Heading text="Lomakkeen perusasetukset" isUnderlined icon={Icons.cog} />
 						<RegistrationFormSettings event={event} />
 					</CardWrapper>
-
-					{/* <div style={{ marginLeft: '1.25rem' }}>
-							<ol>
-								<li>nimi</li>
-								<li>linkin teksti</li>
-								<li>kuvaus</li>
-								<li>aukeaa</li>
-								<li>sulkeutuu</li>
-								<li>näkyvyys ()</li>
-								<li>kielet (1/2) </li>
-								<li>
-									<b>lomakkeella:</b>
-								</li>
-								<li>johdanto</li>
-								<li>Otsikko</li>
-								<li>Perustietolohkot (kentät mitkä) </li>
-								<li>rajoitteet ( mitkä)</li>
-								<li>tietosuojat ( mitkä)</li>
-								<li>tuotteet ( mitkä)</li>
-								<li>majoitukset ( mitkä)</li>
-								<li>luentosarjat ( mitkä)</li>
-								<li>Kysymyslohkot ( kysymykset)</li>
-								<li>laskutuestiedot ( kysymykset)</li>
-								<li>vahvistus ( millainen)</li>
-							</ol>
-                  </div> */}
 
 					<CardWrapper>
 						<Heading

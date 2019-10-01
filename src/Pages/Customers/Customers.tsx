@@ -5,10 +5,8 @@ import * as routes from '../../Constants/Routes_MODIF';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { useCustomers } from '../../Queries/useCustomers';
 import styled from '../../Theme/theme';
-import { Icons } from 'library';
 import { ICustomer } from '../../MockData/MockCustomers';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
-import ReactTable from 'react-table';
 import { IconButton } from '../../Components/Button/IconButton';
 import { useHistory } from 'react-router';
 import {
@@ -16,9 +14,9 @@ import {
 	SelectTable
 } from '../../Hooks/useSelectableReactTable';
 import { AppContext } from '../../App';
-import { Button } from '../../Components/Button/Button';
 import Notify from '../../Utils/Notification';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
+import Icons from '../../Components/Icons/icons';
 
 export const Customers = () => {
 	useDocumentTitle('Asiakkaat');
