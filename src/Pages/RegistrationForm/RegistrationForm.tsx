@@ -47,7 +47,7 @@ export const RegistrationForm: FC<formProps> = ({ match }) => {
 			<div className="row">
 				<div className="col-lg-8">
 					<WarningNotification text="Lomakkeen kautta on tehty ilmoittautumisia. Asetuksien muuttaminen on mahdollista, mutta ei suositeltavaa." />
-					<InfoNotification text="hello"></InfoNotification>
+
 					<CardWrapper>
 						<Heading text="Lomakkeen perusasetukset" isUnderlined icon={Icons.cog} />
 						<RegistrationFormSettings event={event} />

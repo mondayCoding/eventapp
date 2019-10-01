@@ -1,18 +1,21 @@
 import React, { FC, useState } from 'react';
 import * as routes from '../../Constants/Routes_MODIF';
-import { Heading } from '../../Components/Text/Heading';
-import { IEvent } from '../../MockData/MockEvents';
 import { RouteComponentProps } from 'react-router';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
-import { Formik } from 'formik';
-import { TextField } from '../../Components/TextInput/Textinput';
-import { TextAreaField } from '../../Components/TextArea/TextArea';
-import { SelectFieldBase, SelectField } from '../../Components/Select/Select';
-import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
-import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
-import styled from '../../Theme/theme';
-import ReactTable from 'react-table';
-import RadioField from '../../Components/CheckBox/Radio';
+import { RegistrationPage } from './Assets/Styles';
+import { IntroductionSection } from './Sections/IntroductionSection';
+import { AccommdationSection } from './Sections/AccommodationSection';
+import { OrdersSection } from './Sections/OrdersSections';
+import { CheckboxQuestionSection } from './Sections/QuestionSectionCheckbox';
+import { RadioQuestionSection } from './Sections/QuestionSectionRadio';
+import { TextQuestionSection } from './Sections/QuestionSectionText';
+import { SelectQuestionSection } from './Sections/QuestionSectionSelect';
+import { BasicInformationSection } from './Sections/BasicInformationSection';
+import { Formik, FieldArray } from 'formik';
+import { Button } from '../../Components/Button/Button';
+import Icons from '../../Components/Icons/icons';
+import { AutoFormDebug } from '../../Utils/FormDebug';
+import { SelectBase } from '../../Components/Select/Select';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -44,7 +47,7 @@ enum SectionType {
 // Question Sections
 //*********************************************************** */
 
-interface IQuestionSectionRadio {
+export interface IQuestionSectionRadio {
 	type: SectionType.question_Radio;
 	content: {
 		title: string;
@@ -53,7 +56,7 @@ interface IQuestionSectionRadio {
 	};
 }
 
-interface IQuestionSectionSelect {
+export interface IQuestionSectionSelect {
 	type: SectionType.question_Select;
 	content: {
 		title: string;
@@ -62,7 +65,7 @@ interface IQuestionSectionSelect {
 	};
 }
 
-interface IQuestionSectionCheckbox {
+export interface IQuestionSectionCheckbox {
 	type: SectionType.question_Checkbox;
 	content: {
 		title: string;
@@ -71,7 +74,7 @@ interface IQuestionSectionCheckbox {
 	};
 }
 
-interface IQuestionSectionText {
+export interface IQuestionSectionText {
 	type: SectionType.question_Text;
 	content: {
 		title: string;
@@ -84,17 +87,17 @@ interface IQuestionSectionText {
 //*********************************************************** */
 //*********************************************************** */
 
-interface IAccommodationSection {
+export interface IAccommodationSection {
 	type: SectionType.accommodation;
 	content: { title: string };
 }
 
-interface IIntroductionSection {
+export interface IIntroductionSection {
 	type: SectionType.introduction;
 	content: { headingtext: string; ingress?: string; start: Date; end: Date };
 }
 
-interface IBasicInformationSection {
+export interface IBasicInformationSection {
 	type: SectionType.basicInformation;
 	content: { title?: string; firstname?: string; lastname?: string };
 }
@@ -109,7 +112,7 @@ interface ILecturesSection {
 	content: any;
 }
 
-interface IOrdersContent {
+export interface IOrdersContent {
 	type: SectionType.orders;
 	content: {
 		title: string;
@@ -129,6 +132,170 @@ type RegistrationFormSection =
 	| IQuestionSectionText
 	| IQuestionSectionSelect;
 
+export interface ISectionHelpers {
+	isInEditMode: boolean;
+	disableDown: boolean;
+	disableUp: boolean;
+	moveUp: () => void;
+	moveDown: () => void;
+	remove: () => void;
+}
+
+const RenderSection = (section: RegistrationFormSection, helpers: ISectionHelpers) => {
+	switch (section.type) {
+		case SectionType.introduction:
+			return <IntroductionSection section={section} helpers={helpers} />;
+
+		case SectionType.afterword:
+			return <div>Loppu</div>;
+
+		case SectionType.basicInformation:
+			return <BasicInformationSection section={section} helpers={helpers} />;
+
+		case SectionType.orders:
+			return <OrdersSection section={section} helpers={helpers} />;
+
+		case SectionType.accommodation:
+			return <AccommdationSection section={section} helpers={helpers} />;
+
+		case SectionType.question_Radio:
+			return <RadioQuestionSection content={section.content} helpers={helpers} />;
+
+		case SectionType.question_Checkbox:
+			return <CheckboxQuestionSection content={section.content} helpers={helpers} />;
+
+		case SectionType.question_Text:
+			return <TextQuestionSection content={section.content} helpers={helpers} />;
+
+		case SectionType.question_Select:
+			return <SelectQuestionSection content={section.content} helpers={helpers} />;
+
+		default:
+			return <h2>Lohkotyypille ei löytynyt render-metodia: {section.type}</h2>;
+	}
+};
+
+export const Registration: FC<formProps> = ({ match }) => {
+	useDocumentTitle('Ilmoittautumislomake');
+	const [editing, setEditing] = useState(true);
+	const [showJSON, setShowJSON] = useState(false);
+	const [data, setData] = useState(MockRegistration);
+
+	return (
+		<RegistrationPage editing={editing}>
+			<div className="registration">
+				<nav className="registration__top">top</nav>
+
+				<main className="registration__content">
+					{data.images.header && (
+						<div className="registration__content__header">
+							<img
+								src={data.images.header}
+								alt=""
+								className="registration__content__header__image"
+							/>
+						</div>
+					)}
+
+					<div className="TEST">
+						<Button
+							text={editing ? 'Esikatsele' : 'Muokkaa'}
+							className="TEST__BUTTON"
+							icon={Icons.edit}
+							onClick={() => setEditing(!editing)}
+						/>
+						<Button
+							text={showJSON ? 'Piilota JSON' : 'Näytä JSON'}
+							className="TEST__BUTTON"
+							icon={showJSON ? Icons.eye : Icons.eye_slash}
+							onClick={() => setShowJSON(!showJSON)}
+						/>
+						<Button
+							text={'Pohja #1 (Pitkä)'}
+							className="TEST__BUTTON TEST__BUTTON--THEME"
+							icon={Icons.globe}
+							onClick={() => setData(MockRegistration)}
+						/>
+						<Button
+							text={'Pohja #2 (Lyhyt)'}
+							className="TEST__BUTTON TEST__BUTTON--THEME"
+							icon={Icons.globe}
+							onClick={() => setData(MockRegistrationShort)}
+						/>
+						<Button
+							text={'Pohja #3 (Kysymyksiä)'}
+							className="TEST__BUTTON TEST__BUTTON--THEME"
+							icon={Icons.globe}
+							onClick={() => setData(MockRegistrationQuestions)}
+						/>
+
+						<Button
+							text={'Lisää Perustietolohko'}
+							className="TEST__BUTTON TEST__BUTTON"
+							icon={Icons.list}
+							onClick={() => setData(MockRegistrationQuestions)}
+						/>
+						<Button
+							text={'Lisää Valintaruutu'}
+							className="TEST__BUTTON TEST__BUTTON"
+							icon={Icons.list}
+							onClick={() => setData(MockRegistrationQuestions)}
+						/>
+						<Button
+							text={'Lisää Monivalinta'}
+							className="TEST__BUTTON TEST__BUTTON"
+							icon={Icons.list}
+							onClick={() => setData(MockRegistrationQuestions)}
+						/>
+						<Button
+							text={'Lisää '}
+							className="TEST__BUTTON TEST__BUTTON"
+							icon={Icons.list}
+							onClick={() => setData(MockRegistrationQuestions)}
+						/>
+					</div>
+
+					<Formik
+						initialValues={data}
+						onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+					>
+						{(formik) => (
+							<>
+								{showJSON ? (
+									<AutoFormDebug />
+								) : (
+									<FieldArray name="sections">
+										{(sectionHelpers) => {
+											return formik.values.sections.map((section, index) => {
+												const helpers = {
+													isInEditMode: editing,
+													disableUp: index === 0,
+													disableDown: index === formik.values.sections.length - 1,
+													moveUp: () => sectionHelpers.swap(index, index - 1),
+													moveDown: () => sectionHelpers.swap(index, index + 1),
+													remove: () => {
+														if (window.confirm('Haluatko varmasti poistaa lohkon?')) {
+															sectionHelpers.remove(index);
+														}
+													}
+												};
+
+												return RenderSection(section, helpers);
+											});
+										}}
+									</FieldArray>
+								)}
+							</>
+						)}
+					</Formik>
+				</main>
+
+				<footer className="registration__footer">footer</footer>
+			</div>
+		</RegistrationPage>
+	);
+};
+
 const MockRegistration: IRegistrationForm = {
 	images: {
 		header:
@@ -138,12 +305,14 @@ const MockRegistration: IRegistrationForm = {
 		{
 			type: SectionType.introduction,
 			content: {
-				headingtext: 'Tapahtuman nimi',
+				headingtext: 'Testitapahtuma',
+				ingress:
+					'Tässä perustapahtumassa on esiteltynä kaikki peruslohkot. Suurimmassa osassa ei ole varsinaista toteutusta 😢',
 				start: new Date(2019, 11, 11),
 				end: new Date(2020, 0, 3)
 			}
 		},
-		{ type: SectionType.basicInformation, content: { title: 'Perustiedot' } },
+		{ type: SectionType.basicInformation, content: { title: 'Henkilötiedot' } },
 		{
 			type: SectionType.question_Checkbox,
 			content: {
@@ -244,486 +413,195 @@ const MockRegistration: IRegistrationForm = {
 	]
 };
 
-const RenderSection = (section: RegistrationFormSection, editing: boolean) => {
-	switch (section.type) {
-		case SectionType.introduction:
-			return <IntroductionSection section={section} editing={editing} />;
-
-		case SectionType.afterword:
-			return <div>Loppu</div>;
-
-		case SectionType.basicInformation:
-			return <BasicInformation section={section} editing={editing} />;
-
-		case SectionType.question_Radio:
-			return <RadioQuestionSection section={section} editing={editing} />;
-
-		case SectionType.question_Checkbox:
-			return <CheckboxQuestionSection section={section} editing={editing} />;
-
-		case SectionType.question_Text:
-			return <TextQuestionSection section={section} editing={editing} />;
-
-		case SectionType.question_Select:
-			return <SelectQuestionSection section={section} editing={editing} />;
-
-		case SectionType.orders:
-			return <OrdersSection section={section} editing={editing} />;
-
-		case SectionType.accommodation:
-			return <AccommdationSection section={section} editing={editing} />;
-
-		default:
-			return <h2>Lohkotyypille ei löytynyt render-metodia: {section.type}</h2>;
-	}
-};
-
-export const Registration: FC<formProps> = ({ match }) => {
-	useDocumentTitle('Ilmoittautumislomake');
-	const [editing, setEditing] = useState(true);
-	const data = MockRegistration;
-
-	return (
-		<RegistrationPage>
-			<div className="registration">
-				<nav className="registration__top">top</nav>
-
-				<main className="registration__content">
-					{data.images.header && (
-						<div className="registration__content__header">
-							<img src={data.images.header} alt="" />
-						</div>
-					)}
-
-					{data.sections.map((section) => RenderSection(section, editing))}
-				</main>
-
-				<footer className="registration__footer">footer</footer>
-			</div>
-		</RegistrationPage>
-	);
-};
-
-const RegistrationPage = styled.div`
-	width: 100%;
-	background: ${(p) => p.theme.body_background_color};
-	font-family: ${(p) => p.theme.body_font};
-	color: ${(p) => p.theme.text_color};
-
-	.registration {
-		&__top {
-			padding: 0.5rem;
-			background: ${(p) => p.theme.menu_background_color};
-		}
-
-		/* Pääsisältö */
-		&__content {
-			max-width: 64rem;
-			background: ${(p) => p.theme.card_background_color};
-			margin: 1.5rem auto;
-			box-shadow: 0 0 5px 6px rgba(0, 0, 0, 0.2);
-			border-radius: 0.5rem;
-
-			/* Pääsisällän yläkuva */
-			&__header {
-				background: lightgray;
-				max-height: 20rem;
-				border-radius: 0.5rem 0.5rem 0 0;
-				overflow: hidden;
+const MockRegistrationShort: IRegistrationForm = {
+	images: {
+		header:
+			'https://cbsnews1.cbsistatic.com/hub/i/2016/09/29/d1a671d9-556e-468d-8639-159e2842f15b/logan-new-hamshire-cat-2016-09-29.jpg'
+	},
+	sections: [
+		{
+			type: SectionType.introduction,
+			content: {
+				headingtext: 'Kissatapahtuma',
+				ingress:
+					'Kissa eli kesykissa tai kotikissa (Felis catus, aiemmin Felis silvestris catus) on villikissasta (Felis silvestris) polveutuva ja petoeläinten (Carnivora) lahkon kissaeläinten (Felidae) heimoon kuuluva kesy nisäkäslaji. Kissat ovat suosittuja lemmikkieläimiä, ja etenkin maaseudulla ne ovat aina olleet hyödyllisiä hiirten ja muiden tuholaisten pyydystäjinä. ',
+				start: new Date(2019, 11, 11),
+				end: new Date(2020, 0, 3)
 			}
+		},
+		{
+			type: SectionType.basicInformation,
+			content: {
+				title: 'Kissatiedot',
+				firstname: 'Kissan Etunimi',
+				lastname: 'Kissan Sukunimi'
+			}
+		},
 
-			/* Yksittäinen osio */
-			&__section {
-				padding: 1.5rem;
-
-				/* Johdanto */
-				&__introduction {
-					&__heading {
-						text-align: center;
-						font-size: 1.5rem;
-					}
-					&__dates {
-						display: block;
-						text-align: center;
-						margin-bottom: 1rem;
-					}
-					&__ingress {
-						display: block;
-						padding: 1rem;
-						box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-						background: rgba(0, 0, 0, 0.015);
-
-						&__text {
-							display: block;
-						}
-					}
-				}
+		{
+			type: SectionType.question_Checkbox,
+			content: {
+				title: 'Kissäni',
+				condition: false,
+				options: [
+					{
+						label: 'Pelkäät, että jossakin on ankka, joka tuijottaa sinua',
+						checked: false
+					},
+					{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', checked: false }
+				]
 			}
 		}
-		&__footer {
-			padding: 1rem;
-			background: ${(p) => p.theme.menu_background_color};
-			text-align: center;
-			display: flex;
-			justify-content: center;
+	]
+};
+
+const MockRegistrationQuestions: IRegistrationForm = {
+	images: {
+		header: 'https://i.ytimg.com/vi/XBPjVzSoepo/maxresdefault.jpg'
+	},
+	sections: [
+		{
+			type: SectionType.introduction,
+			content: {
+				headingtext: 'Tiedostelulomake',
+				ingress:
+					'Tällä lomakkeella keräämme tärkeää tietoa sinusta ja läheisistäsi. Avaamalla tämän lomakkeet olet jo hyväksynyt kaiken.',
+				start: new Date(2019, 11, 11),
+				end: new Date(2020, 0, 3)
+			}
+		},
+		{ type: SectionType.basicInformation, content: { title: 'Perustiedot' } },
+		{
+			type: SectionType.question_Checkbox,
+			content: {
+				title: 'Jos olet Anatidaephobiaani',
+				condition: false,
+				options: [
+					{
+						label: 'Pelkäät, että jossakin on ankka, joka tuijottaa sinua',
+						checked: false
+					},
+					{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', checked: false }
+				]
+			}
+		},
+		{
+			type: SectionType.question_Checkbox,
+			content: {
+				title: 'Suunnittelutyöstä',
+				condition: false,
+				options: [
+					{
+						label: 'Dynaaminen takinkääntö on poliitikon paras ominaisuus',
+						checked: false
+					},
+					{
+						label: 'Tehokas poliitikko muistuttaa enemmän tuulimyllyä kuin asiamiestä',
+						checked: false
+					},
+					{ label: 'Kepulla ei ole asiaa hallitukseen', checked: false },
+					{
+						label: 'Jos ei tähtää tarpeeksi korkealle, kapsahtaa katajaan',
+						checked: false
+					},
+					{
+						label:
+							'Gerbiileistä ei ole tehokkaiksi poliitikoiksi, mutta niistä saa erinomaisia asiamiehia',
+						checked: false
+					}
+				]
+			}
+		},
+		{
+			type: SectionType.question_Radio,
+			content: {
+				title: 'Politiikan tehokkain työeläin',
+				condition: false,
+				options: [
+					{
+						label: 'Ankka',
+						value: 'false'
+					},
+					{ label: 'Supikoira', value: 'true' },
+					{ label: 'Kenguru', value: 'true' },
+					{ label: 'Mäyräkoira', value: 'true' },
+					{ label: 'Pykäläkoira', value: 'true' },
+					{ label: 'Viivoitin', value: 'true' },
+					{ label: 'Kuplasammakko', value: 'true' },
+					{ label: 'Gerbiili', value: 'true' }
+				]
+			}
+		},
+		{
+			type: SectionType.question_Text,
+			content: {
+				title: 'Suosikki TV-sarjani on:',
+				condition: false,
+				label: 'tv-sarja',
+				value: ''
+			}
+		},
+		{
+			type: SectionType.question_Text,
+			content: {
+				title: 'Valehtelit edellisessä kohdassa kirjoita tähän oikea vastaus',
+				condition: false,
+				label: 'tv-sarja',
+				value: ''
+			}
+		},
+		{
+			type: SectionType.question_Select,
+			content: {
+				title: 'Olen erittäin väsynyt',
+				condition: false,
+				options: [
+					{
+						label: 'Joissakin',
+						value: '1'
+					},
+					{
+						label: 'Listoissa',
+						value: '2'
+					},
+					{
+						label: 'Pitäisi',
+						value: '3'
+					},
+					{
+						label: 'Olla',
+						value: '4'
+					},
+					{
+						label: 'Merkittävästi',
+						value: '5'
+					},
+					{
+						label: 'Vähemmän',
+						value: '6'
+					},
+					{
+						label: 'Vaihtoehtoja',
+						value: '7'
+					},
+					{
+						label: 'Mutta',
+						value: '8'
+					},
+					{
+						label: 'Ei',
+						value: '9'
+					},
+					{
+						label: 'Mahda',
+						value: '10'
+					},
+					{
+						label: 'Mitään',
+						value: '11'
+					}
+				]
+			}
 		}
-	}
-`;
-
-//************************************************** */
-// Johdanto
-//************************************************** */
-
-interface IIntroductionSectionProps {
-	section: IIntroductionSection;
-	editing: boolean;
-}
-
-const IntroductionSection: FC<IIntroductionSectionProps> = (props) => (
-	<section className="registration__content__section">
-		<h2 className="registration__content__section__introduction__heading">
-			{props.section.content.headingtext || 'NO_HEADING_TEXT_GIVEN'}
-		</h2>
-		<span className="registration__content__section__introduction__dates">
-			{`${props.section.content.start.toLocaleDateString(
-				'fi-FI'
-			)} - ${props.section.content.end.toLocaleDateString('fi-FI')}`}
-		</span>
-		<div className="registration__content__section__introduction__ingress">
-			<span className="registration__content__section__introduction__ingress__text">
-				{props.section.content.ingress || 'NO_INGRESS_TEXT_GIVEN'}
-			</span>
-		</div>
-	</section>
-);
-
-//************************************************** */
-// Majoituslohko
-//************************************************** */
-
-interface IAccommodationSectionProps {
-	section: IAccommodationSection;
-	editing: boolean;
-}
-
-const AccommdationSection: FC<IAccommodationSectionProps> = (props) => (
-	<section className="registration__content__section">
-		<Heading
-			isUnderlined
-			text={props.section.content.title || 'Majoituslohko'}
-			ingress="Tässä lohkossa voi varata majoituksia"
-		></Heading>
-		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-			{() => (
-				<>
-					<TextAreaField name="description" label="Kuvaus" />
-				</>
-			)}
-		</Formik>
-	</section>
-);
-
-//************************************************** */
-// Tilauslohko
-//************************************************** */
-
-interface IOrdersSectionProps {
-	section: IOrdersContent;
-	editing: boolean;
-}
-
-const OrdersSection: FC<IOrdersSectionProps> = (props) => (
-	<section className="registration__content__section">
-		<Heading
-			isUnderlined
-			text={props.section.content.title || 'Tilauslohko'}
-			ingress="Tässä lohkossa voi varata majoituksia"
-		></Heading>
-		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-			{() => (
-				<>
-					<ReactTable
-						pageSize={props.section.content.products.length}
-						showPagination={false}
-						data={props.section.content.products}
-						columns={[
-							{
-								Header: 'Tuote',
-								accessor: 'name'
-							},
-							{
-								Header: 'Saatavuus',
-								accessor: 'avaibility'
-							},
-							{
-								Header: 'Hinta',
-								accessor: 'value',
-								Cell: ({ original }: { original: any }) => {
-									return new Intl.NumberFormat('fi-FI', {
-										style: 'currency',
-										currency: 'EUR'
-									}).format(original.value);
-								}
-							}
-						]}
-					></ReactTable>
-				</>
-			)}
-		</Formik>
-	</section>
-);
-
-//************************************************** */
-// Kysymyslohko (Checkbox)
-//************************************************** */
-
-interface IQuestionSectionCheckboxProps {
-	section: IQuestionSectionCheckbox;
-	editing: boolean;
-}
-
-const CheckboxQuestionSection: FC<IQuestionSectionCheckboxProps> = (props) => (
-	<section className="registration__content__section">
-		<Heading
-			isUnderlined
-			text={props.section.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
-		></Heading>
-		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-			{() => (
-				<>
-					{props.section.content.options.map((question, i) => (
-						<SliderCheckbox
-							label={question.label}
-							defaultChecked={question.checked}
-							id={'random_q_' + i + Math.random()}
-						></SliderCheckbox>
-					))}
-				</>
-			)}
-		</Formik>
-	</section>
-);
-
-//************************************************** */
-// Kysymyslohko (Radio)
-//************************************************** */
-
-interface IQuestionSectionRadioProps {
-	section: IQuestionSectionRadio;
-	editing: boolean;
-}
-
-const RadioQuestionSection: FC<IQuestionSectionRadioProps> = (props) => (
-	<section className="registration__content__section">
-		<Heading
-			isUnderlined
-			text={props.section.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
-		></Heading>
-		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-			{() => (
-				<>
-					{props.section.content.options.map((question, i) => (
-						<RadioField
-							name={'radio'}
-							label={question.label}
-							value={question.value}
-							id={'random_q_' + i + Math.random()}
-						></RadioField>
-					))}
-				</>
-			)}
-		</Formik>
-	</section>
-);
-
-//************************************************** */
-// Kysymyslohko (Text)
-//************************************************** */
-
-interface IQuestionSectionTextProps {
-	section: IQuestionSectionText;
-	editing: boolean;
-}
-
-const TextQuestionSection: FC<IQuestionSectionTextProps> = ({ section, editing }) => (
-	<section className="registration__content__section">
-		<Heading
-			isUnderlined
-			text={section.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
-		></Heading>
-		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-			{() => (
-				<>
-					<TextField label={section.content.label} name={'custom_text'}></TextField>
-				</>
-			)}
-		</Formik>
-	</section>
-);
-
-//************************************************** */
-// Kysymyslohko (Select)
-//************************************************** */
-
-interface IQuestionSectionSelectProps {
-	section: IQuestionSectionSelect;
-	editing: boolean;
-}
-
-const SelectQuestionSection: FC<IQuestionSectionSelectProps> = ({ section, editing }) => (
-	<section className="registration__content__section">
-		<Heading
-			isUnderlined
-			text={section.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
-		></Heading>
-
-		<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-			{() => (
-				<>
-					<SelectFieldBase
-						options={section.content.options.map((option) => ({
-							value: option.value,
-							label: option.label
-						}))}
-					></SelectFieldBase>
-				</>
-			)}
-		</Formik>
-	</section>
-);
-
-//************************************************** */
-// Perustietolohko
-//************************************************** */
-
-interface IBasicInformationSectionProps {
-	section: IBasicInformationSection;
-	editing: boolean;
-}
-
-const BasicInformation: FC<IBasicInformationSectionProps> = (props) => (
-	<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
-		{() => (
-			<div className="registration__content__section">
-				<Heading text={props.section.content.title || 'Perustietolohko'} isUnderlined />
-				{/* {props.editing && <Button text="Muokkaa osiota"></Button>} */}
-				<TextField name="name" label={props.section.content.firstname || 'Etunimi'} />
-				<TextField
-					name="othername"
-					label={props.section.content.lastname || 'Sukunimi'}
-				/>
-				<TextField name="link" label="Osoite" />
-
-				<SelectField
-					name="roles"
-					label="Roolit"
-					options={[
-						{ label: 'Gerbiili', value: '62000' },
-						{ label: 'Pomomies', value: '41002' },
-						{ label: 'VIP', value: '79100' }
-					]}
-				/>
-				<SelectField
-					name="state"
-					label="Tila"
-					options={[
-						{ label: 'Avattu', value: '62000' },
-						{ label: 'Peruttu', value: '41002' },
-						{ label: 'Suunnitteilla', value: '79100' }
-					]}
-				/>
-
-				<TextField name="location" label="Sijainti" />
-
-				<FieldContainer label="Syntymäaika">
-					<div className="row" style={{ flex: '1 1 auto' }}>
-						<div className="col-sm-3">
-							<SelectFieldBase name="day" placeholder="Päivä" options={dayOptions} />
-						</div>
-						<div className="col-sm-4">
-							<SelectFieldBase
-								name="month"
-								placeholder="Kuukausi"
-								options={monthOptions}
-							/>
-						</div>
-						<div className="col-sm-3">
-							<SelectFieldBase name="year" placeholder="Vuosi" options={yearOptions} />
-						</div>
-					</div>
-				</FieldContainer>
-			</div>
-		)}
-	</Formik>
-);
-
-const dayOptions = [
-	{ label: '1', value: '1' },
-	{ label: '2', value: '2' },
-	{ label: '3', value: '3' },
-	{ label: '4', value: '4' },
-	{ label: '5', value: '5' },
-	{ label: '6', value: '6' },
-	{ label: '7', value: '7' },
-	{ label: '8', value: '8' },
-	{ label: '9', value: '9' },
-	{ label: '10', value: '10' },
-	{ label: '11', value: '11' },
-	{ label: '12', value: '11' },
-	{ label: '13', value: '12' },
-	{ label: '14', value: '13' },
-	{ label: '15', value: '14' }
-];
-
-const monthOptions = [
-	{ label: 'Tammikuu', value: '1' },
-	{ label: 'Helmikuu', value: '2' },
-	{ label: 'Maaliskuu', value: '3' },
-	{ label: 'Huhtikuu', value: '4' },
-	{ label: 'Toukokuu', value: '5' },
-	{ label: 'Kesäkuu', value: '6' },
-	{ label: 'Heinäkuu', value: '7' },
-	{ label: 'Elokuu', value: '8' },
-	{ label: 'Syyskuu', value: '9' },
-	{ label: 'Lokakuu', value: '10' },
-	{ label: 'Marraskuu', value: '11' },
-	{ label: 'Joulukuu', value: '12' }
-];
-
-const yearOptions = [
-	{ label: '2016', value: '1' },
-	{ label: '2017', value: '2' },
-	{ label: '2018', value: '3' },
-	{ label: '2019', value: '4' }
-];
-
-const TimeOptions = [
-	{ label: '12:00', value: '1' },
-	{ label: '12:15', value: '2' },
-	{ label: '12:30', value: '3' },
-	{ label: '12:45', value: '4' }
-];
-
-const initialValues: IEvent = {
-	country: '',
-	department: '',
-	id: '123',
-	description: '',
-	name: '',
-	created: new Date(),
-	location: '',
-	start: new Date(),
-	end: new Date(),
-	tags: [],
-	city: '',
-	postNumber: '',
-	address: '',
-	state: 6,
-	organizer: '',
-	homepage: '',
-	forms: []
+	]
 };

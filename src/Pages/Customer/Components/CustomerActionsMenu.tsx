@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { useMenuState, Menu, MenuItem, MenuDisclosure } from 'reakit/Menu';
-import Icons from '../../Components/Icons/icons';
-import { Button } from '../../Components/Button/Button';
+import Icons from '../../../Components/Icons/icons';
+import { Button } from '../../../Components/Button/Button';
 import { useHistory } from 'react-router';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../../Constants/Routes_MODIF';
 
 export const CustomerActionsMenu: FC<{ id: string }> = ({ id }) => {
 	const menu = useMenuState();

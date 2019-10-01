@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { useMenuState, Menu, MenuItem, MenuDisclosure, MenuSeparator } from 'reakit/Menu';
 import Icons from '../../Components/Icons/icons';
-import { Button } from '../../Components/Button/Button';
 import { MenuWrapper } from '../Events/EventActions';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
 

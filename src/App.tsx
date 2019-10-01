@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuthState } from './Hooks/useAuthorization';
 import { BrowserRouter } from 'react-router-dom';
 import { Routing } from './Routing';
+import { AppLoader } from './Layout/AppLoader';
 
 interface IAppDataContext {
 	isDarkTheme: boolean;
@@ -26,7 +27,7 @@ export const AppContext = React.createContext({} as IAppDataContext);
 
 const Application: FC = () => {
 	const [isDarkTheme, setIsDarkTheme] = useState(nightModeIsOn());
-	const { auth } = useAuthState();
+	const { auth, isLoading } = useAuthState();
 	const [emailingList, setEmailingList] = useState([] as EmailTarget[]);
 
 	const toggleNightMode = () => {
@@ -47,7 +48,9 @@ const Application: FC = () => {
 	const theme = isDarkTheme ? themes.dark : themes.default;
 	const isAuthorised = auth !== null;
 
-	return (
+	return isLoading ? (
+		<AppLoader />
+	) : (
 		<ThemeManager theme={theme}>
 			<BrowserRouter>
 				<AppContext.Provider value={applicationContext}>

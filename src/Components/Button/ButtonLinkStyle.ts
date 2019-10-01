@@ -24,12 +24,8 @@ export const ThemedButton = styled.button`
 	}
 
 	&:focus {
-		box-shadow: 0 0 3px ${(p) => p.theme.focus_color};
+		box-shadow: ${(p) => p.theme.shadow.focus};
 		outline: none;
-
-		&::-moz-focus-inner {
-			border: 0;
-		}
 	}
 
 	&:disabled {

@@ -47,66 +47,83 @@ const EmailForm: FC<IEmailForProps> = ({ receiver, sender }) => {
 			onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
 			enableReinitialize={true}
 		>
-			<>
-				<TextField
-					required
-					name="sender"
-					label="Lähettäjä"
-					placeholder="From"
-				></TextField>
+			{(formik) => (
+				<>
+					<TextField
+						required
+						name="sender"
+						label="Lähettäjä"
+						placeholder="From"
+					></TextField>
 
-				<TextField
-					required
-					name="receiver"
-					label="Vastaanottaja"
-					placeholder="To"
-				></TextField>
+					<TextField
+						required
+						name="receiver"
+						label="Vastaanottaja"
+						placeholder="To"
+					></TextField>
 
-				<TextField
-					required
-					name="title"
-					label="Viestin otsikko"
-					placeholder="Subject"
-				></TextField>
+					<TextField
+						required
+						name="subject"
+						label="Viestin otsikko"
+						placeholder="Subject"
+					></TextField>
 
-				<FieldContainer label="Viesti" required>
-					<div style={{ flex: '1 1 auto' }}>
-						{/* <TEXTEDITOR2></TEXTEDITOR2> */}
-						<TEXTEDITOR></TEXTEDITOR>
-					</div>
-				</FieldContainer>
-
-				<FieldContainer label="">
-					<div
-						style={{ flex: '1 1 auto', display: 'flex', justifyContent: 'space-between' }}
-					>
-						<div>
-							<Button text="Lähetä viesti" icon={Icons.paperplane}></Button>
-							<Button text="Tallenna luonnoksena" icon={Icons.save}></Button>
+					<FieldContainer label="Viesti" required>
+						<div style={{ flex: '1 1 auto' }}>
+							{/* <TEXTEDITOR2></TEXTEDITOR2> */}
+							<TEXTEDITOR data={formik.values.content}></TEXTEDITOR>
 						</div>
+					</FieldContainer>
 
-						<div style={{ width: '260px' }}>
-							<SelectFieldBase
-								placeholder="Valitse esitallennettu pohja"
-								options={[
-									{
-										label: 'Kutsukirje',
-										value: '1'
-									},
-									{
-										label: 'Peruutusilmoitus',
-										value: '2'
-									},
-									{
-										label: 'Todistuspohja',
-										value: '3'
-									}
-								]}
-							></SelectFieldBase>
+					<FieldContainer label="">
+						<div
+							style={{
+								flex: '1 1 auto',
+								display: 'flex',
+								justifyContent: 'space-between'
+							}}
+						>
+							<div>
+								<Button text="Lähetä viesti" icon={Icons.paperplane}></Button>
+								<Button text="Tallenna luonnoksena" icon={Icons.save}></Button>
+							</div>
+
+							<div style={{ width: '260px', marginTop: '1rem' }}>
+								<SelectFieldBase
+									placeholder="Valitse esitallennettu pohja"
+									onChange={(option) => {
+										formik.setFieldValue('content', option.content);
+										formik.setFieldValue('subject', option.title);
+									}}
+									options={[
+										{
+											label: 'Kutsukirje',
+											value: '1',
+											title: 'Kutsukirje',
+
+											content: '<div>Kutsukirje</div>'
+										},
+										{
+											label: 'Peruutusilmoitus',
+											value: '2',
+											title: 'Peruutusilmoitus',
+											content: '<div>Peruutusilmoitus</div>'
+										},
+										{
+											label: 'Todistuspohja',
+											value: '3',
+											title: 'Todistuspohja',
+											content: '<div>Todistuspohja</div>'
+										}
+									]}
+								></SelectFieldBase>
+							</div>
 						</div>
-					</div>
-				</FieldContainer>
-			</>
+					</FieldContainer>
+				</>
+			)}
 		</Formik>
 	);
 };
@@ -114,6 +131,6 @@ const EmailForm: FC<IEmailForProps> = ({ receiver, sender }) => {
 const initialValues = {
 	sender: '',
 	receiver: '',
-	title: '',
+	subject: '',
 	content: ''
 };

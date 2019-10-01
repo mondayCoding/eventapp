@@ -1,11 +1,10 @@
 import React, { FC, useContext } from 'react';
-import { useMenuState, Menu, MenuItem, MenuDisclosure, MenuSeparator } from 'reakit/Menu';
+import { useMenuState, Menu, MenuItem, MenuDisclosure } from 'reakit/Menu';
 import { Tooltip, TooltipReference, useTooltipState } from 'reakit/Tooltip';
 import Icons from '../Components/Icons/icons';
 import { IconButton } from '../Components/Button/IconButton';
 import { AppContext } from '../App';
-import { Button } from '../Components/Button/Button';
-import { TopPanelThemed } from './Styles/TopPanel';
+import { TopPanelThemed } from './Assets/TopPanelStyle';
 import { RoutableAutoSuggest } from './AutoSuggestSeach';
 import { useHistory } from 'react-router';
 import * as routes from '../Constants/Routes_MODIF';

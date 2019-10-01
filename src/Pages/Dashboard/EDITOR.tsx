@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 const CKEditor = require('@ckeditor/ckeditor5-react');
 const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
 
-export class TEXTEDITOR extends Component {
+interface props {
+	data?: string;
+}
+
+export class TEXTEDITOR extends Component<props> {
 	state = {
 		value: ''
 	};
@@ -11,7 +15,7 @@ export class TEXTEDITOR extends Component {
 			<div className="App">
 				<CKEditor
 					editor={ClassicEditor}
-					data="<p>Hello from CKEditor 5!</p>"
+					data={this.props.data || '<p>Hello</p>'}
 					config={
 						{
 							// fontSize: {
@@ -43,7 +47,7 @@ export class TEXTEDITOR extends Component {
 						console.log('Focus.', editor);
 					}}
 				/>
-				{this.state.value}
+				{/* {this.state.value} */}
 			</div>
 		);
 	}

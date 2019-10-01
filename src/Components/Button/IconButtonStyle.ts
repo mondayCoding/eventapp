@@ -59,8 +59,8 @@ export const ThemedButton = styled.button<IButtonStyleProps>`
 	}
 
 	&:focus {
-		border: 0.15rem solid white;
-		box-shadow: 0 0 5px ${(p) => p.theme.focus_color};
+		box-shadow: ${(p) => p.theme.shadow.focus};
+		outline: none;
 	}
 
 	&:disabled {
