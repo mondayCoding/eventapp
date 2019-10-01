@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { FieldProps, Field, FastField } from 'formik';
+import { FieldProps, Field } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
 import { TextAreaThemed } from './TextAreaStyles';
 
-interface IProps extends IFieldContainerProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+interface IProps
+	extends IFieldContainerProps,
+		React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 export const TextAreaField: React.FC<IProps> = ({
 	name,
 	label,
-	tooltip,
 	hideErrorMessage,
 	required,
 	disabled,
@@ -30,7 +31,6 @@ export const TextAreaField: React.FC<IProps> = ({
 				hideErrorMessage={hideErrorMessage}
 				showMobileView={showMobileView}
 				hideContainer={hideContainer}
-				tooltip={tooltip}
 			>
 				<TextAreaThemed
 					id={`${field.name}_textarea_TID`}

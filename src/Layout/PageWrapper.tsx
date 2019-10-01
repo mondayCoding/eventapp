@@ -4,7 +4,7 @@ import { Content, Main } from '../AppStyles';
 
 import { TopPanel } from './TopPanel';
 
-export const MainPage: FC = (props) => {
+export const PageWrapper: FC = (props) => {
 	const ref = useRef(undefined as any | HTMLElement);
 	return (
 		<Content ref={ref}>

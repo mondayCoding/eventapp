@@ -10,7 +10,6 @@ import { FieldProps, Field, FastField } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
 
 type IProps = React.InputHTMLAttributes<HTMLInputElement> & {
-	tooltip?: string;
 	label?: string;
 };
 type SliderProps = IFieldContainerProps & IProps;
@@ -18,7 +17,7 @@ type SliderProps = IFieldContainerProps & IProps;
 const SliderCheckbox: React.SFC<IProps> = ({
 	id,
 	label,
-	tooltip,
+
 	children,
 	title,
 	...rest
@@ -28,11 +27,6 @@ const SliderCheckbox: React.SFC<IProps> = ({
 		<label htmlFor={id} className="cb__label" title={title}>
 			{label}
 			{children}
-			{tooltip && (
-				<span style={{ fontSize: '1.1rem', paddingLeft: '.33rem' }}>
-					{/* <Tooltip content={tooltip} /> */}
-				</span>
-			)}
 		</label>
 	</SliderCheckboxWrapper>
 );
@@ -65,7 +59,7 @@ export const SliderField: React.FC<IProps> = ({ label, name, ...props }) => (
 export const SliderContainerField: React.FC<SliderProps> = ({
 	name,
 	label,
-	tooltip,
+
 	required,
 	hideContainer,
 	disabled,
@@ -79,7 +73,6 @@ export const SliderContainerField: React.FC<SliderProps> = ({
 				label={label}
 				error={touched[field.name] && errors[field.name]}
 				id={`${field.name}_slider_TID`}
-				tooltip={tooltip}
 				disabled={disabled}
 				hideContainer={hideContainer}
 				required={required}

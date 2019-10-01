@@ -5,7 +5,7 @@ import { SignInPage } from './Pages/SignIn/SingIn';
 import { SignUpPage } from './Pages/SignUp/SingUp';
 import { Registration } from './Pages/Registration/Registration';
 import { Body } from './AppStyles';
-import { MainPage } from './Layout/MainPage';
+import { PageWrapper } from './Layout/PageWrapper';
 import { Navigation } from './Layout/Navigation';
 import { Customers } from './Pages/Customers/Customers';
 import { Customer } from './Pages/Customer/Customer';
@@ -123,9 +123,9 @@ const ProtectedRoute: FC<IProtected> = ({ safe, component: Component, ...props }
 			render={(matchProps) => (
 				<Body>
 					<Navigation />
-					<MainPage>
+					<PageWrapper>
 						<Component {...matchProps} />
-					</MainPage>
+					</PageWrapper>
 				</Body>
 			)}
 		/>

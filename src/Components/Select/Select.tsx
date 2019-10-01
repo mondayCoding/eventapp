@@ -54,7 +54,6 @@ export const SelectFieldBase: FC<reactSelectProps<any>> = ({
 export const SelectFastField: FC<ProvidedProps> = ({
 	name,
 	label,
-	tooltip,
 	required,
 	disabled,
 	hideContainer,
@@ -75,7 +74,6 @@ export const SelectFastField: FC<ProvidedProps> = ({
 				label={label}
 				error={touched[field.name] && errors[field.name]}
 				id={`${field.name}_select_TID`}
-				tooltip={tooltip}
 				required={required}
 				showMobileView={showMobileView}
 				disabled={disabled}
@@ -106,7 +104,6 @@ export const SelectFastField: FC<ProvidedProps> = ({
 export const SelectField: FC<ProvidedProps> = ({
 	name,
 	label,
-	tooltip,
 	required,
 	disabled,
 	hideContainer,
@@ -127,7 +124,6 @@ export const SelectField: FC<ProvidedProps> = ({
 				label={label}
 				error={touched[field.name] && errors[field.name]}
 				id={`${field.name}_select_TID`}
-				tooltip={tooltip}
 				required={required}
 				showMobileView={showMobileView}
 				disabled={disabled}
@@ -158,7 +154,6 @@ export const SelectField: FC<ProvidedProps> = ({
 export const MultiSelectField: FC<ProvidedProps> = ({
 	name,
 	label,
-	tooltip,
 	required,
 	options,
 	hideContainer,
@@ -175,7 +170,6 @@ export const MultiSelectField: FC<ProvidedProps> = ({
 				label={label}
 				error={touched[field.name] && errors[field.name]}
 				id={`${field.name}_select_TID`}
-				tooltip={tooltip}
 				required={required}
 				showMobileView={showMobileView}
 				hideContainer={hideContainer}

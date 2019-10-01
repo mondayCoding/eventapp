@@ -6,7 +6,6 @@ import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
 import { RouteComponentProps } from 'react-router';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
-import { EventParticipationByRolesGraph } from '../../Graphs/EventParticipationByRolesGraph';
 import { MultiStatCard } from '../../Components/MultiStatusCard';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';

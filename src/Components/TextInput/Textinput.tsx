@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Field, FieldProps, FastField } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
 import { ThemedTextInput } from './TextInputStyles';
 
@@ -10,7 +10,6 @@ export type TextfieldProps = React.InputHTMLAttributes<HTMLInputElement> &
 export const TextField: FC<TextfieldProps> = ({
 	id,
 	label,
-	tooltip,
 	name,
 	required,
 	disabled,
@@ -28,7 +27,6 @@ export const TextField: FC<TextfieldProps> = ({
 				label={label}
 				error={touched[field.name] && errors[field.name]}
 				id={`${field.name}_textinput_TID`}
-				tooltip={tooltip}
 				required={required}
 				hideErrorMessage={hideErrorMessage}
 				showMobileView={showMobileView}
