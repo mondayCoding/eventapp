@@ -14,12 +14,12 @@ import Notify from '../../Utils/Notification';
 import * as Yup from 'yup';
 import { useHistory, Redirect } from 'react-router';
 
-type form = typeof initialValues;
-
 const initialValues = {
 	email: '',
 	password: ''
 };
+
+type form = typeof initialValues;
 
 export const SignInPage = () => {
 	useDocumentTitle('Kirjaudu sisään');

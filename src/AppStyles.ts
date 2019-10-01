@@ -1,5 +1,5 @@
 import styled from './Theme/theme';
-import { mix, darken, lighten } from 'polished';
+import { mix, darken } from 'polished';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 

@@ -1,5 +1,5 @@
 import { css, keyframes } from './theme';
-import { mix, darken } from 'polished';
+import { mix } from 'polished';
 
 const tooltipFadeIn = keyframes`
  0% {

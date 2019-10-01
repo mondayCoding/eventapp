@@ -1,5 +1,4 @@
 import styled from '../../Theme/theme';
-import { darken } from 'polished';
 
 export interface IButtonStyleProps {}
 

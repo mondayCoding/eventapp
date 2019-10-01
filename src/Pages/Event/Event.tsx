@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { RouteComponentProps, Route, Redirect, RouteProps } from 'react-router';
+import { RouteComponentProps, Route } from 'react-router';
 import styled from '../../Theme/theme';
 import { useEvents } from '../../Queries/useEvents';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +10,6 @@ import { Settings } from './Settings';
 import { ParticipantLists } from './ParticipantList';
 import * as routes from '../../Constants/Routes_MODIF';
 import { PageFooter } from '../../Layout/MainFooter';
-import { CardWrapper } from '../../Components/CardWrapper';
 import { Budget } from './Budjet';
 
 export interface EventRouteProps {

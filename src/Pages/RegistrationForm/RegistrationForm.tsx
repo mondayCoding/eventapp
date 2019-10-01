@@ -10,10 +10,7 @@ import { MultiStatCard } from '../../Components/MultiStatusCard';
 import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
-import {
-	WarningNotification,
-	InfoNotification
-} from '../../Components/Text/TextNotificationBox';
+import { WarningNotification } from '../../Components/Text/TextNotificationBox';
 import { SelectFieldBase, SelectField } from '../../Components/Select/Select';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import { useEvents } from '../../Queries/useEvents';

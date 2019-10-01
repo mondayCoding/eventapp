@@ -13,7 +13,6 @@ import { IconButton } from '../../Components/Button/IconButton';
 import { Formik, Form } from 'formik';
 import { ProgressBar } from '../../Components/ProgressBar';
 import { TextField } from '../../Components/TextInput/Textinput';
-import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 import { MockexpenseData, MockRevenueData } from '../../MockData/MockRevenueData';
 
 interface IValueSourceForm {

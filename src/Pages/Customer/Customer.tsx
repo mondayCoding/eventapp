@@ -10,10 +10,9 @@ import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
 import { CardWrapper } from '../../Components/CardWrapper';
 import * as routes from '../../Constants/Routes_MODIF';
-import { MockEvents } from '../../MockData/MockEvents';
 import { Participations } from './Components/Participations';
 import { ModalExample } from './Components/MessageLogModal';
-import { MessageLogList, IMessageProps } from './Components/MessageLogRow';
+import { MessageLogList } from './Components/MessageLogRow';
 import { MockParticipations } from '../../MockData/MockParticipationList';
 import { MockMessageLogMessages } from '../../MockData/MockMessageLogMessages';
 

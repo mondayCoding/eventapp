@@ -69,7 +69,6 @@ export const FeedItem = styled(Link)`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* background: grey; */
 		border-radius: 100%;
 	}
 	.message {
@@ -111,10 +110,6 @@ const Green = styled.span`
 
 const Blue = styled.span`
 	color: ${(p) => p.theme.info_color};
-`;
-
-const Orange = styled.span`
-	color: ${(p) => p.theme.warning_color};
 `;
 
 const Red = styled.span`

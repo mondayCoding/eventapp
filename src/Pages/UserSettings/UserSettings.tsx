@@ -1,12 +1,8 @@
-import React, { useContext, useState } from 'react';
-import * as routes from '../../Constants/Routes_MODIF';
+import React from 'react';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
-import { BadgeTag } from '../../Components/BadgeTag';
-import { IEvent } from '../../MockData/MockEvents';
 import Icons from '../../Components/Icons/icons';
 import { Formik } from 'formik';
-import { TextField } from '../../Components/TextInput/Textinput';
 import { TextAreaField } from '../../Components/TextArea/TextArea';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { SelectField, MultiSelectField } from '../../Components/Select/Select';
@@ -19,7 +15,7 @@ export const UserSettings = () => {
 	return (
 		<div>
 			<CardWrapper>
-				<Heading text="Järjestelmäasetukset" isUnderlined />
+				<Heading text="Järjestelmäasetukset" icon={Icons.computer} isUnderlined />
 				<UserSettingsForm></UserSettingsForm>
 			</CardWrapper>
 		</div>
@@ -72,7 +68,7 @@ const UserSettingsForm = () => {
 					<span>Valitse mikä sivu avataan kirjautumisen jälkeen </span>
 				</FieldContainer>
 
-				<Heading text="Käyttäjäasetukset" hasSpaceAbove isUnderlined />
+				<Heading text="Käyttäjäasetukset" icon={Icons.user} hasSpaceAbove isUnderlined />
 
 				<FieldContainer label="Oikeudet">
 					<div style={{ width: '100%' }}>
@@ -91,11 +87,13 @@ const UserSettingsForm = () => {
 					</div>
 				</FieldContainer>
 
-            <Heading 
-            text="Lomakkeiden perusasetukset" 
-            hasSpaceAbove 
-            isUnderlined 
-            ingress="Näitä asetuksia käytetään perusasetuksina kun luot uusia lomakkeita. Asetuksien muuttaminen ei vaikuta aiemmin luotuihin lomakkeisiin." />
+				<Heading
+					text="Lomakkeiden perusasetukset"
+					icon={Icons.list}
+					hasSpaceAbove
+					isUnderlined
+					ingress="Näitä asetuksia käytetään perusasetuksina kun luot uusia lomakkeita. Asetuksien muuttaminen ei vaikuta aiemmin luotuihin lomakkeisiin."
+				/>
 
 				<MultiSelectField
 					label="Kielet"
@@ -115,10 +113,10 @@ const UserSettingsForm = () => {
 						}
 					]}
 				></MultiSelectField>
-            <FieldContainer label="">
+				<FieldContainer label="">
 					<span>Nämä kielet ovat automaattisesti valittuna kun luot uuden lomakkeen</span>
 				</FieldContainer>
-            <MultiSelectField
+				<MultiSelectField
 					label="Lomakelohkot"
 					name="pageAfterLogin"
 					options={[
@@ -136,9 +134,15 @@ const UserSettingsForm = () => {
 						}
 					]}
 				></MultiSelectField>
-            <FieldContainer label="">
-					<span>Nämä lohkot ovat käytössä kun luot uuden lomakkeen. Tämä koskee vain Tyhjän pohjan päälle tehtyjä lomakkeita</span>
+				<FieldContainer label="">
+					<span>
+						Nämä lohkot ovat käytössä kun luot uuden lomakkeen. Tämä koskee vain Tyhjän
+						pohjan päälle tehtyjä lomakkeita
+					</span>
 				</FieldContainer>
+
+				<Heading text="Sähköpostin asetukset" isUnderlined icon={Icons.envelope} />
+				<TextAreaField label="Sähköpostin allekirjoitus" name="nom" />
 			</>
 		</Formik>
 	);
