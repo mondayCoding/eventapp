@@ -14,6 +14,13 @@ import Notify from '../../Utils/Notification';
 import * as Yup from 'yup';
 import { useHistory, Redirect } from 'react-router';
 
+type form = typeof initialValues;
+
+const initialValues = {
+	email: '',
+	password: ''
+};
+
 export const SignInPage = () => {
 	useDocumentTitle('Kirjaudu sisään');
 	const history = useHistory();
@@ -87,13 +94,6 @@ export const SignInPage = () => {
 			</Formik>
 		</LoginWrapper>
 	);
-};
-
-type form = typeof initialValues;
-
-const initialValues = {
-	email: '',
-	password: ''
 };
 
 const validationSchema = Yup.object().shape({

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import ReactTable from 'react-table';
-import { IOrdersContent, ISectionHelpers } from '../Registration';
+import { IOrdersContent, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FieldProps, Field } from 'formik';
+import { FieldProps, Field, FastField } from 'formik';
 import { FieldContainer, IFieldContainerProps } from '../FieldContainer/FieldContainer';
 import { TextAreaThemed } from './TextAreaStyles';
 
@@ -19,7 +19,7 @@ export const TextAreaField: React.FC<IProps> = ({
 	children,
 	...rest
 }) => (
-	<Field
+	<FastField
 		name={name}
 		render={({ field, form: { errors, touched } }: FieldProps) => (
 			<FieldContainer
@@ -34,7 +34,6 @@ export const TextAreaField: React.FC<IProps> = ({
 			>
 				<TextAreaThemed
 					id={`${field.name}_textarea_TID`}
-					data-role="none"
 					data-haserror={(touched[field.name] && errors[field.name]) as boolean}
 					maxLength={3000}
 					required={required}
@@ -42,6 +41,7 @@ export const TextAreaField: React.FC<IProps> = ({
 					{...field}
 					{...rest}
 				/>
+
 				{children}
 			</FieldContainer>
 		)}

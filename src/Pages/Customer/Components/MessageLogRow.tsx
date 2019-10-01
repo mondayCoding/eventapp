@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import styled from '../../Theme/theme';
-import Icons from '../../Components/Icons/icons';
+import styled from '../../../Theme/theme';
+import Icons from '../../../Components/Icons/icons';
 import ReactTimeago from 'react-timeago';
 
 export interface IMessageProps {

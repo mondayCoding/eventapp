@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IIntroductionSection, ISectionHelpers } from '../Registration';
+import { IIntroductionSection, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */

@@ -32,7 +32,7 @@ export const TextAreaThemed = styled(Textarea)<IInputStyleProps>`
 	}
 
 	&:focus {
-		box-shadow: 0 0 4px ${(p) => p.theme.focus_color};
+		box-shadow: ${(p) => p.theme.shadow.focus};
 	}
 
 	&:disabled {

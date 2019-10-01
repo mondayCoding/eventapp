@@ -12,8 +12,10 @@ import { CardWrapper } from '../../Components/CardWrapper';
 import * as routes from '../../Constants/Routes_MODIF';
 import { MockEvents } from '../../MockData/MockEvents';
 import { Participations } from './Components/Participations';
-import { ModalExample } from './MessageLogModal';
-import { MessageLogList, IMessageProps } from './MessageLogRow';
+import { ModalExample } from './Components/MessageLogModal';
+import { MessageLogList, IMessageProps } from './Components/MessageLogRow';
+import { MockParticipations } from '../../MockData/MockParticipationList';
+import { MockMessageLogMessages } from '../../MockData/MockMessageLogMessages';
 
 interface routeprops {
 	id: string;
@@ -93,7 +95,7 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 							isUnderlined
 							ingress="Asiakkaalle lähetetyt viestit"
 						></Heading>
-						{MockMessages.map((message) => (
+						{MockMessageLogMessages.map((message) => (
 							<MessageLogList title={message.title} date={message.date}>
 								<ModalExample x={message.title} />
 							</MessageLogList>
@@ -106,28 +108,6 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 		</>
 	);
 };
-
-const MockParticipations = [MockEvents[1], MockEvents[4], MockEvents[3], MockEvents[2]];
-
-const MockMessages: IMessageProps[] = [
-	{
-		date: new Date(2019, 8, 9),
-		title: 'Kutsu Keravan viinifestivaaleille'
-	},
-	{
-		date: new Date(2018, 7, 2),
-		title: 'Unohtuneet tähdet -seminaari on peruttu'
-	},
-	{
-		date: new Date(2017, 6, 21),
-		title: 'Todistus osallistumisesta peruskoulutukseen'
-	},
-
-	{
-		date: new Date(2016, 11, 14),
-		title: 'Kutsu tapahtumaan IO-Koulutus'
-	}
-];
 
 const renderTags = (tags: CustomerTagType[]) =>
 	tags.map((tag) => {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import { SelectFieldBase } from '../../../Components/Select/Select';
-import { IQuestionSectionSelect, ISectionHelpers } from '../Registration';
+import { IQuestionSectionSelect, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */

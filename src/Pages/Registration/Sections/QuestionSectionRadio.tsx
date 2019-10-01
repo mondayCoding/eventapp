@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import RadioField from '../../../Components/CheckBox/Radio';
-import { IQuestionSectionRadio, ISectionHelpers } from '../Registration';
+import { IQuestionSectionRadio, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */

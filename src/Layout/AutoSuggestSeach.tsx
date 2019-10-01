@@ -6,6 +6,11 @@ import { MockCustomers } from '../MockData/MockCustomers';
 import { MockEvents } from '../MockData/MockEvents';
 import * as routes from '../Constants/Routes_MODIF';
 
+enum suggestionTypeEnum {
+	customer,
+	event
+}
+
 const AutoSuggestSeach: FC<RouteComponentProps> = ({ history }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [suggestions, setSuggestions] = useState([] as any[]);
@@ -86,11 +91,6 @@ function getSuggestions(value: string) {
 	if (escapedValue === '') return [];
 	const regex = new RegExp('^' + escapedValue, 'i');
 	return mockSuggestions.filter((option) => regex.test(option.value));
-}
-
-enum suggestionTypeEnum {
-	customer,
-	event
 }
 
 const suggestionTypeIcon = {

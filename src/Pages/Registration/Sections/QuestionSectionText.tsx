@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import { TextField } from '../../../Components/TextInput/Textinput';
-import { IQuestionSectionText, ISectionHelpers } from '../Registration';
+import { IQuestionSectionText, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */

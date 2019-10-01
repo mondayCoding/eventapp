@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ISectionHelpers } from '../Registration';
+import { ISectionHelpers } from '../RenderSection';
 import { ButtonLink } from '../../../Components/Button/ButtonLink';
 import Icons from '../../../Components/Icons/icons';
 

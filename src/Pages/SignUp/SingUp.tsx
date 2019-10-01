@@ -13,6 +13,12 @@ import { IconButton } from '../../Components/Button/IconButton';
 import Icons from '../../Components/Icons/icons';
 import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 
+const initialValues = {
+	email: '',
+	password: '',
+	passwordRepeat: ''
+};
+
 export const SignUpPage = () => {
 	useDocumentTitle('Luo tili');
 	const { isDarkTheme, toggleTheme } = useContext(AppContext);
@@ -102,9 +108,3 @@ const validationSchema = Yup.object().shape({
 });
 
 type form = typeof initialValues;
-
-const initialValues = {
-	email: '',
-	password: '',
-	passwordRepeat: ''
-};

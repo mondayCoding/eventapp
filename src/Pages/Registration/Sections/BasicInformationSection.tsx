@@ -4,7 +4,7 @@ import { IEvent } from '../../../MockData/MockEvents';
 import { TextField } from '../../../Components/TextInput/Textinput';
 import { SelectFieldBase, SelectField } from '../../../Components/Select/Select';
 import { FieldContainer } from '../../../Components/FieldContainer/FieldContainer';
-import { IBasicInformationSection, ISectionHelpers } from '../Registration';
+import { IBasicInformationSection, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */
@@ -62,6 +62,7 @@ export const BasicInformationSection: FC<IBasicInformationSectionProps> = (props
 		<EditSectionBar isInEditMode={props.helpers.isInEditMode} helpers={props.helpers} />
 	</div>
 );
+
 const dayOptions = [
 	{ label: '1', value: '1' },
 	{ label: '2', value: '2' },
@@ -79,6 +80,7 @@ const dayOptions = [
 	{ label: '14', value: '13' },
 	{ label: '15', value: '14' }
 ];
+
 const monthOptions = [
 	{ label: 'Tammikuu', value: '1' },
 	{ label: 'Helmikuu', value: '2' },
@@ -93,18 +95,21 @@ const monthOptions = [
 	{ label: 'Marraskuu', value: '11' },
 	{ label: 'Joulukuu', value: '12' }
 ];
+
 const yearOptions = [
 	{ label: '2016', value: '1' },
 	{ label: '2017', value: '2' },
 	{ label: '2018', value: '3' },
 	{ label: '2019', value: '4' }
 ];
-const TimeOptions = [
-	{ label: '12:00', value: '1' },
-	{ label: '12:15', value: '2' },
-	{ label: '12:30', value: '3' },
-	{ label: '12:45', value: '4' }
-];
+
+// const TimeOptions = [
+// 	{ label: '12:00', value: '1' },
+// 	{ label: '12:15', value: '2' },
+// 	{ label: '12:30', value: '3' },
+// 	{ label: '12:45', value: '4' }
+// ];
+
 export const initialValues: IEvent = {
 	country: '',
 	department: '',

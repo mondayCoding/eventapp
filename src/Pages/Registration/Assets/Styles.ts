@@ -28,6 +28,7 @@ export const RegistrationPage = styled.div<{ editing: boolean }>`
 				background: ${(p) => p.theme.menu_background_color};
 				right: calc(-230px);
 				top: 0;
+				border-radius: 0.5rem;
 
 				&__BUTTON {
 					margin: 0 0 0.5rem 0 !important;
@@ -95,6 +96,38 @@ export const RegistrationPage = styled.div<{ editing: boolean }>`
 						}
 					}
 				}
+
+				&--afterword {
+					.submit-wrapper {
+						display: flex;
+						justify-content: center;
+						height: 6.5rem;
+						align-items: center;
+						border-bottom: 1px solid ${(p) => p.theme.border_color};
+						border-top: 1px solid ${(p) => p.theme.border_color};
+
+						&__submit-btn {
+							padding: 0.5rem 1rem;
+							font-size: 1.15rem;
+							border-radius: 1rem;
+						}
+					}
+					.organisers {
+						display: flex;
+						justify-content: space-between;
+						padding-top: 1rem;
+
+						&__organiser {
+							flex: 0 0 33.33333%;
+							display: flex;
+							flex-direction: column;
+
+							&__list {
+								list-style: none;
+							}
+						}
+					}
+				}
 			}
 		}
 		&__footer {
@@ -103,6 +136,7 @@ export const RegistrationPage = styled.div<{ editing: boolean }>`
 			text-align: center;
 			display: flex;
 			justify-content: center;
+			color: gray;
 		}
 	}
 `;

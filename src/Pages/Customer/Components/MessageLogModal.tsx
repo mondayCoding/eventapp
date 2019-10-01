@@ -1,8 +1,8 @@
 import React from 'react';
-import { createGlobalStyle } from '../../Theme/theme';
+import { createGlobalStyle } from '../../../Theme/theme';
 import { Portal } from 'reakit/Portal';
 import { useDialogState, Dialog, DialogDisclosure, DialogBackdrop } from 'reakit/Dialog';
-import { Button } from '../../Components/Button/Button';
+import { Button } from '../../../Components/Button/Button';
 
 export function ModalExample({ x }: any) {
 	const dialog = useDialogState();

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import SliderCheckbox from '../../../Components/CheckBox/SliderCheckBox';
-import { IQuestionSectionCheckbox, ISectionHelpers } from '../Registration';
+import { IQuestionSectionCheckbox, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */

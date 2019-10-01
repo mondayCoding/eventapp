@@ -22,7 +22,7 @@ export const ParticipantLists: FC<{ event?: IEvent }> = ({ event }) => {
 					<CardWrapper>
 						<Heading
 							text="Osallistujat"
-							ingress="Asiakkat jotka ovat ilmoittaneet osallistuvansa tapahtumaan"
+							ingress="Asiakkaat jotka ovat ilmoittaneet osallistuvansa tapahtumaan"
 							isUnderlined
 						></Heading>
 
@@ -72,7 +72,7 @@ export const ParticipantLists: FC<{ event?: IEvent }> = ({ event }) => {
 					<CardWrapper>
 						<Heading
 							text="Kutsutut"
-							ingress="Asiakkat joille on lähetetty kutsu tapahtumaan"
+							ingress="Asiakkaat joille on lähetetty kutsu tapahtumaan, mutta eivät ole vielä ilmoittautuneet"
 							isUnderlined
 						></Heading>
 

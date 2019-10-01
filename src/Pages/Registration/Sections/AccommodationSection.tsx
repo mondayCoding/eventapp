@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import { TextAreaField } from '../../../Components/TextArea/TextArea';
-import { IAccommodationSection, ISectionHelpers } from '../Registration';
-import { ButtonLink } from '../../../Components/Button/ButtonLink';
-import Icons from '../../../Components/Icons/icons';
+import { IAccommodationSection, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */
@@ -21,7 +19,7 @@ export const AccommdationSection: FC<IAccommodationSectionProps> = (props) => (
 			isUnderlined
 			text={props.section.content.title || 'Majoituslohko'}
 			ingress="Tässä lohkossa voi varata majoituksia"
-		></Heading>
+		/>
 
 		<TextAreaField name="description" label="Kuvaus" />
 

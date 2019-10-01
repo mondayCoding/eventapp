@@ -89,16 +89,3 @@ export const CustomerForm: FC<{ customer: ICustomer }> = (props) => (
 		</>
 	</Formik>
 );
-const initialValues: ICustomer = {
-	id: '123',
-	firstname: '',
-	lastname: '',
-	city: '',
-	address: '',
-	email: '',
-	phone: '',
-	country: '',
-	department: '',
-	created: new Date(),
-	tags: []
-};

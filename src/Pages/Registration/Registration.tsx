@@ -1,21 +1,12 @@
 import React, { FC, useState } from 'react';
-import * as routes from '../../Constants/Routes_MODIF';
 import { RouteComponentProps } from 'react-router';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { RegistrationPage } from './Assets/Styles';
-import { IntroductionSection } from './Sections/IntroductionSection';
-import { AccommdationSection } from './Sections/AccommodationSection';
-import { OrdersSection } from './Sections/OrdersSections';
-import { CheckboxQuestionSection } from './Sections/QuestionSectionCheckbox';
-import { RadioQuestionSection } from './Sections/QuestionSectionRadio';
-import { TextQuestionSection } from './Sections/QuestionSectionText';
-import { SelectQuestionSection } from './Sections/QuestionSectionSelect';
-import { BasicInformationSection } from './Sections/BasicInformationSection';
-import { Formik, FieldArray } from 'formik';
+import { Formik, FieldArray, Form } from 'formik';
 import { Button } from '../../Components/Button/Button';
 import Icons from '../../Components/Icons/icons';
 import { AutoFormDebug } from '../../Utils/FormDebug';
-import { SelectBase } from '../../Components/Select/Select';
+import { Section, RenderSection, SectionType } from './RenderSection';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -23,161 +14,17 @@ interface RegistrationRouteProps {
 
 type formProps = RouteComponentProps<RegistrationRouteProps>;
 
-interface IRegistrationForm {
+export interface IRegistrationForm {
 	images: {
 		header?: string;
 		logo?: string;
 	};
-	sections: RegistrationFormSection[];
+	sections: Section[];
 }
 
-enum SectionType {
-	basicInformation,
-	introduction,
-	afterword,
-	question_Checkbox,
-	question_Radio,
-	question_Text,
-	question_Select,
-	accommodation,
-	orders,
-	lectures
-}
-//*********************************************************** */
-// Question Sections
-//*********************************************************** */
-
-export interface IQuestionSectionRadio {
-	type: SectionType.question_Radio;
-	content: {
-		title: string;
-		condition: boolean;
-		options: { value: string; label: string }[];
-	};
-}
-
-export interface IQuestionSectionSelect {
-	type: SectionType.question_Select;
-	content: {
-		title: string;
-		condition: boolean;
-		options: { value: string; label: string }[];
-	};
-}
-
-export interface IQuestionSectionCheckbox {
-	type: SectionType.question_Checkbox;
-	content: {
-		title: string;
-		condition: boolean;
-		options: { checked: boolean; label: string }[];
-	};
-}
-
-export interface IQuestionSectionText {
-	type: SectionType.question_Text;
-	content: {
-		title: string;
-		condition: boolean;
-		label: string;
-		value: string;
-	};
-}
-
-//*********************************************************** */
-//*********************************************************** */
-
-export interface IAccommodationSection {
-	type: SectionType.accommodation;
-	content: { title: string };
-}
-
-export interface IIntroductionSection {
-	type: SectionType.introduction;
-	content: { headingtext: string; ingress?: string; start: Date; end: Date };
-}
-
-export interface IBasicInformationSection {
-	type: SectionType.basicInformation;
-	content: { title?: string; firstname?: string; lastname?: string };
-}
-
-interface IAfterwordSection {
-	type: SectionType.afterword;
-	content: any;
-}
-
-interface ILecturesSection {
-	type: SectionType.lectures;
-	content: any;
-}
-
-export interface IOrdersContent {
-	type: SectionType.orders;
-	content: {
-		title: string;
-		products: { name: string; value: number; avaibility: string }[];
-	};
-}
-
-type RegistrationFormSection =
-	| IBasicInformationSection
-	| IAccommodationSection
-	| IIntroductionSection
-	| IAfterwordSection
-	| ILecturesSection
-	| IOrdersContent
-	| IQuestionSectionRadio
-	| IQuestionSectionCheckbox
-	| IQuestionSectionText
-	| IQuestionSectionSelect;
-
-export interface ISectionHelpers {
-	isInEditMode: boolean;
-	disableDown: boolean;
-	disableUp: boolean;
-	moveUp: () => void;
-	moveDown: () => void;
-	remove: () => void;
-}
-
-const RenderSection = (section: RegistrationFormSection, helpers: ISectionHelpers) => {
-	switch (section.type) {
-		case SectionType.introduction:
-			return <IntroductionSection section={section} helpers={helpers} />;
-
-		case SectionType.afterword:
-			return <div>Loppu</div>;
-
-		case SectionType.basicInformation:
-			return <BasicInformationSection section={section} helpers={helpers} />;
-
-		case SectionType.orders:
-			return <OrdersSection section={section} helpers={helpers} />;
-
-		case SectionType.accommodation:
-			return <AccommdationSection section={section} helpers={helpers} />;
-
-		case SectionType.question_Radio:
-			return <RadioQuestionSection content={section.content} helpers={helpers} />;
-
-		case SectionType.question_Checkbox:
-			return <CheckboxQuestionSection content={section.content} helpers={helpers} />;
-
-		case SectionType.question_Text:
-			return <TextQuestionSection content={section.content} helpers={helpers} />;
-
-		case SectionType.question_Select:
-			return <SelectQuestionSection content={section.content} helpers={helpers} />;
-
-		default:
-			return <h2>Lohkotyypille ei löytynyt render-metodia: {section.type}</h2>;
-	}
-};
-
-export const Registration: FC<formProps> = ({ match }) => {
+export const Registration: FC<formProps> = () => {
 	useDocumentTitle('Ilmoittautumislomake');
-	const [editing, setEditing] = useState(true);
+	const [editing, setEditing] = useState(false);
 	const [showJSON, setShowJSON] = useState(false);
 	const [data, setData] = useState(MockRegistration);
 
@@ -199,15 +46,15 @@ export const Registration: FC<formProps> = ({ match }) => {
 
 					<div className="TEST">
 						<Button
-							text={editing ? 'Esikatsele' : 'Muokkaa'}
+							text={editing ? 'Muokkaa' : 'Esikatsele'}
 							className="TEST__BUTTON"
-							icon={Icons.edit}
+							icon={editing ? Icons.lockopen : Icons.lock}
 							onClick={() => setEditing(!editing)}
 						/>
 						<Button
 							text={showJSON ? 'Piilota JSON' : 'Näytä JSON'}
 							className="TEST__BUTTON"
-							icon={showJSON ? Icons.eye : Icons.eye_slash}
+							icon={showJSON ? Icons.eye_slash : Icons.eye}
 							onClick={() => setShowJSON(!showJSON)}
 						/>
 						<Button
@@ -230,43 +77,26 @@ export const Registration: FC<formProps> = ({ match }) => {
 						/>
 
 						<Button
-							text={'Lisää Perustietolohko'}
+							text={'Lisää Kysymyslohko'}
 							className="TEST__BUTTON TEST__BUTTON"
 							icon={Icons.list}
-							onClick={() => setData(MockRegistrationQuestions)}
-						/>
-						<Button
-							text={'Lisää Valintaruutu'}
-							className="TEST__BUTTON TEST__BUTTON"
-							icon={Icons.list}
-							onClick={() => setData(MockRegistrationQuestions)}
-						/>
-						<Button
-							text={'Lisää Monivalinta'}
-							className="TEST__BUTTON TEST__BUTTON"
-							icon={Icons.list}
-							onClick={() => setData(MockRegistrationQuestions)}
-						/>
-						<Button
-							text={'Lisää '}
-							className="TEST__BUTTON TEST__BUTTON"
-							icon={Icons.list}
-							onClick={() => setData(MockRegistrationQuestions)}
+							onClick={() => alert('NOT_IMPLEMENTED')}
 						/>
 					</div>
 
 					<Formik
 						initialValues={data}
 						onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+						enableReinitialize
 					>
 						{(formik) => (
-							<>
+							<Form>
 								{showJSON ? (
 									<AutoFormDebug />
 								) : (
 									<FieldArray name="sections">
-										{(sectionHelpers) => {
-											return formik.values.sections.map((section, index) => {
+										{(sectionHelpers) =>
+											formik.values.sections.map((section, index) => {
 												const helpers = {
 													isInEditMode: editing,
 													disableUp: index === 0,
@@ -281,22 +111,31 @@ export const Registration: FC<formProps> = ({ match }) => {
 												};
 
 												return RenderSection(section, helpers);
-											});
-										}}
+											})
+										}
 									</FieldArray>
 								)}
-							</>
+							</Form>
 						)}
 					</Formik>
 				</main>
 
-				<footer className="registration__footer">footer</footer>
+				<footer className="registration__footer">© mondayCoding 2019</footer>
 			</div>
 		</RegistrationPage>
 	);
 };
 
-const MockRegistration: IRegistrationForm = {
+// const NewCheckboxSection: IQuestionSectionCheckbox = {
+// 	type: SectionType.question_Checkbox,
+// 	content: {
+// 		title: 'Uusi kysymys',
+// 		condition: false,
+// 		options: [{ label: 'Vaihtoehto', checked: false }]
+// 	}
+// };
+
+export const MockRegistration: IRegistrationForm = {
 	images: {
 		header:
 			'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
@@ -409,11 +248,17 @@ const MockRegistration: IRegistrationForm = {
 					{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', checked: false }
 				]
 			}
+		},
+		{
+			type: SectionType.afterword,
+			content: {
+				buttonText: 'Ilmoittaudu'
+			}
 		}
 	]
 };
 
-const MockRegistrationShort: IRegistrationForm = {
+export const MockRegistrationShort: IRegistrationForm = {
 	images: {
 		header:
 			'https://cbsnews1.cbsistatic.com/hub/i/2016/09/29/d1a671d9-556e-468d-8639-159e2842f15b/logan-new-hamshire-cat-2016-09-29.jpg'
@@ -437,7 +282,6 @@ const MockRegistrationShort: IRegistrationForm = {
 				lastname: 'Kissan Sukunimi'
 			}
 		},
-
 		{
 			type: SectionType.question_Checkbox,
 			content: {
@@ -451,11 +295,17 @@ const MockRegistrationShort: IRegistrationForm = {
 					{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', checked: false }
 				]
 			}
+		},
+		{
+			type: SectionType.afterword,
+			content: {
+				buttonText: 'Meow'
+			}
 		}
 	]
 };
 
-const MockRegistrationQuestions: IRegistrationForm = {
+export const MockRegistrationQuestions: IRegistrationForm = {
 	images: {
 		header: 'https://i.ytimg.com/vi/XBPjVzSoepo/maxresdefault.jpg'
 	},
@@ -601,6 +451,12 @@ const MockRegistrationQuestions: IRegistrationForm = {
 						value: '11'
 					}
 				]
+			}
+		},
+		{
+			type: SectionType.afterword,
+			content: {
+				buttonText: 'Kyllä, Tahdon osallistua tapahtumaan'
 			}
 		}
 	]
