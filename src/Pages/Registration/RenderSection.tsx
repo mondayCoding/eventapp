@@ -80,6 +80,7 @@ export interface IIntroductionSection {
 	content: {
 		headingtext: string;
 		ingress?: string;
+		showDates?: boolean;
 		start: Date;
 		end: Date;
 	};
@@ -90,7 +91,34 @@ export interface IBasicInformationSection {
 	content: {
 		title?: string;
 		firstname?: string;
+		firstnameLabel?: string;
+		firstnameInUse: boolean;
+		firstnameRequired: boolean;
+
 		lastname?: string;
+		lastnameLabel?: string;
+		lastnameInUse: boolean;
+		lastnameRequired: boolean;
+
+		department?: string;
+		departmentLabel?: string;
+		departmentInUse: boolean;
+		departmentRequired: boolean;
+
+		adress?: string;
+		adressLabel?: string;
+		adressInUse: boolean;
+		adressRequired: boolean;
+
+		phone?: string;
+		phoneLabel?: string;
+		phoneInUse: boolean;
+		phoneRequired: boolean;
+
+		email?: string;
+		emailLabel?: string;
+		emailInUse: boolean;
+		emailRequired: boolean;
 	};
 }
 
@@ -135,6 +163,7 @@ export interface ISectionHelpers {
 	isInEditMode: boolean;
 	disableDown: boolean;
 	disableUp: boolean;
+	sectionIndex: number;
 	moveUp: () => void;
 	moveDown: () => void;
 	remove: () => void;

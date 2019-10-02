@@ -26,7 +26,8 @@ const Checkbox: React.SFC<IProps> = ({ id, label, children, className, ...rest }
 	</CheckBoxWrapper>
 );
 
-const CheckBoxInline: React.SFC<IProps> = ({ id, children, ...rest }) => {
+//** This one is for non-formik use */
+export const CheckboxBase: React.SFC<IProps> = ({ id, children, ...rest }) => {
 	return (
 		<CheckBoxWrapperInlined>
 			<CheckBoxInputInlined id={id} type="checkbox" {...rest} />
@@ -77,7 +78,7 @@ export const CheckBoxContainerField: React.FC<IProps & IFieldContainerProps> = (
 				required={required}
 				showMobileView={showMobileView}
 			>
-				<CheckBoxInline
+				<CheckboxBase
 					id={`${field.name}_cb_TID`}
 					required={required}
 					name={field.name}
@@ -90,9 +91,6 @@ export const CheckBoxContainerField: React.FC<IProps & IFieldContainerProps> = (
 		)}
 	/>
 );
-
-//** This one is for non-formik use */
-export { CheckBoxInline as CheckboxBase };
 
 //** This one is for tables and not for formik fields */
 export const InlineCheckBoxSmall: React.SFC<IProps> = ({ id, ...rest }) => (

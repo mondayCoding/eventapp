@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import { FieldProps, Field, FastField } from 'formik';
 
 import ReactSelect from 'react-select';
-import { Props as reactSelectProps } from 'react-select/lib/Select';
+import { Props as reactSelectProps } from 'react-select/base';
 import { IFieldContainerProps, FieldContainer } from '../FieldContainer/FieldContainer';
 
 type ProvidedProps = reactSelectProps<any> & IFieldContainerProps;
 
-export const SelectBase = ({ className, ...rest }: reactSelectProps<any>) => {
+export const SelectBase = ({ className, ...rest }: reactSelectProps) => {
 	return (
 		<ReactSelect
 			className={`reactselect ${className}`}

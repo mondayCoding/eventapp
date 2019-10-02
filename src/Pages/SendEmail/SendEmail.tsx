@@ -6,7 +6,6 @@ import { Formik } from 'formik';
 import { TextField } from '../../Components/TextInput/Textinput';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { TEXTEDITOR } from '../Dashboard/EDITOR';
-// import { TEXTEDITOR2 } from '../Dashboard/EDITOR2';
 import { FieldContainer } from '../../Components/FieldContainer/FieldContainer';
 import { useParams } from 'react-router';
 import { useCustomer } from '../../Queries/useCustomer';

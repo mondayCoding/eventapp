@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
-import SliderCheckbox from '../../../Components/CheckBox/SliderCheckBox';
+import { SliderFastField } from '../../../Components/CheckBox/SliderCheckBox';
 import { IQuestionSectionCheckbox, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
@@ -13,21 +13,28 @@ interface ICheckBoxQuestionSection {
 	helpers: ISectionHelpers;
 }
 
-export const CheckboxQuestionSection: FC<ICheckBoxQuestionSection> = (props) => (
+export const CheckboxQuestionSection: FC<ICheckBoxQuestionSection> = ({
+	helpers,
+	content
+}) => (
 	<section className="registration__content__section">
 		<Heading
 			isUnderlined
-			text={props.content.title || 'Kysymyslohko'}
+			text={content.title || 'Kysymyslohko'}
 			ingress="Tässä lohkossa on erilaisia kysymyksiä"
 		></Heading>
 
-		{props.content.options.map((question, i) => (
-			<SliderCheckbox
+		{content.options.map((question, i) => (
+			<SliderFastField
+				name={`sections.${helpers.sectionIndex}.content.options.${i}.checked`}
 				label={question.label}
-				defaultChecked={question.checked}
+				key={i}
 				id={'random_q_' + i + Math.random()}
-			></SliderCheckbox>
+			/>
 		))}
-		<EditSectionBar isInEditMode={props.helpers.isInEditMode} helpers={props.helpers} />
+
+		{/* {helpers.isInEditMode && <div>TODO: Muokkaa vaihtoehtoja</div>} */}
+
+		<EditSectionBar isInEditMode={helpers.isInEditMode} helpers={helpers} />
 	</section>
 );

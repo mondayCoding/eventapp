@@ -98,6 +98,7 @@ export const Registration: FC<formProps> = () => {
 										{(sectionHelpers) =>
 											formik.values.sections.map((section, index) => {
 												const helpers = {
+													sectionIndex: index,
 													isInEditMode: editing,
 													disableUp: index === 0,
 													disableDown: index === formik.values.sections.length - 1,
@@ -145,13 +146,48 @@ export const MockRegistration: IRegistrationForm = {
 			type: SectionType.introduction,
 			content: {
 				headingtext: 'Testitapahtuma',
+				showDates: true,
 				ingress:
 					'Tässä perustapahtumassa on esiteltynä kaikki peruslohkot. Suurimmassa osassa ei ole varsinaista toteutusta 😢',
 				start: new Date(2019, 11, 11),
 				end: new Date(2020, 0, 3)
 			}
 		},
-		{ type: SectionType.basicInformation, content: { title: 'Henkilötiedot' } },
+		{
+			type: SectionType.basicInformation,
+			content: {
+				title: 'Henkilötiedot',
+				firstname: '',
+				firstnameLabel: '',
+				firstnameInUse: true,
+				firstnameRequired: true,
+
+				lastname: '',
+				lastnameLabel: '',
+				lastnameInUse: true,
+				lastnameRequired: true,
+
+				department: '',
+				departmentLabel: '',
+				departmentInUse: true,
+				departmentRequired: false,
+
+				adress: '',
+				adressLabel: '',
+				adressInUse: true,
+				adressRequired: false,
+
+				phone: '',
+				phoneLabel: '',
+				phoneInUse: true,
+				phoneRequired: false,
+
+				email: '',
+				emailLabel: '',
+				emailInUse: true,
+				emailRequired: false
+			}
+		},
 		{
 			type: SectionType.question_Checkbox,
 			content: {
@@ -268,6 +304,7 @@ export const MockRegistrationShort: IRegistrationForm = {
 			type: SectionType.introduction,
 			content: {
 				headingtext: 'Kissatapahtuma',
+				showDates: true,
 				ingress:
 					'Kissa eli kesykissa tai kotikissa (Felis catus, aiemmin Felis silvestris catus) on villikissasta (Felis silvestris) polveutuva ja petoeläinten (Carnivora) lahkon kissaeläinten (Felidae) heimoon kuuluva kesy nisäkäslaji. Kissat ovat suosittuja lemmikkieläimiä, ja etenkin maaseudulla ne ovat aina olleet hyödyllisiä hiirten ja muiden tuholaisten pyydystäjinä. ',
 				start: new Date(2019, 11, 11),
@@ -278,8 +315,36 @@ export const MockRegistrationShort: IRegistrationForm = {
 			type: SectionType.basicInformation,
 			content: {
 				title: 'Kissatiedot',
-				firstname: 'Kissan Etunimi',
-				lastname: 'Kissan Sukunimi'
+				firstnameLabel: 'Kissan Etunimi',
+				lastnameLabel: 'Kissan Sukunimi',
+
+				firstname: '',
+				firstnameInUse: true,
+				firstnameRequired: true,
+
+				lastname: '',
+				lastnameInUse: true,
+				lastnameRequired: true,
+
+				department: '',
+				departmentLabel: '',
+				departmentInUse: false,
+				departmentRequired: false,
+
+				adress: '',
+				adressLabel: '',
+				adressInUse: false,
+				adressRequired: false,
+
+				phone: '',
+				phoneLabel: '',
+				phoneInUse: false,
+				phoneRequired: false,
+
+				email: '',
+				emailLabel: '',
+				emailInUse: false,
+				emailRequired: false
 			}
 		},
 		{
@@ -314,13 +379,49 @@ export const MockRegistrationQuestions: IRegistrationForm = {
 			type: SectionType.introduction,
 			content: {
 				headingtext: 'Tiedostelulomake',
+				showDates: true,
 				ingress:
 					'Tällä lomakkeella keräämme tärkeää tietoa sinusta ja läheisistäsi. Avaamalla tämän lomakkeet olet jo hyväksynyt kaiken.',
 				start: new Date(2019, 11, 11),
 				end: new Date(2020, 0, 3)
 			}
 		},
-		{ type: SectionType.basicInformation, content: { title: 'Perustiedot' } },
+		{
+			type: SectionType.basicInformation,
+			content: {
+				title: 'Perustiedot',
+
+				firstname: '',
+				firstnameLabel: '',
+				firstnameInUse: true,
+				firstnameRequired: true,
+
+				lastname: '',
+				lastnameLabel: '',
+				lastnameInUse: true,
+				lastnameRequired: true,
+
+				department: '',
+				departmentLabel: '',
+				departmentInUse: true,
+				departmentRequired: false,
+
+				adress: '',
+				adressLabel: '',
+				adressInUse: true,
+				adressRequired: false,
+
+				phone: '',
+				phoneLabel: '',
+				phoneInUse: true,
+				phoneRequired: false,
+
+				email: '',
+				emailLabel: '',
+				emailInUse: true,
+				emailRequired: false
+			}
+		},
 		{
 			type: SectionType.question_Checkbox,
 			content: {

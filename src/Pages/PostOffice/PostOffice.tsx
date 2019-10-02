@@ -10,9 +10,6 @@ import { AppContext, EmailTarget } from '../../App';
 import { ButtonLink } from '../../Components/Button/ButtonLink';
 import { PostOfficeActionsMenu } from './PostOfficeActionsMenu';
 import { useSelectableReactTable } from '../../Hooks/useSelectableReactTable';
-import CALENDERDEMO from '../Dashboard/ReactCalendar';
-import CALENDERDEMO2 from '../Dashboard/ReactCalendar';
-import CALENDERDEMO3 from '../Dashboard/ReactCalendar';
 import Icons from '../../Components/Icons/icons';
 
 export const PostOffice = () => {
@@ -36,10 +33,6 @@ export const PostOffice = () => {
 			</div>
 
 			<Heading text="Postituslista" icon={Icons.envelope} isUnderlined></Heading>
-
-			<CALENDERDEMO></CALENDERDEMO>
-			<CALENDERDEMO2></CALENDERDEMO2>
-			<CALENDERDEMO3></CALENDERDEMO3>
 
 			<ReactTable
 				data={dataWithGuid}
