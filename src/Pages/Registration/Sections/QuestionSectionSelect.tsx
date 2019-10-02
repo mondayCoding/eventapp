@@ -18,7 +18,7 @@ export const SelectQuestionSection: FC<IQuestionSectionSelectProps> = (props) =>
 		<Heading
 			isUnderlined
 			text={props.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+			ingress="Tässä lohkossa on valintalista"
 		></Heading>
 
 		<SelectFieldBase

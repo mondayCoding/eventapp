@@ -21,7 +21,7 @@ export const CheckboxQuestionSection: FC<ICheckBoxQuestionSection> = ({
 		<Heading
 			isUnderlined
 			text={content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+			ingress="Tässä lohkossa on valintaruutuja"
 		></Heading>
 
 		{content.options.map((question, i) => (

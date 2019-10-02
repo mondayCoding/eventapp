@@ -1,6 +1,6 @@
 import React from 'react';
 import Icons from '../../Components/Icons/icons';
-import image_ph from './img_ph.jpg';
+import image_ph from './Assets/img_ph.jpg';
 import { IconButton } from '../../Components/Button/IconButton';
 
 interface ImageBoxProps {

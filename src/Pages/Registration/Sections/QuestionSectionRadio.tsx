@@ -18,7 +18,7 @@ export const RadioQuestionSection: FC<IRadioQuestionSectionProps> = (props) => (
 		<Heading
 			isUnderlined
 			text={props.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+			ingress="Tässä lohkossa on monivalinta"
 		></Heading>
 
 		{props.content.options.map((question, i) => (

@@ -18,7 +18,7 @@ export const TextQuestionSection: FC<IQuestionSectionTextProps> = (props) => (
 		<Heading
 			isUnderlined
 			text={props.content.title || 'Kysymyslohko'}
-			ingress="Tässä lohkossa on erilaisia kysymyksiä"
+			ingress="Tässä lohkossa on on vapaamuotoinen vastauskenttä"
 		></Heading>
 
 		<TextField label={props.content.label} name={'custom_text'}></TextField>

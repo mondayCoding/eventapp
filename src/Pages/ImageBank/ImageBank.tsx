@@ -7,7 +7,7 @@ import styled, { device } from '../../Theme/theme';
 import { Button } from '../../Components/Button/Button';
 import { Formik, Form } from 'formik';
 import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
-import { ImageBox } from './ImageBoxProps';
+import { ImageBox } from './ImageBox';
 
 export const ImageBank = () => {
 	useDocumentTitle('Mediapankki');

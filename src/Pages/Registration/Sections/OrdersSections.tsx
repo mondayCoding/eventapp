@@ -18,7 +18,7 @@ export const OrdersSection: FC<IOrdersSectionProps> = (props) => (
 		<Heading
 			isUnderlined
 			text={props.section.content.title || 'Tilauslohko'}
-			ingress="Tässä lohkossa voi varata majoituksia"
+			ingress="Tässä lohkossa voi valikoida tuotteita"
 		></Heading>
 
 		<ReactTable
