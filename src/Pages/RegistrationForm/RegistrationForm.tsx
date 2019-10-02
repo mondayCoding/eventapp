@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { Heading } from '../../Components/Text/Heading';
 import { IEvent } from '../../MockData/MockEvents';

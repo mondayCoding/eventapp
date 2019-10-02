@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import styled from '../../Theme/theme';
 import { useEvents } from '../../Queries/useEvents';
 import { EventTag, EventTagType } from '../../Constants/EventTags';
@@ -159,10 +159,11 @@ const FilterInput = styled.input`
 `;
 
 const renderTags = (tags: EventTagType[]) =>
-	tags.map((tag) => {
+	tags.map((tag, index) => {
 		const current = EventTag[tag];
 		return current ? (
 			<BadgeTag
+				key={index}
 				description={current.description}
 				name={current.name}
 				icon={current.icon}

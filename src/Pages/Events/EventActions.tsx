@@ -3,7 +3,7 @@ import styled from '../../Theme/theme';
 import Icons from '../../Components/Icons/icons';
 import { Button } from '../../Components/Button/Button';
 import { useMenuState, Menu, MenuItem, MenuDisclosure } from 'reakit/Menu';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { useHistory } from 'react-router';
 
 export const EventActions = () => {

@@ -17,7 +17,7 @@ import { ImageBank } from './Pages/ImageBank/ImageBank';
 import { Events } from './Pages/Events/Events';
 import { Event } from './Pages/Event/Event';
 import { DashBoard } from './Pages/Dashboard/Dashboard';
-import * as routes from './Constants/Routes_MODIF';
+import * as routes from './Constants/Routes';
 import { ProductManagement } from './Pages/ProductManagement/ProductManagement';
 import { PostOffice } from './Pages/PostOffice/PostOffice';
 

@@ -9,7 +9,7 @@ import { PageFooter } from '../../Layout/MainFooter';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { CustomerForm } from './CustomerForm';
 import { CardWrapper } from '../../Components/CardWrapper';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { Participations } from './Components/Participations';
 import { ModalExample } from './Components/MessageLogModal';
 import { MessageLogList } from './Components/MessageLogRow';
@@ -43,7 +43,7 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
                               <CustomerActionsMenu id={customer.id} />
                               <IconButton icon={Icons.trashcan}></IconButton>
                               <IconButton icon={Icons.envelope}></IconButton>
-                        
+
                            </div>
                         )}
                      </div> */}
@@ -109,10 +109,11 @@ export const Customer: FC<RouteComponentProps<routeprops>> = ({ match }) => {
 };
 
 const renderTags = (tags: CustomerTagType[]) =>
-	tags.map((tag) => {
+	tags.map((tag, index) => {
 		const current = CustomerTag[tag];
 		return current ? (
 			<BadgeTag
+				key={index}
 				name={current.name}
 				icon={current.icon}
 				description={current.description}

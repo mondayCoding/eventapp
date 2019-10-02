@@ -47,9 +47,9 @@ export const ProgressBar: FC<IProgressBarProps> = (props) => {
 const ProgressBarElement = styled.div`
 	width: 100%;
 	padding: 0.3rem;
-	background: rgba(0, 0, 0, 0.25);
+	background: ${(p) =>
+		p.theme.is_dark_theme ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.15)'};
 	border-radius: 0.75rem;
-	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
 	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
 	position: relative;
 

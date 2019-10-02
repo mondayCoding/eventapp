@@ -4,7 +4,7 @@ import Autosuggest from 'react-autosuggest';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { MockCustomers } from '../MockData/MockCustomers';
 import { MockEvents } from '../MockData/MockEvents';
-import * as routes from '../Constants/Routes_MODIF';
+import * as routes from '../Constants/Routes';
 
 enum suggestionTypeEnum {
 	customer,

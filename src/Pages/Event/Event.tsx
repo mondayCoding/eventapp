@@ -8,7 +8,7 @@ import { FrontPage } from './FrontPage';
 import { RegistrationForms } from './RegistrationForms';
 import { Settings } from './Settings';
 import { ParticipantLists } from './ParticipantList';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { PageFooter } from '../../Layout/MainFooter';
 import { Budget } from './Budjet';
 

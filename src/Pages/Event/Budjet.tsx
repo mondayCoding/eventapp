@@ -27,6 +27,9 @@ export const Budget: FC = () => {
 	const [revenues, setRevenues] = useState(MockRevenueData);
 
 	const addExpense = (values: IValueSourceForm) => {
+		console.log(values);
+		console.log(expenses);
+
 		setExpenses([
 			...expenses,
 			{
@@ -53,7 +56,7 @@ export const Budget: FC = () => {
 	};
 
 	const removeExpense = (expenseIndex: number) => {
-		setExpenses(revenues.filter((rev, index) => index !== expenseIndex));
+		setExpenses(expenses.filter((rev, index) => index !== expenseIndex));
 	};
 
 	const revenueTotal = revenues.reduce((total, current) => current.value + total, 0);
@@ -131,10 +134,11 @@ export const Budget: FC = () => {
 						</Heading>
 
 						<ReactTable
-							showPagination={false}
+							showPagination={false} //revenues.length > 10
 							minRows={10}
 							pageSize={10}
 							data={revenues}
+							noDataText="Ei Listattuja Menoja"
 							columns={[
 								{
 									accessor: 'name',
@@ -143,8 +147,7 @@ export const Budget: FC = () => {
 								{
 									accessor: 'value',
 									Header: 'Arvo',
-									Cell: ({ original }: RowProps) =>
-										original.editable && localisedMarkedValue(original.value)
+									Cell: ({ original }: RowProps) => localisedMarkedValue(original.value)
 								},
 
 								{
@@ -157,11 +160,11 @@ export const Budget: FC = () => {
 											<IconButton
 												icon={Icons.trashcan}
 												onClick={() => removeRevenue(index)}
-											></IconButton>
+											/>
 										)
 								}
 							]}
-						></ReactTable>
+						/>
 						<Formik
 							initialValues={{ source: 'Uusi Tulo', value: 479.99 }}
 							onSubmit={addRevenue}
@@ -174,7 +177,7 @@ export const Budget: FC = () => {
 											placeholder="Lähde"
 											name="source"
 											showMobileView
-										></TextField>
+										/>
 									</div>
 									<div className="col-lg-6">
 										<TextField
@@ -184,15 +187,11 @@ export const Budget: FC = () => {
 											type="number"
 											maxLength={8}
 											showMobileView
-										></TextField>
+										/>
 									</div>
 								</FormWrapper>
 								<FormWrapper>
-									<ButtonLink
-										text="Lisää tulo"
-										icon={Icons.plus}
-										type="submit"
-									></ButtonLink>
+									<ButtonLink text="Lisää tulo" icon={Icons.plus} type="submit" />
 								</FormWrapper>
 							</Form>
 						</Formik>
@@ -206,10 +205,11 @@ export const Budget: FC = () => {
 						</Heading>
 
 						<ReactTable
-							showPagination={false}
+							showPagination={false} //expenses.length > 10
 							minRows={10}
 							pageSize={10}
 							data={expenses}
+							noDataText="Ei listattuja Tuloja, Tapahtumista kertyvät tulot listataan automaattisesti"
 							columns={[
 								{
 									accessor: 'name',

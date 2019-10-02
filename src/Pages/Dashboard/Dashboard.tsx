@@ -6,7 +6,7 @@ import Icons from '../../Components/Icons/icons';
 import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 import { MultiStatCard } from '../../Components/MultiStatusCard';
 import { useHistory } from 'react-router';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { EventAttendanceGraph } from '../../Graphs/EventAttendanceGraph';
 import { PerformanceGraph } from '../../Graphs/PerformanceGraph';
 

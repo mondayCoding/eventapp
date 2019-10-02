@@ -12,7 +12,7 @@ import SliderCheckbox from '../../Components/CheckBox/SliderCheckBox';
 import { Button } from '../../Components/Button/Button';
 import Icons from '../../Components/Icons/icons';
 import { useHistory } from 'react-router';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 
 const modules = {
 	useBilling: true,

@@ -3,7 +3,7 @@ import { Heading } from '../../Components/Text/Heading';
 import Icons from '../../Components/Icons/icons';
 import { CardWrapper } from '../../Components/CardWrapper';
 import ReactTimeago from 'react-timeago';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import styled from '../../Theme/theme';

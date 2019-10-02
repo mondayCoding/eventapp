@@ -8,7 +8,7 @@ import { BadgeTag } from '../../Components/BadgeTag';
 import { MultiStatCard } from '../../Components/MultiStatusCard';
 import styled from '../../Theme/theme';
 import { useHistory } from 'react-router';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { Link } from 'react-router-dom';
 
 export const FrontPage: FC<{ event?: IEvent }> = ({ event }) => {
@@ -238,10 +238,11 @@ const RegistrationLinks = styled.section`
 `;
 
 const renderTags = (tags: EventTagType[]) =>
-	tags.map((tag) => {
+	tags.map((tag, index) => {
 		const current = EventTag[tag];
 		return current ? (
 			<BadgeTag
+				key={index}
 				name={current.name}
 				icon={current.icon}
 				description={current.description}

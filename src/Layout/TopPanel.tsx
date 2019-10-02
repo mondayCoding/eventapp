@@ -7,7 +7,7 @@ import { AppContext } from '../App';
 import { TopPanelThemed } from './Assets/TopPanelStyle';
 import { RoutableAutoSuggest } from './AutoSuggestSeach';
 import { useHistory } from 'react-router';
-import * as routes from '../Constants/Routes_MODIF';
+import * as routes from '../Constants/Routes';
 import { ButtonLink } from '../Components/Button/ButtonLink';
 
 export const TopPanel = () => {

@@ -4,7 +4,7 @@ import Icons from '../../Components/Icons/icons';
 import { IEvent } from '../../MockData/MockEvents';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { MockCustomers, ICustomer } from '../../MockData/MockCustomers';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
 import { IconButton } from '../../Components/Button/IconButton';

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Heading } from '../../Components/Text/Heading';
 import { Link } from 'react-router-dom';
-import * as routes from '../../Constants/Routes_MODIF';
+import * as routes from '../../Constants/Routes';
 import { CardWrapper } from '../../Components/CardWrapper';
 import { useCustomers } from '../../Queries/useCustomers';
 import styled from '../../Theme/theme';
