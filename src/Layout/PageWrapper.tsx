@@ -1,6 +1,6 @@
 import React, { useRef, FC, MutableRefObject } from 'react';
 import { Route } from 'react-router';
-import { Content, Main } from '../AppStyles';
+import { Content, Main } from './Assets/AppStyles';
 
 import { TopPanel } from './TopPanel';
 

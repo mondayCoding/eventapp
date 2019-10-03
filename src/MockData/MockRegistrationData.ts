@@ -99,7 +99,7 @@ export const MockRegistratinData: IMockRegistrationData[][] = [
 		{
 			name: 'Keravan Viinifestivaalit',
 			visited: 59,
-			registered: 45
+			registered: 23
 		},
 		{
 			name: 'Markkinointikoulutus Syyskuu 2018',
@@ -111,12 +111,12 @@ export const MockRegistratinData: IMockRegistrationData[][] = [
 		{
 			name: 'WebSocket ja IO:n perusteet tehokurssi',
 			visited: 24,
-			registered: 15
+			registered: 36
 		},
 		{
 			name: 'Keravan Viinifestivaalit',
 			visited: 53,
-			registered: 42
+			registered: 32
 		},
 		{
 			name: 'Markkinointikoulutus Syyskuu 2018',
@@ -128,17 +128,68 @@ export const MockRegistratinData: IMockRegistrationData[][] = [
 		{
 			name: 'WebSocket ja IO:n perusteet tehokurssi',
 			visited: 24,
-			registered: 15
+			registered: 40
 		},
 		{
 			name: 'Keravan Viinifestivaalit',
 			visited: 45,
-			registered: 32
+			registered: 22
 		},
 		{
 			name: 'Markkinointikoulutus Syyskuu 2018',
 			visited: 14,
 			registered: 26
+		}
+	],
+	[
+		{
+			name: 'WebSocket ja IO:n perusteet tehokurssi',
+			visited: 24,
+			registered: 46
+		},
+		{
+			name: 'Keravan Viinifestivaalit',
+			visited: 45,
+			registered: 11
+		},
+		{
+			name: 'Markkinointikoulutus Syyskuu 2018',
+			visited: 14,
+			registered: 32
+		}
+	],
+	[
+		{
+			name: 'WebSocket ja IO:n perusteet tehokurssi',
+			visited: 24,
+			registered: 48
+		},
+		{
+			name: 'Keravan Viinifestivaalit',
+			visited: 45,
+			registered: 6
+		},
+		{
+			name: 'Markkinointikoulutus Syyskuu 2018',
+			visited: 14,
+			registered: 46
+		}
+	],
+	[
+		{
+			name: 'WebSocket ja IO:n perusteet tehokurssi',
+			visited: 24,
+			registered: 52
+		},
+		{
+			name: 'Keravan Viinifestivaalit',
+			visited: 45,
+			registered: 2
+		},
+		{
+			name: 'Markkinointikoulutus Syyskuu 2018',
+			visited: 14,
+			registered: 56
 		}
 	]
 ];

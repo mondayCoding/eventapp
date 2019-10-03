@@ -21,7 +21,10 @@ export const EventAttendanceGraph = () => {
 			'Su. 22.09.',
 			'Ma. 23.09.',
 			'Ti. 24.09.',
-			'Ke. 25.09.'
+			'Ke. 25.09.',
+			'Ke. 26.09.',
+			'Ke. 27.09.',
+			'Ke. 28.09.'
 		],
 		datasets: [
 			{

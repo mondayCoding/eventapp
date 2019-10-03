@@ -13,7 +13,7 @@ export const AppLoader = () => {
 			<div>
 				<Loader />
 			</div>
-			<div>Fetching Data...</div>
+			<div>Avataan Sovellusta...</div>
 		</LoaderWrapper>
 	);
 };

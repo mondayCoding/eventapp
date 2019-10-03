@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Nav } from '../AppStyles';
+import { Nav } from './Assets/AppStyles';
 import * as routes from '../Constants/Routes';
 // import image from './favicon.png';
 import image from './Assets/favicon_alternate.png';

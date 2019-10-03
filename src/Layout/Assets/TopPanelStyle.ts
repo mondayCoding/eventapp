@@ -28,7 +28,7 @@ export const TopPanelThemed = styled.nav`
 			border-radius: 1rem;
 			margin-right: auto;
          box-shadow: inset 0px 0px 10px -6px rgba(0, 0, 0, 0.75);
-         
+
          &:focus {
             box-shadow: ${(p) => p.theme.shadow.focus};
          }
@@ -72,11 +72,11 @@ export const TopPanelThemed = styled.nav`
 	}
 
    .panel__icon-and-text > svg {
-      margin-right: .35rem;      
+      margin-right: .35rem;
    }
 
 	.panel__themebutton {
-		flex: 0 0 2.3rem;    
+		flex: 0 0 2.3rem;
 	}
 	.panel__menubutton {
 		flex: 0 0 auto;
@@ -120,6 +120,7 @@ export const TopPanelThemed = styled.nav`
 					background-color: ${(p) => p.theme.primary_color};
 					color: white;
 					box-shadow: none !important;
+					outline: none;
 				}
 				&:active {
 					background-color: ${(p) => p.theme.primary_color} !important;
