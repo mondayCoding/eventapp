@@ -125,6 +125,28 @@ export const Settings: FC<{ event?: IEvent }> = ({ event }) => {
 							setModules={(mod) => setUsedModules(mod)}
 						/>
 					</CardWrapper>
+
+					<CardWrapper>
+						<Formik onSubmit={() => {}} initialValues={initialValues} enableReinitialize>
+							{() => (
+								<>
+									<Heading
+										isUnderlined
+										text="Tapahtuman kielet"
+										ingress="Määrää mitkä käännökset ja lomakkeen kieliversiot ovat käytössä"
+									></Heading>
+
+									<SliderCheckbox
+										defaultChecked
+										label="Suomi"
+										id="lang_1"
+									></SliderCheckbox>
+									<SliderCheckbox label="Englanti" id="lang_2"></SliderCheckbox>
+									<SliderCheckbox label="Ahvenanmaa" id="lang_3"></SliderCheckbox>
+								</>
+							)}
+						</Formik>
+					</CardWrapper>
 				</div>
 			</div>
 		</>

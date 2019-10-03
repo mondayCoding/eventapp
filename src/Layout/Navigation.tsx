@@ -12,7 +12,7 @@ export const Navigation = () => {
 				<Link to={routes.dashboard.path} className="navigation__heading">
 					<img className="navigation__heading__image" src={image} alt=""></img> Mumu App
 				</Link>
-				<Links></Links>
+				<Links />
 			</div>
 		</Nav>
 	);

@@ -13,7 +13,7 @@ const {
 const DefaultTheme = {
 	// Main colors
 	primary_color: '#9538bf',
-	secondary_color: '#88bf38',
+	secondary_color: '#aaebff',
 
 	body_background_color: '#f4f3ef',
 	menu_background_color: '#1b1f2d',
