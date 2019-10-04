@@ -1,4 +1,4 @@
-import styled from './Theme/theme';
+import styled from '../../Theme/theme';
 import { mix, darken } from 'polished';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -25,7 +25,7 @@ export const Main = styled.main`
 	display: flex;
 	flex-direction: column;
 	min-height: calc(100vh - 3rem);
-	padding: 1rem;
+	padding: 1.5rem;
 `;
 
 export const Nav = styled.nav`
@@ -118,7 +118,7 @@ export const Nav = styled.nav`
 					position: absolute;
 					right: -0;
 					opacity: 1;
-					top: 7px;
+					top: 2px;
 					transition: opacity 150ms ease-in;
 				}
 			}

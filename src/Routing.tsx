@@ -4,7 +4,7 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 import { SignInPage } from './Pages/SignIn/SingIn';
 import { SignUpPage } from './Pages/SignUp/SingUp';
 import { Registration } from './Pages/Registration/Registration';
-import { Body } from './AppStyles';
+import { Body } from './Layout/Assets/AppStyles';
 import { PageWrapper } from './Layout/PageWrapper';
 import { Navigation } from './Layout/Navigation';
 import { Customers } from './Pages/Customers/Customers';

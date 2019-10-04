@@ -125,6 +125,7 @@ export const MenuWrapper = styled.div`
 				background-color: ${(p) => p.theme.primary_color};
 				color: white;
 				box-shadow: none !important;
+				outline: none;
 			}
 			&:active {
 				background-color: ${(p) => p.theme.primary_color} !important;

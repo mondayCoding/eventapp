@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Nav } from '../AppStyles';
+import { Nav } from './Assets/AppStyles';
 import * as routes from '../Constants/Routes';
 // import image from './favicon.png';
 import image from './Assets/favicon_alternate.png';
@@ -12,7 +12,7 @@ export const Navigation = () => {
 				<Link to={routes.dashboard.path} className="navigation__heading">
 					<img className="navigation__heading__image" src={image} alt=""></img> Mumu App
 				</Link>
-				<Links></Links>
+				<Links />
 			</div>
 		</Nav>
 	);
