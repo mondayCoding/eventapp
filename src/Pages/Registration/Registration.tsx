@@ -12,6 +12,7 @@ import { ThemeManager } from '../../Theme/ThemeManager';
 import { themes } from '../../Theme/theme';
 import { useTheme } from '../../Theme/useTheme';
 import { useRegistrations, MockRegistration } from '../../Queries/useRegistrations';
+import { SelectFieldBase } from '../../Components/Select/Select';
 
 interface RegistrationRouteProps {
 	id: string;
@@ -35,10 +36,11 @@ export const Registration: FC<formProps> = () => {
 	const [showJSON, setShowJSON] = useState(false);
 	const [data, setData] = useState(MockRegistration);
 	const [themeColor, setThemeColor] = useState(theme.primary_color);
+	const [themeFont, setThemeFont] = useState(theme.body_font);
 	const [isDarkTheme, setIsDarkTheme] = useState(theme.is_dark_theme);
 
 	return (
-		<ThemeManager theme={createModifiedTheme(themes, themeColor, isDarkTheme)}>
+		<ThemeManager theme={createModifiedTheme(themes, themeColor, themeFont, isDarkTheme)}>
 			<RegistrationPage editing={editing}>
 				<div className="registration">
 					<nav className="registration__top">top</nav>
@@ -101,11 +103,49 @@ export const Registration: FC<formProps> = () => {
 							<Formik
 								onSubmit={(values) => {
 									setThemeColor(values.color);
+									setThemeFont(values.font);
 								}}
-								initialValues={{ color: themeColor }}
+								initialValues={{ color: themeColor, font: themeFont }}
 							>
 								<Form>
 									<ColorPickerField name="color" text="Väriteema" />
+									<SelectFieldBase
+										name="font"
+										options={[
+											{ label: 'Roman', value: '"Times New Roman", Times, serif' },
+											{ label: 'Montserrat', value: "'Montserrat', sans-serif" },
+											{ label: 'Georgia', value: 'Georgia, serif' },
+											{
+												label: 'Palatino',
+												value: '"Palatino Linotype", "Book Antiqua", Palatino, serif'
+											},
+											{ label: 'Arial', value: 'Arial, Helvetica, sans-serif' },
+											{
+												label: 'Comic Sans',
+												value: '"Comic Sans MS", cursive, sans-serif'
+											},
+											{
+												label: 'Impact',
+												value: 'Impact, Charcoal, sans-serif'
+											},
+											{
+												label: 'Tahoma',
+												value: 'Tahoma, Geneva, sans-serif'
+											},
+											{
+												label: 'Trebuchet',
+												value: '"Trebuchet MS", Helvetica, sans-serif'
+											},
+											{
+												label: 'Verdana',
+												value: 'Verdana, Geneva, sans-serif'
+											},
+											{
+												label: 'Lucida Console',
+												value: '"Lucida Console", Monaco, monospacef'
+											}
+										]}
+									></SelectFieldBase>
 									<Button type="submit" text="Valitse"></Button>
 								</Form>
 							</Formik>
@@ -157,18 +197,23 @@ export const Registration: FC<formProps> = () => {
 const createModifiedTheme = (
 	defaultThemes: typeof themes,
 	newThemeColor: string,
+	newThemeFont: string,
 	baseThemeIsDark: boolean
 ) =>
 	baseThemeIsDark
 		? {
 				...defaultThemes.dark,
 				primary_color: newThemeColor,
-				shadow: { ...themes.dark.shadow, focus: `0 0 0 3px ${newThemeColor}` }
+				shadow: { ...themes.dark.shadow, focus: `0 0 0 3px ${newThemeColor}` },
+				body_font: newThemeFont,
+				heading_font: newThemeFont
 		  }
 		: {
 				...defaultThemes.default,
 				primary_color: newThemeColor,
-				shadow: { ...themes.default.shadow, focus: `0 0 0 3px ${newThemeColor}` }
+				shadow: { ...themes.default.shadow, focus: `0 0 0 3px ${newThemeColor}` },
+				body_font: newThemeFont,
+				heading_font: newThemeFont
 		  };
 
 // const NewCheckboxSection: IQuestionSectionCheckbox = {
