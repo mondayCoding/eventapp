@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
 import ReactTable from 'react-table';
-import { IOrdersContent, ISectionHelpers } from '../RenderSection';
+import { IOrdersSection, ISectionHelpers } from '../RenderSection';
 import { EditSectionBar } from '../Components/EditSectionBar';
 
 //************************************************** */
@@ -9,7 +9,7 @@ import { EditSectionBar } from '../Components/EditSectionBar';
 //************************************************** */
 
 interface IOrdersSectionProps {
-	section: IOrdersContent;
+	section: IOrdersSection;
 	helpers: ISectionHelpers;
 }
 

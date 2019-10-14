@@ -11,7 +11,10 @@ import { ColorPickerField } from '../../Components/ColorPicker/ColorPickerField'
 import { ThemeManager } from '../../Theme/ThemeManager';
 import { themes } from '../../Theme/theme';
 import { useTheme } from '../../Theme/useTheme';
-import { useRegistrations, MockRegistration } from '../../Queries/useRegistrations';
+import {
+	useRegistrations,
+	MockRegistrationAbstact
+} from '../../Queries/useRegistrations';
 import { SelectFieldBase } from '../../Components/Select/Select';
 
 interface RegistrationRouteProps {
@@ -34,7 +37,7 @@ export const Registration: FC<formProps> = () => {
 	const { registrations } = useRegistrations();
 	const [editing, setEditing] = useState(false);
 	const [showJSON, setShowJSON] = useState(false);
-	const [data, setData] = useState(MockRegistration);
+	const [data, setData] = useState(MockRegistrationAbstact);
 	const [themeColor, setThemeColor] = useState(theme.primary_color);
 	const [themeFont, setThemeFont] = useState(theme.body_font);
 	const [isDarkTheme, setIsDarkTheme] = useState(theme.is_dark_theme);
@@ -70,22 +73,28 @@ export const Registration: FC<formProps> = () => {
 								onClick={() => setShowJSON(!showJSON)}
 							/>
 							<Button
-								text={'Pohja #1 (Pitkä)'}
+								text={'Pohja #1 (Abstract)'}
 								className="TEST__BUTTON TEST__BUTTON--THEME"
 								icon={Icons.globe}
 								onClick={() => setData(registrations[0])}
 							/>
 							<Button
-								text={'Pohja #2 (Lyhyt)'}
+								text={'Pohja #2 (Pitkä)'}
 								className="TEST__BUTTON TEST__BUTTON--THEME"
 								icon={Icons.globe}
 								onClick={() => setData(registrations[1])}
 							/>
 							<Button
-								text={'Pohja #3 (Kysymyksiä)'}
+								text={'Pohja #3 (Lyhyt)'}
 								className="TEST__BUTTON TEST__BUTTON--THEME"
 								icon={Icons.globe}
 								onClick={() => setData(registrations[2])}
+							/>
+							<Button
+								text={'Pohja #4 (Kysymyksiä)'}
+								className="TEST__BUTTON TEST__BUTTON--THEME"
+								icon={Icons.globe}
+								onClick={() => setData(registrations[3])}
 							/>
 
 							<Button

@@ -194,23 +194,3 @@ const FieldRow = ({ path, field, index, label, disabled }: IFieldRow) => (
 // 	{ label: '12:30', value: '3' },
 // 	{ label: '12:45', value: '4' }
 // ];
-
-export const initialValues: IEvent = {
-	country: '',
-	department: '',
-	id: '123',
-	description: '',
-	name: '',
-	created: new Date(),
-	location: '',
-	start: new Date(),
-	end: new Date(),
-	tags: [],
-	city: '',
-	postNumber: '',
-	address: '',
-	state: 6,
-	organizer: '',
-	homepage: '',
-	forms: []
-};

@@ -166,5 +166,18 @@ export const RegistrationPage = styled.div<{ editing: boolean }>`
 			justify-content: center;
 			color: gray;
 		}
+
+		.custom-gutter [class*='col-'] {
+			padding-right: 4px;
+			padding-left: 4px;
+		}
+
+		.custom-gutter [class*='col-']:first-child {
+			padding-left: 15px;
+		}
+
+		.custom-gutter [class*='col-']:last-child {
+			padding-right: 15px;
+		}
 	}
 `;

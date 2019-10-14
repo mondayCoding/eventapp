@@ -8,6 +8,7 @@ import { TextQuestionSection } from './Sections/QuestionSectionText';
 import { SelectQuestionSection } from './Sections/QuestionSectionSelect';
 import { BasicInformationSection } from './Sections/BasicInformationSection';
 import { AfterwordSection } from './Sections/AfterwordSection';
+import { AbstractSection } from './Sections/AbstractSection';
 
 export enum SectionType {
 	basicInformation,
@@ -19,7 +20,8 @@ export enum SectionType {
 	question_Select,
 	accommodation,
 	orders,
-	lectures
+	lectures,
+	abstract
 }
 
 export interface IQuestionSectionRadio {
@@ -134,7 +136,63 @@ interface ILecturesSection {
 	content: any;
 }
 
-export interface IOrdersContent {
+export interface IAbstractSection {
+	type: SectionType.abstract;
+	content: {
+		title: string;
+		titleDescription: string;
+		type: string;
+		typeOptions: { label: string; value: string }[];
+		typeLabel: string;
+		topicLabel: string;
+		topicOptions: { text: string; checked: boolean }[];
+		topics: string[];
+		abstractTitle: string;
+		abstractTitleLabel: string;
+		tags: string[];
+		tagsLabel: string;
+		tagsOptions: string[];
+		authors: {
+			firstname: string;
+			lastname: string;
+			title: string;
+			city: string;
+			email: string;
+			isPresenter: boolean;
+		}[];
+		authorLabels: {
+			firstname: string;
+			lastname: string;
+			title: string;
+			city: string;
+			email: string;
+			isPresenter: string;
+		};
+		authorsDescripton: string;
+		authorsLabel: string;
+		content: string;
+		contentDesctiption: string;
+		contentLabel: string;
+		addAuthorBtnText: string;
+	};
+}
+
+// TODO: separate form and form config (this is config)
+interface IAbstractSectionConfig {
+	type: SectionType.abstract;
+	content: {
+		typeOptions: { label: string; value: string }[];
+		topicOptions: { text: string; checked: boolean }[];
+		titleDescription: string;
+		titleLabel: string;
+		authorsDescripton: string;
+		authorsLabel: string;
+		contentDesctiption: string;
+		contentLabel: string;
+	};
+}
+
+export interface IOrdersSection {
 	type: SectionType.orders;
 	content: {
 		title: string;
@@ -152,12 +210,13 @@ export type Section =
 	| IIntroductionSection
 	| IAfterwordSection
 	| ILecturesSection
-	| IOrdersContent
+	| IOrdersSection
 	| IQuestionSectionRadio
 	| IQuestionSectionCheckbox
 	| IQuestionSectionText
 	| IQuestionSectionSelect
-	| IAfterwordSection;
+	| IAfterwordSection
+	| IAbstractSection;
 
 export interface ISectionHelpers {
 	isInEditMode: boolean;
@@ -197,6 +256,9 @@ export const RenderSection = (section: Section, helpers: ISectionHelpers) => {
 
 		case SectionType.afterword:
 			return <AfterwordSection content={section.content} helpers={helpers} />;
+
+		case SectionType.abstract:
+			return <AbstractSection content={section.content} helpers={helpers} />;
 
 		default:
 			return <h2>Lohkotyypille ei löytynyt render-metodia: {section.type}</h2>;

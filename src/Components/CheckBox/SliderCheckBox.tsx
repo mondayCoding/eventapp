@@ -7,7 +7,7 @@ type IProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 //****************************************************** */
-// base slider, no formik
+// base slider, formik
 //****************************************************** */
 
 export const SliderCheckboxInline: FC<IProps> = ({

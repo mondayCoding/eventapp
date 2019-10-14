@@ -7,6 +7,7 @@ export const useRegistrations = () => {
 
 	useEffect(() => {
 		setRegistrations([
+			MockRegistrationAbstact,
 			MockRegistration,
 			MockRegistrationQuestions,
 			MockRegistrationShort
@@ -14,6 +15,90 @@ export const useRegistrations = () => {
 	}, []);
 
 	return { registrations };
+};
+
+export const MockRegistrationAbstact: IRegistrationForm = {
+	images: {
+		header:
+			'https://cbsnews1.cbsistatic.com/hub/i/2016/09/29/d1a671d9-556e-468d-8639-159e2842f15b/logan-new-hamshire-cat-2016-09-29.jpg'
+	},
+	sections: [
+		{
+			type: SectionType.introduction,
+			content: {
+				headingtext: 'Abstracti',
+				showDates: true,
+				ingress:
+					'Kissa eli kesykissa tai kotikissa (Felis catus, aiemmin Felis silvestris catus) on villikissasta (Felis silvestris) polveutuva ja petoeläinten (Carnivora) lahkon kissaeläinten (Felidae) heimoon kuuluva kesy nisäkäslaji. Kissat ovat suosittuja lemmikkieläimiä, ja etenkin maaseudulla ne ovat aina olleet hyödyllisiä hiirten ja muiden tuholaisten pyydystäjinä. ',
+				start: new Date(2019, 11, 11),
+				end: new Date(2020, 0, 3)
+			}
+		},
+		{
+			type: SectionType.abstract,
+			content: {
+				title: 'Abstractin perustiedot',
+				titleDescription: 'Anna esityksesi perustiedot',
+				type: '',
+				typeOptions: [
+					{ label: 'Tassutiede', value: 'Tassutiede' },
+					{ label: 'Turkkioppi', value: 'Turkkioppi' },
+					{ label: 'Viikset', value: 'Viikset' },
+					{ label: 'Mauku', value: 'Mauku' }
+				],
+				typeLabel: 'Tyyppi',
+				topics: [],
+				topicOptions: [
+					{ text: 'Kissat - 101', checked: false },
+					{ text: 'Verhoilu', checked: false },
+					{ text: 'Felidie', checked: false },
+					{ text: 'Kissanomistajan arkea - katasftrofin anatomia', checked: false },
+					{ text: 'Kissat - 101', checked: false }
+				],
+				tags: [],
+				tagsLabel: 'Avainsanat',
+				tagsOptions: ['Kissat', 'Tiede', 'Eläinkunta', 'Tassut'],
+				topicLabel: 'Aiheet',
+				abstractTitle: '',
+				abstractTitleLabel: 'Abstrabtin titteli',
+				authors: [],
+				authorLabels: {
+					firstname: 'Etunimi',
+					lastname: 'Sukunimi',
+					title: 'Titteli',
+					city: 'Kaupunki',
+					email: 'Email',
+					isPresenter: 'Pääesittäjä'
+				},
+				authorsLabel: 'Luennoitsijat',
+				authorsDescripton: 'Listaa ja määrittele abstraktin luennoijat ja pääesittäjä.',
+				content: '',
+				contentDesctiption: 'string',
+				contentLabel: 'Sisältö',
+				addAuthorBtnText: 'Lisää'
+			}
+		},
+		// {
+		// 	type: SectionType.question_Checkbox,
+		// 	content: {
+		// 		title: 'Kissäni',
+		// 		condition: false,
+		// 		options: [
+		// 			{
+		// 				label: 'Pelkäät, että jossakin on ankka, joka tuijottaa sinua',
+		// 				checked: false
+		// 			},
+		// 			{ label: 'Olet ankka, joka pelkää, että joku tuijottaa sinua', checked: false }
+		// 		]
+		// 	}
+		// },
+		{
+			type: SectionType.afterword,
+			content: {
+				buttonText: 'Meow'
+			}
+		}
+	]
 };
 
 export const MockRegistration: IRegistrationForm = {

@@ -30,7 +30,7 @@ export const FieldContainer: React.SFC<IFieldContainerProps> = ({
 	...rest
 }) =>
 	hideContainer ? (
-		<>children</>
+		<>{children}</>
 	) : (
 		<>
 			<Container isDisabled={disabled} isMobile={showMobileView} {...rest}>
