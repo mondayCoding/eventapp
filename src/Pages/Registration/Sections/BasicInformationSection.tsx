@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Heading } from '../../../Components/Text/Heading';
-import { IEvent } from '../../../MockData/MockEvents';
+
 import { TextField, TextFastField } from '../../../Components/TextInput/Textinput';
 import { SelectField } from '../../../Components/Select/Select';
 import { FieldContainer } from '../../../Components/FieldContainer/FieldContainer';

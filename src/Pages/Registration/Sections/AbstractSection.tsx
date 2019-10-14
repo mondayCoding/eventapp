@@ -6,7 +6,6 @@ import { TextFastField, TextField } from '../../../Components/TextInput/Textinpu
 import { FieldArray } from 'formik';
 import {
 	SelectField,
-	MultiSelectField,
 	CreatableMultiSelectField
 } from '../../../Components/Select/Select';
 import { Button } from '../../../Components/Button/Button';
@@ -16,7 +15,6 @@ import { FieldContainer } from '../../../Components/FieldContainer/FieldContaine
 import Icons from '../../../Components/Icons/icons';
 import { IconButton } from '../../../Components/Button/IconButton';
 import { TextAreaField } from '../../../Components/TextArea/TextArea';
-import { ButtonLink } from '../../../Components/Button/ButtonLink';
 
 //************************************************** */
 // Abstactit (asetukset  + puhujat)
@@ -230,7 +228,7 @@ const newAuthor: IAbstractSection['content']['authors'][0] = {
 
 interface IAbstractSectionConfigProps {}
 
-const AbstactSectionConfig = () => {};
+// const AbstactSectionConfig = () => {};
 
 /* <ReactTable
 data={[
