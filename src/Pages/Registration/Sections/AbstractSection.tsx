@@ -26,7 +26,7 @@ interface IAbstractSectionProps {
 }
 
 export const AbstractSection: FC<IAbstractSectionProps> = (props) => {
-	const [editMode, setEditMode] = useState(true);
+	const [editMode, setEditMode] = useState(false);
 	const content = props.content;
 	const sectionIndex = props.helpers.sectionIndex;
 	const path = `sections.${sectionIndex}.content`;
@@ -37,6 +37,49 @@ export const AbstractSection: FC<IAbstractSectionProps> = (props) => {
 		<section className="registration__content__section custom-gutter">
 			<Heading text={content.title} isUnderlined ingress={content.titleDescription} />
 
+			{editMode ? (
+				<AbstactSectionConfig path={path} content={content} />
+			) : (
+				<AbstractSectionUser content={content} path={path} sectionIndex={sectionIndex} />
+			)}
+
+			{/* <Heading
+				text={'Sisältö'}
+				isUnderlined
+				ingress={'Voit kopida erikoismerkin tai lisätä ne painamalla'}
+			/> */}
+
+			<EditSectionBar
+				isInEditMode={props.helpers.isInEditMode}
+				helpers={props.helpers}
+				onEditClick={toggleEditMode}
+			/>
+		</section>
+	);
+};
+
+const newAuthor: IAbstractSection['content']['authors'][0] = {
+	firstname: '',
+	lastname: '',
+	title: '',
+	city: '',
+	email: '',
+	isPresenter: false
+};
+
+interface IAbstractSectionUserProps {
+	content: IAbstractSection['content'];
+	path: string;
+	sectionIndex: number;
+}
+
+const AbstractSectionUser: FC<IAbstractSectionUserProps> = ({
+	content,
+	path,
+	sectionIndex
+}) => {
+	return (
+		<div>
 			<TextFastField name={path + '.abstractTitle'} label={content.abstractTitleLabel} />
 			<SelectField
 				name={path + '.type'}
@@ -45,7 +88,7 @@ export const AbstractSection: FC<IAbstractSectionProps> = (props) => {
 				placeholder="Valitse"
 			/>
 			<CreatableMultiSelectField
-				options={content.tagsOptions.map((tag) => ({ value: tag, label: tag }))}
+				options={content.tagsOptions}
 				label={content.tagsLabel}
 				name={path + '.tags'}
 			/>
@@ -60,12 +103,6 @@ export const AbstractSection: FC<IAbstractSectionProps> = (props) => {
 					))}
 				</div>
 			</FieldContainer>
-
-			<Heading
-				text={'Sisältö'}
-				isUnderlined
-				ingress={'Voit kopida erikoismerkin tai lisätä ne painamalla'}
-			/>
 
 			{/* TODO: change this, only used field array to gain access to form context */}
 			<FieldContainer label="Symbols">
@@ -130,8 +167,8 @@ export const AbstractSection: FC<IAbstractSectionProps> = (props) => {
 
 			<Heading
 				type="h4"
-				text={content.authorsLabel}
-				ingress={content.authorsDescripton}
+				text={content.authorsHeading}
+				ingress={content.authorsDescription}
 				isUnderlined
 				hasSpaceAbove
 			/>
@@ -207,28 +244,92 @@ export const AbstractSection: FC<IAbstractSectionProps> = (props) => {
 					</div>
 				)}
 			/>
-
-			<EditSectionBar
-				isInEditMode={props.helpers.isInEditMode}
-				helpers={props.helpers}
-				onEditClick={toggleEditMode}
-			/>
-		</section>
+		</div>
 	);
 };
 
-const newAuthor: IAbstractSection['content']['authors'][0] = {
-	firstname: '',
-	lastname: '',
-	title: '',
-	city: '',
-	email: '',
-	isPresenter: false
+interface IAbstractSectionConfigProps {
+	content: IAbstractSection['content'];
+	path: string;
+}
+
+const AbstactSectionConfig: FC<IAbstractSectionConfigProps> = (props) => {
+	return (
+		<div className="registration__content__section__settings">
+			<Heading
+				type="h4"
+				isUnderlined
+				text="Vaihtoehdot"
+				ingress="Valitse tarjottavat vaihtoehdot valinta ja monivalinta kenttiin"
+			/>
+			<CreatableMultiSelectField
+				label="Tyyppivaihtoehdot"
+				name={props.path + '.typeOptions'}
+				options={props.content.typeOptions}
+				value={props.content.typeOptions}
+			/>
+
+			<CreatableMultiSelectField
+				label="Aihevaihtoehdot"
+				name={props.path + '.topicOptions'}
+				options={props.content.topicOptions.map((item) => ({
+					label: item.text,
+					value: item.text
+				}))}
+				value={props.content.topicOptions.map((item) => ({
+					label: item.text,
+					value: item.text
+				}))}
+			/>
+
+			<CreatableMultiSelectField
+				label="Avainsanat"
+				name={props.path + '.tagsOptions'}
+				options={props.content.tagsOptions}
+				value={props.content.tagsOptions}
+			/>
+
+			<Heading
+				type="h4"
+				isUnderlined
+				hasSpaceAbove
+				text="Selitteet"
+				ingress="Muokkaa lomakkeen tekstiselitteitä"
+			/>
+			<TextFastField name={props.path + '.title'} label={'Abstractin perustiedot'} />
+			<TextFastField
+				name={props.path + '.titleDescription'}
+				label={'Perustietojen ohje'}
+			/>
+			<TextFastField
+				name={props.path + '.abstractTitleLabel'}
+				label={'Abstraktin otsikko'}
+			/>
+			<TextFastField name={props.path + '.contentLabel'} label={'Ohjeteksti'} />
+
+			<TextFastField name={props.path + '.typeLabel'} label={'Tyyppi'} />
+			<TextFastField name={props.path + '.topicLabel'} label={'Aiheet'} />
+			<TextFastField name={props.path + '.tagsLabel'} label={'Avainsanat'} />
+
+			<TextFastField name={props.path + '.contentLabel'} label={'Sisältö'} />
+			<TextFastField name={props.path + '.authorsHeading'} label={'Luennoitsijat'} />
+			<TextFastField
+				name={props.path + '.authorsDescription'}
+				label={'Luennoitsijat ohjeteksti'}
+			/>
+			<TextFastField name={props.path + '.authorLabels.firstname'} label={'Etunimi'} />
+			<TextFastField name={props.path + '.authorLabels.lastname'} label={'Sukunimi'} />
+			<TextFastField name={props.path + '.authorLabels.title'} label={'Titteli'} />
+			<TextFastField name={props.path + '.authorLabels.city'} label={'Kaupunki'} />
+			<TextFastField name={props.path + '.authorLabels.email'} label={'Email'} />
+
+			<TextFastField
+				name={props.path + '.addAuthorBtnText'}
+				label={'Painikkeen teksti'}
+			/>
+		</div>
+	);
 };
-
-interface IAbstractSectionConfigProps {}
-
-// const AbstactSectionConfig = () => {};
 
 /* <ReactTable
 data={[

@@ -35,7 +35,6 @@ export const SelectFieldBase: FC<reactSelectProps<any>> = ({
 		}: FieldProps) => (
 			<ReactSelect
 				inputId={`${field.name}_select_TID`}
-				error={touched[field.name] && errors[field.name]}
 				options={options}
 				isDisabled={disabled}
 				name={field.name}
@@ -84,7 +83,6 @@ export const SelectFastField: FC<ProvidedProps> = ({
 			>
 				<ReactSelect
 					inputId={`${field.name}_select_TID`}
-					error={touched[field.name] && errors[field.name]}
 					options={options}
 					isDisabled={disabled}
 					name={field.name}
@@ -134,7 +132,6 @@ export const SelectField: FC<ProvidedProps> = ({
 			>
 				<ReactSelect
 					inputId={`${field.name}_select_TID`}
-					error={touched[field.name] && errors[field.name]}
 					options={options}
 					isDisabled={disabled}
 					name={field.name}
@@ -177,7 +174,6 @@ export const MultiSelectField: FC<ProvidedProps> = ({
 			>
 				<ReactSelect
 					inputId={`${field.name}_select_TID`}
-					error={touched[field.name] && errors[field.name]}
 					options={options}
 					name={field.name}
 					isMulti={true}
@@ -224,18 +220,13 @@ export const CreatableMultiSelectField: FC<ProvidedProps> = ({
 			>
 				<CreatableReactSelect
 					inputId={`${field.name}_select_TID`}
-					error={touched[field.name] && errors[field.name]}
 					options={options}
 					name={field.name}
 					isMulti={true}
-					defaultValue={
-						options && field.value
-							? options.filter((option: any) => field.value.includes(option.value))
-							: []
-					}
+					value={field.value}
 					onBlur={() => setFieldTouched(field.name, true)}
 					onChange={(option: any) => {
-						setFieldValue(field.name, option.map((option: any) => option.value));
+						setFieldValue(field.name, option);
 					}}
 					className="reactselect"
 					classNamePrefix="reactselect"

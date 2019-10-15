@@ -62,6 +62,7 @@ export const CheckboxLabel = styled.label`
 	min-height: 1.6rem;
 	transition: background-color 0.15s ease-in-out;
 	border-radius: 1rem;
+	margin: 0;
 	/* width: 100%; */
 
 	&:hover {
@@ -147,6 +148,7 @@ export const CheckboxLabelInlined = styled.label`
 	-ms-user-select: none;
 	user-select: none;
 	padding: 0;
+	margin: 0;
 	transition: background-color 0.15s ease-in-out;
 
 	&:hover {

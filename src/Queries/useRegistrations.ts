@@ -40,14 +40,15 @@ export const MockRegistrationAbstact: IRegistrationForm = {
 				title: 'Abstractin perustiedot',
 				titleDescription: 'Anna esityksesi perustiedot',
 				type: '',
+				typeLabel: 'Tyyppi',
 				typeOptions: [
 					{ label: 'Tassutiede', value: 'Tassutiede' },
 					{ label: 'Turkkioppi', value: 'Turkkioppi' },
 					{ label: 'Viikset', value: 'Viikset' },
 					{ label: 'Mauku', value: 'Mauku' }
 				],
-				typeLabel: 'Tyyppi',
 				topics: [],
+				topicLabel: 'Aiheet',
 				topicOptions: [
 					{ text: 'Kissat - 101', checked: false },
 					{ text: 'Verhoilu', checked: false },
@@ -57,8 +58,11 @@ export const MockRegistrationAbstact: IRegistrationForm = {
 				],
 				tags: [],
 				tagsLabel: 'Avainsanat',
-				tagsOptions: ['Kissat', 'Tiede', 'Eläinkunta', 'Tassut'],
-				topicLabel: 'Aiheet',
+				tagsOptions: [
+					{ label: 'Kissat', value: 'Kissat' },
+					{ label: 'Tiede', value: 'Tiede' },
+					{ label: 'Tassut', value: 'Tassut' }
+				],
 				abstractTitle: '',
 				abstractTitleLabel: 'Abstrabtin titteli',
 				authors: [],
@@ -70,12 +74,12 @@ export const MockRegistrationAbstact: IRegistrationForm = {
 					email: 'Email',
 					isPresenter: 'Pääesittäjä'
 				},
-				authorsLabel: 'Luennoitsijat',
-				authorsDescripton: 'Listaa ja määrittele abstraktin luennoijat ja pääesittäjä.',
 				content: '',
 				contentDesctiption: 'string',
 				contentLabel: 'Sisältö',
-				addAuthorBtnText: 'Lisää'
+				addAuthorBtnText: 'Lisää',
+				authorsDescription: 'Listaa esityksen luennoitsijat ja pääesittäjä',
+				authorsHeading: 'Luennoitsijat'
 			}
 		},
 		// {

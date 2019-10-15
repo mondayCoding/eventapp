@@ -151,7 +151,7 @@ export interface IAbstractSection {
 		abstractTitleLabel: string;
 		tags: string[];
 		tagsLabel: string;
-		tagsOptions: string[];
+		tagsOptions: { label: string; value: string }[];
 		authors: {
 			firstname: string;
 			lastname: string;
@@ -168,11 +168,11 @@ export interface IAbstractSection {
 			email: string;
 			isPresenter: string;
 		};
-		authorsDescripton: string;
-		authorsLabel: string;
 		content: string;
 		contentDesctiption: string;
 		contentLabel: string;
+		authorsHeading: string;
+		authorsDescription: string;
 		addAuthorBtnText: string;
 	};
 }
