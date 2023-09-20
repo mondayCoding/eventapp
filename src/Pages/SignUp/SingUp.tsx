@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { LoginWrapper } from '../SignIn/LoginWrapper';
 import { Button } from '../../Components/Button/Button';
-import { auth } from '../../Firebase/index';
+// import { auth } from '../../Firebase/index';
 import Notify from '../../Utils/Notification';
 import { AppContext } from '../../App';
 import { IconButton } from '../../Components/Button/IconButton';
@@ -23,17 +23,17 @@ export const SignUpPage = () => {
 	useDocumentTitle('Luo tili');
 	const { isDarkTheme, toggleTheme } = useContext(AppContext);
 
-	const handleSignUp = (values: form, actions: FormikActions<form>) =>
-		auth
-			.createUserWithEmailAndPassword(values.email, values.password)
-			.then(() => {
-				Notify.success('Kirjauduit sisään');
-			})
-			.catch((error) => {
-				console.exception(error);
-				Notify.warn(error.message);
-				actions.resetForm();
-			});
+	const handleSignUp = (values: form, actions: FormikActions<form>) => {};
+	// auth
+	// 	.createUserWithEmailAndPassword(values.email, values.password)
+	// 	.then(() => {
+	// 		Notify.success('Kirjauduit sisään');
+	// 	})
+	// 	.catch((error) => {
+	// 		console.exception(error);
+	// 		Notify.warn(error.message);
+	// 		actions.resetForm();
+	// 	});
 
 	return (
 		<LoginWrapper>
@@ -98,11 +98,9 @@ export const SignUpPage = () => {
 };
 
 const validationSchema = Yup.object().shape({
-	email: Yup.string()
-		.email()
-		.required(),
+	email: Yup.string().email().required(),
 	password: Yup.string().required(),
-	passwordRepeat: Yup.string().test('password', 'Passwords must match', function(value) {
+	passwordRepeat: Yup.string().test('password', 'Passwords must match', function (value) {
 		return this.parent.password === value;
 	})
 });

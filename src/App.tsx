@@ -11,7 +11,7 @@ import { AppLoader } from './Layout/AppLoader';
 
 interface IAppDataContext {
 	isDarkTheme: boolean;
-	authorization?: firebase.User | null;
+	authorization: any;
 	emailingList: EmailTarget[];
 	updateEmailingList: (x: EmailTarget[]) => void;
 	toggleTheme: () => void;

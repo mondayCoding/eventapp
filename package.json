@@ -13,7 +13,6 @@
 		"@fullcalendar/daygrid": "^4.3.0",
 		"@fullcalendar/react": "^4.3.0",
 		"@types/ckeditor": "^4.9.8",
-		"@types/firebase": "^3.2.1",
 		"@types/jest": "24.0.13",
 		"@types/node": "12.0.7",
 		"@types/react": "^16.9.4",
@@ -34,7 +33,6 @@
 		"axios": "^0.21.1",
 		"bootstrap": "^4.3.1",
 		"chart.js": "^2.8.0",
-		"firebase": "^7.0.0",
 		"formik": "^1.5.8",
 		"perfect-scrollbar": "^1.4.0",
 		"polished": "^3.4.1",
@@ -61,7 +59,7 @@
 		"yup": "^0.27.0"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "react-scripts --openssl-legacy-provider start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",

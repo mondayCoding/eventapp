@@ -8,7 +8,6 @@ import { AppContext } from '../../App';
 import { Button } from '../../Components/Button/Button';
 import { IconButton } from '../../Components/Button/IconButton';
 import Icons from '../../Components/Icons/icons';
-import { auth } from '../../Firebase/index';
 import { TextFieldBase } from '../../Components/TextInput/TextinputBase';
 import Notify from '../../Utils/Notification';
 import * as Yup from 'yup';
@@ -28,17 +27,17 @@ export const SignInPage = () => {
 
 	if (authorization) return <Redirect to={routes.dashboard.path} />;
 
-	const handleSignIn = (values: form, actions: FormikActions<form>) =>
-		auth
-			.signInWithEmailAndPassword(values.email, values.password)
-			.then((authe: any) => {
-				history.push(routes.dashboard.path);
-			})
-			.catch((error) => {
-				console.exception(error);
-				actions.resetForm();
-				Notify.error(error.message);
-			});
+	const handleSignIn = (values: form, actions: FormikActions<form>) => {};
+	// auth
+	// 	.signInWithEmailAndPassword(values.email, values.password)
+	// 	.then((authe: any) => {
+	// 		history.push(routes.dashboard.path);
+	// 	})
+	// 	.catch((error) => {
+	// 		console.exception(error);
+	// 		actions.resetForm();
+	// 		Notify.error(error.message);
+	// 	});
 
 	return (
 		<LoginWrapper>
@@ -97,8 +96,6 @@ export const SignInPage = () => {
 };
 
 const validationSchema = Yup.object().shape({
-	email: Yup.string()
-		.email()
-		.required(),
+	email: Yup.string().email().required(),
 	password: Yup.string().required()
 });
